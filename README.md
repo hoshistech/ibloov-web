@@ -1,2 +1,2 @@
 # ibloov-web
-Web implementation for the ibloov
+Web implementation for ibloov
