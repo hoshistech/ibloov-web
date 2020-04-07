@@ -1,13 +1,17 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Login from "./views/login/Login";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>ibloov-web</p>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/login" component={Login} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
