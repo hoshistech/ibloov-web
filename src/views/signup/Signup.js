@@ -19,7 +19,7 @@ const Signup = (props) => {
             <div>
               <p className="text-muted small-info-text">
                 Already Registered?{" "}
-                <Link to="/signup" className="text-dark">
+                <Link to="/signin" className="font-bold text-dark">
                   {" "}
                   Sign in now!
                 </Link>
@@ -93,7 +93,7 @@ const Signup = (props) => {
 
             <div className="auth-button-container">
               <Button
-                customClassName="auth-button"
+                customClassName="auth-button bold-600"
                 // onclick={this.onButtonPress.bind(this)}
               >
                 Continue
