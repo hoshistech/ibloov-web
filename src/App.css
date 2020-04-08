@@ -2,6 +2,10 @@
   font-weight: 800;
 }
 
+.bold-600 {
+  font-weight: 600;
+}
+
 .perfect-center {
   align-self: center;
 }

@@ -2,4 +2,30 @@
   background-color: pink;
   width: 100%;
   border-radius: 20px;
+  font-size: 0.8em;
+}
+
+.auth-google {
+  background-color: "#fff";
+  width: 100%;
+  border-radius: 20px;
+  color: black;
+  font-size: 0.8em;
+  /* border: 1px solid "#ccc" !important; */
+}
+
+.auth-facebook {
+  background-color: #4267b2;
+  width: 100%;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.8em;
+}
+
+.auth-twitter {
+  background-color: rgba(29, 161, 242, 1);
+  width: 100%;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.8em;
 }

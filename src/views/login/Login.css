@@ -1,0 +1,17 @@
+.auth-button-container-login {
+  margin: 1em auto 5em auto;
+  width: 100%;
+}
+
+.auth-button-container-social-login {
+  margin: 0 auto 0 auto;
+  width: 100%;
+}
+
+.divider-container {
+  flex-wrap: nowrap;
+}
+
+.divider {
+  border: 1px solid #ccc;
+}
