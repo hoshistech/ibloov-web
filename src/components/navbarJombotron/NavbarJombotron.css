@@ -1,0 +1,21 @@
+.navbar-container {
+  background-image: url("../../assets/images/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  display: grid;
+  /* height: 30vh; */
+  /* height: inherit; */
+}
+
+.jombotron-text {
+  margin: auto;
+  text-align: center;
+}
+
+@media only screen and (min-width: 991px) {
+  .navbar-container {
+    height: 300px;
+  }
+}

@@ -1,0 +1,9 @@
+.header-list-container li {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  font-size: 0.8em;
+}
+
+.header-list-container li a {
+  color: #fff;
+}
