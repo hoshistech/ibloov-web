@@ -2,11 +2,11 @@ import React from "react";
 import "./Button.css";
 
 const Button = (props) => {
-  const { customClassName, onclick } = props;
+  const { customClassName, onClick } = props;
   return (
     <button
       type="button"
-      onClick={onclick}
+      onClick={onClick}
       className={`btn ${customClassName}`}
     >
       {props.children}

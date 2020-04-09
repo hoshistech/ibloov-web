@@ -5,6 +5,7 @@ import "./App.css";
 import Signup from "./views/signup/Signup";
 import Login from "./views/login/Login";
 import setupStore from "./store/reducer";
+import Event from "./views/event/Event";
 
 const store = setupStore();
 
@@ -16,6 +17,7 @@ function App() {
           <Switch>
             <Route path="/signup" component={Signup} />
             <Route path="/signin" component={Login} />
+            <Route path="/events" component={Event} />
           </Switch>
         </div>
       </Router>

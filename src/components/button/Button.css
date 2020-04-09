@@ -5,6 +5,22 @@
   font-size: 0.8em;
 }
 
+.header-button {
+  border-radius: 20px;
+  font-size: 0.8em;
+  min-width: 100px;
+}
+
+.header-button-login {
+  color: pink;
+  border: 1px solid #4a9adc;
+}
+
+.header-button-register {
+  background-color: pink;
+  color: #4a9adc;
+}
+
 .auth-google {
   background-color: "#fff";
   width: 100%;
@@ -28,4 +44,10 @@
   border-radius: 20px;
   color: #fff;
   font-size: 0.8em;
+}
+
+@media only screen and (max-width: 991px) {
+  .header-button {
+    margin-top: 10px;
+  }
 }

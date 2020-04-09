@@ -72,21 +72,21 @@ const Signup = (props) => {
               // handleChange={this.emailChange.bind(this)}
             />
 
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input terms-checkbox"
+                className="form-check-input terms-checkbox"
                 type="checkbox"
                 value=""
                 id="invalidCheck"
                 required
               />
               <label
-                class="form-check-label terms-condition"
-                for="invalidCheck"
+                className="form-check-label terms-condition"
+                htmlFor="invalidCheck"
               >
                 I agree to the Terms and conditions and Privacy policy
               </label>
-              <div class="invalid-feedback">
+              <div className="invalid-feedback">
                 You must agree before submitting.
               </div>
             </div>

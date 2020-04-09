@@ -1,12 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 import "./Login.css";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
+import Navbar from "../../components/navbar/Navbar";
 
 const Login = (props) => {
+  const socialAuthHandler = (e, id) => {
+    axios
+      .get("http://198.199.91.181:4000/auth/google/authurl")
+      .then((response) => {
+        // handle success
+        console.log(response.data.data);
+        const { data } = response.data;
+        window.location = data;
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  };
+
   return (
     <section className="banner row">
       <div className="col-md-8 perfect-center">
@@ -54,7 +71,7 @@ const Login = (props) => {
             <div className="auth-button-container-social-login">
               <Button
                 customClassName="btn-outline-secondary bold-600 auth-google mb-2"
-                // onclick={this.onButtonPress.bind(this)}
+                onClick={(e) => socialAuthHandler(e, "google")}
               >
                 Continue with Google
               </Button>
