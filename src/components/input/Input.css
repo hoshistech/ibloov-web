@@ -4,7 +4,7 @@ input[type="email"] {
   border-radius: 0;
 }
 
-input[type="text"] {
+.auth-form input[type="text"] {
   border: none;
   border-bottom: 1px solid black;
   border-radius: 0;
@@ -22,7 +22,7 @@ input[type="password"] {
   border-radius: 0;
 }
 
-input {
+.auth-form input {
   margin: 15px auto;
   font-size: 5px;
 }

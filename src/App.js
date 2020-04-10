@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faShareAlt, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faShareAlt, faHeart, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
 import Signup from "./views/signup/Signup";
@@ -12,7 +12,7 @@ import Event from "./views/event/Event";
 
 const store = setupStore();
 
-library.add(faShareAlt, faHeart);
+library.add(faShareAlt, faHeart, faChevronDown);
 
 function App() {
   return (
