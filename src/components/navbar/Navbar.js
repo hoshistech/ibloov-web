@@ -47,20 +47,24 @@ const Navbar = (props) => {
             </Link>
           </li>
           <li className="nav-item">
-            <Button
-              customClassName="header-button header-button-login bold-600"
-              // onclick={this.onButtonPress.bind(this)}
-            >
-              Login
-            </Button>
+            <Link to="/signin">
+              <Button
+                customClassName="header-button header-button-login bold-600"
+                // onclick={this.onButtonPress.bind(this)}
+              >
+                Login
+              </Button>
+            </Link>
           </li>
           <li className="nav-item">
-            <Button
-              customClassName="header-button header-button-register bold-600"
-              // onclick={this.onButtonPress.bind(this)}
-            >
-              Register
-            </Button>
+            <Link to="/signup">
+              <Button
+                customClassName="header-button header-button-register bold-600"
+                // onclick={this.onButtonPress.bind(this)}
+              >
+                Register
+              </Button>
+            </Link>
           </li>
         </ul>
       </div>

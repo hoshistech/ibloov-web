@@ -46,8 +46,21 @@
   font-size: 0.8em;
 }
 
+.filter-button {
+  background-color: pink;
+  width: 100%;
+  border-radius: 30px;
+  font-size: 0.8em;
+  padding: 1rem 0.8rem;
+}
+
 @media only screen and (max-width: 991px) {
   .header-button {
     margin-top: 10px;
+  }
+
+  .filter-button {
+    margin-top: 0.5rem;
+    padding: 0.2rem;
   }
 }

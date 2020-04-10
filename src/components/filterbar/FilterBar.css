@@ -1,0 +1,54 @@
+.filterbar-container {
+  justify-content: space-evenly;
+  /* border: 1px solid #ccc; */
+  border-radius: 10px;
+  width: 80%;
+  margin: 0px auto;
+  padding: 0.6rem;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
+  -moz-box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
+  box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
+}
+
+.filter-input-container {
+  width: 90%;
+  margin: 0px 0.5rem;
+}
+
+.filter-input-submit {
+  width: 40%;
+  align-self: flex-end;
+}
+
+.filter-input {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.filter-input::placeholder {
+  color: #888080;
+  font-size: 1rem;
+}
+
+.filter-input-container > label {
+  font-size: 0.5rem;
+  padding: 0px 0.75rem;
+  font-weight: 600;
+  color: #a7a3a3;
+}
+
+details summary:focus {
+  outline: none;
+}
+
+@media only screen and (min-width: 991px) {
+  .filterbar-container {
+    flex-wrap: nowrap;
+    margin-top: -58px;
+    background-color: white;
+  }
+  .filter-input-submit {
+    margin-right: 0.7rem;
+  }
+}

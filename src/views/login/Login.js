@@ -43,7 +43,7 @@ const Login = (props) => {
               </p>
             </div>
           </div>
-          <form>
+          <form className="auth-form">
             <Input
               name="email"
               type="email"
