@@ -1,0 +1,158 @@
+.card-container {
+  margin-left: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  width: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-container p {
+  position: absolute;
+  top: 82%;
+  background-color: #4f3aa5;
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.6rem;
+}
+
+.card-image {
+  height: 182px;
+  width: 250px;
+}
+
+.event-icon-container {
+  display: none;
+  position: absolute;
+  top: 10%;
+  right: 3%;
+}
+
+.card-icon-container {
+  border: 1px solid #fff;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  padding: 0.1rem 0.4rem;
+  margin: 0 0.2em;
+  background-color: #fff;
+}
+
+.card-icon {
+  font-size: 0.8rem;
+}
+
+.heart {
+  color: #ccc;
+}
+
+.event-body {
+  padding: 1rem;
+}
+.event-info {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.8em;
+}
+
+.event-info p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.event-info small {
+  color: #6f6868d1;
+}
+
+.event-stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+}
+
+.event-stat p {
+  margin: 0px;
+  padding: 0px;
+  font-size: 0.3em;
+}
+
+.attending-event-container {
+  display: flex;
+}
+
+.attending-event {
+  position: relative;
+}
+
+.number-attending {
+  align-self: center;
+}
+
+.stat-image:first-child {
+  position: absolute;
+  left: 10px;
+}
+
+.stat-image:nth-child(2) {
+  position: absolute;
+  left: 20px;
+}
+
+.stat-image {
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  border: 2px solid #fff;
+}
+
+.event-button {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.8em;
+}
+
+/* 
+
+setting for hover 
+
+
+*/
+
+.card-container:hover .event-body {
+  background-color: #05458a;
+  color: white;
+}
+
+.card-container:hover .event-button {
+  background-color: #944b4b;
+  color: white;
+  border: 1px solid red;
+}
+
+.card-container:hover .event-icon-container {
+  display: flex;
+}
+
+.image-text-second {
+  display: none;
+}
+
+.card-container:hover .image-text-second {
+  display: inline;
+}
+
+.card-container:hover .image-text-first {
+  display: none;
+}
+
+/* .card-container:hover .image-text span {
+  display: none;
+}
+
+.card-container:hover .image-text:before {
+  content: "Conferences";
+} */
