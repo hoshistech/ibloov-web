@@ -1,10 +1,13 @@
 .card-container {
   margin-left: 10px;
   margin-top: 10px;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   width: 250px;
   border-radius: 10px;
   overflow: hidden;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
+  -moz-box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
+  box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
 }
 
 .image-container {
@@ -142,7 +145,7 @@ setting for hover
 }
 
 .card-container:hover .image-text-second {
-  display: inline;
+  display: block;
 }
 
 .card-container:hover .image-text-first {

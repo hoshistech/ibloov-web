@@ -54,6 +54,19 @@
   padding: 1rem 0.8rem;
 }
 
+.pagination-button {
+  border: 1px solid #ccc;
+  margin-right: 1rem;
+  font-size: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  color: #353594;
+}
+
+.pagination-button:hover {
+  background-color: pink;
+  border-color: pink;
+}
+
 @media only screen and (max-width: 991px) {
   .header-button {
     margin-top: 10px;

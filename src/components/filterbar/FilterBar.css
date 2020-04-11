@@ -4,7 +4,7 @@
   border-radius: 10px;
   width: 80%;
   margin: 0px auto;
-  padding: 0.6rem;
+  padding: 1.2rem;
   -webkit-box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
   -moz-box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
   box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
@@ -45,7 +45,7 @@ details summary:focus {
 @media only screen and (min-width: 991px) {
   .filterbar-container {
     flex-wrap: nowrap;
-    margin-top: -58px;
+    margin-top: -64px;
     background-color: white;
   }
   .filter-input-submit {
