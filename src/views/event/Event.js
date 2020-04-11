@@ -5,6 +5,8 @@ import Card from "../../components/card/Card";
 import FilterBar from "../../components/filterbar/FilterBar";
 import Footer from "../../components/footer/Footer";
 
+import "./Event.css";
+import Pagination from "../../components/pagination/Pagination";
 const Event = (props) => {
   return (
     <Fragment>
@@ -14,8 +16,25 @@ const Event = (props) => {
       />
       <FilterBar />
 
-      <Card />
-      <Card />
+      <section className="row event-card-container">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </section>
+      <div>
+        <Pagination />
+      </div>
+
       <Footer />
     </Fragment>
   );

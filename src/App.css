@@ -1,5 +1,6 @@
 .App {
   margin: 0px 20px;
+  max-width: 1440px;
 }
 .font-bold {
   font-weight: 800;
@@ -11,4 +12,10 @@
 
 .perfect-center {
   align-self: center;
+}
+
+@media only screen and (min-width: 1441px) {
+  .App {
+    margin: 0px auto;
+  }
 }

@@ -12,10 +12,12 @@
 .jombotron-text {
   margin: auto;
   text-align: center;
+  padding: 3rem;
 }
 
 @media only screen and (min-width: 991px) {
   .navbar-container {
-    height: 300px;
+    /* height: 310px; */
+    padding: 1rem;
   }
 }
