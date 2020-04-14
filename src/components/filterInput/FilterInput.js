@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Input from "../input/Input";
 
 const FilterInput = (props) => {
-  console.log(22, props.empty);
 
   const { empty } = props;
   return (

@@ -26,6 +26,7 @@
 .terms-condition {
   font-size: 0.55em;
   font-weight: 700;
+  margin: 0.65rem auto;
 }
 
 .terms-checkbox {
@@ -80,4 +81,9 @@
 .auth-button-container {
   margin: 4em auto 0 auto;
   width: 100%;
+}
+
+.signup-error {
+  color: red;
+  font-size: 10px;
 }
