@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/ibloov-web/static/css/main.74551706.chunk.css",
+    "main.js": "/ibloov-web/static/js/main.fb89692a.chunk.js",
+    "main.js.map": "/ibloov-web/static/js/main.fb89692a.chunk.js.map",
+    "runtime-main.js": "/ibloov-web/static/js/runtime-main.4ae8899f.js",
+    "runtime-main.js.map": "/ibloov-web/static/js/runtime-main.4ae8899f.js.map",
+    "static/js/2.3e97cf1d.chunk.js": "/ibloov-web/static/js/2.3e97cf1d.chunk.js",
+    "static/js/2.3e97cf1d.chunk.js.map": "/ibloov-web/static/js/2.3e97cf1d.chunk.js.map",
+    "index.html": "/ibloov-web/index.html",
+    "precache-manifest.56a9018bd1aaaadfa3073edf9693f552.js": "/ibloov-web/precache-manifest.56a9018bd1aaaadfa3073edf9693f552.js",
+    "service-worker.js": "/ibloov-web/service-worker.js",
+    "static/css/main.74551706.chunk.css.map": "/ibloov-web/static/css/main.74551706.chunk.css.map",
+    "static/js/2.3e97cf1d.chunk.js.LICENSE.txt": "/ibloov-web/static/js/2.3e97cf1d.chunk.js.LICENSE.txt",
+    "static/media/NavbarJombotron.css": "/ibloov-web/static/media/background.f7b77993.jpg",
+    "static/media/bg2.jpg": "/ibloov-web/static/media/bg2.5b97ffe2.jpg",
+    "static/media/Footer.css": "/ibloov-web/static/media/bg3.6a7e7f74.jpg",
+    "static/media/passport.jpg": "/ibloov-web/static/media/passport.e26b6767.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4ae8899f.js",
+    "static/js/2.3e97cf1d.chunk.js",
+    "static/css/main.74551706.chunk.css",
+    "static/js/main.fb89692a.chunk.js"
+  ]
+}
