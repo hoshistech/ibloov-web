@@ -67,6 +67,10 @@
   border-color: pink;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 @media only screen and (max-width: 991px) {
   .header-button {
     margin-top: 10px;

@@ -7,7 +7,7 @@ import "./Navbar.css";
 const Navbar = (props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
-      <Link className="navbar-brand" href="#">
+      <Link className="navbar-brand" href="/">
         ibloov
       </Link>
       <button
@@ -27,7 +27,7 @@ const Navbar = (props) => {
       >
         <ul className="navbar-nav header-list-container">
           <li className="nav-item active">
-            <Link className="nav-link color-white" href="#">
+            <Link className="nav-link color-white" to="/">
               HOME <span className="sr-only">(current)</span>
             </Link>
           </li>

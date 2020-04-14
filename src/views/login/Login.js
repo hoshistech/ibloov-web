@@ -10,17 +10,20 @@ import Navbar from "../../components/navbar/Navbar";
 
 const Login = (props) => {
   const socialAuthHandler = (e, id) => {
+    const googleAuth = "http://ibloov.xpasson.com:4000/auth/google";
+    window.location = googleAuth;
     axios
-      .get("http://198.199.91.181:4000/auth/google/authurl")
+      // .get("http://198.199.91.181:4000/auth/google/authurl")
+      .get("http://ibloov.xpasson.com:4000/auth/google")
       .then((response) => {
         // handle success
-        console.log(response.data.data);
-        const { data } = response.data;
-        window.location = data;
+        // console.log(response.data);
+        // const { data } = response.data;
+        // window.location = data;
       })
       .catch((error) => {
         // handle error
-        console.log(error);
+        // console.log(error);
       });
   };
 

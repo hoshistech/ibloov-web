@@ -1,5 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
+import { ToastContainer, Slide, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -21,8 +23,12 @@ import Signup from "./views/signup/Signup";
 import Login from "./views/login/Login";
 import setupStore from "./store/reducer";
 import Event from "./views/event/Event";
+import HomePage from "./views/homepage/HomePage";
 
 const store = setupStore();
+toast.configure({
+  position: "top-center",
+});
 
 library.add(
   faShareAlt,
@@ -39,7 +45,13 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
+          {/* <ToastContainer
+            autoClose={3000}
+            transition={Slide}
+            position="top-center"
+          /> */}
           <Switch>
+            <Route path="/" exact component={HomePage} />
             <Route path="/signup" component={Signup} />
             <Route path="/signin" component={Login} />
             <Route path="/events" component={Event} />
