@@ -1,0 +1,76 @@
+.view-event-profile-img {
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  border: 2px solid #fff;
+}
+
+.view-event-profile-detail p {
+  margin-bottom: -0.7rem;
+  font-size: 0.7rem;
+}
+
+.view-event-profile-detail small {
+  font-size: 0.5rem;
+  color: #ff3434;
+}
+
+.view-event-stat-container {
+  width: 200px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 10px #00000033;
+  border-radius: 10px;
+  /* opacity: 1; */
+  padding: 1rem;
+}
+
+.view-event-profile-container {
+  background-color: #fcc1ba;
+  padding: 5px 10px;
+  width: 200px;
+  margin-left: 0px;
+}
+
+.view-event-profile-button-container {
+  display: grid;
+}
+
+.view-event-profile-btn {
+}
+
+.view-event-btn {
+  width: 160px;
+  /* height: 60px; */
+  border-radius: 10px;
+  font-size: 0.5rem;
+  padding: 10px 5px;
+}
+
+.bloove-event-now-btn {
+  background-color: #213368;
+  color: white;
+}
+.bloove-event-now-btn:hover {
+  color: white;
+}
+
+.bloove-promote-event-btn {
+  background-color: #d8d8d8;
+  color: #222222;
+}
+
+.view-event-card-icon-container {
+  /* align-self: center; */
+  margin: 0 0.2em;
+}
+
+.no-margin-p{
+  margin: 0;
+  font-size: 0.5rem;
+}
+
+.view-event-card-icon {
+  font-size: 0.5rem;
+  margin-right: 4px;
+  color: #2a5799;
+}
