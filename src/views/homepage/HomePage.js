@@ -5,6 +5,9 @@ import CategoryCard from "../../components/categoryCard/CategoryCard";
 
 import NigthLife from "../../assets/images/Home/MaskGroup1.svg";
 import InfluencerCard from "../../components/influencerCard/InfluencerCard";
+import HashTag from "../../components/hashTag/HashTag";
+import ViewEventProfileCard from "../../components/viewEventProfileCard/ViewEventProfileCard";
+import Card from "../../components/card/Card";
 
 const HomePage = (props) => {
   return (
@@ -45,6 +48,16 @@ const HomePage = (props) => {
         cardTitle="East Yolanda"
         events="900"
       />
+
+      <div className="mb-3">
+        <Card />
+      </div>
+
+      <div className="mb-4">
+        <HashTag tagValue="TiwaLiveOnStage" />
+      </div>
+
+      <ViewEventProfileCard />
     </div>
   );
 };
