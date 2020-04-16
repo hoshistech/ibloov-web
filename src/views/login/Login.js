@@ -8,6 +8,7 @@ import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
 import Navbar from "../../components/navbar/Navbar";
 
+
 const Login = (props) => {
   const socialAuthHandler = (e, id) => {
     const googleAuth = "http://ibloov.xpasson.com:4000/auth/google";

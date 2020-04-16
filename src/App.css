@@ -1,6 +1,7 @@
 .App {
   margin: 0px 20px;
   max-width: 1440px;
+  font-family: Nunito sans;
 }
 .font-bold {
   font-weight: 800;

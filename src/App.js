@@ -45,11 +45,6 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
-          {/* <ToastContainer
-            autoClose={3000}
-            transition={Slide}
-            position="top-center"
-          /> */}
           <Switch>
             <Route path="/" exact component={HomePage} />
             <Route path="/signup" component={Signup} />

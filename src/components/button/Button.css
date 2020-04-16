@@ -1,8 +1,9 @@
 .auth-button {
-  background-color: pink;
+  background-color: #fcc1ba;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 50px;
   font-size: 0.8em;
+  opacity: 1;
 }
 
 .header-button {
@@ -19,6 +20,10 @@
 .header-button-register {
   background-color: pink;
   color: #4a9adc;
+}
+
+.btn {
+  color: #222222;
 }
 
 .auth-google {

@@ -1,0 +1,59 @@
+.most-places-card {
+  background: transparent linear-gradient(180deg, #22222200 0%, #222222 100%) 0%
+    0% no-repeat padding-box;
+  border-radius: 5px;
+  opacity: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.influencer-card {
+  width: 160px;
+  height: 195px;
+}
+
+.most-influencer-image {
+  width: 160px;
+  height: 195px;
+}
+
+.place-card {
+  width: 160px;
+  height: 180px;
+}
+.most-place-image {
+  width: 160px;
+  height: 180px;
+}
+
+.most-influencer-details {
+  position: absolute;
+  bottom: 5%;
+  color: white;
+  font-size: 0.9rem;
+  padding-left: 5px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 70%
+  );
+}
+
+/* .most-influencer-details p {
+  margin: 0px;
+  padding: 0px;
+} */
+
+.influencer-name {
+  margin-bottom: -0.4rem;
+}
+
+.influencer-card-stat {
+  margin-top: 0.6rem;
+  display: grid;
+  opacity: 0.6;
+}
+
+.place-card-event {
+  opacity: 0.6;
+}
