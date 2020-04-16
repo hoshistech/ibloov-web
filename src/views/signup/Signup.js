@@ -94,7 +94,7 @@ const Signup = (props) => {
           <div>
             <h4 className="font-bold">Create an account</h4>
             <div>
-              <p className="text-muted small-info-text">
+              <p className="small-info-text">
                 Already Registered?{" "}
                 <Link to="/signin" className="font-bold text-dark">
                   {" "}
