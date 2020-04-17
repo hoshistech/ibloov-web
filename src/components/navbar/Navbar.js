@@ -12,7 +12,7 @@ const Navbar = (props) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
-      <Link className="navbar-brand" href="/">
+      <Link className="navbar-brand" to="/">
         ibloov
       </Link>
       <button
