@@ -16,6 +16,7 @@ import {
   faShareAlt,
   faHeart,
   faChevronDown,
+  faBell,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
@@ -24,6 +25,7 @@ import Login from "./views/login/Login";
 import setupStore from "./store/reducer";
 import Event from "./views/event/Event";
 import HomePage from "./views/homepage/HomePage";
+import Myibloov from "./views/myibloov/Myibloov";
 
 const store = setupStore();
 toast.configure({
@@ -37,7 +39,8 @@ library.add(
   faTwitter,
   faFacebookF,
   faLinkedinIn,
-  faInstagram
+  faInstagram,
+  faBell
 );
 
 function App() {
@@ -50,6 +53,7 @@ function App() {
             <Route path="/signup" component={Signup} />
             <Route path="/signin" component={Login} />
             <Route path="/events" component={Event} />
+            <Route path="/myibloov" component={Myibloov} />
           </Switch>
         </div>
       </Router>

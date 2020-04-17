@@ -9,6 +9,10 @@
   /* height: inherit; */
 }
 
+.navbar-container nav {
+  background: none;
+}
+
 .jombotron-text {
   margin: auto;
   text-align: center;

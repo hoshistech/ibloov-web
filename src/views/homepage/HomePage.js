@@ -8,6 +8,8 @@ import InfluencerCard from "../../components/influencerCard/InfluencerCard";
 import HashTag from "../../components/hashTag/HashTag";
 import ViewEventProfileCard from "../../components/viewEventProfileCard/ViewEventProfileCard";
 import Card from "../../components/card/Card";
+import SingleComment from "../../components/singleComment/SingleComment";
+import CreateComment from "../../components/createComment/CreateComment";
 
 const HomePage = (props) => {
   return (
@@ -58,6 +60,14 @@ const HomePage = (props) => {
       </div>
 
       <ViewEventProfileCard />
+
+      <div className="mt-3 mb-3">
+        <SingleComment />
+      </div>
+
+      <div className="mt-3 mb-3">
+        <CreateComment />
+      </div>
     </div>
   );
 };

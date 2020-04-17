@@ -1,4 +1,4 @@
-input[type="email"] {
+.auth-form input[type="email"] {
   border: none;
   border-bottom: 1px solid black;
   border-radius: 0;
