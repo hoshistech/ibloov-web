@@ -1,15 +1,81 @@
-import React from "react";
+import React, { useState, useReducer, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./Login.css";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
 import Navbar from "../../components/navbar/Navbar";
+import { authLogin } from "./login.action";
 
+const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
+
+const formReducer = (state, action) => {
+  if (action.type === FORM_INPUT_UPDATE) {
+    const updatedValues = {
+      ...state.inputValues,
+      [action.input]: action.value,
+    };
+    const updatedValidities = {
+      ...state.inputValidities,
+      [action.input]: action.isValid,
+    };
+    let updatedFormIsValid = true;
+    for (const key in updatedValidities) {
+      updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
+    }
+    return {
+      formIsValid: updatedFormIsValid,
+      inputValidities: updatedValidities,
+      inputValues: updatedValues,
+    };
+  }
+  return state;
+};
 
 const Login = (props) => {
+  const { history } = props;
+  const emailExist = useSelector((state) => state.signup.error);
+
+  const dispatch = useDispatch();
+
+  const initilaState = {
+    inputValues: {
+      email: "",
+      password: "",
+    },
+    inputValidities: {
+      email: false,
+      password: false,
+    },
+    formIsValid: false,
+  };
+
+  const [formState, dispatchFormState] = useReducer(formReducer, initilaState);
+
+  const inputChangeHandler = useCallback(
+    (inputIdentifier, inputValue, inputValidity) => {
+      dispatchFormState({
+        type: FORM_INPUT_UPDATE,
+        value: inputValue,
+        isValid: inputValidity,
+        input: inputIdentifier,
+      });
+    },
+    [dispatchFormState]
+  );
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const newUser = {
+      ...formState.inputValues,
+    };
+
+    dispatch(authLogin(newUser, history));
+  };
   const socialAuthHandler = (e, id) => {
     const googleAuth = "http://ibloov.xpasson.com:4000/auth/google";
     window.location = googleAuth;
@@ -55,14 +121,27 @@ const Login = (props) => {
               id="email"
               placeHolder="Email address"
               aria-describedby="emailHelp"
+              errorText="Please enter a valid email."
               required
-              // value={this.state.email}
-              // handleChange={this.emailChange.bind(this)}
+              onInputChange={inputChangeHandler}
+            />
+
+            <Input
+              name="password"
+              type="password"
+              customClassName="form-control auth-input"
+              id="password"
+              placeHolder="Password"
+              aria-describedby="password"
+              errorText="Please enter a valid email."
+              required
+              onInputChange={inputChangeHandler}
             />
             <div className="auth-button-container-login">
               <Button
                 customClassName="auth-button bold-600"
-                // onclick={this.onButtonPress.bind(this)}
+                onClick={handleLogin}
+                disabled={!formState.formIsValid}
               >
                 Continue
               </Button>

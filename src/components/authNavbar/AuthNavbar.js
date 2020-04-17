@@ -22,7 +22,7 @@ const AuthNavbar = (props) => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link color-white" href="#">
+        <Link className="nav-link color-white" to="#">
           MY FRIENDS
         </Link>
       </li>
@@ -34,36 +34,32 @@ const AuthNavbar = (props) => {
           </div>
         </Link>
       </li>
-      {/* <li className="nav-item">
-        <Link to="/signin" className="">
-          <img src={passport} className="nav-user-image" alt="card" />
-        </Link>
-      </li> */}
-      <li class="nav-item dropdown user-image-dropdown">
-        <a
-          class="nav-link dropdown-toggle"
+      <li className="nav-item dropdown user-image-dropdown">
+        <div
+          className="nav-link dropdown-toggle"
           href="#"
           id="navbarDropdown"
           role="button"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          to="/signin"
         >
           <Link to="/signin" className="mr-3">
             <img src={passport} className="nav-user-image" alt="card" />
           </Link>
-          <span className='mr-3'>Damilola Adekoya</span>
+          <span className="mr-3">Damilola Adekoya</span>
           <FontAwesomeIcon className="pt-1 navbar-icon" icon="chevron-down" />
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">
+        </div>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a className="dropdown-item" href="#">
             Action
           </a>
-          <a class="dropdown-item" href="#">
+          <a className="dropdown-item" href="#">
             Another action
           </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">
+          <div className="dropdown-divider"></div>
+          <a className="dropdown-item" href="#">
             Something else here
           </a>
         </div>
