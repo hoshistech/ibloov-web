@@ -1,0 +1,21 @@
+.create-comment-container h3 {
+  color: #2a5799;
+}
+
+.create-comment-btn-container {
+  text-align: right;
+}
+.create-comment-btn {
+  background-color: #213368;
+  color: #ffffff;
+  width: 198px;
+  border-radius: 10px;
+}
+
+.create-comment-btn:hover {
+  color: #ffffff;
+}
+
+.create-comment-star {
+  margin-left: 0px;
+}

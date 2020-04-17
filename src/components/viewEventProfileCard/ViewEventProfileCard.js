@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import passport from "../../assets/images/passport.jpg";
-import heart from "../../assets/images/heart-2.png";
 import "./ViewEventProfileCard.css";
 import Button from "../button/Button";
 
