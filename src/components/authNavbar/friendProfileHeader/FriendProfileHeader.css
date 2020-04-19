@@ -1,0 +1,72 @@
+.friend-user-image {
+  width: 169px;
+  height: 169px;
+  border-radius: 50%;
+  display: block;
+  margin: 0px auto;
+}
+.friend-details {
+  text-align: center;
+}
+.friend-name {
+  color: #313131;
+}
+
+.friend-profile-info {
+  justify-content: center;
+  background-color: #cecece;
+  padding: 2rem;
+}
+
+.friend-profile {
+  color: #6e6f6f;
+}
+
+.follow-number {
+  color: #20316a;
+}
+
+.friend-follow-stat-container {
+  justify-content: center;
+}
+
+.friend-follow-stat {
+  justify-content: center;
+  margin-left: 0px;
+  font-weight: 800;
+}
+
+.friend-follow-stat p {
+  margin-bottom: 0px;
+  color: #20316a;
+}
+
+.friend-follow-btn-container {
+  align-self: center;
+}
+
+.friend-follow-btn {
+  border: 1px solid #707070;
+  color: #20316a;
+  border-radius: 30px;
+  padding: 0.2rem 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .friend-profile-info {
+    justify-content: start;
+  }
+
+  .friend-details {
+    text-align: left;
+  }
+
+  .friend-follow-stat {
+    justify-content: flex-start;
+  }
+
+  .friend-follow-stat-container {
+    margin-left: 0px;
+    justify-content: flex-start;
+  }
+}

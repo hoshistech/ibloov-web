@@ -10,6 +10,8 @@ import ViewEventProfileCard from "../../components/viewEventProfileCard/ViewEven
 import Card from "../../components/card/Card";
 import SingleComment from "../../components/singleComment/SingleComment";
 import CreateComment from "../../components/createComment/CreateComment";
+import FriendProfileHeader from "../../components/authNavbar/friendProfileHeader/FriendProfileHeader";
+import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 
 const HomePage = (props) => {
   return (
@@ -67,6 +69,14 @@ const HomePage = (props) => {
 
       <div className="mt-3 mb-3">
         <CreateComment />
+      </div>
+
+      <div className="mb-2 mt-2">
+        <FriendProfileHeader />
+      </div>
+
+      <div className="mb-3 mt-2">
+        <PromotedEventCard />
       </div>
     </div>
   );
