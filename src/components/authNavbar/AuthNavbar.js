@@ -30,7 +30,7 @@ const AuthNavbar = (props) => {
         <Link to="#">
           <div className="nav-notification-container">
             <img src={notification} className="nav-notification" alt="card" />
-            {/* <span>2</span> */}
+            <span>2</span>
           </div>
         </Link>
       </li>
