@@ -26,6 +26,7 @@ import setupStore from "./store/reducer";
 import Event from "./views/event/Event";
 import HomePage from "./views/homepage/HomePage";
 import Myibloov from "./views/myibloov/Myibloov";
+import Dashboard from "./views/dashboard/Dashboard";
 
 const store = setupStore();
 toast.configure({
@@ -42,7 +43,6 @@ library.add(
   faInstagram,
   faBell
 );
-
 function App() {
   return (
     <Provider store={store}>
@@ -53,6 +53,7 @@ function App() {
             <Route path="/signup" component={Signup} />
             <Route path="/signin" component={Login} />
             <Route path="/events" component={Event} />
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/myibloov" component={Myibloov} />
           </Switch>
         </div>
