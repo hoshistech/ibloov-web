@@ -10,7 +10,7 @@ import ViewEventProfileCard from "../../components/viewEventProfileCard/ViewEven
 import Card from "../../components/card/Card";
 import SingleComment from "../../components/singleComment/SingleComment";
 import CreateComment from "../../components/createComment/CreateComment";
-import FriendProfileHeader from "../../components/authNavbar/friendProfileHeader/FriendProfileHeader";
+import FriendProfileHeader from "../../components/friendProfileHeader/FriendProfileHeader";
 import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 
 const HomePage = (props) => {
@@ -26,6 +26,9 @@ const HomePage = (props) => {
         </li>
         <li>
           <Link to="/events">Live Event Page</Link>
+        </li>
+        <li>
+          <Link to="/dashboard">Dashboard Page</Link>
         </li>
       </ul>
       <CategoryCard

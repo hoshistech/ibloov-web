@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import passport from "../../../assets/images/passport.jpg";
-import location from "../../../assets/images/location.png";
+import passport from "../../assets/images/passport.jpg";
+import location from "../../assets/images/location.png";
 
 import "./FriendProfileHeader.css";
-import Button from "../../button/Button";
+import Button from "../button/Button";
 const FriendProfileHeader = (props) => {
   return (
     <div className="row friend-profile-info">

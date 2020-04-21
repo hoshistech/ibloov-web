@@ -1,0 +1,132 @@
+.dashboard {
+  margin: 0px;
+}
+.dashboard-first-row {
+  margin: 0px;
+}
+.dashboard-image-container {
+  /* width: 100%; */
+}
+
+.dashboard-user-info {
+  text-align: center;
+}
+.dashboard-profile {
+  margin: 0px auto;
+}
+
+.dashboard-profile-image {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: block;
+  margin: 0px auto;
+}
+
+.dashboard-user-info div p {
+  /* margin-bottom: 0px; */
+}
+.dashboard-profile-name p {
+  font-size: 0.6rem;
+  margin-bottom: 0px;
+}
+
+.dashboard-welcome-container {
+  margin: 0px auto;
+}
+
+.dashboard-stat-container {
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-left: 0px;
+  text-align: center;
+}
+
+.dashboard-stat-container p {
+  margin-bottom: 0.5rem;
+  color: #222222;
+}
+
+.stat-label {
+  color: #707070;
+  font-size: 0.5rem;
+}
+.dashboard-stat-container span {
+  color: #707070;
+  font-size: 0.5rem;
+}
+
+.dashboard-bloov-btn {
+  background-color: #213368;
+  width: 100%;
+  border-radius: 25px;
+  font-size: 0.8em;
+  color: white;
+}
+
+.suggest-event-card {
+  /* justify-content: center; */
+  width: 85%;
+  margin: 1rem auto;
+}
+.suggest-event-card .card-container {
+  margin: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .dashboard-user-info {
+    text-align: left;
+    margin-left: 1rem;
+  }
+
+  .dashboard-profile-name {
+    padding-top: 1rem;
+  }
+
+  .suggest-event-card {
+    width: 85%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .dashboard-first-row {
+    background-image: linear-gradient(to right, #463d3d, #a99f9e69),
+      url("../../assets/images/Image14.png");
+    background-repeat: no-repeat;
+    color: #fff;
+    background-size: 900px 65vh;
+    background-position: top;
+    background-position-x: right;
+    background-color: #463d3d;
+    opacity: 0.8;
+    font-weight: bolder;
+    height: 60vh;
+    padding-bottom: 3rem;
+  }
+  .dashboard-profile {
+    margin: 0px;
+    align-self: flex-end;
+  }
+  .dashboard-profile .row {
+    margin-left: 0px;
+  }
+  .dashboard-profile-name h2 {
+    font-size: 4rem;
+  }
+
+  .dashboard-profile-name span {
+    font-size: 7rem;
+    line-height: 106px;
+  }
+  .dashboard-welcome-container {
+    margin-left: 0rem;
+    max-width: 306px;
+    align-self: flex-end;
+  }
+}
+
+@media only screen and (min-width: 1132px) and (max-width: 1479px) {
+  .suggest-event-card {
+    width: 100%;
+  }
+}
