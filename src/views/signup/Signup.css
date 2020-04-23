@@ -12,6 +12,10 @@
   color: #fff;
 }
 
+.auth-form-container {
+  max-width: 477px;
+}
+
 .auth-container {
   background-color: #fff;
   margin: 0px 30px;
@@ -21,7 +25,7 @@
 
 .small-info-text {
   font-size: 0.6em;
-  color: #7070708B;
+  color: #7070708b;
 }
 
 .terms-condition {
@@ -87,4 +91,5 @@
 .signup-error {
   color: red;
   font-size: 10px;
+  margin: 0px !important;
 }

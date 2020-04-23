@@ -6,10 +6,10 @@ import {
   USER_SIGNUP_START,
   USER_SIGNUP_SUCCESS,
 } from "../../store/actionTypes";
+import { sendVerificationCode } from "../verifyPhoneNumber/verifyPhoneNumber.action";
 // import { setCurrentUser } from "../Auth/auth.action";
 
 // dotenv.config();
-
 
 export const userSignupStart = () => {
   return {
@@ -31,7 +31,7 @@ export const userSignupFailed = (authError) => {
   };
 };
 
-export const authSignup = (userDetails, history) => {
+export const authSignup = (userDetails, phoneDetails, history) => {
   return (dispatch) => {
     dispatch(userSignupStart());
     return (
@@ -42,6 +42,13 @@ export const authSignup = (userDetails, history) => {
           const { data } = response.data;
           // localStorage.setItem("user", JSON.stringify(data));
 
+          const { _id, email, phoneNumber } = data;
+          const registeredUser = {
+            userId: _id,
+            email: email,
+            phoneNumber: phoneNumber,
+            phoneDetails,
+          };
 
           toast.success(
             "Registration Successful, Please check your mail to verify your account"
@@ -50,16 +57,21 @@ export const authSignup = (userDetails, history) => {
           setTimeout(() => {
             // dispatch set auth
             //   dispatch(setCurrentUser(data));
-            history.push("/events");
+            history.push("/verify-phone");
           }, 3000);
-
-          dispatch(userSignupSuccess(data));
+          dispatch(userSignupSuccess(registeredUser));
         })
         .catch((error) => {
-          const { msg } = error.response.data.data[0];
+          const { data } = error.response.data;
 
-          toast.error(msg);
-          dispatch(userSignupFailed(msg));
+          const authErrors = {};
+
+          data.map((error) => {
+            authErrors[error.param] = error.msg;
+          });
+
+          toast.error(...Object.values(authErrors));
+          dispatch(userSignupFailed(authErrors));
         })
     );
   };

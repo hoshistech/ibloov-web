@@ -1,0 +1,71 @@
+.test-phone {
+  max-width: 300px;
+  /* border: 1px solid black; */
+}
+
+.verify-container {
+  background-color: #fff;
+  /* margin: 0px 30px; */
+  border-radius: 20px;
+  border: 6px solid black;
+  width: 250px;
+  max-height: 475px;
+  margin: 0px auto;
+}
+
+.verify-form-container {
+  padding: 4rem 1rem;
+}
+
+.verify-form {
+  display: flex;
+}
+
+.verify-form input[type="number"] {
+  width: 15%;
+}
+
+.verify-form input[type="text"] {
+  width: 15%;
+}
+
+.verification-image {
+  width: 150px;
+  display: block;
+  margin: 0px auto;
+}
+
+.verify-button-container {
+  margin-top: 2rem;
+}
+
+.verify-phone-line {
+  width: 40%;
+  border-width: 3px;
+  border-color: #8d8787;
+  margin-bottom: 8px;
+}
+
+.verify-number {
+  margin-top: 5px;
+}
+
+@media only screen and (min-width: 991px) {
+  .verify-container {
+    /* padding: 4rem 1rem; */
+    /* width: 250px; */
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .test-phone {
+    display: flex;
+  }
+  .verify-container {
+    margin-top: 2rem;
+  }
+
+  .verify-container:first-child {
+    margin-right: 10rem;
+  }
+}

@@ -1,0 +1,33 @@
+.telephone-container {
+  display: flex;
+  position: relative;
+}
+
+.telephone-container .input-error {
+  position: absolute;
+  top: 100%;
+}
+
+.telephone-container .select-container {
+  /* top: 7px; */
+  margin-right: 0.5rem;
+  width: 50%;
+  border-bottom: 1px solid black;
+}
+
+.telephone-container .select-container .filter-select {
+  padding: 2px;
+  width: 70%;
+  border: none;
+  margin-top: 0.3rem;
+}
+
+.telephone-container .select-container .filter-select-label {
+  bottom: -15%;
+}
+
+.telephone-container select {
+  /* width: 60%; */
+  border-bottom: 1px solid black;
+  font-size: 0.5rem;
+}

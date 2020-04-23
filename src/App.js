@@ -2,7 +2,12 @@ import React from "react";
 import { Provider } from "react-redux";
 import { ToastContainer, Slide, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   fab,
@@ -27,6 +32,7 @@ import Event from "./views/event/Event";
 import HomePage from "./views/homepage/HomePage";
 import Myibloov from "./views/myibloov/Myibloov";
 import Dashboard from "./views/dashboard/Dashboard";
+import VerifyPhoneNumber from "./views/verifyPhoneNumber/VerifyPhoneNumber";
 
 const store = setupStore();
 toast.configure({
@@ -43,6 +49,21 @@ library.add(
   faInstagram,
   faBell
 );
+
+function NoMatch() {
+  let location = useLocation();
+
+  return (
+    <div>
+      <h3>
+        No match for
+        <code>{location.pathname}</code>
+        <br/>
+         coming up with a 404 design soon
+      </h3>
+    </div>
+  );
+}
 function App() {
   return (
     <Provider store={store}>
@@ -55,6 +76,8 @@ function App() {
             <Route path="/events" component={Event} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/myibloov" component={Myibloov} />
+            <Route path="/verify-phone" component={VerifyPhoneNumber} />
+            <Route path="*" component={NoMatch} />
           </Switch>
         </div>
       </Router>

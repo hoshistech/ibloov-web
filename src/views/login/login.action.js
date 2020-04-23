@@ -17,10 +17,10 @@ export const userLoginStart = () => {
   };
 };
 
-export const userLoginSuccess = (authData) => {
+export const userLoginSuccess = (token) => {
   return {
     type: USER_LOGIN_SUCCESS,
-    authData,
+    token,
   };
 };
 
@@ -42,7 +42,7 @@ export const authLogin = (userDetails, history) => {
           const { data } = response.data;
           // localStorage.setItem("user", JSON.stringify(data));
 
-          console.log(34, data);
+          console.log(83, data);
 
           toast.success("Login Successful");
 
@@ -50,17 +50,14 @@ export const authLogin = (userDetails, history) => {
             // dispatch set auth
             //   dispatch(setCurrentUser(data));
             history.push("/events");
+            // history.push("/verify-phone");
           }, 3000);
 
           dispatch(userLoginSuccess(data));
         })
         .catch((error) => {
-          console.log(45, error);
-
-        //   const { msg } = error.response.data.data[0];
-
-        //   toast.error(msg);
-        //   dispatch(userSignupFailed(msg));
+          toast.error("email/password incorrect");
+          dispatch(userSignupFailed("email/password incorrect"));
         })
     );
   };

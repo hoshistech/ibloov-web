@@ -1,0 +1,23 @@
+.verify-phone-page {
+  justify-content: center;
+  height: unset;
+}
+
+.phone-number-verify-page {
+  align-items: center;
+}
+
+.skip-verify {
+  align-self: flex-end;
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: bolder;
+  position: absolute;
+  bottom: 5%;
+}
+
+@media only screen and (min-width: 768px) {
+  .verify-phone-page {
+    height: 100vh;
+  }
+}

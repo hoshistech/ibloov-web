@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Button from "../button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -12,27 +12,42 @@ const AuthNavbar = (props) => {
   return (
     <ul className="navbar-nav header-list-container">
       <li className="nav-item active">
-        <Link className="nav-link color-white" to="/">
+        <NavLink
+          activeClassName="selected-path"
+          className="nav-link"
+          to="/dashboard"
+        >
           DASHBOARD <span className="sr-only">(current)</span>
-        </Link>
+        </NavLink>
+        <div className="navlink-border-bottom"></div>
       </li>
       <li className="nav-item">
-        <Link className="nav-link color-white" to="/myibloov">
+        <NavLink
+          activeClassName="selected-path"
+          className="nav-link"
+          to="/myibloov"
+        >
           MY iBLOOV
-        </Link>
+        </NavLink>
+        <div className="navlink-border-bottom"></div>
       </li>
       <li className="nav-item">
-        <Link className="nav-link color-white" to="#">
+        <NavLink
+          activeClassName="selected-path"
+          className="nav-link"
+          to="/myfriends"
+        >
           MY FRIENDS
-        </Link>
+        </NavLink>
+        <div className="navlink-border-bottom"></div>
       </li>
       <li className="nav-item">
-        <Link to="#">
+        <NavLink activeClassName="selected-path" to="#">
           <div className="nav-notification-container">
             <img src={notification} className="nav-notification" alt="card" />
             <span>2</span>
           </div>
-        </Link>
+        </NavLink>
       </li>
       <li className="nav-item dropdown user-image-dropdown">
         <div

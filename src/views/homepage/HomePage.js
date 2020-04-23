@@ -12,6 +12,8 @@ import SingleComment from "../../components/singleComment/SingleComment";
 import CreateComment from "../../components/createComment/CreateComment";
 import FriendProfileHeader from "../../components/friendProfileHeader/FriendProfileHeader";
 import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
+import TelephoneInput from "../../components/telephoneInput/TelephoneInput";
+import PhoneNumberVerification from "../../components/phoneNumberVerification/PhoneNumberVerification";
 
 const HomePage = (props) => {
   return (
@@ -78,9 +80,13 @@ const HomePage = (props) => {
         <FriendProfileHeader />
       </div>
 
-      <div className="mb-3 mt-2">
+      <TelephoneInput />
+
+      <PhoneNumberVerification />
+
+      {/* <div className="mb-3 mt-2">
         <PromotedEventCard />
-      </div>
+      </div> */}
     </div>
   );
 };

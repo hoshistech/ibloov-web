@@ -22,6 +22,7 @@ const userSignupSuccess = (state, action) => {
     token: action.token,
     userDetails: action.authData,
     loading: false,
+    error: null,
   });
 };
 

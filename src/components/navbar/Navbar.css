@@ -20,3 +20,14 @@
 .header-list-container li a {
   color: #fff;
 }
+
+.selected-path {
+  color: #fcc1ba !important;
+  padding-bottom: 0px;
+}
+
+.selected-path + .navlink-border-bottom {
+  border-bottom: 3px solid #fcc1ba;
+  width: 50%;
+  margin-left: 0.5rem;
+}
