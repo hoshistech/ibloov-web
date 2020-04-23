@@ -58,12 +58,17 @@ const Input = (props) => {
     if (inputState.touched) {
       onInputChange(id, inputState.value, inputState.isValid);
     }
+
+    // if (value) {
+    //   onInputChange(id, value, inputState.isValid);
+    // }
   }, [inputState, onInputChange, id]);
 
   const textChangeHandler = (e) => {
     const text = e.target.value;
 
     const letters = /^[A-Za-z]+$/;
+    const phoneNumber = /^[0-9]+$/;
     //const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let isValid = true;
@@ -73,7 +78,11 @@ const Input = (props) => {
     if (name === "email" && !emailRegex.test(text.toLowerCase())) {
       isValid = false;
     }
+
     if (name === "name" && !letters.test(text.toLowerCase())) {
+      isValid = false;
+    }
+    if (name === "phoneNumber" && !phoneNumber.test(text)) {
       isValid = false;
     }
 
@@ -92,7 +101,7 @@ const Input = (props) => {
         placeholder={placeHolder}
         className={customClassName}
         name={name}
-        value={inputState.value}
+        value={inputState.value || value}
         onChange={(e) => textChangeHandler(e)}
         onBlur={lostFocusHandler}
       />

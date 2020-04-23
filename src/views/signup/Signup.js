@@ -7,38 +7,18 @@ import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { authSignup } from "./signup.action";
-
-const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
-
-const formReducer = (state, action) => {
-  if (action.type === FORM_INPUT_UPDATE) {
-    const updatedValues = {
-      ...state.inputValues,
-      [action.input]: action.value,
-    };
-    const updatedValidities = {
-      ...state.inputValidities,
-      [action.input]: action.isValid,
-    };
-    let updatedFormIsValid = true;
-    for (const key in updatedValidities) {
-      updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
-    }
-    return {
-      formIsValid: updatedFormIsValid,
-      inputValidities: updatedValidities,
-      inputValues: updatedValues,
-    };
-  }
-  return state;
-};
+import TelephoneInput from "../../components/telephoneInput/TelephoneInput";
+import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
+import { sendVerificationCode } from "../verifyPhoneNumber/verifyPhoneNumber.action";
 
 const Signup = (props) => {
   const { history } = props;
 
   const [checkTerms, setCheckTerms] = useState(false);
+  const [countryCode, setCountryCode] = useState("+234");
 
-  const emailExist = useSelector((state) => state.signup.error);
+  const authErrors = useSelector((state) => state.signup.error);
+  const userDetails = useSelector((state) => state.signup.userDetails);
 
   const dispatch = useDispatch();
 
@@ -48,6 +28,7 @@ const Signup = (props) => {
       password: "",
       firstName: "",
       lastName: "",
+      phoneNumber: "",
     },
     inputValidities: {
       email: false,
@@ -74,22 +55,44 @@ const Signup = (props) => {
     setCheckTerms(!checkTerms);
   };
 
+  const handleSelectCountry = (e) => {
+    setCountryCode(e.target.value);
+  };
+
   const handleSignup = async (e) => {
     e.preventDefault();
 
     const newUser = {
       ...formState.inputValues,
+      phoneNumber: `${countryCode}${formState.inputValues.phoneNumber}`,
     };
 
-    dispatch(authSignup(newUser, history));
+    const phoneDetails = {
+      countryCode,
+      phoneNumber: formState.inputValues.phoneNumber,
+    };
+
+    dispatch(authSignup(newUser, phoneDetails, history));
   };
+
+  let displayError = "";
+
+  if (authErrors) {
+    displayError = Object.values(authErrors).map((error) => (
+      <p className="signup-error">{error}</p>
+    ));
+
+    // displayError = <p className="signup-error">error</p>;
+  }
 
   return (
     <section className="banner row">
-      <div className="col-md-8 perfect-center">
-        <h2 className="auth-logo  font-bold">ibloov LOGO</h2>
+      <div className="col-md-7 perfect-center">
+        <Link to="/">
+          <h2 className="auth-logo  font-bold">ibloov LOGO</h2>
+        </Link>
       </div>
-      <div className="col-md-4 perfect-center">
+      <div className="col-md-5 perfect-center auth-form-container">
         <div className="auth-container">
           <div>
             <h4 className="font-bold">Create an account</h4>
@@ -103,7 +106,12 @@ const Signup = (props) => {
               </p>
             </div>
           </div>
-          <p className="signup-error">{emailExist}</p>
+          {/* {Object.values(authErrors).map((error) => (
+            <p className="signup-error">{error}</p>
+          ))} */}
+          {displayError}
+          {/* <p className="signup-error">error</p> */}
+
           <form className="auth-form">
             <div className="auth-input-container">
               <Input
@@ -142,6 +150,13 @@ const Signup = (props) => {
                 errorText="Please enter a valid name."
                 required
                 onInputChange={inputChangeHandler}
+              />
+            </div>
+            <div className="auth-input-container telephone-container">
+              <TelephoneInput
+                onInputChange={inputChangeHandler}
+                onSelectCountry={handleSelectCountry}
+                selectedCountry={countryCode}
               />
             </div>
             <div className="auth-input-container">
@@ -183,7 +198,7 @@ const Signup = (props) => {
               <Button
                 customClassName="auth-button bold-600"
                 onClick={handleSignup}
-                disabled={!formState.formIsValid && !checkTerms}
+                btndisabled={!(formState.formIsValid && checkTerms)}
               >
                 Continue
               </Button>

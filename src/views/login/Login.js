@@ -96,10 +96,12 @@ const Login = (props) => {
 
   return (
     <section className="banner row">
-      <div className="col-md-8 perfect-center">
-        <h2 className="auth-logo  font-bold">ibloov LOGO</h2>
+      <div className="col-md-7 perfect-center">
+        <Link to="/">
+          <h2 className="auth-logo  font-bold">ibloov LOGO</h2>
+        </Link>
       </div>
-      <div className="col-md-4 perfect-center">
+      <div className="col-md-5 auth-form-container perfect-center">
         <div className="auth-container">
           <div>
             <h4 className="font-bold">Sign in</h4>

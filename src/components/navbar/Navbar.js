@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Button from "../button/Button";
 import AuthNavbar from "../authNavbar/AuthNavbar";
 
@@ -9,6 +9,10 @@ import NonAuthNavbar from "../nonAuthNavbar/NonAuthNavbar";
 
 const Navbar = (props) => {
   const isAuth = true;
+  const location = useLocation();
+  console.log(12, props);
+  console.log(3, location);
+  const { pathname } = location;
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
@@ -30,7 +34,7 @@ const Navbar = (props) => {
         className="collapse navbar-collapse justify-content-end"
         id="navbarNavDropdown"
       >
-        {isAuth ? <AuthNavbar /> : <NonAuthNavbar />}
+        {isAuth ? <AuthNavbar pathName={pathname} /> : <NonAuthNavbar />}
       </div>
     </nav>
   );
