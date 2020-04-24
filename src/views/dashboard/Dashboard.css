@@ -98,7 +98,7 @@
     background-position: top;
     background-position-x: right;
     background-color: #463d3d;
-    opacity: 0.8;
+    /* opacity: 0.8; */
     font-weight: bolder;
     height: 60vh;
     padding-bottom: 3rem;
@@ -111,7 +111,7 @@
     margin-left: 0px;
   }
   .dashboard-profile-name h2 {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 
   .dashboard-profile-name span {

@@ -1,7 +1,7 @@
 import React, { useState, useReducer, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./Login.css";
@@ -36,7 +36,7 @@ const formReducer = (state, action) => {
 };
 
 const Login = (props) => {
-  const { history } = props;
+  const history = useHistory();
   const emailExist = useSelector((state) => state.signup.error);
 
   const dispatch = useDispatch();

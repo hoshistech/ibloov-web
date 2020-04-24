@@ -9,6 +9,9 @@ import notification from "../../assets/images/notification.png";
 import passport from "../../assets/images/passport.jpg";
 
 const AuthNavbar = (props) => {
+  const { user, handleLogout } = props;
+  const { firstName, lastName } = user;
+
   return (
     <ul className="navbar-nav header-list-container">
       <li className="nav-item active">
@@ -63,13 +66,13 @@ const AuthNavbar = (props) => {
           <Link to="/signin" className="mr-3">
             <img src={passport} className="nav-user-image" alt="card" />
           </Link>
-          <span className="mr-3">Damilola Adekoya</span>
+          <span className="mr-3">{`${firstName} ${lastName}`}</span>
           <FontAwesomeIcon className="pt-1 navbar-icon" icon="chevron-down" />
         </div>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="#">
-            Action
-          </a>
+        <div className="dropdown-menu auth-nav-dropdown" aria-labelledby="navbarDropdown">
+          <Link className="dropdown-item" to="/" onClick={handleLogout}>
+            Logout
+          </Link>
           <a className="dropdown-item" href="#">
             Another action
           </a>
@@ -83,6 +86,8 @@ const AuthNavbar = (props) => {
   );
 };
 
-AuthNavbar.propTypes = {};
+AuthNavbar.propTypes = {
+  user: PropTypes.object.isRequired,
+};
 
 export default AuthNavbar;

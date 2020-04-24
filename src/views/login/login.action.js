@@ -6,6 +6,7 @@ import {
   USER_LOGIN_START,
   USER_LOGIN_FAIL,
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
 } from "../../store/actionTypes";
 import { userSignupFailed } from "../signup/signup.action";
 // import { setCurrentUser } from "../Auth/auth.action";
@@ -30,6 +31,12 @@ export const userLoginFailed = (authError) => {
   return {
     type: USER_LOGIN_FAIL,
     authError,
+  };
+};
+
+export const userLogout = () => {
+  return {
+    type: USER_LOGOUT,
   };
 };
 
@@ -82,5 +89,14 @@ export const authLogin = (userDetail, history) => {
           dispatch(userSignupFailed("email/password incorrect"));
         })
     );
+  };
+};
+
+export const logout = () => {
+  // remove token
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  return (dispatch) => {
+    dispatch(userLogout());
   };
 };
