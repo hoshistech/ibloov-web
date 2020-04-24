@@ -38,7 +38,7 @@
   font-size: 15px;
 }
 
-.nav-link {
+.header-list-container li .nav-link {
   color: white !important;
 }
 

@@ -17,8 +17,12 @@
   font-size: 0.8em;
 }
 
-.header-list-container li a {
+.header-list-container li .nav-link {
   color: #fff;
+}
+
+.header-list-container li .nav-link.selected-path {
+  color: #fcc1ba !important;
 }
 
 .selected-path {
@@ -26,8 +30,20 @@
   padding-bottom: 0px;
 }
 
+.active {
+  color: inherit;
+}
+
 .selected-path + .navlink-border-bottom {
   border-bottom: 3px solid #fcc1ba;
-  width: 50%;
-  margin-left: 0.5rem;
+  width: 20%;
+  /* margin-left: 0.5rem; */
+}
+
+@media only screen and (min-width: 992px) {
+  .selected-path + .navlink-border-bottom {
+    border-bottom: 3px solid #fcc1ba;
+    width: 50%;
+    margin-left: 0.5rem;
+  }
 }

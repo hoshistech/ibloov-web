@@ -1,0 +1,31 @@
+.myibloov .row {
+    margin-left: 0px;
+  }
+  
+  .myibloov-nav-header {
+    display: none;
+  }
+  
+  .myibloov-nav-container {
+  }
+  
+  .myibloov-nav-container .nav-link {
+    color: #2a5799;
+    opacity: 40%;
+    font-weight: bolder;
+  }
+  
+  /* .myibloov-nav-container li a {
+    color: yellow;
+  } */
+  
+  /* .myibloov-nav-container .nav-link.active {
+    background-color: none !important;
+  } */
+  
+  .mybloov-navlink.active {
+    color: #2a5799 !important;
+    background-color: transparent !important;
+    opacity: 100%;
+  }
+  

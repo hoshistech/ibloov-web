@@ -1,0 +1,141 @@
+.myibloov .row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.myibloov-nav-container {
+  margin-left: 0px;
+  margin-right: 0px;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+}
+
+.myibloov-nav-first {
+  display: flex;
+  justify-content: space-between;
+}
+
+.myibloov-second-row {
+  justify-content: space-between;
+}
+
+.myibloov-nav-header {
+  display: none;
+}
+
+.myibloov-nav-container {
+}
+
+.myibloov-nav-links {
+  display: flex;
+  padding-top: 0.5rem;
+  height: 100%;
+}
+
+.myibloov-nav-links a {
+  text-decoration: none;
+}
+.myibloov-nav-link {
+  display: flex;
+  color: #2a5799;
+  opacity: 70%;
+}
+
+.myibloov-nav-active {
+  opacity: 100%;
+  border-bottom: 2px solid #2a5799;
+}
+.myibloov-nav-active a {
+  opacity: 100%;
+  color: #2a5799;
+  font-weight: bolder;
+}
+
+.myibloov-nav-link a {
+  color: #2a5799;
+  /* opacity: 40%; */
+}
+
+.create-event-btn-container {
+  margin-bottom: 1rem;
+}
+
+.mybloov-create-event-btn {
+  background-color: #2a5799;
+  width: 100%;
+  border-radius: 50px;
+  font-size: 0.8em;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.mybloo-event-tab,
+.myibloov-second-row {
+  font-size: 0.7rem;
+}
+
+.myibloov-event-link {
+  display: flex;
+  color: #222222;
+  opacity: 40%;
+}
+
+.myibloov-event-link a {
+  padding: 0.2rem 0.5rem;
+  color: #222222;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.myibloov-event-link div {
+  color: #222222;
+  background: #ff6464;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+  text-align: center;
+}
+
+.myibloov-event-link-active {
+  border: 1px solid #2a5799;
+  border-radius: 25px;
+  padding: 0.1rem 0.5rem;
+  color: #222222;
+  opacity: 100%;
+  font-weight: bold;
+}
+
+.myibloov-event-link-active a {
+  color: #222222;
+  opacity: 100%;
+  text-decoration: none;
+}
+
+.myibloov-event-link-active div {
+  display: none;
+}
+
+@media only screen and (min-width: 992px) {
+  .myibloov-nav-header {
+    display: block;
+    font-size: 1.5rem;
+    color: #888484;
+    font-weight: bolder;
+  }
+  .myibloov-nav-first {
+    width: 300px;
+  }
+  .myibloov-second-row {
+    position: relative;
+  }
+  .sort-container {
+    position: absolute;
+    right: 0%;
+  }
+
+  .myibloov {
+    margin: 0px 5%;
+  }
+}

@@ -32,6 +32,9 @@ const HomePage = (props) => {
         <li>
           <Link to="/dashboard">Dashboard Page</Link>
         </li>
+        <li>
+          <Link to="/myibloov">My iBloov Page</Link>
+        </li>
       </ul>
       <CategoryCard
         categoryTitle="Night Life"
