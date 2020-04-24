@@ -35,6 +35,7 @@ import Dashboard from "./views/dashboard/Dashboard";
 import VerifyPhoneNumber from "./views/verifyPhoneNumber/VerifyPhoneNumber";
 import { checkAuth, getUser } from "./utils/helper";
 import { userLoginSuccess } from "./views/login/login.action";
+import PrivateRoute from "./views/PrivateRouter/PrivateRoute";
 
 const store = setupStore();
 
@@ -82,14 +83,30 @@ function App() {
       <Router>
         <div className="App">
           <Switch>
-            <Route path="/" exact component={HomePage} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/signin" component={Login} />
-            <Route path="/events" component={Event} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/myibloov" component={Myibloov} />
-            <Route path="/verify-phone" component={VerifyPhoneNumber} />
-            <Route path="*" component={NoMatch} />
+            <Route path="/" exact>
+              <HomePage />
+            </Route>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+            <Route path="/signin">
+              <Login />
+            </Route>
+            <Route path="/events">
+              <Event />
+            </Route>
+            <PrivateRoute path="/dashboard">
+              <Dashboard />
+            </PrivateRoute>
+            <PrivateRoute path="/myibloov">
+              <Myibloov />
+            </PrivateRoute>
+            <PrivateRoute path="/verify-phone">
+              <VerifyPhoneNumber />
+            </PrivateRoute>
+            <Route path="*">
+              <NoMatch />
+            </Route>
           </Switch>
         </div>
       </Router>
