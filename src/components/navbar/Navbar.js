@@ -10,8 +10,6 @@ import NonAuthNavbar from "../nonAuthNavbar/NonAuthNavbar";
 const Navbar = (props) => {
   const isAuth = true;
   const location = useLocation();
-  console.log(12, props);
-  console.log(3, location);
   const { pathname } = location;
 
   return (

@@ -9,6 +9,8 @@ const initialState = {
   error: null,
   token: null,
   loading: false,
+  user: null,
+  isAuthenticated: false,
 };
 
 const loginStart = (state) => {
@@ -21,6 +23,8 @@ const loginSuccess = (state, action) => {
   return updateObject(state, {
     token: action.token,
     loading: false,
+    user: action.user,
+    isAuthenticated: true,
   });
 };
 

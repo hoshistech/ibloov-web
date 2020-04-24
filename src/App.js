@@ -33,8 +33,20 @@ import HomePage from "./views/homepage/HomePage";
 import Myibloov from "./views/myibloov/Myibloov";
 import Dashboard from "./views/dashboard/Dashboard";
 import VerifyPhoneNumber from "./views/verifyPhoneNumber/VerifyPhoneNumber";
+import { checkAuth, getUser } from "./utils/helper";
+import { userLoginSuccess } from "./views/login/login.action";
 
 const store = setupStore();
+
+if (localStorage.token) {
+  const isAuthenticated = checkAuth();
+  if (isAuthenticated) {
+    //dispatch user details
+    const { token, user } = getUser();
+    store.dispatch(userLoginSuccess(token, user));
+  }
+}
+
 toast.configure({
   position: "top-center",
 });
@@ -58,8 +70,8 @@ function NoMatch() {
       <h3>
         No match for
         <code>{location.pathname}</code>
-        <br/>
-         coming up with a 404 design soon
+        <br />
+        coming up with a 404 design soon
       </h3>
     </div>
   );
