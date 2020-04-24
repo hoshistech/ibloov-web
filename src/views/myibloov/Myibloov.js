@@ -14,7 +14,6 @@ const Myibloov = (props) => {
   const [myCreatedEvent, setMyCreatedEvent] = useState(true);
 
   const selectedTabHandler = (e) => {
-    console.log(333, e.target);
     const tabSwitch = e.target.name;
     e.preventDefault();
     setSelectedTab(tabSwitch);
@@ -22,11 +21,8 @@ const Myibloov = (props) => {
 
   const selectMyEventHandler = (e) => {
     e.preventDefault();
-    console.log(23, e.target.name);
     setMyCreatedEvent(!myCreatedEvent);
   };
-
-  console.log(999, myCreatedEvent);
 
   return (
     <Fragment>
@@ -116,7 +112,7 @@ const Myibloov = (props) => {
           ) : (
             ""
           )}
-          <div className='sort-container'>Sort: most recent</div>
+          <div className="sort-container">Sort: most recent</div>
         </div>
         <div className="row mt-2">
           {selectedTab === "event" ? (
