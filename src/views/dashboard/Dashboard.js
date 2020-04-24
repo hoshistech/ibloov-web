@@ -8,15 +8,16 @@ import Button from "../../components/button/Button";
 import "./Dashboard.css";
 import Card from "../../components/card/Card";
 import DashboardJumbotron from "../../components/dashboardJumbotron/DashboardJumbotron";
+import { useSelector } from "react-redux";
 
 const Dashboard = (props) => {
- 
+  const { user } = useSelector((state) => state.login);
 
   return (
     <Fragment>
       <Navbar />
       <section className="dashboard">
-        <DashboardJumbotron />
+        <DashboardJumbotron user={user} />
         <div className="mt-4">
           <h5>SUGGESTED EVENTS</h5>
 

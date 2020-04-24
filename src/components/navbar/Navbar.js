@@ -6,11 +6,20 @@ import AuthNavbar from "../authNavbar/AuthNavbar";
 
 import "./Navbar.css";
 import NonAuthNavbar from "../nonAuthNavbar/NonAuthNavbar";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../views/login/login.action";
 
 const Navbar = (props) => {
-  const isAuth = true;
+  const { isAuthenticated, user } = useSelector((state) => state.login);
+  const dispatch = useDispatch();
+
   const location = useLocation();
   const { pathname } = location;
+
+  const onLogoutHandler = () => {
+    console.log("logging out");
+    dispatch(logout());
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
@@ -32,7 +41,11 @@ const Navbar = (props) => {
         className="collapse navbar-collapse justify-content-end"
         id="navbarNavDropdown"
       >
-        {isAuth ? <AuthNavbar pathName={pathname} /> : <NonAuthNavbar />}
+        {isAuthenticated ? (
+          <AuthNavbar user={user} handleLogout={onLogoutHandler} />
+        ) : (
+          <NonAuthNavbar />
+        )}
       </div>
     </nav>
   );

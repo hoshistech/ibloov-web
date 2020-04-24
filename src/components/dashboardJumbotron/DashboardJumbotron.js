@@ -7,6 +7,8 @@ import Button from "../../components/button/Button";
 import "./DashboardJumbotron.css";
 
 const DashboardJumbotron = (props) => {
+  const { user } = props;
+  const { firstName, lastName } = user;
   return (
     <div className="row dashboard-first-row">
       <div className="col-md-4.3 dashboard-profile">
@@ -20,7 +22,7 @@ const DashboardJumbotron = (props) => {
           </div>
           <div className="col-md-6 dashboard-user-info">
             <div className="mb-3 dashboard-profile-name">
-              <h5>Damilola Adekoya</h5>
+              <h5>{`${firstName} ${lastName}`}</h5>
               <p>Founder and CTO at iBloov</p>
               <p>Lagos, Nigeria</p>
             </div>
@@ -71,6 +73,8 @@ const DashboardJumbotron = (props) => {
   );
 };
 
-DashboardJumbotron.propTypes = {};
+DashboardJumbotron.propTypes = {
+  user: PropTypes.object.isRequired,
+};
 
 export default DashboardJumbotron;

@@ -42,6 +42,15 @@
   color: white !important;
 }
 
+.auth-nav-dropdown {
+  background-color: black;
+}
+
+.auth-nav-dropdown a {
+  background-color: black;
+  color: #fff;
+}
+
 @media only screen and (min-width: 991px) {
   .user-image-dropdown {
     margin-top: -10px;
