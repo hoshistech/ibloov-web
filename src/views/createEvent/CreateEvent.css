@@ -88,6 +88,26 @@ styling for event type
   margin-bottom: 1rem;
 }
 
+/* 
+
+styling for event desc
+
+*/
+
+.event-description-fist-row .col-md-6 {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-right: 1rem;
+}
+
+.event-description-fist-row label {
+  font-weight: bolder;
+}
+
+.event-location {
+  margin-top: 1rem;
+}
+
 @media only screen and (min-width: 768px) {
   .step-number-row {
     display: grid;
@@ -114,11 +134,22 @@ styling for event type
   }
 }
 
+@media only screen and (min-width: 768px) {
+  .event-description-fist-row {
+    flex-wrap: nowrap;
+  }
+}
+
 @media only screen and (min-width: 1032px) {
   .event-type-category-container {
     max-width: 786px;
   }
   .myibloov-create-button-container {
     max-width: 678px;
+  }
+
+  .event-desc-container {
+    min-width: 789px;
+    /* min-width: 968px; */
   }
 }

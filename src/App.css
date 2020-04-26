@@ -19,6 +19,13 @@
   color: black !important;
 }
 
+/* button:hover {
+  color: white !important;
+} */
+.btn:hover {
+  color: #ffffff;
+}
+
 @media only screen and (min-width: 1441px) {
   .App {
     margin: 0px auto;

@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 import "./CreateEvent.css";
 import Button from "../../components/button/Button";
 import EventType from "./templates/EventType";
+import EventDescription from "./templates/EventDescription";
 
 const CreateEvent = (props) => {
-  const [formCount, setFormCount] = useState(1);
+  const [formCount, setFormCount] = useState(2);
 
   const nextQuestionHandler = (e) => {
     e.preventDefault();
@@ -100,7 +101,7 @@ const CreateEvent = (props) => {
               </div>
               <div className={formCount === 2 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
-                tell us aabout the event
+                <EventDescription />
               </div>
               <div className={formCount === 3 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
