@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import CategoryCard from "../../components/categoryCard/CategoryCard";
 
-import NigthLife from "../../assets/images/Home/MaskGroup1.svg";
 import InfluencerCard from "../../components/influencerCard/InfluencerCard";
 import HashTag from "../../components/hashTag/HashTag";
 import ViewEventProfileCard from "../../components/viewEventProfileCard/ViewEventProfileCard";
@@ -36,7 +35,7 @@ const HomePage = (props) => {
           <Link to="/myibloov">My iBloov Page</Link>
         </li>
       </ul>
-      <CategoryCard
+      {/* <CategoryCard
         categoryTitle="Night Life"
         categoryCount="20"
         categoryImage={NigthLife}
@@ -45,7 +44,7 @@ const HomePage = (props) => {
         categoryTitle="Sport"
         categoryCount="40"
         categoryImage={NigthLife}
-      />
+      /> */}
 
       <InfluencerCard
         customClassName="influencer-card most-influencer-image"

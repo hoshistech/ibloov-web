@@ -2,24 +2,41 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "./CategoryCard.css";
+import SVG from "../svgLoader/NightLifeSvg";
 const CategoryCard = (props) => {
-  const { categoryTitle, categoryCount, categoryImage } = props;
+  const {
+    categoryTitle,
+    categoryCount,
+    categoryImage,
+    showCount,
+    children,
+  } = props;
 
   return (
     <div className="category-card">
-      <img
+      {/* <img
         src={categoryImage}
         alt="category image"
         className="category-card-image"
-      />
+      /> */}
+      {children}
       <div>
         <p className="category-title bold-600">{categoryTitle} </p>
-        <p className="category-count">{categoryCount} events</p>
+        {showCount ? (
+          <p className="category-count">{categoryCount} events</p>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
 };
 
-CategoryCard.propTypes = {};
+CategoryCard.propTypes = {
+  categoryTilte: PropTypes.string.isRequired,
+  categoryCount: PropTypes.number,
+  categoryImage: PropTypes.string.isRequired,
+  showCount: PropTypes.bool,
+};
 
 export default CategoryCard;
