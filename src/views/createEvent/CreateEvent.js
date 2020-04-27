@@ -8,9 +8,11 @@ import "./CreateEvent.css";
 import Button from "../../components/button/Button";
 import EventType from "./templates/EventType";
 import EventDescription from "./templates/EventDescription";
+import EventTime from "./templates/EventTime";
+import EventRestriction from "./templates/EventRestriction";
 
 const CreateEvent = (props) => {
-  const [formCount, setFormCount] = useState(2);
+  const [formCount, setFormCount] = useState(4);
 
   const nextQuestionHandler = (e) => {
     e.preventDefault();
@@ -105,11 +107,11 @@ const CreateEvent = (props) => {
               </div>
               <div className={formCount === 3 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
-                when will the event happen
+                <EventTime />
               </div>
               <div className={formCount === 4 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
-                restriction to the event
+                <EventRestriction />
               </div>
               <div className={formCount === 5 ? "show-question" : "question"}>
                 submitEvent
