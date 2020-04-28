@@ -1,0 +1,28 @@
+.friend-small-card {
+  background-color: #ddd;
+  width: fit-content;
+  padding: 0.3rem;
+  position: relative;
+  margin-right: 10px !important;
+  margin-bottom: 1rem;
+}
+.friend-small-card p {
+  font-size: 0.6rem;
+  color: black;
+  padding: 8px 0px;
+  margin-bottom: 0px;
+}
+
+.remove-friend-icon {
+  color: white;
+  background-color: red;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+  font-size: 0.6rem;
+  border-radius: 15px;
+  right: -5px;
+  top: -5px;
+
+  position: absolute;
+}

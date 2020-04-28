@@ -23,7 +23,9 @@ import {
   faChevronDown,
   faBell,
   faCalendarAlt,
-  faClock
+  faClock,
+  faGift,
+  faHandHolding
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
@@ -63,7 +65,10 @@ library.add(
   faLinkedinIn,
   faInstagram,
   faBell,
-  faCalendarAlt, faClock
+  faCalendarAlt,
+  faClock,
+  faGift,
+  faHandHolding
 );
 
 function NoMatch() {
