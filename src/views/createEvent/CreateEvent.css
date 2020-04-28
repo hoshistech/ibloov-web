@@ -13,11 +13,11 @@
   bottom: 0;
   position: absolute;
   content: " ";
-  width: 85%;
+  width: 95%;
   height: 1px;
   background-color: #ccc;
   z-index: 0;
-  left: 7.5%;
+  left: 1%;
 }
 
 .step-number-circle {
@@ -184,6 +184,32 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-bottom: 1rem;
 }
 
+/* 
+
+styling for event restriction
+
+*/
+.restrict-options {
+  flex-wrap: wrap;
+}
+
+.restrict-options div {
+  margin-right: 1rem;
+  font-size: 0.8rem;
+  width: 100px;
+  margin-top: 1rem;
+  color: #968f8f;
+}
+
+.gift-wishlist {
+  color: #2a5799;
+}
+
+.wishlist-button {
+  color: #2a5799;
+  text-decoration: underline;
+}
+
 @media only screen and (min-width: 663px) {
   .event-time-container {
     margin-right: 1rem;
@@ -200,10 +226,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   .step-number-row::before {
-    top: 6%;
+    top: 1%;
     bottom: 0;
     width: 7%;
-    height: 75%;
+    height: 60%;
     left: 48%;
   }
 
@@ -213,6 +239,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
   .create-event-first-row {
     margin-right: 3rem;
+  }
+
+  .collaborators-container {
+    max-width: 326px;
   }
 }
 
@@ -229,11 +259,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .event-time-container {
     margin-right: 1rem;
   }
+  .restrict-options {
+    width: 300px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
   .event-time-container {
     margin-right: 5rem;
+  }
+  .restrict-options {
+    width: 350px;
+  }
+  .step-number-row::before {
+    height: 65%;
   }
 }
 

@@ -16,8 +16,8 @@ const CreateEvent = (props) => {
 
   const nextQuestionHandler = (e) => {
     e.preventDefault();
-    if (formCount === 5) {
-      setFormCount(5);
+    if (formCount === 4) {
+      setFormCount(4);
     } else {
       setFormCount(formCount + 1);
     }
@@ -81,17 +81,6 @@ const CreateEvent = (props) => {
                 <p>4</p>
               </div>
             </div>
-            <div
-              className={
-                formCount === 5
-                  ? "step-number-circle active"
-                  : "step-number-circle"
-              }
-            >
-              <div>
-                <p>5</p>
-              </div>
-            </div>
           </div>
         </div>
         <div className="row">
@@ -112,9 +101,6 @@ const CreateEvent = (props) => {
               <div className={formCount === 4 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
                 <EventRestriction />
-              </div>
-              <div className={formCount === 5 ? "show-question" : "question"}>
-                submitEvent
               </div>
               <div className="myibloov-create-button-container">
                 <Button
