@@ -25,7 +25,9 @@ import {
   faCalendarAlt,
   faClock,
   faGift,
-  faHandHolding
+  faHandHolding,
+  faMusic,
+  faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
@@ -34,12 +36,11 @@ import Login from "./views/login/Login";
 import setupStore from "./store/reducer";
 import Event from "./views/event/Event";
 import HomePage from "./views/homepage/HomePage";
-import Myibloov from "./views/myibloov/Myibloov";
-import Dashboard from "./views/dashboard/Dashboard";
-import VerifyPhoneNumber from "./views/verifyPhoneNumber/VerifyPhoneNumber";
 import { checkAuth, getUser } from "./utils/helper";
 import { userLoginSuccess } from "./views/login/login.action";
 import PrivateRoute from "./views/PrivateRouter/PrivateRoute";
+import TestPage from "./views/testPage/TestPage";
+import AuthRoute from "./views/PrivateRouter/AuthRoute";
 
 const store = setupStore();
 
@@ -58,6 +59,7 @@ toast.configure({
 
 library.add(
   faShareAlt,
+  faMusic,
   faHeart,
   faChevronDown,
   faTwitter,
@@ -68,7 +70,8 @@ library.add(
   faCalendarAlt,
   faClock,
   faGift,
-  faHandHolding
+  faHandHolding,
+  faMapMarkerAlt
 );
 
 function NoMatch() {
@@ -91,27 +94,26 @@ function App() {
       <Router>
         <div className="App">
           <Switch>
-            <Route path="/" exact>
-              <HomePage />
-            </Route>
             <Route path="/signup">
               <Signup />
+            </Route>
+            <Route path="/test">
+              <TestPage />
             </Route>
             <Route path="/signin">
               <Login />
             </Route>
+          </Switch>
+          <Switch>
             <Route path="/events">
               <Event />
             </Route>
-            <PrivateRoute path="/dashboard">
-              <Dashboard />
-            </PrivateRoute>
-            <PrivateRoute path="/myibloov">
-              <Myibloov />
-            </PrivateRoute>
-            <PrivateRoute path="/verify-phone">
-              <VerifyPhoneNumber />
-            </PrivateRoute>
+            <Route path="/" exact>
+              <HomePage />
+            </Route>
+          </Switch>
+          <Switch>
+            <AuthRoute />
             <Route path="*">
               <NoMatch />
             </Route>

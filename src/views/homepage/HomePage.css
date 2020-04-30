@@ -1,0 +1,141 @@
+/* .homepage-container nav {
+  background: none;
+  position: absolute;
+  z-index: 100;
+} */
+
+/* nav + section > div:first-child {
+  position: absolute;
+} */
+
+.homepage-section {
+}
+
+.homepage-carousel {
+}
+
+.carousel .about-container {
+  position: absolute;
+  z-index: 100;
+  top: 10%;
+  color: white;
+  display: none;
+}
+
+.carousel img {
+  height: 400px;
+}
+
+.carousel .about-container div h5 {
+  font-size: 1rem;
+  margin-bottom: 0;
+  color: #dddddd;
+  font-weight: bolder;
+}
+
+.carousel .about-container div p {
+  font-size: 0.6rem;
+  color: #dddddd;
+  font-weight: bolder;
+}
+
+.homepage-search {
+  position: relative;
+}
+
+.section-header-text {
+  text-align: center;
+}
+
+.section-header-text h4 {
+  font-size: 2rem;
+  color: #222222;
+  opacity: 100%;
+  font-weight: bolder;
+}
+
+.section-header-text p {
+  font-size: 0.8rem;
+  color: #ccc;
+  opacity: 1;
+  font-weight: bolder;
+}
+
+.popular-categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.upcoming-events {
+  background-color: #f6f7f8;
+  padding: 3rem 0px;
+}
+
+.upcoming-event-cards {
+  width: 85%;
+  margin: 0px auto;
+  /* justify-content: space-between; */
+}
+
+.upcoming-event-cards .card-container {
+  margin-right: 1rem;
+}
+
+.advert-section {
+  background-color: #55e3fe;
+}
+
+.advert-image {
+  display: block;
+  margin: 0px auto;
+  max-width: 100%;
+}
+
+.blooving-places-card-container {
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+  display: flex;
+  margin-left: 0px;
+}
+
+.blooving-places-card-container div {
+  margin-right: 1rem;
+}
+
+.influencers-card-container {
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+  display: flex;
+  margin-left: 0px;
+}
+
+.influencers-card-container div {
+  margin-right: 1rem;
+}
+
+.hashtag-card-container {
+  margin-left: 0px;
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+  display: flex;
+}
+
+.hashtag-card-container div {
+  margin-right: 1rem;
+}
+
+@media only screen and (min-width: 992px) {
+  .carousel .about-container {
+    display: flex;
+    margin-left: 15%;
+    width: 70%;
+    justify-content: space-between;
+  }
+  .carousel .about-container div {
+    width: 200px;
+  }
+  .carousel img {
+    height: auto;
+  }
+}

@@ -1,0 +1,46 @@
+.carousel-item .popular-event {
+  position: absolute;
+  z-index: 100;
+  top: 30%;
+  color: white;
+  margin-left: 15%;
+  /* margin-left: 2.5rem; */
+  width: 80%;
+  z-index: 2;
+}
+.popular-event-btn {
+  background-color: #7e7d7d;
+  font-size: 0.5rem;
+  color: white;
+}
+.popular-event-icone {
+  color: #fcc1ba;
+  margin-right: 5px;
+}
+
+.popular-event-text {
+  margin-bottom: 1rem;
+}
+
+.popular-event-text h4 {
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+.popular-event-text span {
+  font-weight: bolder;
+  font-size: 0.8rem;
+}
+
+@media only screen and (min-width: 500px) {
+  .carousel-item .popular-event {
+    /* margin-left: 4rem; */
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .carousel-item .popular-event {
+    top: 40%;
+    z-index: 0;
+  }
+}

@@ -1,5 +1,5 @@
 .navbar {
-  background-image: linear-gradient(to right, #463d3d, #a99f9e69),
+  /* background-image: linear-gradient(to right, #463d3d, #a99f9e69),
     url("../../assets/images/Image14.png");
   background-repeat: no-repeat;
   color: #fff;
@@ -8,7 +8,17 @@
   background-position-x: right;
   background-color: #463d3d;
   opacity: 0.8;
-  font-weight: bolder;
+  font-weight: bolder; */
+  position: absolute;
+  width: 95%;
+  margin: 0px 20px;
+  z-index: 10;
+  margin-top: 15px;
+}
+
+#navbarNavDropdown {
+  background-color: #000000;
+  margin-right: 29px;
 }
 
 .header-list-container li {
@@ -40,10 +50,20 @@
   /* margin-left: 0.5rem; */
 }
 
+@media only screen and (max-width: 768px) {
+  .navbar-toggler {
+    margin-right: 10%;
+  }
+}
+
 @media only screen and (min-width: 992px) {
   .selected-path + .navlink-border-bottom {
     border-bottom: 3px solid #fcc1ba;
     width: 50%;
     margin-left: 0.5rem;
+  }
+
+  #navbarNavDropdown {
+    background-color: transparent;
   }
 }
