@@ -35,13 +35,13 @@ const InfluencerCard = (props) => {
       <div className="most-influencer-details">
         <div>
           <p className="influencer-name">{cardTitle}</p>
-          <small className='place-card-event'>{events} events</small>
+          <small className="place-card-event">{events} events</small>
         </div>
       </div>
     );
   }
   return (
-    <div className={`${customClassName} most-places-card `}>
+    <div className={`${customClassName}  most-places-card `}>
       <img src={PlaceImage} alt="image" className="most-influencer-image" />
       {cardDetails}
     </div>
