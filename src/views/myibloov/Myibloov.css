@@ -1,3 +1,6 @@
+.myibloov-container {
+  /* background-color: red; */
+}
 .myibloov .row {
   margin-left: 0px;
   margin-right: 0px;
@@ -147,9 +150,6 @@
 .myibloov-list {
   display: none;
 }
-
-
-
 
 @media only screen and (min-width: 992px) {
   .myibloov-nav-header {

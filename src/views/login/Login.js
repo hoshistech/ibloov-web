@@ -1,7 +1,7 @@
 import React, { useState, useReducer, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./Login.css";
@@ -37,7 +37,7 @@ const formReducer = (state, action) => {
 
 const Login = (props) => {
   const history = useHistory();
-  const emailExist = useSelector((state) => state.signup.error);
+  const { token } = useSelector((state) => state.login);
 
   const dispatch = useDispatch();
 
@@ -93,6 +93,10 @@ const Login = (props) => {
         // console.log(error);
       });
   };
+
+  if (token) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <section className="banner row">

@@ -153,7 +153,7 @@ const HomePage = (props) => {
             <div className="single-category-card">
               <CategoryCard
                 categoryTitle="Night Life"
-                categoryCount="20"
+                categoryCount={20}
                 showCount={true}
               >
                 <NightLifeSvg fill={svgFill} />
@@ -162,7 +162,7 @@ const HomePage = (props) => {
             <div className="single-category-card">
               <CategoryCard
                 categoryTitle="Concerts"
-                categoryCount="20"
+                categoryCount={16}
                 showCount={true}
               >
                 <ConcertsSvg fill={svgFill} />
@@ -171,7 +171,7 @@ const HomePage = (props) => {
             <div className="single-category-card">
               <CategoryCard
                 categoryTitle="Conferences"
-                categoryCount="20"
+                categoryCount={26}
                 showCount={true}
               >
                 <ConferencesSvg fill={svgFill} />
@@ -181,7 +181,7 @@ const HomePage = (props) => {
             <div className="single-category-card">
               <CategoryCard
                 categoryTitle="Parties"
-                categoryCount="20"
+                categoryCount={30}
                 showCount={true}
               >
                 <PartiesSvg fill={svgFill} />
@@ -191,7 +191,7 @@ const HomePage = (props) => {
             <div className="single-category-card">
               <CategoryCard
                 categoryTitle="Sports"
-                categoryCount="20"
+                categoryCount={18}
                 showCount={true}
               >
                 <SportsSvg fill={svgFill} />
@@ -200,7 +200,7 @@ const HomePage = (props) => {
             <div className="single-category-card">
               <CategoryCard
                 categoryTitle="Travel"
-                categoryCount="20"
+                categoryCount={22}
                 showCount={true}
               >
                 <TravelSvg fill={svgFill} />

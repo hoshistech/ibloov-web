@@ -11,18 +11,29 @@ import { logout } from "../../views/login/login.action";
 
 const Navbar = (props) => {
   const { isAuthenticated, user } = useSelector((state) => state.login);
+
   const dispatch = useDispatch();
 
   const location = useLocation();
+  console.log(location);
+
   const { pathname } = location;
 
   const onLogoutHandler = () => {
-    console.log("logging out");
     dispatch(logout());
   };
 
+  const paths = ["myibloov", "myfriends"];
+
+  const found = paths.find((path) => path === pathname.slice(1));
+
+  let removeAbsolute = "";
+  if (found) {
+    removeAbsolute = "remove-nav-absolute";
+  }
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark">
+    <nav className={`navbar navbar-expand-lg navbar-dark ${removeAbsolute}`}>
       <Link className="navbar-brand" to="/">
         ibloov
       </Link>

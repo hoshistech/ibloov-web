@@ -66,4 +66,18 @@
   #navbarNavDropdown {
     background-color: transparent;
   }
+  .remove-nav-absolute {
+    position: relative;
+    background-image: linear-gradient(to right, #463d3d, #a99f9e69),
+      url("../../assets/images/Image14.png");
+    background-repeat: no-repeat;
+    color: #fff;
+    background-size: 900px 300px;
+    background-position: top;
+    background-position-x: right;
+    background-color: #463d3d;
+    opacity: 0.8;
+    font-weight: bolder;
+    margin-top: 0px;
+  }
 }

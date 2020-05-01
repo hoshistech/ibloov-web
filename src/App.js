@@ -40,7 +40,9 @@ import { checkAuth, getUser } from "./utils/helper";
 import { userLoginSuccess } from "./views/login/login.action";
 import PrivateRoute from "./views/PrivateRouter/PrivateRoute";
 import TestPage from "./views/testPage/TestPage";
-import AuthRoute from "./views/PrivateRouter/AuthRoute";
+import Myibloov from "./views/myibloov/Myibloov";
+import Dashboard from "./views/dashboard/Dashboard";
+import VerifyPhoneNumber from "./views/verifyPhoneNumber/VerifyPhoneNumber";
 
 const store = setupStore();
 
@@ -103,17 +105,21 @@ function App() {
             <Route path="/signin">
               <Login />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/events">
               <Event />
             </Route>
             <Route path="/" exact>
               <HomePage />
             </Route>
-          </Switch>
-          <Switch>
-            <AuthRoute />
+            <PrivateRoute path="/dashboard">
+              <Dashboard />
+            </PrivateRoute>
+            <PrivateRoute path="/myibloov">
+              <Myibloov />
+            </PrivateRoute>
+            <PrivateRoute path="/verify-phone">
+              <VerifyPhoneNumber />
+            </PrivateRoute>
             <Route path="*">
               <NoMatch />
             </Route>

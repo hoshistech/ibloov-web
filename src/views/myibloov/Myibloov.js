@@ -38,8 +38,10 @@ const Myibloov = (props) => {
   };
 
   return (
-    <Fragment>
-      <Navbar />
+    <div className="myibloov-container">
+      <div>
+        <Navbar />
+      </div>
       <section className="myibloov">
         <div className="myibloov-nav-container row mt-3">
           <div className="myibloov-nav-first">
@@ -173,7 +175,7 @@ const Myibloov = (props) => {
           </Fragment>
         )}
       </section>
-    </Fragment>
+    </div>
   );
 };
 
