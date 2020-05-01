@@ -33,9 +33,8 @@ const CategoryCard = (props) => {
 };
 
 CategoryCard.propTypes = {
-  categoryTilte: PropTypes.string.isRequired,
+  categoryTitle: PropTypes.string.isRequired,
   categoryCount: PropTypes.number,
-  categoryImage: PropTypes.string.isRequired,
   showCount: PropTypes.bool,
 };
 

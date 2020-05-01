@@ -1,6 +1,6 @@
 import React, { useState, useReducer, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import "./Signup.css";
 import Input from "../../components/input/Input";
@@ -19,6 +19,7 @@ const Signup = (props) => {
 
   const authErrors = useSelector((state) => state.signup.error);
   const userDetails = useSelector((state) => state.signup.userDetails);
+  const { token } = useSelector((state) => state.login);
 
   const dispatch = useDispatch();
 
@@ -84,7 +85,9 @@ const Signup = (props) => {
 
     // displayError = <p className="signup-error">error</p>;
   }
-
+  if (token) {
+    return <Redirect to="/" />;
+  }
   return (
     <section className="banner row">
       <div className="col-md-7 perfect-center">
