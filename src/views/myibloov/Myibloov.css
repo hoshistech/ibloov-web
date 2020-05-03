@@ -151,6 +151,14 @@
   display: none;
 }
 
+.my-created-event .card-container {
+  margin-right: 1rem;
+}
+
+.my-created-event .promoted-event-card-container {
+  margin-right: 1rem;
+}
+
 @media only screen and (min-width: 992px) {
   .myibloov-nav-header {
     display: block;

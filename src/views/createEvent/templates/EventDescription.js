@@ -1,12 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useReducer, useCallback } from "react";
 import PropTypes from "prop-types";
 import Input from "../../../components/input/Input";
 import DragableImageUpload from "../../../components/dragableImageUpload/DragableImageUpload";
+import { formReducer, FORM_INPUT_UPDATE } from "../../../utils/formReducer";
 
 const EventDescription = (props) => {
   const fileInputRef = useRef("");
-
-
 
   const onFilesAddedHandler = (e) => {
     // e.preventDefault();
@@ -17,6 +16,52 @@ const EventDescription = (props) => {
     // const res = onFilesAddedHandler(array);
 
     // console.log(99, array);
+  };
+
+  const initilaState = {
+    inputValues: {
+      eventTitle: "",
+      eventCode: "",
+      eventDetail: "",
+      eventTitle: "",
+    },
+    inputValidities: {
+      eventTitle: false,
+      eventCode: false,
+      eventDetail: false,
+      eventTitle: false,
+    },
+    formIsValid: false,
+  };
+
+  const [formState, dispatchFormState] = useReducer(formReducer, initilaState);
+
+  const inputChangeHandler = useCallback(
+    (inputIdentifier, inputValue, inputValidity) => {
+      dispatchFormState({
+        type: FORM_INPUT_UPDATE,
+        value: inputValue,
+        isValid: inputValidity,
+        input: inputIdentifier,
+      });
+    },
+    [dispatchFormState]
+  );
+
+  const handlDescription = async (e) => {
+    e.preventDefault();
+
+    console.log(222, formState);
+
+    // const eventDescription = {
+    //   ...formState.inputValues,
+    //   phoneNumber: `${countryCode}${formState.inputValues.phoneNumber}`,
+    // };
+
+    // const phoneDetails = {
+    //   countryCode,
+    //   phoneNumber: formState.inputValues.phoneNumber,
+    // };
   };
 
   return (
@@ -38,7 +83,7 @@ const EventDescription = (props) => {
               aria-describedby="eventTitle"
               errorText="Please enter a valid name"
               required
-              //   onInputChange={inputChangeHandler}
+              onInputChange={inputChangeHandler}
             />
           </div>
           <div className="col-md-6">
@@ -52,7 +97,7 @@ const EventDescription = (props) => {
               aria-describedby="eventCode"
               errorText="Please enter a valid code."
               required
-              //   onInputChange={inputChangeHandler}
+              onInputChange={inputChangeHandler}
             />
           </div>
         </div>
@@ -62,6 +107,7 @@ const EventDescription = (props) => {
               <label htmlFor="eventDetail">Event Detail</label>
               <textarea
                 className="form-control"
+                name="eventDetail"
                 id="eventDetail"
                 placeholder="Tell us about he event"
                 rows="4"
@@ -78,7 +124,7 @@ const EventDescription = (props) => {
                 aria-describedby="location"
                 errorText="Please enter a valid location."
                 required
-                //   onInputChange={inputChangeHandler}
+                onInputChange={inputChangeHandler}
               />
             </div>
           </div>

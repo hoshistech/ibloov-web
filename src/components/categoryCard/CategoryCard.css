@@ -28,6 +28,16 @@
   color: #7f7f7f;
 }
 
+.single-category-card {
+  position: relative;
+}
+.category-card-icon {
+  position: absolute;
+  top: 0%;
+  color: green;
+  right: 0%;
+}
+
 /* .category-card:hover {
   opacity: 3;
   border: 1px solid #e38787;

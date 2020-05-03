@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Card from "../../components/card/Card";
 import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 import CreateEvent from "../createEvent/CreateEvent";
+import SelectInput from "../../components/selectInput/SelectInput";
 const Myibloov = (props) => {
   const event = false;
 
@@ -85,15 +86,23 @@ const Myibloov = (props) => {
           </div>
           <div>
             <div className="create-event-btn-container">
-              <Button
-                customClassName="mybloov-create-event-btn bold-600"
-                onClick={createButtonHandler}
-                btndisabled={showCreate}
-              >
-                {selectedTab === "event"
-                  ? "Create New Event"
-                  : "Create Wishlist"}
-              </Button>
+              {selectedTab === "event" ? (
+                <Button
+                  customClassName="mybloov-create-event-btn bold-600"
+                  onClick={createButtonHandler}
+                  btndisabled={false}
+                >
+                  {showCreate ? "back to events" : "Create New Event"}
+                </Button>
+              ) : (
+                <Button
+                  customClassName="mybloov-create-event-btn bold-600"
+                  onClick={createButtonHandler}
+                  btndisabled={false}
+                >
+                  {showCreate ? "back to wishlist" : "Create Wishlist"}
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -141,9 +150,9 @@ const Myibloov = (props) => {
               ) : (
                 ""
               )}
-              <div className="sort-container">Sort: most recent</div>
+              <div className="sort-container">Sort: most recent </div>
             </div>
-            <div className="row mt-2">
+            <div className="row mt-2 my-created-event">
               {selectedTab === "event" ? (
                 <Fragment>
                   {myCreatedEvent ? (

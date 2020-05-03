@@ -22,7 +22,7 @@ const NightLifeSvg = (props) => {
           />
         </clipPath>
       </defs>
-      <g class="b" transform="translate(-70 -43)">
+      <g className="b" transform="translate(-70 -43)">
         <g transform="translate(68.871 41.532)">
           <path
             className="a"

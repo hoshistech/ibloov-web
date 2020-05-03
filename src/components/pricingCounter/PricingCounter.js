@@ -9,7 +9,7 @@ const PricingCounter = (props) => {
       <Button
         customClassName="pricing-counter-btn left-btn bold-600"
         // onClick={previousQuestionHandler}
-        //   disabled={!formState.formIsValid}
+        btndisabled={false}
       >
         -
       </Button>
@@ -17,7 +17,7 @@ const PricingCounter = (props) => {
       <Button
         customClassName=" pricing-counter-btn right-btn  bold-600"
         // onClick={previousQuestionHandler}
-        //   disabled={!formState.formIsValid}
+        btndisabled={false}
       >
         +
       </Button>

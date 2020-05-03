@@ -2,19 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Toggle.css";
 
-const Toggle = () => {
+const Toggle = (props) => {
+  const { handleClick } = props;
   return (
-    <label class="switch">
-      <input className='slider-input' type="checkbox" />
-      <span class="slider round"></span>
+    <label className="switch">
+      <input className="slider-input" type="checkbox" onChange={handleClick} />
+      <span className="slider round"></span>
     </label>
   );
 };
 
 Toggle.propTypes = {
-  classToggle: PropTypes.string,
   handleClick: PropTypes.func,
-  handleClicker: PropTypes.func,
 };
 
 export default Toggle;

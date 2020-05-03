@@ -54,7 +54,7 @@ const DragableImageUpload = (props) => {
       <div className="mb-2 image-icon-container" name="upload" id="upload">
         <img src={Upload} alt="upload" className="upload-image mb-3" />
         <div>
-          <p for="img">Drag and Drop to Upload</p>
+          <label htmlFor="img">Drag and Drop to Upload</label>
           {fileName}
           <input
             ref={fileInputRef}
@@ -71,7 +71,7 @@ const DragableImageUpload = (props) => {
           <Button
             customClassName="file-upload-btn bold-600"
             onClick={openFileDialogHandler}
-            //   disabled={!formState.formIsValid}
+            btndisabled={false}
           >
             Select file
           </Button>

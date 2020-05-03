@@ -12,7 +12,7 @@ import EventTime from "./templates/EventTime";
 import EventRestriction from "./templates/EventRestriction";
 
 const CreateEvent = (props) => {
-  const [formCount, setFormCount] = useState(4);
+  const [formCount, setFormCount] = useState(3);
 
   const nextQuestionHandler = (e) => {
     e.preventDefault();
@@ -106,14 +106,14 @@ const CreateEvent = (props) => {
                 <Button
                   customClassName="mybloov-create-event-btn-2  bold-600"
                   onClick={previousQuestionHandler}
-                  //   disabled={!formState.formIsValid}
+                  btndisabled={false}
                 >
                   cancel
                 </Button>
                 <Button
                   customClassName="mybloov-create-event-btn-2  bold-600"
                   onClick={nextQuestionHandler}
-                  //   disabled={!formState.formIsValid}
+                  btndisabled={false}
                 >
                   Next
                 </Button>
