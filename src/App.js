@@ -28,6 +28,7 @@ import {
   faHandHolding,
   faMusic,
   faMapMarkerAlt,
+  faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
@@ -73,7 +74,8 @@ library.add(
   faClock,
   faGift,
   faHandHolding,
-  faMapMarkerAlt
+  faMapMarkerAlt,
+  faCheckCircle
 );
 
 function NoMatch() {

@@ -10,20 +10,20 @@ const CategoryCard = (props) => {
     categoryImage,
     showCount,
     children,
+    name,
   } = props;
 
   return (
     <div className="category-card">
-      {/* <img
-        src={categoryImage}
-        alt="category image"
-        className="category-card-image"
-      /> */}
       {children}
-      <div>
-        <p className="category-title bold-600">{categoryTitle} </p>
+      <div name={name}>
+        <p className="category-title bold-600" name={name}>
+          {categoryTitle}{" "}
+        </p>
         {showCount ? (
-          <p className="category-count">{categoryCount} events</p>
+          <p className="category-count" name={name}>
+            {categoryCount} events
+          </p>
         ) : (
           ""
         )}

@@ -1,0 +1,11 @@
+.selected-category {
+}
+
+.selected-category .category-card {
+  color: red !important;
+  border: 1px solid red;
+}
+/* .single-category-card .category-card {
+  color: red !important;
+  border: 1px solid red;
+} */

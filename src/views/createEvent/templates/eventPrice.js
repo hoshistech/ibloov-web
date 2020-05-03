@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 import PricingCounter from "../../../components/pricingCounter/PricingCounter";
 
 const EventPrice = (props) => {
-  const [showPricing, setShowPricing] = useState(true);
-  const onToggleEventFeeHandler = (e) => {
-    const eventId = e.target.id;
-    if (eventId === "eventFree") {
-      setShowPricing(false);
-      return;
-    }
-    setShowPricing(true);
-  };
+  const { showPriceHandler, showPricing } = props;
+  // const [showPricing, setShowPricing] = useState(true);
+  // const onToggleEventFeeHandler = (e) => {
+  //   const eventId = e.target.id;
+  //   if (eventId === "eventFree") {
+  //     setShowPricing(false);
+  //     return;
+  //   }
+  //   setShowPricing(true);
+  // };
   return (
     <div>
       <div>
@@ -27,22 +28,22 @@ const EventPrice = (props) => {
             id="eventFree"
             value="free"
             // checked
-            onChange={onToggleEventFeeHandler}
+            onChange={showPriceHandler}
           />
-          <label className="form-check-label" for="exampleRadios1">
+          <label className="form-check-label" htmlFor="exampleRadios1">
             Free
           </label>
         </div>
-        <div class="form-check">
+        <div className="form-check">
           <input
             className="form-check-input"
             type="radio"
             name="eventFee"
             id="eventPaid"
             value="paid"
-            onChange={onToggleEventFeeHandler}
+            onChange={showPriceHandler}
           />
-          <label className="form-check-label" for="exampleRadios2">
+          <label className="form-check-label" htmlFor="exampleRadios2">
             Paid
           </label>
         </div>
@@ -98,6 +99,9 @@ const EventPrice = (props) => {
   );
 };
 
-EventPrice.propTypes = {};
+EventPrice.propTypes = {
+  showPricing: PropTypes.bool,
+  showPriceHandler: PropTypes.func,
+};
 
 export default EventPrice;
