@@ -21,7 +21,7 @@ const RadioInput = (props) => {
           type="radio"
           name={name}
           id={id}
-          checked={selectedClass}
+          // checked={selectedClass}
         />
         <label
           className="form-check-label"

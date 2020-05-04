@@ -59,12 +59,6 @@ const EventRestriction = (props) => {
           <h5>Any restriction to the event?</h5>
           <small>Set conditions to be met before attending the event</small>
         </div>
-        <label
-          onClick={handlelabelClick}
-          className={label ? "label-clicked" : "not-clicked"}
-        >
-          <p>Damilola</p>
-        </label>
         <div className="row restrict-options">
           <RadioInput
             radioName="Women Only"
@@ -127,8 +121,8 @@ const EventRestriction = (props) => {
           <FontAwesomeIcon className="" icon="gift" />
           <Button
             customClassName="wishlist-button bold-600"
-            // onClick={handleLogin}
-            // disabled={!formState.formIsValid}
+            onClick={() => {}}
+            btndisabled={false}
           >
             Add Gift Wishlist
           </Button>
@@ -137,8 +131,8 @@ const EventRestriction = (props) => {
           <FontAwesomeIcon className="" icon="gift" />
           <Button
             customClassName=" wishlist-button bold-600"
-            // onClick={handleLogin}
-            // disabled={!formState.formIsValid}
+            onClick={() => {}}
+            btndisabled={false}
           >
             Add Events to "FUND ME"
           </Button>

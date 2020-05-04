@@ -1,16 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import EventPrice from "./EventPrice";
 import Input from "../../../components/input/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Toggle from "../../../components/Toggle/Toggle";
+import DateClock from "../../../components/dateClock/DateClock";
 
 const EventTime = (props) => {
+  const { setEventDate } = props;
   const startDateRef = useRef();
   const endDateRef = useRef();
 
   const [eventStartDate, setEventStartDate] = useState("");
   const [eventEndDate, setEventEndDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [isPrivateEvent, setIsPrivateEvent] = useState(false);
   const [showPricing, setShowPricing] = useState(true);
 
@@ -24,11 +28,23 @@ const EventTime = (props) => {
     endDateRef.current.type = "date";
   };
 
-  const changeHandler = (e) => {
+  const onEventDateHandler = (e) => {
     e.preventDefault();
     const dateId = e.target.name;
     const value = e.target.value;
     console.log(13, dateId);
+
+    if (dateId === "eventStartDate") {
+      setEventStartDate(value);
+    } else {
+      setEventEndDate(value);
+    }
+  };
+
+  const onEventTimeHandler = (e) => {
+    e.preventDefault();
+    const dateId = e.target.name;
+    const value = e.target.value;
 
     if (dateId === "eventStartDate") {
       setEventStartDate(value);
@@ -51,6 +67,28 @@ const EventTime = (props) => {
     setShowPricing(true);
   };
 
+  const setTimeHandler = (time, id) => {
+    console.log(121113, time, id);
+    if (id === "timeStart") {
+      setStartTime(time);
+    } else {
+      setEndTime(time);
+    }
+  };
+
+  useEffect(() => {
+    const startDate = `${eventStartDate} ${startTime}`;
+    const endDate = `${eventEndDate} ${endTime}`;
+    setEventDate(startDate, endDate, isPrivateEvent);
+  }, [
+    setEventDate,
+    eventStartDate,
+    eventEndDate,
+    isPrivateEvent,
+    startTime,
+    endTime,
+  ]);
+
   return (
     <div className="row">
       <div className="event-time-container">
@@ -70,11 +108,11 @@ const EventTime = (props) => {
                 id="eventStartDate"
                 placeholder="Thur, 22nd Mar, 2020"
                 aria-describedby="event start date"
-                onChange={changeHandler}
+                onChange={onEventDateHandler}
                 onFocus={onFocusHandler}
                 onBlur={onBlurHandler}
+                onClick={onFocusHandler}
                 required
-                //   onInputChange={inputChangeHandler}
               />
               <FontAwesomeIcon
                 className="event-start-icon"
@@ -84,16 +122,7 @@ const EventTime = (props) => {
             </div>
             <div className="event-date-input-container">
               <label htmlFor="eventStartTime">From</label>
-              <input
-                name="eventStartTime"
-                type="time"
-                className="form-control event-time-input"
-                id="eventStartTime"
-                aria-describedby="event start date"
-                required
-              />
-
-              <FontAwesomeIcon className="event-start-icon" icon="clock" />
+              <DateClock timeHandler={setTimeHandler} name="timeStart" />
             </div>
           </div>
           <div className="row mb-4">
@@ -107,7 +136,7 @@ const EventTime = (props) => {
                 id="eventStartDate"
                 placeholder="Thur, 22nd Mar, 2020"
                 aria-describedby="event end date"
-                onChange={changeHandler}
+                onChange={onEventDateHandler}
                 onFocus={onFocusHandler}
                 onBlur={onBlurHandler}
                 required
@@ -120,16 +149,7 @@ const EventTime = (props) => {
             </div>
             <div className="event-date-input-container">
               <label htmlFor="eventStartTime">To</label>
-              <input
-                name="eventEndTime"
-                type="time"
-                className="form-control  event-time-input"
-                id="eventEndTime"
-                aria-describedby="event start date"
-                required
-              />
-
-              <FontAwesomeIcon className="event-start-icon" icon="clock" />
+              <DateClock timeHandler={setTimeHandler} name="timeEnd" />
             </div>
           </div>
           <div>
@@ -148,6 +168,8 @@ const EventTime = (props) => {
   );
 };
 
-EventTime.propTypes = {};
+EventTime.propTypes = {
+  setEventDate: PropTypes.func.isRequired,
+};
 
 export default EventTime;

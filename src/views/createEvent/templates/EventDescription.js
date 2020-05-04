@@ -1,10 +1,10 @@
-import React, { useRef, useReducer, useCallback } from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import Input from "../../../components/input/Input";
 import DragableImageUpload from "../../../components/dragableImageUpload/DragableImageUpload";
-import { formReducer, FORM_INPUT_UPDATE } from "../../../utils/formReducer";
 
 const EventDescription = (props) => {
+  const { inputChangeHandler } = props;
   const fileInputRef = useRef("");
 
   const onFilesAddedHandler = (e) => {
@@ -18,40 +18,10 @@ const EventDescription = (props) => {
     // console.log(99, array);
   };
 
-  const initilaState = {
-    inputValues: {
-      eventTitle: "",
-      eventCode: "",
-      eventDetail: "",
-      eventTitle: "",
-    },
-    inputValidities: {
-      eventTitle: false,
-      eventCode: false,
-      eventDetail: false,
-      eventTitle: false,
-    },
-    formIsValid: false,
-  };
-
-  const [formState, dispatchFormState] = useReducer(formReducer, initilaState);
-
-  const inputChangeHandler = useCallback(
-    (inputIdentifier, inputValue, inputValidity) => {
-      dispatchFormState({
-        type: FORM_INPUT_UPDATE,
-        value: inputValue,
-        isValid: inputValidity,
-        input: inputIdentifier,
-      });
-    },
-    [dispatchFormState]
-  );
-
   const handlDescription = async (e) => {
     e.preventDefault();
 
-    console.log(222, formState);
+    // console.log(222, formState);
 
     // const eventDescription = {
     //   ...formState.inputValues,
@@ -142,6 +112,8 @@ const EventDescription = (props) => {
   );
 };
 
-EventDescription.propTypes = {};
+EventDescription.propTypes = {
+  inputChangeHandler: PropTypes.func.isRequired,
+};
 
 export default EventDescription;

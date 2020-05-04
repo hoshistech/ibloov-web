@@ -5,7 +5,7 @@ import FriendSmallCard from "../../../components/friendSmallCard/FriendSmallCard
 
 const EventCollaborators = (props) => {
   return (
-    <div className='collaborators-container'>
+    <div className="collaborators-container">
       <div>
         <div>
           <h5>Invite Collaborators</h5>
@@ -15,7 +15,13 @@ const EventCollaborators = (props) => {
           <div>
             <FriendSmallCard />
           </div>
-          <Button customClassName="add-friend-btn ml-2">Add</Button>
+          <Button
+            customClassName="add-friend-btn ml-2"
+            onClick={() => {}}
+            btndisabled={false}
+          >
+            Add
+          </Button>
         </div>
       </div>
       <div>
@@ -28,7 +34,13 @@ const EventCollaborators = (props) => {
             <FriendSmallCard />
             <FriendSmallCard />
           </div>
-          <Button customClassName="add-friend-btn ml-2">Add</Button>
+          <Button
+            customClassName="add-friend-btn ml-2"
+            onClick={() => {}}
+            btndisabled={false}
+          >
+            Add
+          </Button>
         </div>
       </div>
     </div>

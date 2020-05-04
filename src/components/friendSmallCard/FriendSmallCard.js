@@ -11,7 +11,7 @@ const FriendSmallCard = (props) => {
         <img src={passport} className="view-event-profile-img" alt="card" />
       </div>
       <p>Damilola Adekoya</p>
-      <span class="remove-friend-icon">×</span>
+      <span className="remove-friend-icon">×</span>
     </div>
   );
 };
