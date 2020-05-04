@@ -8,7 +8,7 @@ const PricingCounter = (props) => {
     <div>
       <Button
         customClassName="pricing-counter-btn left-btn bold-600"
-        // onClick={previousQuestionHandler}
+        onClick={() => {}}
         btndisabled={false}
       >
         -
@@ -16,7 +16,7 @@ const PricingCounter = (props) => {
       <input type="number" className="pricing-number" max="3" min="1" />
       <Button
         customClassName=" pricing-counter-btn right-btn  bold-600"
-        // onClick={previousQuestionHandler}
+        onClick={() => {}}
         btndisabled={false}
       >
         +

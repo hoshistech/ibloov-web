@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useReducer, useCallback, useState } from "react";
 import PropTypes from "prop-types";
 
 import "./CreateEvent.css";
@@ -10,9 +10,45 @@ import EventType from "./templates/EventType";
 import EventDescription from "./templates/EventDescription";
 import EventTime from "./templates/EventTime";
 import EventRestriction from "./templates/EventRestriction";
+import CreateEventSubmitBtn from "./templates/CreateEventSubmitBtn";
+import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
+import { useDispatch } from "react-redux";
+import { createEvent } from "./createEvent.action";
 
 const CreateEvent = (props) => {
   const [formCount, setFormCount] = useState(3);
+  const [EventDetail, setEventDetail] = useState("");
+  const [eventTime, setEventTime] = useState();
+
+  const dispatch = useDispatch();
+
+  const initilaState = {
+    inputValues: {
+      eventTitle: "",
+      eventCode: "",
+      location: "",
+    },
+    inputValidities: {
+      eventTitle: false,
+      eventCode: false,
+      location: false,
+    },
+    formIsValid: false,
+  };
+
+  const [formState, dispatchFormState] = useReducer(formReducer, initilaState);
+
+  const inputChangeHandler = useCallback(
+    (inputIdentifier, inputValue, inputValidity) => {
+      dispatchFormState({
+        type: FORM_INPUT_UPDATE,
+        value: inputValue,
+        isValid: inputValidity,
+        input: inputIdentifier,
+      });
+    },
+    [dispatchFormState]
+  );
 
   const nextQuestionHandler = (e) => {
     e.preventDefault();
@@ -30,6 +66,31 @@ const CreateEvent = (props) => {
     } else {
       setFormCount(formCount - 1);
     }
+  };
+
+  const eventPriceHandler = (e) => {
+    console.log(e.target.value);
+  };
+
+  const setEventDateHandler = useCallback(
+    (startDate, endDate, isPrivate) => {
+      setEventTime({ startDate, endDate, isPrivate });
+    },
+    [setEventTime]
+  );
+
+  const onsubmitEventHandler = () => {
+    const newEvent = {
+      name: formState.inputValues.eventTitle,
+      eventCode: formState.inputValues.eventCode,
+      category: "concert",
+      address: formState.inputValues.location,
+      ...eventTime,
+    };
+
+    console.log(222, formState.inputValues);
+    console.log(555, eventTime);
+    dispatch(createEvent(newEvent));
   };
 
   return (
@@ -92,32 +153,22 @@ const CreateEvent = (props) => {
               </div>
               <div className={formCount === 2 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
-                <EventDescription />
+                <EventDescription inputChangeHandler={inputChangeHandler} />
               </div>
               <div className={formCount === 3 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
-                <EventTime />
+                <EventTime setEventDate={setEventDateHandler} />
               </div>
               <div className={formCount === 4 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
                 <EventRestriction />
               </div>
-              <div className="myibloov-create-button-container">
-                <Button
-                  customClassName="mybloov-create-event-btn-2  bold-600"
-                  onClick={previousQuestionHandler}
-                  btndisabled={false}
-                >
-                  cancel
-                </Button>
-                <Button
-                  customClassName="mybloov-create-event-btn-2  bold-600"
-                  onClick={nextQuestionHandler}
-                  btndisabled={false}
-                >
-                  Next
-                </Button>
-              </div>
+              <CreateEventSubmitBtn
+                nextQuestionHandler={nextQuestionHandler}
+                previousQuestionHandler={previousQuestionHandler}
+                formCount={formCount}
+                submitEventHandler={onsubmitEventHandler}
+              />
             </form>
           </div>
         </div>
