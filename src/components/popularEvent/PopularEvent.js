@@ -14,10 +14,11 @@ const PopularEvent = (props) => {
   } = props;
   return (
     <div className="popular-event">
-      <div className='mb-1'>
+      <div className="mb-1">
         <Button
           customClassName="popular-event-btn bold-600"
-          // onclick={this.onButtonPress.bind(this)}
+          onClick={() => {}}
+          btndisabled={false}
         >
           <FontAwesomeIcon className="popular-event-icone" icon="music" />
           {eventCategory}
@@ -30,7 +31,8 @@ const PopularEvent = (props) => {
       <div>
         <Button
           customClassName="popular-event-btn bold-600"
-          // onclick={this.onButtonPress.bind(this)}
+          onClick={() => {}}
+          btndisabled={false}
         >
           <FontAwesomeIcon
             className="popular-event-icone"
@@ -40,7 +42,8 @@ const PopularEvent = (props) => {
         </Button>{" "}
         <Button
           customClassName="popular-event-btn bold-600"
-          // onclick={this.onButtonPress.bind(this)}
+          onClick={() => {}}
+          btndisabled={false}
         >
           <FontAwesomeIcon
             className="popular-event-icone"

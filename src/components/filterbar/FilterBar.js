@@ -27,7 +27,8 @@ const FilterBar = (props) => {
       <div className="filter-input-submit">
         <Button
           customClassName="filter-button bold-600"
-          // onclick={this.onButtonPress.bind(this)}
+          onClick={() => {}}
+          btndisabled={false}
         >
           Filter
         </Button>

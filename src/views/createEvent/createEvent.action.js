@@ -7,9 +7,6 @@ import {
   CREATE_EVENT_FAIL,
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
-// import { setCurrentUser } from "../Auth/auth.action";
-
-// dotenv.config();
 
 export const eventCreateStart = () => {
   return {

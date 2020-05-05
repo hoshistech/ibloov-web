@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -17,13 +17,27 @@ import ConferencesSvg from "../../components/svgLoader/ConferencesSvg";
 import PartiesSvg from "../../components/svgLoader/PartiesSvg";
 import SportsSvg from "../../components/svgLoader/SportsSvg";
 import TravelSvg from "../../components/svgLoader/TravelSvg";
-import ViewEventProfileCard from "../../components/viewEventProfileCard/ViewEventProfileCard";
 import advertbanner from "../../assets/images/ladiesbanner.png";
 import Card from "../../components/card/Card";
 import InfluencerCard from "../../components/influencerCard/InfluencerCard";
 import HashTag from "../../components/hashTag/HashTag";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEvents } from "./homePage.action";
 const HomePage = (props) => {
   const svgFill = "#f8535361";
+
+  const events = useSelector((state) => state.allEvents.events);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchEvents());
+  }, [dispatch]);
+
+  if (!events) {
+    return <h3>Loading</h3>;
+  }
+
   return (
     <section className="homepage-container">
       <Navbar />
@@ -215,16 +229,13 @@ const HomePage = (props) => {
           </div>
           <div>
             <div className="row upcoming-event-cards">
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {events.map((event) => (
+                <Card
+                  name={event.name}
+                  startDate={event.startDate}
+                  location={event.location}
+                />
+              ))}
             </div>
           </div>
         </section>

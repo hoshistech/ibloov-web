@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from "moment";
 
 import cardImage from "../../assets/images/background.jpg";
 import passport from "../../assets/images/passport.jpg";
@@ -8,6 +9,11 @@ import "./Card.css";
 import Button from "../button/Button";
 
 const Card = (props) => {
+  const { name, startDate, isPaid, amount, category, location } = props;
+  const month = moment(startDate).format("MMM");
+  const day = moment(startDate).format("D");
+  console.log(month, day);
+
   return (
     <div className="card-container">
       <div className="image-container">
@@ -25,15 +31,19 @@ const Card = (props) => {
       </div>
       <div className="event-body">
         <div className="event-info">
-          <div>
-            <p>APR</p>
-            <p className="font-bold">28</p>
+          <div className="mr-2">
+            <p>{month}</p>
+            <p className="font-bold">{day}</p>
           </div>
           <div>
-            <p className="bold-600">Association of Freelancers</p>
-            <p>
-              <small>Lagos, Nigeria</small>
-            </p>
+            <div className="event-name">
+              <p className="bold-600">{name}</p>
+            </div>
+            <div className="event-card-location">
+              <p>
+                <small>{location.address}</small>
+              </p>
+            </div>
           </div>
         </div>
         <div className="event-stat mt-2">
@@ -51,7 +61,8 @@ const Card = (props) => {
           <div className="attend-button">
             <Button
               customClassName="event-button bold-600"
-              // onclick={this.onButtonPress.bind(this)}
+              onClick={() => {}}
+              btndisabled={false}
             >
               Bloov
             </Button>
@@ -62,6 +73,13 @@ const Card = (props) => {
   );
 };
 
-Card.propTypes = {};
+Card.propTypes = {
+  name: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  isPaid: PropTypes.bool.isRequired,
+  amount: PropTypes.number,
+  category: PropTypes.string.isRequired,
+  location: PropTypes.object,
+};
 
 export default Card;
