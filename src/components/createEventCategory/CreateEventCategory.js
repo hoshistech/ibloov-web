@@ -1,4 +1,4 @@
-import React, { useState, useRef, useReducer, Children } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CategoryCard from "../categoryCard/CategoryCard";
@@ -54,6 +54,14 @@ const CreateEventCategory = (props) => {
   );
 };
 
-CreateEventCategory.propTypes = {};
+CreateEventCategory.propTypes = {
+  children: PropTypes.object,
+  categoryTitle: PropTypes.string,
+  categoryCount: PropTypes.number,
+  showCount: PropTypes.bool,
+  name: PropTypes.string,
+  selectHandler: PropTypes.func,
+  red: PropTypes.object,
+};
 
 export default CreateEventCategory;

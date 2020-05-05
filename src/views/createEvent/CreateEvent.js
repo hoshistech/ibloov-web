@@ -1,8 +1,6 @@
-import React, { useRef, useReducer, useCallback, useState } from "react";
-import PropTypes from "prop-types";
+import React, {  useReducer, useCallback, useState } from "react";
 
 import "./CreateEvent.css";
-import { Link } from "react-router-dom";
 
 import "./CreateEvent.css";
 import Button from "../../components/button/Button";
@@ -177,6 +175,5 @@ const CreateEvent = (props) => {
   );
 };
 
-CreateEvent.propTypes = {};
 
 export default CreateEvent;

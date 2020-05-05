@@ -2,8 +2,6 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import Button from "../button/Button";
 import Input from "../input/Input";
 import CountryCode from "../../data/countryCodes";
 import "./TelephoneInput.css";
@@ -60,6 +58,11 @@ const TelephoneInput = (props) => {
   );
 };
 
-TelephoneInput.propTypes = {};
+TelephoneInput.propTypes = {
+  onInputChange: PropTypes.func,
+  onSelectCountry: PropTypes.func,
+  selectedCountry: PropTypes.string,
+  phoneNumber: PropTypes.string,
+};
 
 export default TelephoneInput;

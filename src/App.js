@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { ToastContainer, Slide, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import {
   BrowserRouter as Router,

@@ -9,10 +9,9 @@ import "./Card.css";
 import Button from "../button/Button";
 
 const Card = (props) => {
-  const { name, startDate, isPaid, amount, category, location } = props;
+  const { name, startDate, location } = props;
   const month = moment(startDate).format("MMM");
   const day = moment(startDate).format("D");
-  console.log(month, day);
 
   return (
     <div className="card-container">
@@ -76,9 +75,9 @@ const Card = (props) => {
 Card.propTypes = {
   name: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
-  isPaid: PropTypes.bool.isRequired,
+  isPaid: PropTypes.bool,
   amount: PropTypes.number,
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   location: PropTypes.object,
 };
 

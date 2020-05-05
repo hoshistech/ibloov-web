@@ -112,6 +112,18 @@ const Input = (props) => {
   );
 };
 
-Input.propTypes = {};
+Input.propTypes = {
+  customClassName: PropTypes.string,
+  handleBlur: PropTypes.func,
+  handleChange: PropTypes.func,
+  value: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.string,
+  placeHolder: PropTypes.string,
+  onInputChange: PropTypes.func,
+  id: PropTypes.string,
+  errorText: PropTypes.string,
+  required: PropTypes.bool,
+};
 
 export default Input;

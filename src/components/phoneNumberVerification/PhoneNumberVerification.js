@@ -1,11 +1,8 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { Link } from "react-router-dom";
-
 import Input from "../input/Input";
 import Button from "../button/Button";
-import Navbar from "../navbar/Navbar";
 import confirm from "../../assets/svgs/confirm_code.svg";
 import message from "../../assets/svgs/message.svg";
 import TelephoneInput from "../telephoneInput/TelephoneInput";
@@ -153,6 +150,13 @@ const PhoneNumberVerification = (props) => {
   );
 };
 
-PhoneNumberVerification.propTypes = {};
+PhoneNumberVerification.propTypes = {
+  phoneNumber: PropTypes.string,
+  selectedCountry: PropTypes.string,
+  onSelectCountry: PropTypes.func,
+  onInputChange: PropTypes.func,
+  verifyCodeHandler: PropTypes.func,
+  sendVerificationCodeHandler: PropTypes.func,
+};
 
 export default PhoneNumberVerification;

@@ -18,22 +18,6 @@ const EventDescription = (props) => {
     // console.log(99, array);
   };
 
-  const handlDescription = async (e) => {
-    e.preventDefault();
-
-    // console.log(222, formState);
-
-    // const eventDescription = {
-    //   ...formState.inputValues,
-    //   phoneNumber: `${countryCode}${formState.inputValues.phoneNumber}`,
-    // };
-
-    // const phoneDetails = {
-    //   countryCode,
-    //   phoneNumber: formState.inputValues.phoneNumber,
-    // };
-  };
-
   return (
     <div className="event-desc-container">
       <div>

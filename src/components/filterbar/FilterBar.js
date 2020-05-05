@@ -2,14 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "./FilterBar.css";
-import Input from "../input/Input";
 import Button from "../button/Button";
-import SelectInput from "../selectInput/SelectInput";
 import FilterInput from "../filterInput/FilterInput";
 import FilterSelectInput from "../filterSelectInput/FilterSelectInput";
 
 const FilterBar = (props) => {
-  const {} = props;
   return (
     // <details open>
     //   <summary>Events Filter</summary>

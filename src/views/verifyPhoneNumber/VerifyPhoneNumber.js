@@ -113,7 +113,9 @@ const VerifyPhoneNumber = (props) => {
   );
 };
 
-VerifyPhoneNumber.propTypes = {};
+VerifyPhoneNumber.propTypes = {
+  history: PropTypes.object,
+};
 
 export default VerifyPhoneNumber;
 
