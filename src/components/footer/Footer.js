@@ -43,19 +43,19 @@ const Footer = (props) => {
           <div className="col-md-2.3 pl-3 mt-4">
             <h5>About us</h5>
             <ul className="footer-ul">
-              <Link>
+              <Link to='#'>
                 <p>About us</p>
               </Link>
-              <Link>
+              <Link to='#'>
                 <p>Team</p>
               </Link>
-              <Link>
+              <Link to='#'>
                 <p>Career</p>
               </Link>
-              <Link>
+              <Link to='#'>
                 <p>Services</p>
               </Link>
-              <Link>
+              <Link to='#'>
                 <p>Contact</p>
               </Link>
             </ul>

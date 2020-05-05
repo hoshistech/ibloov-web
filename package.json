@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.25.3",
     "react": "next",
     "react-datetime-picker": "^3.0.2",
     "react-dom": "next",
