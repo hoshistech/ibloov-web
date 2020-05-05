@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import Button from "../button/Button";
 import AuthNavbar from "../authNavbar/AuthNavbar";
 
 import "./Navbar.css";
@@ -15,8 +13,6 @@ const Navbar = (props) => {
   const dispatch = useDispatch();
 
   const location = useLocation();
-  console.log(location);
-
   const { pathname } = location;
 
   const onLogoutHandler = () => {

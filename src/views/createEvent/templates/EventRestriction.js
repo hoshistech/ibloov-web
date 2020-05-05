@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, {  useState } from "react";
 import PropTypes from "prop-types";
 import RadioInput from "../../../components/radioInput/RadioInput";
 import { Link } from "react-router-dom";

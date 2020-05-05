@@ -1,18 +1,10 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import PricingCounter from "../../../components/pricingCounter/PricingCounter";
 
 const EventPrice = (props) => {
   const { showPriceHandler, showPricing, setPrice } = props;
-  // const [showPricing, setShowPricing] = useState(true);
-  // const onToggleEventFeeHandler = (e) => {
-  //   const eventId = e.target.id;
-  //   if (eventId === "eventFree") {
-  //     setShowPricing(false);
-  //     return;
-  //   }
-  //   setShowPricing(true);
-  // };
+
   return (
     <div>
       <div>

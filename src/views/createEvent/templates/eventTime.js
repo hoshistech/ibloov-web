@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import EventPrice from "./EventPrice";
-import Input from "../../../components/input/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Toggle from "../../../components/Toggle/Toggle";
 import DateClock from "../../../components/dateClock/DateClock";

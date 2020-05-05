@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import background2 from "../../assets/images/carousel/carousel33.jpg";
@@ -23,6 +22,7 @@ import InfluencerCard from "../../components/influencerCard/InfluencerCard";
 import HashTag from "../../components/hashTag/HashTag";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEvents } from "./homePage.action";
+import Loading from "../../components/loadingIndicator/Loading";
 const HomePage = (props) => {
   const svgFill = "#f8535361";
 
@@ -34,8 +34,16 @@ const HomePage = (props) => {
     dispatch(fetchEvents());
   }, [dispatch]);
 
-  if (!events) {
-    return <h3>Loading</h3>;
+  let popularEvents = <Loading />;
+  if (events) {
+    popularEvents = events.map((event) => (
+      <Card
+        key={event._id}
+        name={event.name}
+        startDate={event.startDate}
+        location={event.location}
+      />
+    ));
   }
 
   return (
@@ -229,13 +237,14 @@ const HomePage = (props) => {
           </div>
           <div>
             <div className="row upcoming-event-cards">
-              {events.map((event) => (
+              {/* {events.map((event) => (
                 <Card
                   name={event.name}
                   startDate={event.startDate}
                   location={event.location}
                 />
-              ))}
+              ))} */}
+              {popularEvents}
             </div>
           </div>
         </section>

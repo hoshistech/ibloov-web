@@ -6,10 +6,6 @@ import {
   USER_SIGNUP_START,
   USER_SIGNUP_SUCCESS,
 } from "../../store/actionTypes";
-import { sendVerificationCode } from "../verifyPhoneNumber/verifyPhoneNumber.action";
-// import { setCurrentUser } from "../Auth/auth.action";
-
-// dotenv.config();
 
 export const userSignupStart = () => {
   return {

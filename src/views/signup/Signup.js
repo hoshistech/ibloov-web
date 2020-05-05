@@ -1,5 +1,4 @@
-import React, { useState, useReducer, useCallback, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useReducer, useCallback } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import "./Signup.css";
@@ -9,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { authSignup } from "./signup.action";
 import TelephoneInput from "../../components/telephoneInput/TelephoneInput";
 import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
-import { sendVerificationCode } from "../verifyPhoneNumber/verifyPhoneNumber.action";
 
 const Signup = (props) => {
   const { history } = props;
@@ -18,7 +16,6 @@ const Signup = (props) => {
   const [countryCode, setCountryCode] = useState("+234");
 
   const authErrors = useSelector((state) => state.signup.error);
-  const userDetails = useSelector((state) => state.signup.userDetails);
   const { token } = useSelector((state) => state.login);
 
   const dispatch = useDispatch();

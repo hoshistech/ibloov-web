@@ -2,16 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "./CategoryCard.css";
-import SVG from "../svgLoader/NightLifeSvg";
+
 const CategoryCard = (props) => {
-  const {
-    categoryTitle,
-    categoryCount,
-    categoryImage,
-    showCount,
-    children,
-    name,
-  } = props;
+  const { categoryTitle, categoryCount, showCount, children, name } = props;
 
   return (
     <div className="category-card">

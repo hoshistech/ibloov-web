@@ -1,5 +1,4 @@
-import React, { useState, useReducer, useCallback, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useReducer, useCallback } from "react";
 import axios from "axios";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Login.css";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
-import Navbar from "../../components/navbar/Navbar";
 import { authLogin } from "./login.action";
 
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
