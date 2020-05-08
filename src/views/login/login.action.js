@@ -41,16 +41,16 @@ export const userLogout = () => {
 };
 
 export const authLogin = (userDetail, history) => {
-  const userDetails = {
-    email: "dami@yahoo.com",
-    password: "ibloov",
-  };
+  // const userDetails = {
+  //   email: "dami@yahoo.com",
+  //   password: "ibloov",
+  // };
   return (dispatch) => {
     dispatch(userLoginStart());
     return (
       axios
         //   .post(`${process.env.API}/v1/user/register`, userDetails)
-        .post("http://198.199.91.181:4000/auth/local", userDetails)
+        .post("http://198.199.91.181:4000/auth/local", userDetail)
         .then(async (response) => {
           const { data } = response.data;
 

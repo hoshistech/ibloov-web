@@ -7,7 +7,6 @@ const CHILDREN_ONLY = "CHILDREN_ONLY";
 const WOMEN_ONLY = "WOMEN_ONLY";
 
 const restrictReducer = (state, action) => {
-  console.log("action", action);
   switch (action.type) {
     case SENIOR_CITIZEN:
       return {
@@ -61,24 +60,15 @@ const RadioInput = (props) => {
     onSelectOption,
   } = props;
 
-  console.log(55, checkedClass);
 
   const selectOptionHandler = (e, name) => {
     // e.preventDefault();
 
-    console.log(111, e.target.value);
     // const name = e.target.name;
-    // console.log(222, p);
 
     dispatch({ type: name, value: name });
   };
 
-  // const selectOptionHandler = (e) => {
-  //   console.log(111, e.target);
-  //   console.log(222, restrictionRef.current);
-  // };
-  // checked="checked"
-  // const checked = true;
   return (
     <label
       class="container-input-radio"

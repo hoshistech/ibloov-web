@@ -27,6 +27,7 @@ const HomePage = (props) => {
   const svgFill = "#f8535361";
 
   const events = useSelector((state) => state.allEvents.events);
+  
 
   const dispatch = useDispatch();
 

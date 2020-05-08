@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CategoryCard from "../categoryCard/CategoryCard";
@@ -12,25 +12,20 @@ const CreateEventCategory = (props) => {
     categoryCount,
     showCount,
     name,
+    selected,
     selectHandler,
     red,
   } = props;
 
-  const [selected, setSelected] = useState(false);
-
   let selectedCategory = "";
 
-  const onSelectEventType = (e) => {
-    selectHandler(name);
-    setSelected(!selected);
-  };
-
-  if (selected) selectedCategory = "selected-category";
+  if (selected === name) selectedCategory = "selected-category";
 
   return (
     <div
       className={`single-category-card ${selectedCategory}`}
-      onClick={(e) => onSelectEventType(e)}
+      onClick={(e) => selectHandler(e, categoryTitle, name)}
+      // onClick={selectHandler}
       name={name}
     >
       <CategoryCard
@@ -39,8 +34,8 @@ const CreateEventCategory = (props) => {
         showCount={showCount}
         name={name}
       >
-        {selected ? red : children}
-        {selected ? (
+        {selected === name ? red : children}
+        {selected === name ? (
           <FontAwesomeIcon
             className="pt-1 category-card-icon"
             icon="check-circle"

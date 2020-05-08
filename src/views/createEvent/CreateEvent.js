@@ -1,4 +1,4 @@
-import React, {  useReducer, useCallback, useState } from "react";
+import React, { useReducer, useCallback, useState, useEffect } from "react";
 
 import "./CreateEvent.css";
 
@@ -10,15 +10,22 @@ import EventTime from "./templates/EventTime";
 import EventRestriction from "./templates/EventRestriction";
 import CreateEventSubmitBtn from "./templates/CreateEventSubmitBtn";
 import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
-import { useDispatch } from "react-redux";
-import { createEvent } from "./createEvent.action";
+import { useDispatch, useSelector } from "react-redux";
+import { createEvent, eventCreateEnd } from "./createEvent.action";
+import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
 
 const CreateEvent = (props) => {
-  const [formCount, setFormCount] = useState(3);
+  const [formCount, setFormCount] = useState(4);
   const [EventDetail, setEventDetail] = useState("");
   const [eventTime, setEventTime] = useState();
+  const [isCreatedEventSuccess, setIsCreatedEventSuccess] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [eventRestrictions, setEventRestrictions] = useState([]);
+  const [notifyMe, setNotifyMe] = useState(false);
 
   const dispatch = useDispatch();
+
+  const isEventCreated = useSelector((state) => state.createEvent.success);
 
   const initilaState = {
     inputValues: {
@@ -77,18 +84,72 @@ const CreateEvent = (props) => {
     [setEventTime]
   );
 
-  const onsubmitEventHandler = () => {
+  const categoryHandler = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const eventRestrictionsHandler = (restriction) => {
+    const currentRestrictions = [...eventRestrictions];
+
+    const check = currentRestrictions.find(
+      (restrictionVal) => restrictionVal === restriction
+    );
+
+    let updatedRestrictions;
+
+    if (check) {
+      updatedRestrictions = currentRestrictions.filter(
+        (restrictions) => restrictions !== restriction
+      );
+    } else {
+      updatedRestrictions = [...currentRestrictions, restriction];
+    }
+
+    setEventRestrictions(updatedRestrictions);
+  };
+
+  const eventNotificationHandler = (e) => {
+    const isNotifyMe = e.target.checked;
+
+    setNotifyMe(isNotifyMe);
+  };
+
+  const onsubmitEventHandler = async () => {
     const newEvent = {
       name: formState.inputValues.eventTitle,
       eventCode: formState.inputValues.eventCode,
-      category: "concert",
+      category: selectedCategory,
+      controls: eventRestrictions,
       address: formState.inputValues.location,
+      notifyMe: notifyMe,
       ...eventTime,
     };
 
     console.log(222, formState.inputValues);
-    console.log(555, eventTime);
-    dispatch(createEvent(newEvent));
+    console.log(555, newEvent);
+
+    // await dispatch(createEvent(newEvent));
+    // await eventCreatedSuccesshandler();
+
+    return;
+  };
+
+  useEffect(() => {
+    eventCreatedSuccesshandler();
+  }, [isEventCreated]);
+
+  const eventCreatedSuccesshandler = () => {
+    if (isEventCreated) {
+      setIsCreatedEventSuccess(true);
+      return;
+    }
+    setIsCreatedEventSuccess(false);
+  };
+
+  const closeEventCreatedMessage = (e) => {
+    e.preventDefault();
+    dispatch(eventCreateEnd());
+    setIsCreatedEventSuccess(false);
   };
 
   return (
@@ -96,38 +157,47 @@ const CreateEvent = (props) => {
       <div className="row createvent-container">
         <div className="col-md-auto create-event-first-row">
           <div className="step-number-row">
-            <div
-              className={
-                formCount === 1
-                  ? "step-number-circle active"
-                  : "step-number-circle"
-              }
-            >
-              <div>
-                <p>1</p>
+            <div className="step-container">
+              <div
+                className={
+                  formCount === 1
+                    ? "step-number-circle active"
+                    : "step-number-circle"
+                }
+              >
+                <div>
+                  <p>1</p>
+                </div>
               </div>
+              <span className="vertical-line"></span>
             </div>
-            <div
-              className={
-                formCount === 2
-                  ? "step-number-circle active"
-                  : "step-number-circle"
-              }
-            >
-              <div>
-                <p>2</p>
+            <div className="step-container">
+              <div
+                className={
+                  formCount === 2
+                    ? "step-number-circle active"
+                    : "step-number-circle"
+                }
+              >
+                <div>
+                  <p>2</p>
+                </div>
               </div>
+              <span className="vertical-line"></span>
             </div>
-            <div
-              className={
-                formCount === 3
-                  ? "step-number-circle active"
-                  : "step-number-circle"
-              }
-            >
-              <div>
-                <p>3</p>
+            <div className="step-container">
+              <div
+                className={
+                  formCount === 3
+                    ? "step-number-circle active"
+                    : "step-number-circle"
+                }
+              >
+                <div>
+                  <p>3</p>
+                </div>
               </div>
+              <span className="vertical-line"></span>
             </div>
             <div
               className={
@@ -147,7 +217,7 @@ const CreateEvent = (props) => {
             <form>
               <div className={formCount === 1 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
-                <EventType />
+                <EventType categoryHandler={categoryHandler} />
               </div>
               <div className={formCount === 2 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
@@ -159,7 +229,10 @@ const CreateEvent = (props) => {
               </div>
               <div className={formCount === 4 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
-                <EventRestriction />
+                <EventRestriction
+                  eventRestrictionsHandler={eventRestrictionsHandler}
+                  notificationHandler={eventNotificationHandler}
+                />
               </div>
               <CreateEventSubmitBtn
                 nextQuestionHandler={nextQuestionHandler}
@@ -171,9 +244,23 @@ const CreateEvent = (props) => {
           </div>
         </div>
       </div>
+      {isEventCreated ? (
+        <EventSuccessSideBar
+          closeSuccessMessage={closeEventCreatedMessage}
+          customClassName={isCreatedEventSuccess ? "show-create-success" : ""}
+        />
+      ) : (
+        ""
+      )}
+      {/* <Button
+        onClick={eventCreatedSuccesshandler}
+        customClassName="event-success-btn"
+        btndisabled={false}
+      >
+        show event success
+      </Button> */}
     </section>
   );
 };
-
 
 export default CreateEvent;

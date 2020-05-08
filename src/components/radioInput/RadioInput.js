@@ -12,9 +12,10 @@ const RadioInput = (props) => {
     onSelectOption,
   } = props;
   return (
-    <div onClick={(e) => onSelectOption(e, name)}>
+    <div onClick={(e) => onSelectOption(e, name, id)} id={id}>
       <div
         className={selectedClass ? "form-check selected-option" : "form-check"}
+        id={id}
       >
         <input
           className={customClass}
@@ -27,6 +28,7 @@ const RadioInput = (props) => {
           className="form-check-label"
           htmlFor={id}
           onClick={(e) => onSelectOption(e, name)}
+          id={id}
         >
           {radioName}
         </label>
