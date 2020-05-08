@@ -12,17 +12,17 @@ const NonAuthNavbar = (props) => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link color-white" href="#">
+        <Link className="nav-link color-white" to="/events">
           LIVE EVENTS
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link color-white" href="#">
+        <Link className="nav-link color-white" to="#">
           EXCLUSIVES
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link color-white" href="#">
+        <Link className="nav-link color-white" to="#">
           CONTACT
         </Link>
       </li>
@@ -30,7 +30,8 @@ const NonAuthNavbar = (props) => {
         <Link to="/signin">
           <Button
             customClassName="header-button header-button-login bold-600"
-            // onclick={this.onButtonPress.bind(this)}
+            onClick={() => {}}
+            btndisabled={false}
           >
             Login
           </Button>
@@ -40,7 +41,8 @@ const NonAuthNavbar = (props) => {
         <Link to="/signup">
           <Button
             customClassName="header-button header-button-register bold-600"
-            // onclick={this.onButtonPress.bind(this)}
+            onClick={() => {}}
+            btndisabled={false}
           >
             Register
           </Button>

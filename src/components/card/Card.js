@@ -32,15 +32,15 @@ const Card = (props) => {
         <div className="event-info">
           <div className="mr-2">
             <p>{month}</p>
-            <p className="font-bold">{day}</p>
+            <p className="font-bold">{day || ""}</p>
           </div>
           <div>
             <div className="event-name">
-              <p className="bold-600">{name}</p>
+              <p className="bold-600">{name || ""}</p>
             </div>
             <div className="event-card-location">
               <p>
-                <small>{location.address}</small>
+                <small>{location ? location.address : ""}</small>
               </p>
             </div>
           </div>

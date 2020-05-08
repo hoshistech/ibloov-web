@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import RadioInput from "../../../components/radioInput/RadioInput";
 import { Link } from "react-router-dom";
@@ -7,11 +7,8 @@ import Button from "../../../components/button/Button";
 import Toggle from "../../../components/Toggle/Toggle";
 import EventCollaborators from "./EventCollaborators";
 
-const SENIOR_CITIZEN = "SENIOR_CITIZEN";
-const CHILDREN_ONLY = "CHILDREN_ONLY";
-const WOMEN_ONLY = "WOMEN_ONLY";
-
 const EventRestriction = (props) => {
+  const { eventRestrictionsHandler, notificationHandler } = props;
   const [label, setLabel] = useState(false);
   const [womenOnly, setWomenOnly] = useState(false);
   const [childrenOnly, setChildrenOnly] = useState(false);
@@ -25,8 +22,12 @@ const EventRestriction = (props) => {
     setLabel(!label);
   };
 
-  const selectOptionHandler = (e, name) => {
+  const selectOptionHandler = (e, name, id) => {
+    e.preventDefault();
     console.log(99, name);
+    console.log(9, e.target.id);
+
+    eventRestrictionsHandler(id);
 
     switch (name) {
       case "womenOnly":
@@ -65,7 +66,7 @@ const EventRestriction = (props) => {
             customClass="form-check-input"
             name="womenOnly"
             labelName="womenOnly"
-            id="womenOnly"
+            id="women Only"
             selectedClass={womenOnly}
             onSelectOption={selectOptionHandler}
           />
@@ -83,7 +84,7 @@ const EventRestriction = (props) => {
             customClass="form-check-input"
             name="seniorCitizen"
             labelName="seniorCitizen"
-            id="seniorCitizen"
+            id="senior Citizen"
             selectedClass={seniorCitizen}
             onSelectOption={selectOptionHandler}
           />
@@ -92,7 +93,7 @@ const EventRestriction = (props) => {
             customClass="form-check-input"
             name="childrenOnly"
             labelName="childrenOnly"
-            id="childrenOnly"
+            id="children Only"
             selectedClass={childrenOnly}
             onSelectOption={selectOptionHandler}
           />
@@ -101,7 +102,7 @@ const EventRestriction = (props) => {
             customClass="form-check-input"
             name="noChildren"
             labelName="noChildren"
-            id="noChildren"
+            id="no Children"
             selectedClass={noChildren}
             onSelectOption={selectOptionHandler}
           />
@@ -139,7 +140,7 @@ const EventRestriction = (props) => {
         </div>
         <div>
           <p className="private-toggle">Notify me when people join </p>
-          <Toggle />
+          <Toggle handleClick={notificationHandler} />
         </div>
       </div>
       <div>
@@ -149,6 +150,9 @@ const EventRestriction = (props) => {
   );
 };
 
-EventRestriction.propTypes = {};
+EventRestriction.propTypes = {
+  eventRestrictionsHandler: PropTypes.func.isRequired,
+  notificationHandler: PropTypes.func.isRequired,
+};
 
 export default EventRestriction;

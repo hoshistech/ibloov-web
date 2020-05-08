@@ -17,27 +17,34 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreateEventCategory from "../../../components/createEventCategory/CreateEventCategory";
 
 const EventType = (props) => {
-  const [selected, setSelected] = useState(false);
+  const { categoryHandler } = props;
+  const [selected, setSelected] = useState("");
   const [svgFill, setSvgFill] = useState("#ccc");
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState();
 
-  const onSelectEventType = (category) => {
-    let newCategory;
+  // const onSelectEventType = (category) => {
+  //   let newCategory;
 
-    const checkIfExist = selectedCategories.find(
-      (categoryName) => categoryName === category
-    );
+  //   const checkIfExist = selectedCategories.find(
+  //     (categoryName) => categoryName === category
+  //   );
 
-    if (checkIfExist) {
-      const categories = selectedCategories;
-      newCategory = categories.filter(
-        (categoryName) => categoryName !== category
-      );
-    } else {
-      newCategory = [...selectedCategories, category];
-    }
+  //   if (checkIfExist) {
+  //     const categories = selectedCategories;
+  //     newCategory = categories.filter(
+  //       (categoryName) => categoryName !== category
+  //     );
+  //   } else {
+  //     newCategory = [...selectedCategories, category];
+  //   }
 
-    setSelectedCategories(newCategory);
+  //   setSelectedCategories(newCategory);
+  // };
+
+  const onSelectEventType = (e, category, name) => {
+    setSelected(name);
+    categoryHandler(category);
+    return;
   };
 
   return (
@@ -170,7 +177,7 @@ const EventType = (props) => {
           showCount={false}
           selectHandler={onSelectEventType}
           selected={selected}
-          name="travel"
+          name="wedding"
           red={<WeddingSvg fill="red" className="create-event-svg" />}
         >
           <WeddingSvg fill={svgFill} />
@@ -182,7 +189,7 @@ const EventType = (props) => {
           showCount={false}
           selectHandler={onSelectEventType}
           selected={selected}
-          name="travel"
+          name="christmas"
           red={<ChristmasSvg fill="red" className="create-event-svg" />}
         >
           <ChristmasSvg fill={svgFill} />
@@ -192,6 +199,8 @@ const EventType = (props) => {
   );
 };
 
-EventType.propTypes = {};
+EventType.propTypes = {
+  categoryHandler: PropTypes.func.isRequired,
+};
 
 export default EventType;

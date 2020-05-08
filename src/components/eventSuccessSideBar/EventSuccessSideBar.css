@@ -1,0 +1,65 @@
+/* The side navigation menu */
+.event-success-container {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 2.5%;
+  background-color: #1d1d1e8f; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  display: flex;
+}
+
+.event-success-container {
+  text-align: center;
+}
+
+.event-success {
+  margin: auto;
+  padding: 3rem;
+  border-radius: 20px;
+  background-color: #ffffff;
+}
+
+.event-success-btn {
+  background-color: #2a5799;
+  width: 50%;
+  border-radius: 50px;
+  font-size: 0.7em;
+  color: #ffffff;
+  opacity: 1;
+  padding: 0.5r;
+}
+
+.success-image {
+  width: 150px;
+  height: 150px;
+}
+
+.success-text p {
+  color: #2a5799;
+  font-size: 1.5rem;
+  opacity: 100%;
+  font-weight: bolder;
+  margin-bottom: 0px;
+}
+.success-text small {
+  color: #ccc;
+  font-size: 0.8rem;
+}
+
+.show-create-success {
+  width: 95%;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
