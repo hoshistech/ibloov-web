@@ -16,6 +16,7 @@ const EventTime = (props) => {
   const [endTime, setEndTime] = useState("");
   const [isPrivateEvent, setIsPrivateEvent] = useState(false);
   const [showPricing, setShowPricing] = useState(true);
+  const [ticketTypeNumber, setTicketTypeNumber] = useState(3);
 
   const onBlurHandler = () => {
     startDateRef.current.type = "text";
@@ -57,15 +58,6 @@ const EventTime = (props) => {
     setIsPrivateEvent(isPrivateEvent);
   };
 
-  const onToggleEventFeeHandler = (e) => {
-    const eventId = e.target.id;
-    if (eventId === "eventFree") {
-      setShowPricing(false);
-      return;
-    }
-    setShowPricing(true);
-  };
-
   const setTimeHandler = (time, id) => {
     console.log(121113, time, id);
     if (id === "timeStart") {
@@ -87,6 +79,31 @@ const EventTime = (props) => {
     startTime,
     endTime,
   ]);
+
+  const onToggleEventFeeHandler = (e) => {
+    const eventId = e.target.id;
+    if (eventId === "eventFree") {
+      setShowPricing(false);
+      return;
+    }
+    setShowPricing(true);
+  };
+
+  const increaseTicketTypeHandler = () => {
+    if (ticketTypeNumber === 3) return;
+    setTicketTypeNumber(ticketTypeNumber + 1);
+  };
+
+  const decreaseTicketTypeHandler = () => {
+    if (ticketTypeNumber === 1) return;
+    setTicketTypeNumber(ticketTypeNumber - 1);
+  };
+
+  const changeTicketTypeNumberHandler = (e) => {
+    console.log(234, e.target.value);
+    const value = e.target.value;
+    setTicketTypeNumber(value);
+  };
 
   return (
     <div className="row">
@@ -161,6 +178,10 @@ const EventTime = (props) => {
         <EventPrice
           showPriceHandler={onToggleEventFeeHandler}
           showPricing={showPricing}
+          ticketNumber={ticketTypeNumber}
+          increaseTicketType={increaseTicketTypeHandler}
+          decreaseTicketType={decreaseTicketTypeHandler}
+          changeTicketTypeNumber={changeTicketTypeNumberHandler}
         />
       </div>
     </div>

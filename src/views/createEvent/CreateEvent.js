@@ -15,13 +15,14 @@ import { createEvent, eventCreateEnd } from "./createEvent.action";
 import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
 
 const CreateEvent = (props) => {
-  const [formCount, setFormCount] = useState(4);
+  const [formCount, setFormCount] = useState(3);
   const [EventDetail, setEventDetail] = useState("");
   const [eventTime, setEventTime] = useState();
   const [isCreatedEventSuccess, setIsCreatedEventSuccess] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [eventRestrictions, setEventRestrictions] = useState([]);
   const [notifyMe, setNotifyMe] = useState(false);
+  const [image, setImage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -114,6 +115,40 @@ const CreateEvent = (props) => {
     setNotifyMe(isNotifyMe);
   };
 
+  const imageUploadHandler = (image) => {
+    const formData = new FormData();
+    console.log(55, image);
+    setImage(image);
+
+    // formData.append(file);
+
+    // fetch("http://198.199.91.181:4000/v1/do/upload", {
+    //   method: "POST",
+    //   body: formData,
+    // })
+    //   .then((res) => res.json())
+    //   .then((images) => {
+    //     console.log(44, images);
+    //   });
+  };
+
+  const uplod = () => {
+   
+    console.log(55, image);
+
+    
+
+    // fetch("http://198.199.91.181:4000/v1/do/upload/event", {
+    //   method: "POST",
+    //   body: formData,
+    // })
+    //   .then((res) => res.json())
+    //   .then((images) => {
+    //     console.log(44, images);
+    //   })
+    //   .catch((error) => console.log(5588, error));
+  };
+
   const onsubmitEventHandler = async () => {
     const newEvent = {
       name: formState.inputValues.eventTitle,
@@ -128,7 +163,7 @@ const CreateEvent = (props) => {
     console.log(222, formState.inputValues);
     console.log(555, newEvent);
 
-    // await dispatch(createEvent(newEvent));
+    await dispatch(createEvent(newEvent, image));
     // await eventCreatedSuccesshandler();
 
     return;
@@ -221,7 +256,10 @@ const CreateEvent = (props) => {
               </div>
               <div className={formCount === 2 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
-                <EventDescription inputChangeHandler={inputChangeHandler} />
+                <EventDescription
+                  inputChangeHandler={inputChangeHandler}
+                  imageUpload={imageUploadHandler}
+                />
               </div>
               <div className={formCount === 3 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
@@ -252,13 +290,13 @@ const CreateEvent = (props) => {
       ) : (
         ""
       )}
-      {/* <Button
-        onClick={eventCreatedSuccesshandler}
+      <Button
+        onClick={uplod}
         customClassName="event-success-btn"
         btndisabled={false}
       >
         show event success
-      </Button> */}
+      </Button>
     </section>
   );
 };

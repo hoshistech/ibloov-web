@@ -8,10 +8,6 @@
   justify-content: space-between;
 }
 
-.disp-none {
-  display: none;
-}
-
 .step-number-row::before {
   top: 50%;
   bottom: 0;
@@ -24,22 +20,8 @@
   left: 1%;
 }
 
-.step-container {
-  position: relative;
-}
-
-.vertical-line {
-  /* border-left: 2px solid green;
-  height: 95%;
-  position: absolute;
-  left: 50%;
-  margin-left: -1px;
-  bottom: -17px;
-  z-index: -5; */
-}
-
 .step-number-circle {
-  /* border: 1px solid; */
+  border: 1px solid;
   padding: 3px 3px;
   width: 28px;
   height: 28px;
@@ -70,15 +52,10 @@
 .step-number-circle.active {
   padding: 3px;
   border: 1px solid black;
-  background-color: #ffffff;
 }
 
 .step-number-circle.active div {
   background-color: #213368;
-}
-
-.step-number-circle:nth-child(2) + span {
-  /* border-color: #ccc; */
 }
 
 .question {
@@ -195,11 +172,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 0.9rem;
   font-weight: bolder;
   width: 130px;
-}
-
-.price-label:nth-child(3) {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 .price-input {
@@ -207,9 +180,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 130px;
 }
 
-.price-input:nth-child(3) {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+.ticket-name-header {
+  width: 50%;
+  margin-right: 0.5rem;
+}
+
+.price-list-container .row {
+  margin-bottom: 0.5rem;
 }
 
 /* 
@@ -238,10 +215,6 @@ styling for event restriction
   text-decoration: underline;
 }
 
-.wishlist-button:hover {
-  color: #2a5799;
-}
-
 @media only screen and (min-width: 663px) {
   .event-time-container {
     margin-right: 1rem;
@@ -252,28 +225,18 @@ styling for event restriction
   .step-number-row {
     display: grid;
   }
-  .vertical-line {
-    /* border-left: 2px solid #ccc; */
-    border-left: 2px solid #213368;
-    height: 95%;
-    position: absolute;
-    left: 48%;
-    margin-left: -1px;
-    bottom: -17px;
-    z-index: -5;
-  }
   .myibloov-create-button-container {
     justify-content: flex-end;
     /* margin-right: 2rem; */
   }
 
-  /* .step-number-row::before {
+  .step-number-row::before {
     top: 1%;
     bottom: 0;
     width: 7%;
     height: 60%;
     left: 48%;
-  } */
+  }
 
   .step-number-circle {
     margin-bottom: 4rem;
@@ -313,9 +276,9 @@ styling for event restriction
   .restrict-options {
     width: 350px;
   }
-  /* .step-number-row::before {
+  .step-number-row::before {
     height: 65%;
-  } */
+  }
 }
 
 @media only screen and (min-width: 1032px) {

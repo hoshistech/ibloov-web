@@ -6,7 +6,7 @@ import "./DragableImageUpload.css";
 import Button from "../button/Button";
 
 const DragableImageUpload = (props) => {
-  const { fileInputRef, openFileDialog, filesAdded } = props;
+  const { fileInputRef, filesAdded } = props;
   const [highlight, setHighlight] = useState(false);
   const [fileName, setFileName] = useState("");
 
@@ -15,11 +15,11 @@ const DragableImageUpload = (props) => {
   };
 
   const onFilesAddedHandler = (e) => {
-    const files = e.target.files;
-    const fileName = files[0].name;
+    const file = e.target.files[0];
+    const fileName = file.name;
     setFileName(fileName);
 
-    filesAdded(files);
+    filesAdded(file);
   };
 
   const onDragLeave = (e) => {
@@ -55,7 +55,7 @@ const DragableImageUpload = (props) => {
         <img src={Upload} alt="upload" className="upload-image mb-3" />
         <div>
           <label htmlFor="img">Drag and Drop to Upload</label>
-          {fileName}
+          <p>{fileName}</p>
           <input
             ref={fileInputRef}
             className="upload-image-input"
@@ -81,6 +81,9 @@ const DragableImageUpload = (props) => {
   );
 };
 
-DragableImageUpload.propTypes = {};
+DragableImageUpload.propTypes = {
+  fileInputRef: PropTypes.object,
+  filesAdded: PropTypes.func,
+};
 
 export default DragableImageUpload;
