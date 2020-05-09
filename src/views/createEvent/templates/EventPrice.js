@@ -2,8 +2,32 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import PricingCounter from "../../../components/pricingCounter/PricingCounter";
 
+const PriceTicket = () => {
+  return (
+    <div className="row">
+      <label htmlFor="vip" className="price-label">
+        VIP
+      </label>
+      <input
+        type="number"
+        name="vip"
+        id="vip"
+        className="form-control price-input"
+      />
+    </div>
+  );
+};
+
 const EventPrice = (props) => {
-  const { showPriceHandler, showPricing, setPrice } = props;
+  const {
+    showPriceHandler,
+    showPricing,
+    setPrice,
+    ticketNumber,
+    increaseTicketType,
+    decreaseTicketType,
+    changeTicketTypeNumber,
+  } = props;
 
   return (
     <div>
@@ -44,41 +68,63 @@ const EventPrice = (props) => {
             <div>
               <div className="row">
                 <p className="private-toggle">How many different pricing?</p>{" "}
-                <PricingCounter />
+                <PricingCounter
+                  ticketNumber={ticketNumber}
+                  increaseTicketType={increaseTicketType}
+                  decreaseTicketType={decreaseTicketType}
+                  changeTicketNumber={changeTicketTypeNumber}
+                />
               </div>
-              <div className="row">
-                <div className="ticket-names">
-                  <p>Ticket Name</p>
-                  <label htmlFor="standard" className="price-label">
-                    Standard
-                  </label>
-                  <label htmlFor="premium" className="price-label">
-                    Premium
-                  </label>
-                  <label htmlFor="vip" className="price-label">
-                    VIP
-                  </label>
+              <div>
+                <div className="row ticket-header">
+                  <div className="ticket-name-header">
+                    <p>Ticket Name</p>
+                  </div>
+                  <div className="ticket-price-header">
+                    <p>Price</p>
+                  </div>
                 </div>
-                <div className="ticket-prices">
-                  <p>Price</p>
-                  <input
-                    type="number"
-                    name="standard"
-                    id="standard"
-                    className="form-control price-input"
-                  />
-                  <input
-                    type="number"
-                    name="premium"
-                    id="premium"
-                    className="form-control price-input"
-                  />
-                  <input
-                    type="number"
-                    name="vip"
-                    id="vip"
-                    className="form-control price-input"
-                  />
+                <div className="price-list-container">
+                  <div className="row">
+                    <label htmlFor="standard" className="price-label">
+                      Standard
+                    </label>
+                    <input
+                      type="number"
+                      name="standard"
+                      id="standard"
+                      className="form-control price-input"
+                    />
+                  </div>
+                  <div className="row">
+                    <label htmlFor="premium" className="price-label">
+                      Premium
+                    </label>
+                    <input
+                      type="number"
+                      name="premium"
+                      id="premium"
+                      className="form-control price-input"
+                    />
+                  </div>
+
+                  <div className="row">
+                    <label htmlFor="vip" className="price-label">
+                      VIP
+                    </label>
+                    <input
+                      type="number"
+                      name="vip"
+                      id="vip"
+                      className="form-control price-input"
+                    />
+                  </div>
+
+                  {Array(ticketNumber)
+                    .fill()
+                    .map((_, i) => (
+                      <PriceTicket key={i} />
+                    ))}
                 </div>
               </div>
             </div>
@@ -94,6 +140,8 @@ const EventPrice = (props) => {
 EventPrice.propTypes = {
   showPricing: PropTypes.bool,
   showPriceHandler: PropTypes.func,
+  increaseTicketType: PropTypes.func,
+  decreaseTicketType: PropTypes.func,
 };
 
 export default EventPrice;

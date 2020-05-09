@@ -4,13 +4,14 @@ import Input from "../../../components/input/Input";
 import DragableImageUpload from "../../../components/dragableImageUpload/DragableImageUpload";
 
 const EventDescription = (props) => {
-  const { inputChangeHandler } = props;
+  const { inputChangeHandler, imageUpload } = props;
   const fileInputRef = useRef("");
 
-  const onFilesAddedHandler = (e) => {
+  const onFilesAddedHandler = (image) => {
     // e.preventDefault();
-    // const files = e.target.file;
-    console.log(88, e);
+    console.log(88, image);
+
+    imageUpload(image);
 
     // const array = fileListToArray(files);
     // const res = onFilesAddedHandler(array);
@@ -98,6 +99,7 @@ const EventDescription = (props) => {
 
 EventDescription.propTypes = {
   inputChangeHandler: PropTypes.func.isRequired,
+  imageUpload: PropTypes.func.isRequired,
 };
 
 export default EventDescription;
