@@ -35,8 +35,6 @@ const Event = (props) => {
       <div>
         <Pagination />
       </div>
-
-      <Footer />
     </Fragment>
   );
 };

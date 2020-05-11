@@ -29,6 +29,7 @@ import {
   faMusic,
   faMapMarkerAlt,
   faCheckCircle,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
@@ -44,6 +45,8 @@ import TestPage from "./views/testPage/TestPage";
 import Myibloov from "./views/myibloov/Myibloov";
 import Dashboard from "./views/dashboard/Dashboard";
 import VerifyPhoneNumber from "./views/verifyPhoneNumber/VerifyPhoneNumber";
+import SingleEvent from "./views/singleEvent/SingleEvent";
+import Footer from "./components/footer/Footer";
 
 const store = setupStore();
 
@@ -75,7 +78,8 @@ library.add(
   faGift,
   faHandHolding,
   faMapMarkerAlt,
-  faCheckCircle
+  faCheckCircle,
+  faArrowLeft
 );
 
 function NoMatch() {
@@ -119,6 +123,9 @@ function App() {
             <PrivateRoute path="/myibloov">
               <Myibloov />
             </PrivateRoute>
+            <PrivateRoute path="/event/single-event">
+              <SingleEvent />
+            </PrivateRoute>
             <PrivateRoute path="/verify-phone">
               <VerifyPhoneNumber />
             </PrivateRoute>
@@ -126,6 +133,7 @@ function App() {
               <NoMatch />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </Router>
     </Provider>

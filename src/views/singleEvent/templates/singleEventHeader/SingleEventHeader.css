@@ -1,0 +1,31 @@
+.single-event-header {
+  background-image: url("../../../../assets/images/bg2.jpg");
+  background-repeat: no-repeat;
+  color: #fff;
+  /* background-size: 900px 65vh; */
+  /* background-position: top;
+  background-position-x: right;
+  background-color: #463d3d; */
+  /* opacity: 0.8; */
+  font-weight: bolder;
+  height: 60vh;
+  /* padding-bottom: 3rem; */
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+}
+
+.single-event-header-content {
+  display: grid;
+  align-content: space-between;
+  height: 70%;
+  margin-left: 36px;
+}
+
+.single-event-header-content p {
+  background-color: #213368;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  opacity: 0.75;
+}
