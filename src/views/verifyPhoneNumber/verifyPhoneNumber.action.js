@@ -31,18 +31,16 @@ export const verifyCodeFailed = (authError) => {
 };
 
 export const verifiyPhoneNumber = (code, userId, history) => {
-
   return (dispatch) => {
     dispatch(verifyCodeStart());
     return (
       axios
         //   .post(`${process.env.API}/v1/user/register`, userDetails)
         .get(
-          `http://198.199.91.181:4000/v1/user/mobilenumber/verifycode/${userId}/${code}`
+          `https://198.199.91.181:4000/v1/user/mobilenumber/verifycode/${userId}/${code}`
         )
         .then((response) => {
           const { data } = response.data;
-
 
           // localStorage.setItem("user", JSON.stringify(data));
 
@@ -94,7 +92,7 @@ export const sendVerificationCode = (userId, history) => {
       axios
         //   .post(`${process.env.API}/v1/user/register`, userDetails)
         .post(
-          `http://198.199.91.181:4000/v1/user/mobilenumber/sendverificationcode/${userId}`
+          `https://198.199.91.181:4000/v1/user/mobilenumber/sendverificationcode/${userId}`
         )
         .then((response) => {
           const { data } = response.data;
@@ -125,7 +123,6 @@ export const sendVerificationCode = (userId, history) => {
           const { message } = error.response.data;
 
           toast.error("There was an error, Contact the support team");
-
 
           //dispatch(userSignupFailed(msg));
         })

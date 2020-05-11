@@ -75,11 +75,11 @@ const Login = (props) => {
     dispatch(authLogin(newUser, history));
   };
   const socialAuthHandler = (e, id) => {
-    const googleAuth = "http://ibloov.xpasson.com:4000/auth/google";
+    const googleAuth = "https://ibloov.xpasson.com:4000/auth/google";
     window.location = googleAuth;
     axios
-      // .get("http://198.199.91.181:4000/auth/google/authurl")
-      .get("http://ibloov.xpasson.com:4000/auth/google")
+      // .get("https://198.199.91.181:4000/auth/google/authurl")
+      .get("https://ibloov.xpasson.com:4000/auth/google")
       .then((response) => {
         // handle success
         // console.log(response.data);
