@@ -1,0 +1,45 @@
+.single-event-name-container {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1rem;
+}
+.single-event-name {
+  color: #222222;
+  font-weight: bolder;
+}
+
+.single-event-name + span {
+  color: #6e6f6f;
+}
+.single-event-price {
+  color: #ffa79d;
+  font-size: 20px;
+  font-weight: bolder;
+  margin: 1rem 0px;
+}
+
+.single-event-header-title {
+  color: #2a5799;
+  font-weight: bolder;
+}
+
+.single-event-header-title span {
+  color: #7f7f7f;
+}
+
+.single-event-description {
+  color: #7f7f7f;
+}
+
+.single-event-date-container p {
+  font-size: 0.8rem;
+}
+
+.export-to-calendar-btn {
+  width: 180px;
+  border: 1px solid #213368;
+}
+
+.single-comment-hashtag-container {
+  display: flex;
+  flex-wrap: wrap;
+}

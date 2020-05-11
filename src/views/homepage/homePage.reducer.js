@@ -20,7 +20,6 @@ const allEventStart = (state) => {
 const allEventSuccess = (state, action) => {
   return updateObject(state, {
     events: action.events,
-    likedEvents: action.likedEvents,
     loading: false,
   });
 };
