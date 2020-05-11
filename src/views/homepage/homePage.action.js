@@ -35,7 +35,7 @@ export const fetchEvents = () => {
   return (dispatch) => {
     dispatch(fetchAllEventStart());
     return axios
-      .get("http://198.199.91.181:4000/v1/event", {
+      .get("https://198.199.91.181:4000/v1/event", {
         headers: {
           authorization: `Bearer ${token}`,
         },

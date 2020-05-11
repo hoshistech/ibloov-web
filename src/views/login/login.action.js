@@ -50,7 +50,7 @@ export const authLogin = (userDetail, history) => {
     return (
       axios
         //   .post(`${process.env.API}/v1/user/register`, userDetails)
-        .post("http://198.199.91.181:4000/auth/local", userDetail)
+        .post("https://198.199.91.181:4000/auth/local", userDetail)
         .then(async (response) => {
           const { data } = response.data;
 

@@ -119,34 +119,10 @@ const CreateEvent = (props) => {
     const formData = new FormData();
     console.log(55, image);
     setImage(image);
-
-    // formData.append(file);
-
-    // fetch("http://198.199.91.181:4000/v1/do/upload", {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((res) => res.json())
-    //   .then((images) => {
-    //     console.log(44, images);
-    //   });
   };
 
   const uplod = () => {
-   
     console.log(55, image);
-
-    
-
-    // fetch("http://198.199.91.181:4000/v1/do/upload/event", {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((res) => res.json())
-    //   .then((images) => {
-    //     console.log(44, images);
-    //   })
-    //   .catch((error) => console.log(5588, error));
   };
 
   const onsubmitEventHandler = async () => {
