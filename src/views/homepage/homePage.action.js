@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../utils/axiosConfig";
 // import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import { toast } from "react-toastify";
@@ -35,7 +35,7 @@ export const fetchEvents = () => {
   return (dispatch) => {
     dispatch(fetchAllEventStart());
     return axios
-      .get("https://198.199.91.181:4000/v1/event", {
+      .get("/v1/event", {
         headers: {
           authorization: `Bearer ${token}`,
         },

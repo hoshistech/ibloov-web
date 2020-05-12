@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../utils/axiosConfig";
 // import dotenv from "dotenv";
 import { toast } from "react-toastify";
 import {
@@ -36,9 +36,7 @@ export const verifiyPhoneNumber = (code, userId, history) => {
     return (
       axios
         //   .post(`${process.env.API}/v1/user/register`, userDetails)
-        .get(
-          `https://198.199.91.181:4000/v1/user/mobilenumber/verifycode/${userId}/${code}`
-        )
+        .get(`/v1/user/mobilenumber/verifycode/${userId}/${code}`)
         .then((response) => {
           const { data } = response.data;
 
@@ -91,9 +89,7 @@ export const sendVerificationCode = (userId, history) => {
     return (
       axios
         //   .post(`${process.env.API}/v1/user/register`, userDetails)
-        .post(
-          `https://198.199.91.181:4000/v1/user/mobilenumber/sendverificationcode/${userId}`
-        )
+        .post(`/v1/user/mobilenumber/sendverificationcode/${userId}`)
         .then((response) => {
           const { data } = response.data;
 

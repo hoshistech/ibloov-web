@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../utils/axiosConfig";
 // import dotenv from "dotenv";
 import { toast } from "react-toastify";
 import {
@@ -33,7 +33,7 @@ export const authSignup = (userDetails, phoneDetails, history) => {
     return (
       axios
         //   .post(`${process.env.API}/v1/user/register`, userDetails)
-        .post("https://198.199.91.181:4000/v1/user/register", userDetails)
+        .post("/v1/user/register", userDetails)
         .then((response) => {
           const { data } = response.data;
           // localStorage.setItem("user", JSON.stringify(data));

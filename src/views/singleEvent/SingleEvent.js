@@ -9,14 +9,15 @@ import CreateComment from "../../components/createComment/CreateComment";
 import ViewEventProfileCard from "../../components/viewEventProfileCard/ViewEventProfileCard";
 import Button from "../../components/button/Button";
 import HashTag from "../../components/hashTag/HashTag";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const SingleEvent = (props) => {
   return (
     <Fragment>
       <Navbar />
       <section>
         <SingleEventHeader />
-        <div className="row">
-          <div className="col-md-8">
+        <div className="row single-event-body">
+          <div className="col-md-8 single-event-first-col">
             <section>
               <div>
                 <div className="single-event-name-container">
@@ -36,8 +37,7 @@ const SingleEvent = (props) => {
                     sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
                     ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
                     nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. 
-                    At vero eos et accusam et
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
                     justo duo dolores et ea rebum. Stet clita kasd gubergren, no
                     sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
                     ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
@@ -62,7 +62,6 @@ const SingleEvent = (props) => {
               </div>
             </section>
             <section>
-              event comments add comments
               <div>
                 <h3 className="single-event-header-title">
                   Comments<span>(2)</span>
@@ -98,7 +97,7 @@ const SingleEvent = (props) => {
                 </Button>
               </div>
             </div>
-            <div>
+            <div className="mt-3 mb-3 single-event-second-col-container">
               <h4 className="single-event-header-title">Event Location</h4>
               <div>map</div>
               <div>
@@ -106,7 +105,7 @@ const SingleEvent = (props) => {
                 Indian Ocean Territory (Chagos Archipelago)
               </div>
             </div>
-            <div>
+            <div className="mt-3 mb-3 single-event-second-col-container">
               <h4 className="single-event-header-title">Tags</h4>
               <div className="single-comment-hashtag-container">
                 <HashTag tagValue="TiwaLiveOnStage" />
@@ -114,9 +113,35 @@ const SingleEvent = (props) => {
                 <HashTag tagValue="TiwaLiveOnStage" />
               </div>
             </div>
-            <div>
+            <div className="mt-3 mb-3 single-event-second-col-container">
               <h4 className="single-event-header-title">Share with friends</h4>
-              <div>social icons</div>
+              <div className="row share-icon-container">
+                <div className="share-icon-facebook">
+                  <FontAwesomeIcon
+                    className="share-icon"
+                    icon={["fab", "facebook-f"]}
+                  />
+                </div>
+
+                <div className="share-icon-twitter">
+                  <FontAwesomeIcon
+                    className="share-icon"
+                    icon={["fab", "twitter"]}
+                  />
+                </div>
+                {/* <div className="share-icon-instagram">
+                  <FontAwesomeIcon
+                    className="share-icon"
+                    icon={["fab", "instagram"]}
+                  />
+                </div> */}
+                <div className="share-icon-linkedin">
+                  <FontAwesomeIcon
+                    className="share-icon"
+                    icon={["fab", "linkedin-in"]}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
