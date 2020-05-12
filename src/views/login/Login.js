@@ -1,5 +1,5 @@
 import React, { useReducer, useCallback } from "react";
-import axios from "axios";
+import axios from "../../utils/axiosConfig";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -79,7 +79,7 @@ const Login = (props) => {
     window.location = googleAuth;
     axios
       // .get("https://198.199.91.181:4000/auth/google/authurl")
-      .get("https://ibloov.xpasson.com:4000/auth/google")
+      .get("/auth/google")
       .then((response) => {
         // handle success
         // console.log(response.data);

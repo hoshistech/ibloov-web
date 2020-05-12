@@ -24,7 +24,7 @@
   /* opacity: 1; */
   padding: 1rem;
   margin: 0px auto;
-  max-width: 320px;
+  /* max-width: 320px; */
 }
 
 .view-event-profile-container {
@@ -80,4 +80,16 @@
   font-size: 0.5rem;
   margin-right: 4px;
   color: #2a5799;
+}
+
+@media only screen and (min-width: 768px) {
+  .view-event-stat-container {
+    max-width: 300px;
+    margin: 0px;
+  }
+
+  .view-event-profile-container {
+    max-width: 300px;
+    margin: 0px;
+  }
 }

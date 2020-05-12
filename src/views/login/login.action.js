@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../utils/axiosConfig";
 // import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import { toast } from "react-toastify";
@@ -50,7 +50,7 @@ export const authLogin = (userDetail, history) => {
     return (
       axios
         //   .post(`${process.env.API}/v1/user/register`, userDetails)
-        .post("https://198.199.91.181:4000/auth/local", userDetail)
+        .post("/auth/local", userDetail)
         .then(async (response) => {
           const { data } = response.data;
 

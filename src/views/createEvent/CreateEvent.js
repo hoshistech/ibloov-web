@@ -15,7 +15,7 @@ import { createEvent, eventCreateEnd } from "./createEvent.action";
 import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
 
 const CreateEvent = (props) => {
-  const [formCount, setFormCount] = useState(3);
+  const [formCount, setFormCount] = useState(1);
   const [EventDetail, setEventDetail] = useState("");
   const [eventTime, setEventTime] = useState();
   const [isCreatedEventSuccess, setIsCreatedEventSuccess] = useState(false);
@@ -266,13 +266,13 @@ const CreateEvent = (props) => {
       ) : (
         ""
       )}
-      <Button
+      {/* <Button
         onClick={uplod}
         customClassName="event-success-btn"
         btndisabled={false}
       >
         show event success
-      </Button>
+      </Button> */}
     </section>
   );
 };
