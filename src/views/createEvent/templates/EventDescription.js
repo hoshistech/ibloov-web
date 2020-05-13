@@ -8,15 +8,7 @@ const EventDescription = (props) => {
   const fileInputRef = useRef("");
 
   const onFilesAddedHandler = (image) => {
-    // e.preventDefault();
-    console.log(88, image);
-
     imageUpload(image);
-
-    // const array = fileListToArray(files);
-    // const res = onFilesAddedHandler(array);
-
-    // console.log(99, array);
   };
 
   return (

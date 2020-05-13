@@ -8,7 +8,6 @@ const PricingCounter = (props) => {
     ticketNumber,
     increaseTicketType,
     decreaseTicketType,
-    changeTicketNumber,
   } = props;
 
   return (

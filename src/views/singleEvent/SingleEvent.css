@@ -1,7 +1,12 @@
+.single-event-loading {
+  text-align: center;
+  margin-top: 2rem;
+}
 .single-event-name-container {
   border-bottom: 1px solid #ccc;
   padding-bottom: 1rem;
 }
+
 .single-event-name {
   color: #222222;
   font-weight: bolder;
@@ -32,6 +37,16 @@
 
 .single-event-date-container p {
   font-size: 0.8rem;
+}
+
+.event-start-date {
+  margin-left: 1rem;
+  font-weight: bolder;
+}
+
+.event-end-date {
+  margin-left: 1.4rem;
+  font-weight: bolder;
 }
 
 .export-to-calendar-btn {

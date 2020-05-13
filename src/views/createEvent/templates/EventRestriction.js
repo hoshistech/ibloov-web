@@ -18,14 +18,11 @@ const EventRestriction = (props) => {
   const [noChildren, setNoChildren] = useState(false);
 
   const handlelabelClick = (e) => {
-    console.log(89, e);
     setLabel(!label);
   };
 
   const selectOptionHandler = (e, name, id) => {
     e.preventDefault();
-    console.log(99, name);
-    console.log(9, e.target.id);
 
     eventRestrictionsHandler(id);
 

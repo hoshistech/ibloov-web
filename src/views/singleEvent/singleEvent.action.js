@@ -3,49 +3,49 @@ import axios from "../../utils/axiosConfig";
 import jwt from "jsonwebtoken";
 import { toast } from "react-toastify";
 import {
-  FETCH_ALL_EVENTS_START,
-  FETCH_ALL_EVENTS_SUCCESS,
-  FETCH_ALL_EVENTS_FAIL,
+  FETCH_SINGLE_EVENT_START,
+  FETCH_SINGLE_EVENT_SUCCESS,
+  FETCH_SINGLE_EVENT_FAIL,
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
 
-export const fetchAllEventStart = () => {
+export const fetchSingleEventStart = () => {
   return {
-    type: FETCH_ALL_EVENTS_START,
+    type: FETCH_SINGLE_EVENT_START,
   };
 };
 
-export const fetchAllEventSuccess = (events, likedEvents) => {
+export const fetchSingleEventSuccess = (event) => {
   return {
-    type: FETCH_ALL_EVENTS_SUCCESS,
-    events: events,
-    likedEvents,
+    type: FETCH_SINGLE_EVENT_SUCCESS,
+    event,
   };
 };
 
-export const fetchAllEventFailed = (error) => {
+export const fetchSingleEventFailed = (error) => {
   return {
-    type: FETCH_ALL_EVENTS_FAIL,
+    type: FETCH_SINGLE_EVENT_FAIL,
     error,
   };
 };
 
-export const fetchEvents = () => {
+export const getEvent = (eventId) => {
   const { token } = getUser();
   return (dispatch) => {
-    dispatch(fetchAllEventStart());
+    dispatch(fetchSingleEventStart());
     return axios
-      .get("/v1/event", {
+      .get(`/v1/event/${eventId}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
         const { data } = response.data;
-        dispatch(fetchAllEventSuccess(data));
+
+        dispatch(fetchSingleEventSuccess(data));
       })
       .catch((error) => {
-        dispatch(fetchAllEventFailed("error"));
+        dispatch(fetchSingleEventFailed("error"));
       });
   };
 };

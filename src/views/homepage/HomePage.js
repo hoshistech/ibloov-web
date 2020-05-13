@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/Footer";
 import background2 from "../../assets/images/carousel/carousel33.jpg";
 import background from "../../assets/images/carousel/bg4.png";
 import background3 from "../../assets/images/carousel/carousel22.png";
@@ -40,6 +39,7 @@ const HomePage = (props) => {
       <Card
         key={event._id}
         name={event.name}
+        eventId={event._id}
         startDate={event.startDate}
         location={event.location}
       />

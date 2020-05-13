@@ -75,7 +75,6 @@ const CreateEvent = (props) => {
   };
 
   const eventPriceHandler = (e) => {
-    console.log(e.target.value);
   };
 
   const setEventDateHandler = useCallback(
@@ -116,14 +115,9 @@ const CreateEvent = (props) => {
   };
 
   const imageUploadHandler = (image) => {
-    const formData = new FormData();
-    console.log(55, image);
     setImage(image);
   };
 
-  const uplod = () => {
-    console.log(55, image);
-  };
 
   const onsubmitEventHandler = async () => {
     const newEvent = {
@@ -136,8 +130,6 @@ const CreateEvent = (props) => {
       ...eventTime,
     };
 
-    console.log(222, formState.inputValues);
-    console.log(555, newEvent);
 
     await dispatch(createEvent(newEvent, image));
     // await eventCreatedSuccesshandler();

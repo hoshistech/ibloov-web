@@ -83,8 +83,6 @@ export const authLogin = (userDetail, history) => {
           dispatch(userLoginSuccess(data, user));
         })
         .catch((error) => {
-          console.log(error);
-          console.log(23, error);
 
           toast.error("email/password incorrect");
           dispatch(userSignupFailed("email/password incorrect"));

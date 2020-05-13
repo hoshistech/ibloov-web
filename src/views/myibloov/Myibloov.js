@@ -8,9 +8,7 @@ import { Link } from "react-router-dom";
 import Card from "../../components/card/Card";
 import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 import CreateEvent from "../createEvent/CreateEvent";
-import SelectInput from "../../components/selectInput/SelectInput";
 const Myibloov = (props) => {
-  const event = false;
 
   const [selectedTab, setSelectedTab] = useState("event");
   // const [myCreatedEvent, setMyCreatedEvent] = useState(true);
@@ -34,7 +32,6 @@ const Myibloov = (props) => {
 
   const createButtonHandler = (e) => {
     e.preventDefault();
-    console.log("creating ");
     setShowCreate(!showCreate);
   };
 

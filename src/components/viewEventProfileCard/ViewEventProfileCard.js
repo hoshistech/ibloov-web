@@ -7,6 +7,8 @@ import "./ViewEventProfileCard.css";
 import Button from "../button/Button";
 
 const ViewEventProfileCard = (props) => {
+  const { user } = props;
+  const name = `${user.local.firstName} ${user.local.lastName}`;
   return (
     <div>
       <div className="row view-event-profile-container">
@@ -14,16 +16,24 @@ const ViewEventProfileCard = (props) => {
           <img src={passport} className="view-event-profile-img" alt="card" />
         </div>
         <div className="view-event-profile-detail">
-          <p>Damilola Adekoya</p>
+          <p>{name}</p>
           <small>View Profile</small>
         </div>
       </div>
       <div className="mt-3 view-event-stat-container">
         <div className="view-event-profile-button-container">
-          <Button customClassName="view-event-btn bloove-event-now-btn">
+          <Button
+            customClassName="view-event-btn bloove-event-now-btn"
+            onClick={() => {}}
+            btndisabled={false}
+          >
             BLOOV EVENT NOW
           </Button>
-          <Button customClassName="mt-2 view-event-btn bloove-promote-event-btn">
+          <Button
+            customClassName="mt-2 view-event-btn bloove-promote-event-btn"
+            onClick={() => {}}
+            btndisabled={false}
+          >
             PROMOTE EVENT
           </Button>
         </div>
@@ -52,6 +62,8 @@ const ViewEventProfileCard = (props) => {
   );
 };
 
-ViewEventProfileCard.propTypes = {};
+ViewEventProfileCard.propTypes = {
+  user: PropTypes.object,
+};
 
 export default ViewEventProfileCard;
