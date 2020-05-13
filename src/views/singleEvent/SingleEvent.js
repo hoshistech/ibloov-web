@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { getEvent } from "./singleEvent.action";
 import Loading from "../../components/loadingIndicator/Loading";
+import EventPay from "./templates/eventPay/EventPay";
 const SingleEvent = (props) => {
   const { eventId } = useParams();
 
@@ -54,9 +55,20 @@ const SingleEvent = (props) => {
                     <h1 className="single-event-name">{foundEvent.name}</h1>
                     <span>{foundEvent.location.address}</span>
                   </div>
-                  <p className="single-event-price">
-                    {foundEvent.isPaid ? foundEvent.amount : "FREE"}
-                  </p>
+                  <div className="single-event-price">
+                    {foundEvent.isPaid ? (
+                      <div>
+                        <p>
+                          foundEvent.amount <EventPay />
+                        </p>
+                        <Button btndisabled={false} onClick={() => {}}>
+                          PAY
+                        </Button>
+                      </div>
+                    ) : (
+                      "FREE"
+                    )}
+                  </div>
                   <div>
                     <h2 className="single-event-header-title">Description</h2>
                     <div className="single-event-description">
@@ -78,7 +90,7 @@ const SingleEvent = (props) => {
               <section>
                 <div>
                   <h3 className="single-event-header-title">
-                    Comments<span>(2)</span>
+                    Comments<span>(1)</span>
                   </h3>
                   <div className="mt-3 mb-3">
                     <SingleComment />
@@ -96,10 +108,11 @@ const SingleEvent = (props) => {
               <div className="mt-3 mb-3 single-event-date-container">
                 <h4 className="single-event-header-title">Dates and Time</h4>
                 <p>
-                  Start: <span className='event-start-date'>{startDate}</span>
+                  Start: <span className="event-start-date">{startDate}</span>
                 </p>
                 <p>
-                  End: <span className='event-end-date'>Mar 23, 2020 @ 12.00pm</span>
+                  End:{" "}
+                  <span className="event-end-date">Mar 23, 2020 @ 12.00pm</span>
                 </p>
                 <div>
                   <Button

@@ -112,11 +112,16 @@ function App() {
               <Login />
             </Route>
             <Route path="/events">
-              <Event />
-              <Footer />
+              <div>
+                <Event />
+                <Footer />
+              </div>
             </Route>
             <Route path="/" exact>
-              <HomePage />
+              <div>
+                <HomePage />
+                <Footer />
+              </div>
             </Route>
             <PrivateRoute path="/dashboard">
               <Dashboard />
@@ -133,7 +138,6 @@ function App() {
             <Route path="*">
               <NoMatch />
             </Route>
-            <Footer />
           </Switch>
         </div>
       </Router>
