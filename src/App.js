@@ -113,6 +113,7 @@ function App() {
             </Route>
             <Route path="/events">
               <Event />
+              <Footer />
             </Route>
             <Route path="/" exact>
               <HomePage />
@@ -123,7 +124,7 @@ function App() {
             <PrivateRoute path="/myibloov">
               <Myibloov />
             </PrivateRoute>
-            <PrivateRoute path="/event/single-event">
+            <PrivateRoute path="/event/:eventId">
               <SingleEvent />
             </PrivateRoute>
             <PrivateRoute path="/verify-phone">
@@ -132,8 +133,8 @@ function App() {
             <Route path="*">
               <NoMatch />
             </Route>
+            <Footer />
           </Switch>
-          <Footer />
         </div>
       </Router>
     </Provider>

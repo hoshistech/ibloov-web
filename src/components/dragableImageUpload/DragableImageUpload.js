@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes, { useRef } from "prop-types";
+import PropTypes from "prop-types";
 import Upload from "../../assets/images/upload.png";
 
 import "./DragableImageUpload.css";

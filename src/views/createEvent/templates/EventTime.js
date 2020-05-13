@@ -32,7 +32,6 @@ const EventTime = (props) => {
     e.preventDefault();
     const dateId = e.target.name;
     const value = e.target.value;
-    console.log(13, dateId);
 
     if (dateId === "eventStartDate") {
       setEventStartDate(value);
@@ -59,7 +58,6 @@ const EventTime = (props) => {
   };
 
   const setTimeHandler = (time, id) => {
-    console.log(121113, time, id);
     if (id === "timeStart") {
       setStartTime(time);
     } else {
@@ -100,7 +98,6 @@ const EventTime = (props) => {
   };
 
   const changeTicketTypeNumberHandler = (e) => {
-    console.log(234, e.target.value);
     const value = e.target.value;
     setTicketTypeNumber(value);
   };

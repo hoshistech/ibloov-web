@@ -60,7 +60,7 @@ const CreateComment = (props) => {
             </div>
           </div>
           <div className="form-group">
-            <label className="font-bold" for="commentText">
+            <label className="font-bold" htmlFor="commentText">
               Comment/Message
             </label>
             <textarea
@@ -73,7 +73,8 @@ const CreateComment = (props) => {
           <div className="create-comment-btn-container">
             <Button
               customClassName="create-comment-btn bold-600"
-              // onclick={this.onButtonPress.bind(this)}
+              onClick={() => {}}
+              btndisabled={false}
             >
               POST
             </Button>

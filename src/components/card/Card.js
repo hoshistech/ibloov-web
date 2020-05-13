@@ -10,7 +10,7 @@ import Button from "../button/Button";
 import { Link } from "react-router-dom";
 
 const Card = (props) => {
-  const { name, startDate, location } = props;
+  const { name, startDate, location, eventId } = props;
   const month = moment(startDate).format("MMM");
   const day = moment(startDate).format("D");
 
@@ -29,7 +29,7 @@ const Card = (props) => {
         <p className="image-text-first">Nightlive</p>
         <p className="image-text-second">Party</p>
       </div>
-      <Link to="/event/single-event">
+      <Link to={`/event/${eventId}`}>
         <div className="event-body">
           <div className="event-info">
             <div className="mr-2">
@@ -78,6 +78,7 @@ const Card = (props) => {
 Card.propTypes = {
   name: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
+  eventID: PropTypes.string,
   isPaid: PropTypes.bool,
   amount: PropTypes.number,
   category: PropTypes.string,

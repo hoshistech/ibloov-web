@@ -22,7 +22,6 @@ const EventPrice = (props) => {
   const {
     showPriceHandler,
     showPricing,
-    setPrice,
     ticketNumber,
     increaseTicketType,
     decreaseTicketType,

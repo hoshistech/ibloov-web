@@ -78,17 +78,10 @@ const Login = (props) => {
     const googleAuth = "https://ibloov.xpasson.com:4000/auth/google";
     window.location = googleAuth;
     axios
-      // .get("https://198.199.91.181:4000/auth/google/authurl")
       .get("/auth/google")
       .then((response) => {
-        // handle success
-        // console.log(response.data);
-        // const { data } = response.data;
-        // window.location = data;
       })
       .catch((error) => {
-        // handle error
-        // console.log(error);
       });
   };
 
