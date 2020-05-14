@@ -13,9 +13,22 @@ const InfluencerCard = (props) => {
     userName,
     followers,
     events,
+    image,
   } = props;
   //   const placesCard = false;
 
+  const randomNumber = () => {
+    const number = Math.floor(Math.random(25) * Math.floor(350));
+    return number;
+  };
+
+  const followerNumber = () => {
+    const number = Math.floor(Math.random(2500) * Math.floor(5000));
+    return number;
+  };
+
+  const eventTy = randomNumber();
+  const follNumber = followerNumber();
   let cardDetails = (
     <div className="most-influencer-details">
       <div>
@@ -24,8 +37,8 @@ const InfluencerCard = (props) => {
         <small>@{userName}</small>
       </div>
       <div className="influencer-card-stat">
-        <small>{followers} followers</small>
-        <small>{events} events promoted</small>
+        <small>{follNumber} followers</small>
+        <small>{eventTy} events promoted</small>
       </div>
     </div>
   );
@@ -35,14 +48,18 @@ const InfluencerCard = (props) => {
       <div className="most-influencer-details">
         <div>
           <p className="influencer-name">{cardTitle}</p>
-          <small className="place-card-event">{events} events</small>
+          <small className="place-card-event">{eventTy} events</small>
         </div>
       </div>
     );
   }
   return (
     <div className={`${customClassName}  most-places-card `}>
-      <img src={PlaceImage} alt="image" className="most-influencer-image" />
+      <img
+        src={image || PlaceImage}
+        alt="image"
+        className="most-influencer-image"
+      />
       {cardDetails}
     </div>
   );

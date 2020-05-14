@@ -11,7 +11,7 @@
   
   .myibloov-nav-container .nav-link {
     color: #2a5799;
-    opacity: 40%;
+    opacity: 40;
     font-weight: bolder;
   }
   
@@ -26,6 +26,6 @@
   .mybloov-navlink.active {
     color: #2a5799 !important;
     background-color: transparent !important;
-    opacity: 100%;
+    opacity: 100;
   }
   

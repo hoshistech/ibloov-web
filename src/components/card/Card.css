@@ -1,13 +1,13 @@
 .card-container {
-  /* margin-left: 10px; */
+  margin-bottom: 10px;
   margin-top: 10px;
   /* border: 1px solid #ccc; */
   max-width: 250px;
   border-radius: 10px;
-  overflow: hidden;
   -webkit-box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
   -moz-box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
   box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
+  overflow: hidden;
 }
 
 .card-container a {
@@ -17,20 +17,24 @@
 
 .image-container {
   position: relative;
+  border-radius: 10px;
 }
 
 .image-container p {
   position: absolute;
   top: 82%;
-  background-color: #4f3aa5;
+  background-color: #05458a;
   color: #fff;
-  font-size: 0.7rem;
+  font-size: 15px;
   padding: 0.1rem 0.6rem;
 }
 
 .card-image {
   height: 182px;
   width: 250px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .event-icon-container {
@@ -68,22 +72,33 @@
 }
 
 .event-name {
-  /* height: 42px;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: inline-block; */
+  max-width: 150px;
+  font-size: 17px;
 }
 
 .event-card-location {
-  /* height: 22px;
+  display: inline-block;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: inline-block; */
+  max-width: 150px;
 }
 
 .event-info p {
   padding: 0px;
   margin: 0px;
+}
+
+.card-month {
+  color: #2a5799;
+  font-weight: bolder;
+  font-size: 17px;
+}
+.card-day {
+  font-size: 20px;
 }
 
 .event-info small {
@@ -99,7 +114,7 @@
 .event-stat p {
   margin: 0px;
   padding: 0px;
-  font-size: 0.3em;
+  font-size: 10px;
 }
 
 .attending-event-container {
@@ -125,8 +140,8 @@
 }
 
 .stat-image {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border-radius: 30px;
   border: 2px solid #fff;
 }
@@ -159,16 +174,12 @@ setting for hover
   display: flex;
 }
 
-.image-text-second {
-  display: none;
+.card-container:hover .event-info small {
+  color: #879eb4;
 }
 
-.card-container:hover .image-text-second {
-  display: block;
-}
-
-.card-container:hover .image-text-first {
-  display: none;
+.card-container:hover .card-month {
+  color: #879eb4;
 }
 
 /* .card-container:hover .image-text span {

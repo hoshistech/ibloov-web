@@ -9,7 +9,7 @@ const CategoryCard = (props) => {
   return (
     <div className="category-card">
       {children}
-      <div name={name}>
+      <div name={name} className='category-card-text'>
         <p className="category-title bold-600" name={name}>
           {categoryTitle}{" "}
         </p>

@@ -69,17 +69,20 @@ const AuthNavbar = (props) => {
           <span className="mr-3">{`${firstName} ${lastName}`}</span>
           <FontAwesomeIcon className="pt-1 navbar-icon" icon="chevron-down" />
         </div>
-        <div className="dropdown-menu auth-nav-dropdown" aria-labelledby="navbarDropdown">
+        <div
+          className="dropdown-menu auth-nav-dropdown"
+          aria-labelledby="navbarDropdown"
+        >
           <Link className="dropdown-item" to="/" onClick={handleLogout}>
             Logout
           </Link>
-          <a className="dropdown-item" href="#">
+          {/* <a className="dropdown-item" href="#">
             Another action
           </a>
           <div className="dropdown-divider"></div>
           <a className="dropdown-item" href="#">
             Something else here
-          </a>
+          </a> */}
         </div>
       </li>
     </ul>

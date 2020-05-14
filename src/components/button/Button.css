@@ -12,14 +12,14 @@
   min-width: 100px;
 }
 
-.header-button-login {
-  color: pink;
-  border: 1px solid #4a9adc;
+.btn.header-button-login {
+  color: #fcc1ba ;
+  border: 1px solid #fcc1ba;
 }
 
 .header-button-register {
-  background-color: pink;
-  color: #4a9adc;
+  background-color: #FCC1BA;
+  color: #213368;
 }
 
 .btn {
