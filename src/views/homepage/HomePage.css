@@ -14,29 +14,8 @@
 .homepage-carousel {
 }
 
-.carousel .about-container {
-  position: absolute;
-  z-index: 100;
-  top: 10%;
-  color: white;
-  display: none;
-}
-
 .carousel img {
   height: 400px;
-}
-
-.carousel .about-container div h5 {
-  font-size: 1rem;
-  margin-bottom: 0;
-  color: #dddddd;
-  font-weight: bolder;
-}
-
-.carousel .about-container div p {
-  font-size: 0.6rem;
-  color: #dddddd;
-  font-weight: bolder;
 }
 
 .homepage-search {
@@ -48,14 +27,14 @@
 }
 
 .section-header-text h4 {
-  font-size: 2rem;
+  font-size: 40px;
   color: #222222;
-  opacity: 100%;
+  opacity: 100;
   font-weight: bolder;
 }
 
 .section-header-text p {
-  font-size: 0.8rem;
+  font-size: 20px;
   color: #ccc;
   opacity: 1;
   font-weight: bolder;
@@ -63,8 +42,14 @@
 
 .popular-categories-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  margin: 0px auto;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+}
+.popular-categories-container::-webkit-scrollbar,
+.upcoming-event-cards::-webkit-scrollbar {
+  display: none;
 }
 
 .upcoming-events {
@@ -73,9 +58,12 @@
 }
 
 .upcoming-event-cards {
-  width: 85%;
+  width: 95%;
   margin: 0px auto;
-  /* justify-content: space-between; */
+  margin: 0px auto;
+  padding: 0px 10px;
+  overflow-x: scroll;
+  justify-content: center;
 }
 
 .upcoming-event-cards .card-container {
@@ -96,7 +84,12 @@
   overflow-x: scroll;
   flex-wrap: nowrap;
   display: flex;
-  margin-left: 0px;
+  margin: 0px auto;
+  -ms-overflow-style: none;
+}
+
+.blooving-places-card-container::-webkit-scrollbar {
+  display: none;
 }
 
 .blooving-places-card-container div {
@@ -107,7 +100,13 @@
   overflow-x: scroll;
   flex-wrap: nowrap;
   display: flex;
-  margin-left: 0px;
+  margin: 0px auto;
+  /* overflow: hidden; */
+  -ms-overflow-style: none;
+}
+
+.influencers-card-container::-webkit-scrollbar {
+  display: none;
 }
 
 .influencers-card-container div {
@@ -132,10 +131,27 @@
     width: 70%;
     justify-content: space-between;
   }
-  .carousel .about-container div {
-    width: 200px;
+  .upcoming-event-cards {
+    flex-wrap: nowrap;
   }
+
   .carousel img {
     height: auto;
+  }
+}
+
+@media only screen and (min-width: 1224px) {
+  .popular-categories-container {
+    justify-content: center;
+  }
+  .upcoming-event-cards {
+    width: 85%;
+    justify-content: center;
+  }
+  .blooving-places-card-container {
+    justify-content: center;
+  }
+  .influencers-card-container {
+    justify-content: center;
   }
 }

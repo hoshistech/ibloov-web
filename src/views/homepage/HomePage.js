@@ -22,6 +22,7 @@ import HashTag from "../../components/hashTag/HashTag";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEvents } from "./homePage.action";
 import Loading from "../../components/loadingIndicator/Loading";
+import SearchBar from "./templates/searchBar/SearchBar";
 const HomePage = (props) => {
   const svgFill = "#f8535361";
 
@@ -34,16 +35,35 @@ const HomePage = (props) => {
   }, [dispatch]);
 
   let popularEvents = <Loading />;
+  let upcomingEvents = "";
   if (events) {
-    popularEvents = events.map((event) => (
-      <Card
-        key={event._id}
-        name={event.name}
-        eventId={event._id}
-        startDate={event.startDate}
-        location={event.location}
-      />
-    ));
+    popularEvents = events
+      .slice(0, 4)
+      .map((event) => (
+        <Card
+          key={event._id}
+          name={event.name}
+          eventId={event._id}
+          startDate={event.startDate}
+          location={event.location}
+          event={event}
+          splashImage="https://source.unsplash.com/250x182/?concert,party"
+        />
+      ));
+
+    upcomingEvents = events
+      .slice(-4)
+      .map((event) => (
+        <Card
+          key={event._id}
+          name={event.name}
+          eventId={event._id}
+          startDate={event.startDate}
+          location={event.location}
+          event={event}
+          splashImage="https://source.unsplash.com/250x182/?concert,party"
+        />
+      ));
   }
 
   return (
@@ -56,28 +76,6 @@ const HomePage = (props) => {
             className="carousel slide"
             data-ride="carousel"
           >
-            <div className="about-container">
-              <div>
-                <h5>Create</h5>
-                <p>
-                  Your event with your larger audience privately or publicly
-                </p>
-              </div>
-              <div>
-                <h5>Invite</h5>
-                <p>
-                  your guest and get notified when they accepted the invitation
-                </p>
-              </div>
-              <div>
-                <h5>Share</h5>
-                <p>
-                  Your next event from the comfort of your mobile device in an
-                  instant
-                </p>
-              </div>
-            </div>
-
             <ol className="carousel-indicators">
               <li
                 data-target="#carouselExampleIndicators"
@@ -164,7 +162,7 @@ const HomePage = (props) => {
           </div>
         </div>
         <section className="homepage-search">
-          <FilterBar />
+          <SearchBar />
         </section>
         <section className="popular-categories-section mt-3">
           <div className="section-header-text">
@@ -230,22 +228,23 @@ const HomePage = (props) => {
             </div>
           </div>
         </section>
+
         <section className="upcoming-events mt-3">
           <div className="section-header-text">
             <h4>Upcoming Events</h4>
-            <p>Select any of the category below to display the featured</p>
+            <p>Select any of the event below to display the event</p>
           </div>
           <div>
-            <div className="row upcoming-event-cards">
-              {/* {events.map((event) => (
-                <Card
-                  name={event.name}
-                  startDate={event.startDate}
-                  location={event.location}
-                />
-              ))} */}
-              {popularEvents}
-            </div>
+            <div className="row upcoming-event-cards">{upcomingEvents}</div>
+          </div>
+        </section>
+        <section className="upcoming-events mt-3">
+          <div className="section-header-text">
+            <h4>Popular Events</h4>
+            <p>Select any of the event below to display the event</p>
+          </div>
+          <div>
+            <div className="row upcoming-event-cards">{popularEvents}</div>
           </div>
         </section>
         <section className="advert-section">
@@ -264,60 +263,35 @@ const HomePage = (props) => {
               placesCard={true}
               cardTitle="East Yolanda"
               events="900"
+              image="https://source.unsplash.com/250x324/?city"
             />
             <InfluencerCard
               customClassName="mb-2 place-card  "
               placesCard={true}
               cardTitle="East Kano"
               events="900"
+              image="https://source.unsplash.com/250x324/?town"
             />
             <InfluencerCard
               customClassName=" mb-2 place-card  "
               placesCard={true}
               cardTitle="New York"
               events="900"
+              image="https://source.unsplash.com/250x324/?newyork"
             />
             <InfluencerCard
               customClassName="mb-2 place-card  "
               placesCard={true}
               cardTitle="Paris"
               events="900"
+              image="https://source.unsplash.com/250x324/?santorini"
             />
             <InfluencerCard
               customClassName=" mb-2 place-card  "
               placesCard={true}
               cardTitle="London"
               events="900"
-            />
-            <InfluencerCard
-              customClassName=" mb-2 place-card  "
-              placesCard={true}
-              cardTitle="Madrid"
-              events="900"
-            />
-            <InfluencerCard
-              customClassName=" mb-2 place-card  "
-              placesCard={true}
-              cardTitle="Barcelona"
-              events="900"
-            />
-            <InfluencerCard
-              customClassName=" mb-2 place-card  "
-              placesCard={true}
-              cardTitle="London"
-              events="900"
-            />
-            <InfluencerCard
-              customClassName=" mb-2 place-card  "
-              placesCard={true}
-              cardTitle="Madrid"
-              events="900"
-            />
-            <InfluencerCard
-              customClassName=" mb-2 place-card  "
-              placesCard={true}
-              cardTitle="Barcelona"
-              events="900"
+              image="https://source.unsplash.com/250x324/?portugal"
             />
           </div>
         </section>
@@ -333,6 +307,7 @@ const HomePage = (props) => {
               userName="dharmykoya"
               followers="750000"
               events="1890"
+              image="https://source.unsplash.com/250x324/?man"
             />
             <InfluencerCard
               customClassName="influencer-card most-influencer-image"
@@ -340,76 +315,31 @@ const HomePage = (props) => {
               userName="hamza"
               followers="750000"
               events="1890"
+              image="https://source.unsplash.com/250x324/?boy"
             />
             <InfluencerCard
               customClassName="influencer-card most-influencer-image"
-              cardTitle="Afolabi"
-              userName="afo"
+              cardTitle="Helen"
+              userName="porshe"
               followers="750000"
               events="1890"
+              image="https://source.unsplash.com/250x324/?lady"
             />
             <InfluencerCard
               customClassName="influencer-card most-influencer-image"
-              cardTitle="Sandra"
-              userName="sandra"
+              cardTitle="Harvey"
+              userName="harvey"
               followers="750000"
               events="1890"
+              image="https://source.unsplash.com/250x324/?male"
             />
             <InfluencerCard
               customClassName="influencer-card most-influencer-image"
-              cardTitle="Lewis Hamilton"
-              userName="hamilton"
+              cardTitle="Khloe"
+              userName="barbie"
               followers="750000"
               events="1890"
-            />
-            <InfluencerCard
-              customClassName="influencer-card most-influencer-image"
-              cardTitle="Ronaldo Hamilton"
-              userName="CR7"
-              followers="750000"
-              events="1890"
-            />
-            <InfluencerCard
-              customClassName="influencer-card most-influencer-image"
-              cardTitle="Sandra"
-              userName="sandra"
-              followers="750000"
-              events="1890"
-            />
-            <InfluencerCard
-              customClassName="influencer-card most-influencer-image"
-              cardTitle="Lewis Hamilton"
-              userName="hamilton"
-              followers="750000"
-              events="1890"
-            />
-            <InfluencerCard
-              customClassName="influencer-card most-influencer-image"
-              cardTitle="Ronaldo Hamilton"
-              userName="CR7"
-              followers="750000"
-              events="1890"
-            />
-            <InfluencerCard
-              customClassName="influencer-card most-influencer-image"
-              cardTitle="Sandra"
-              userName="sandra"
-              followers="750000"
-              events="1890"
-            />
-            <InfluencerCard
-              customClassName="influencer-card most-influencer-image"
-              cardTitle="Lewis Hamilton"
-              userName="hamilton"
-              followers="750000"
-              events="1890"
-            />
-            <InfluencerCard
-              customClassName="influencer-card most-influencer-image"
-              cardTitle="Ronaldo Hamilton"
-              userName="CR7"
-              followers="750000"
-              events="1890"
+              image="https://source.unsplash.com/250x324/?female"
             />
           </div>
         </section>

@@ -2,7 +2,7 @@
   margin: 0px 20px;
   max-width: 1440px;
   font-family: Nunito sans;
-  font-weight: bolder;
+  font-weight: 900;
 }
 .font-bold {
   font-weight: 800;
@@ -19,6 +19,17 @@
 .color-black {
   color: black !important;
 }
+
+input:focus {
+  outline: none !important;
+}
+
+input.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

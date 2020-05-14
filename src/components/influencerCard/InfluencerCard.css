@@ -17,8 +17,8 @@
 .most-influencer-image {
   width: 160px;
   height: 195px;
+  object-fit: cover;
 }
-
 
 .most-place-image {
   width: 160px;
@@ -38,13 +38,16 @@
   );
 }
 
-/* .most-influencer-details p {
-  margin: 0px;
-  padding: 0px;
-} */
-
 .influencer-name {
   margin-bottom: -0.4rem;
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
+.influencer-name + small {
+  margin-bottom: -0.4rem;
+  font-size: 15px;
+  font-weight: bolder;
 }
 
 .influencer-card-stat {
@@ -53,6 +56,23 @@
   opacity: 0.6;
 }
 
+.influencer-card-stat small {
+  font-size: 15px;
+}
+
 .place-card-event {
   opacity: 0.6;
+  font-size: 15px;
+  font-weight: bolder;
+}
+@media only screen and (min-width: 992px) {
+  .most-influencer-image {
+    width: 250px;
+    height: 324px;
+  }
+  .influencer-name {
+    margin-bottom: -0.4rem;
+    font-size: 25px;
+    font-weight: bolder;
+  }
 }

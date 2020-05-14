@@ -41,17 +41,17 @@
 .myibloov-nav-link {
   display: flex;
   color: #2a5799;
-  opacity: 70%;
+  opacity: 70;
 }
 
 .myibloov-nav-active {
-  opacity: 100%;
+  opacity: 100;
   border-bottom: 2px solid #2a5799;
 
   /* transition-delay: 0.2s; */
 }
 .myibloov-nav-active a {
-  opacity: 100%;
+  opacity: 100;
   color: #2a5799;
   font-weight: bolder;
 }
@@ -107,7 +107,7 @@
 .myibloov-event-link {
   display: flex;
   color: #222222;
-  opacity: 40%;
+  opacity: 40;
 }
 
 .myibloov-event-link a {
@@ -133,13 +133,13 @@
   border-radius: 25px;
   padding: 0.1rem 0.5rem;
   color: #222222;
-  opacity: 100%;
+  opacity: 100;
   font-weight: bold;
 }
 
 .myibloov-event-link-active a {
   color: #222222;
-  opacity: 100%;
+  opacity: 100;
   text-decoration: none;
 }
 
