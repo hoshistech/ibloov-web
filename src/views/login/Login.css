@@ -1,17 +1,67 @@
+.login-section {
+  justify-content: center;
+}
+
 .auth-button-container-login {
-  margin: 1em auto 5em auto;
+  margin: 1em auto 3em auto;
   width: 100%;
 }
 
 .auth-button-container-social-login {
   margin: 0 auto 0 auto;
   width: 100%;
+  text-align: center;
 }
 
 .divider-container {
   flex-wrap: nowrap;
+  display: flex;
+  margin-bottom: 1rem;
 }
 
-.divider {
-  border: 1px solid #ccc;
+.social-divider {
+  border-top: 1px solid #0e163d;
+  flex-grow: 1;
+  align-self: center;
+  width: 25%;
+}
+
+.divider-content {
+  flex-grow: 2;
+  align-self: center;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.auth-container h4 {
+  color: #0e163d;
+  font-weight: bolder;
+}
+
+.small-info-text a {
+  color: #0e163d;
+}
+
+.auth-error {
+  font-size: 15px;
+  text-align: center;
+}
+
+@media only screen and (min-width: 992px) {
+  .auth-container h4 {
+    font-size: 35px;
+  }
+
+  .small-info-text {
+    font-size: 15px;
+  }
+
+  .auth-button {
+    font-size: 15px;
+    font-weight: bolder;
+  }
+
+  .auth-container {
+    width: 350px;
+  }
 }

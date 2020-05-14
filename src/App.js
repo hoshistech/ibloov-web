@@ -15,6 +15,8 @@ import {
   faFacebookF,
   faLinkedinIn,
   faInstagram,
+  faGoogle,
+  faGooglePlusG,
 } from "@fortawesome/free-brands-svg-icons";
 
 import {
@@ -59,13 +61,12 @@ if (localStorage.token) {
   }
 }
 
-toast.configure({
-  position: "top-center",
-});
 
 library.add(
   faShareAlt,
   faMusic,
+  faGoogle,
+  faGooglePlusG,
   faHeart,
   faChevronDown,
   faTwitter,
