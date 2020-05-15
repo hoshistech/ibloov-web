@@ -12,6 +12,9 @@ const DateClock = (props) => {
         onChange={(e) => timeHandler(e, name)}
         value={time}
         clockClassName="event-clock"
+        clearIcon={false}
+        isOpen={false}
+        // disableClock={true}
       />
     </div>
   );

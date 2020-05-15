@@ -13,16 +13,21 @@ import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { createEvent, eventCreateEnd } from "./createEvent.action";
 import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
+import moment from "moment";
 
 const CreateEvent = (props) => {
   const [formCount, setFormCount] = useState(1);
   const [EventDetail, setEventDetail] = useState("");
-  const [eventTime, setEventTime] = useState();
+  const [eventTime, setEventTime] = useState("");
   const [isCreatedEventSuccess, setIsCreatedEventSuccess] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [eventRestrictions, setEventRestrictions] = useState([]);
   const [notifyMe, setNotifyMe] = useState(false);
   const [image, setImage] = useState("");
+  const [isStepValid, setIsStepValid] = useState(false);
+  const [eventPrice, setEventPrice] = useState();
+  const [isPrivateEvent, setIsPrivateEvent] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -39,7 +44,7 @@ const CreateEvent = (props) => {
       eventCode: false,
       location: false,
     },
-    formIsValid: false,
+    formIsValid: true,
   };
 
   const [formState, dispatchFormState] = useReducer(formReducer, initilaState);
@@ -74,18 +79,41 @@ const CreateEvent = (props) => {
     }
   };
 
-  const eventPriceHandler = (e) => {
-  };
+  const eventPriceHandler = (e) => {};
 
   const setEventDateHandler = useCallback(
-    (startDate, endDate, isPrivate) => {
-      setEventTime({ startDate, endDate, isPrivate });
+    // (startDate, isPrivate) => {
+    (startDate) => {
+      // setEventTime({ startDate, isPrivate });
+      setEventTime(startDate);
     },
     [setEventTime]
   );
 
+  const isEventPrivateHandler = useCallback(
+    (isPrivate) => {
+      setIsPrivateEvent(isPrivate);
+    },
+    [setIsPrivateEvent]
+  );
+
+  const isEventPaidHandler = useCallback(
+    (isPaid) => {
+      setIsPaid(isPaid);
+    },
+    [setIsPaid]
+  );
+
+  const eventPriceDataHandler = useCallback(
+    (currency, amount) => {
+      setEventPrice({ currency, amount });
+    },
+    [setEventPrice]
+  );
+
   const categoryHandler = (category) => {
     setSelectedCategory(category);
+    setIsStepValid(true);
   };
 
   const eventRestrictionsHandler = (restriction) => {
@@ -118,8 +146,12 @@ const CreateEvent = (props) => {
     setImage(image);
   };
 
-
   const onsubmitEventHandler = async () => {
+    const eventTicket = {
+      currency: isPaid ? eventPrice.currency : "",
+      amount: isPaid ? eventPrice.amount : "",
+    };
+
     const newEvent = {
       name: formState.inputValues.eventTitle,
       eventCode: formState.inputValues.eventCode,
@@ -127,9 +159,13 @@ const CreateEvent = (props) => {
       controls: eventRestrictions,
       address: formState.inputValues.location,
       notifyMe: notifyMe,
-      ...eventTime,
+      ...eventTicket,
+      startDate: eventTime,
+      isPrivate: isPrivateEvent,
+      isPaid,
     };
 
+    console.log(94232, newEvent);
 
     await dispatch(createEvent(newEvent, image));
     // await eventCreatedSuccesshandler();
@@ -153,6 +189,22 @@ const CreateEvent = (props) => {
     e.preventDefault();
     dispatch(eventCreateEnd());
     setIsCreatedEventSuccess(false);
+  };
+
+  const isStepValidHandler = (step) => {
+    if (step === 1) {
+    }
+    switch (step) {
+      case 1:
+        if (selectedCategory === "") {
+          setIsStepValid(false);
+        }
+        return;
+      case 2:
+
+      default:
+        return false;
+    }
   };
 
   return (
@@ -231,7 +283,12 @@ const CreateEvent = (props) => {
               </div>
               <div className={formCount === 3 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
-                <EventTime setEventDate={setEventDateHandler} />
+                <EventTime
+                  setEventDate={setEventDateHandler}
+                  setPriceData={eventPriceDataHandler}
+                  isEventPrivate={isEventPrivateHandler}
+                  isEventPaid={isEventPaidHandler}
+                />
               </div>
               <div className={formCount === 4 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
@@ -245,6 +302,11 @@ const CreateEvent = (props) => {
                 previousQuestionHandler={previousQuestionHandler}
                 formCount={formCount}
                 submitEventHandler={onsubmitEventHandler}
+                isStepValid={isStepValid}
+                formIsValid={formState.formIsValid}
+                dateTimeValid={
+                  eventTime.length <= 6 && formCount === 3 ? false : true
+                }
               />
             </form>
           </div>

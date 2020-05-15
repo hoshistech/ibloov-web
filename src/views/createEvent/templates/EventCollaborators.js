@@ -7,13 +7,13 @@ const EventCollaborators = (props) => {
   return (
     <div className="collaborators-container">
       <div>
-        <div>
+        <div className="create-event-title-header">
           <h5>Invite Collaborators</h5>
           <small>Invite other friends to plan the event</small>
         </div>
         <div className="row">
           <div>
-            <FriendSmallCard />
+            <FriendSmallCard name="Damilola Adekoya" />
           </div>
           <Button
             customClassName="add-friend-btn ml-2"
@@ -31,8 +31,8 @@ const EventCollaborators = (props) => {
         </div>
         <div className="row">
           <div className="row">
-            <FriendSmallCard />
-            <FriendSmallCard />
+            <FriendSmallCard name="Luiz Albert" />
+            <FriendSmallCard name="Heinze Shaw" />
           </div>
           <Button
             customClassName="add-friend-btn ml-2"

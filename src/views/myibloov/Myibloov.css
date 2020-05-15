@@ -159,6 +159,54 @@
   margin-right: 1rem;
 }
 
+.my-created-event .card-container {
+  width: 200px;
+}
+
+.my-created-event .card-container .card-image {
+  width: 200px;
+  height: 150px;
+}
+
+.my-created-event .card-container .card-month {
+  font-size: 11px;
+}
+
+.my-created-event .card-container .card-day {
+  font-size: 14px;
+}
+
+.my-created-event .card-container .stat-image {
+  width: 25px;
+  height: 25px;
+}
+
+.my-created-event .card-container .event-body {
+  padding: 0.5rem;
+}
+.my-created-event .card-container .event-name {
+  font-size: 11px;
+}
+
+.myevent-details {
+  font-size: 11px;
+  color: #fc7b6c;
+  text-decoration: underline;
+}
+
+.my-created-event .card-container:hover .event-body {
+  background-color: #ffff;
+  color: black;
+}
+
+/* .card-container:hover .event-info small {
+  color: #879eb4;
+}
+
+.card-container:hover .card-month {
+  color: #879eb4;
+} */
+
 @media only screen and (min-width: 992px) {
   .myibloov-nav-header {
     display: block;

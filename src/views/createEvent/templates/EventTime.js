@@ -6,26 +6,24 @@ import Toggle from "../../../components/Toggle/Toggle";
 import DateClock from "../../../components/dateClock/DateClock";
 
 const EventTime = (props) => {
-  const { setEventDate } = props;
+  const { setEventDate, setPriceData, isEventPrivate, isEventPaid } = props;
   const startDateRef = useRef();
-  const endDateRef = useRef();
 
   const [eventStartDate, setEventStartDate] = useState("");
-  const [eventEndDate, setEventEndDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
+  const [startTime, setStartTime] = useState("10:00");
   const [isPrivateEvent, setIsPrivateEvent] = useState(false);
-  const [showPricing, setShowPricing] = useState(true);
+  const [showPricing, setShowPricing] = useState(false);
   const [ticketTypeNumber, setTicketTypeNumber] = useState(3);
+  const [eventPrice, setEventPrice] = useState("");
+  const [currency, setCurrency] = useState("");
+  const [isPaid, setIsPaid] = useState(false);
 
   const onBlurHandler = () => {
     startDateRef.current.type = "text";
-    endDateRef.current.type = "text";
   };
 
   const onFocusHandler = () => {
     startDateRef.current.type = "date";
-    endDateRef.current.type = "date";
   };
 
   const onEventDateHandler = (e) => {
@@ -35,20 +33,6 @@ const EventTime = (props) => {
 
     if (dateId === "eventStartDate") {
       setEventStartDate(value);
-    } else {
-      setEventEndDate(value);
-    }
-  };
-
-  const onEventTimeHandler = (e) => {
-    e.preventDefault();
-    const dateId = e.target.name;
-    const value = e.target.value;
-
-    if (dateId === "eventStartDate") {
-      setEventStartDate(value);
-    } else {
-      setEventEndDate(value);
     }
   };
 
@@ -60,31 +44,38 @@ const EventTime = (props) => {
   const setTimeHandler = (time, id) => {
     if (id === "timeStart") {
       setStartTime(time);
-    } else {
-      setEndTime(time);
     }
   };
 
   useEffect(() => {
     const startDate = `${eventStartDate} ${startTime}`;
-    const endDate = `${eventEndDate} ${endTime}`;
-    setEventDate(startDate, endDate, isPrivateEvent);
+
+    setEventDate(startDate);
+    setPriceData(currency, eventPrice);
+    isEventPrivate(isPrivateEvent);
+    isEventPaid(isPaid);
   }, [
     setEventDate,
     eventStartDate,
-    eventEndDate,
+    isEventPrivate,
     isPrivateEvent,
     startTime,
-    endTime,
+    currency,
+    eventPrice,
+    setPriceData,
+    isEventPaid,
+    isPaid,
   ]);
 
   const onToggleEventFeeHandler = (e) => {
     const eventId = e.target.id;
     if (eventId === "eventFree") {
       setShowPricing(false);
+      setIsPaid(false);
       return;
     }
     setShowPricing(true);
+    setIsPaid(true);
   };
 
   const increaseTicketTypeHandler = () => {
@@ -102,10 +93,24 @@ const EventTime = (props) => {
     setTicketTypeNumber(value);
   };
 
+  const eventPriceHandler = (e) => {
+    const price = e.target.value;
+    setEventPrice(price);
+  };
+
+  const selectCurrencyHandler = (e) => {
+    const selectedCurrency = e.target.value;
+    console.log("curr", selectedCurrency);
+    if (selectedCurrency === "") {
+      return;
+    }
+    setCurrency(selectedCurrency);
+  };
+
   return (
     <div className="row">
       <div className="event-time-container">
-        <div>
+        <div className="create-event-title-header">
           <h5>When will the event happen?</h5>
           <small>Select the date and time for the event</small>
         </div>
@@ -138,7 +143,7 @@ const EventTime = (props) => {
               <DateClock timeHandler={setTimeHandler} name="timeStart" />
             </div>
           </div>
-          <div className="row mb-4">
+          {/* <div className="row mb-4">
             <div className="event-date-input-container">
               <label htmlFor="eventStartDate2">Ends</label>
               <input
@@ -164,7 +169,7 @@ const EventTime = (props) => {
               <label htmlFor="eventStartTime">To</label>
               <DateClock timeHandler={setTimeHandler} name="timeEnd" />
             </div>
-          </div>
+          </div> */}
           <div>
             <p className="private-toggle">is this a private event? </p>
             <Toggle handleClick={privateEventHandler} />
@@ -179,6 +184,9 @@ const EventTime = (props) => {
           increaseTicketType={increaseTicketTypeHandler}
           decreaseTicketType={decreaseTicketTypeHandler}
           changeTicketTypeNumber={changeTicketTypeNumberHandler}
+          onSelectCurrency={selectCurrencyHandler}
+          setEventPrice={eventPriceHandler}
+          eventPrice={eventPrice}
         />
       </div>
     </div>

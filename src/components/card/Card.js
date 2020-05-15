@@ -12,7 +12,7 @@ import axios from "axios";
 import { genRandomNumber } from "../../utils/helper";
 
 const Card = (props) => {
-  const { name, startDate, location, eventId, event } = props;
+  const { name, startDate, location, eventId, event, myEvent } = props;
   const [splashImage, setSplashImage] = useState("");
   const { category } = event;
 
@@ -73,7 +73,7 @@ const Card = (props) => {
         </div>
         <p className="image-text-first">{category}</p>
       </div>
-      <Link to={`/event/${eventId}`}>
+      <Link to={`/event/${eventId}`} className="event-more-details">
         <div className="event-body">
           <div className="event-info">
             <div className="mr-2">
@@ -91,32 +91,37 @@ const Card = (props) => {
               </div>
             </div>
           </div>
-          <div className="event-stat mt-2">
-            <div className="attending-event-container">
-              <div className="attending-event">
-                <img
-                  src="https://source.unsplash.com/40x40/?female"
-                  className="stat-image"
-                  alt="card"
-                />
-                <img
-                  // src="https://source.unsplash.com/40x40/?lady"
-                  src={smallImage}
-                  className="stat-image"
-                  alt="card"
-                />
-                <img
-                  src="https://source.unsplash.com/40x40/?guy"
-                  className="stat-image"
-                  alt="card"
-                />
+          {myEvent ? (
+            <Link to={`/event/${eventId}`} className="myevent-details">
+              See details
+            </Link>
+          ) : (
+            <div className="event-stat mt-2">
+              <div className="attending-event-container">
+                <div className="attending-event">
+                  <img
+                    src="https://source.unsplash.com/40x40/?female"
+                    className="stat-image"
+                    alt="card"
+                  />
+                  <img
+                    // src="https://source.unsplash.com/40x40/?lady"
+                    src={smallImage}
+                    className="stat-image"
+                    alt="card"
+                  />
+                  <img
+                    src="https://source.unsplash.com/40x40/?guy"
+                    className="stat-image"
+                    alt="card"
+                  />
+                </div>
+                <div className="ml-4 number-attending">
+                  <p>+{randomAttendes}</p>
+                  <p>going</p>
+                </div>
               </div>
-              <div className="ml-4 number-attending">
-                <p>+{randomAttendes}</p>
-                <p>going</p>
-              </div>
-            </div>
-            {/* <div className="attend-button">
+              {/* <div className="attend-button">
               <Button
                 customClassName="event-button bold-600"
                 onClick={() => {}}
@@ -125,7 +130,8 @@ const Card = (props) => {
                 Bloov
               </Button>
             </div> */}
-          </div>
+            </div>
+          )}
         </div>
       </Link>
     </div>

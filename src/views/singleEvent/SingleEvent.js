@@ -26,11 +26,11 @@ const SingleEvent = (props) => {
   let foundEvent;
   let startDate;
   if (event) {
+    console.log(88, event);
+
     foundEvent = event;
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
   }
-
-  console.log(44, event);
 
   useEffect(() => {
     dispatch(getEvent(eventId));
@@ -59,11 +59,11 @@ const SingleEvent = (props) => {
                     {foundEvent.isPaid ? (
                       <div>
                         <p>
-                          foundEvent.amount <EventPay />
+                          {foundEvent.currency} {foundEvent.amount}
                         </p>
-                        <Button btndisabled={false} onClick={() => {}}>
+                        {/* <Button btndisabled={false} onClick={() => {}}>
                           PAY
-                        </Button>
+                        </Button> */}
                       </div>
                     ) : (
                       "FREE"

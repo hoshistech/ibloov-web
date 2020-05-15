@@ -53,7 +53,7 @@ const EventRestriction = (props) => {
   return (
     <div className="row">
       <div>
-        <div>
+        <div className='create-event-title-header'>
           <h5>Any restriction to the event?</h5>
           <small>Set conditions to be met before attending the event</small>
         </div>
@@ -66,6 +66,7 @@ const EventRestriction = (props) => {
             id="women Only"
             selectedClass={womenOnly}
             onSelectOption={selectOptionHandler}
+            checked={womenOnly}
           />
           <RadioInput
             radioName="None"
@@ -100,6 +101,7 @@ const EventRestriction = (props) => {
             name="noChildren"
             labelName="noChildren"
             id="no Children"
+            // checked={}
             selectedClass={noChildren}
             onSelectOption={selectOptionHandler}
           />
@@ -115,6 +117,7 @@ const EventRestriction = (props) => {
             // checkedClass={state.adult ? "restrict-selected" : ""}
           />
         </div>
+
         <div className="gift-wishlist mt-3">
           <FontAwesomeIcon className="" icon="gift" />
           <Button
@@ -135,7 +138,7 @@ const EventRestriction = (props) => {
             Add Events to "FUND ME"
           </Button>
         </div>
-        <div>
+        <div className="mt-4">
           <p className="private-toggle">Notify me when people join </p>
           <Toggle handleClick={notificationHandler} />
         </div>
