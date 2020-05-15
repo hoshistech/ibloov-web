@@ -11,11 +11,8 @@ const RadioInput = (props) => {
     id,
     selectedClass,
     onSelectOption,
-    ...customProps
   } = props;
 
-  console.log(203, selectedClass);
-  // console.log(213, name);
 
   const toggleInput = () => {
     setCheckedCategory(!checkedCategory);
@@ -27,15 +24,6 @@ const RadioInput = (props) => {
         className={selectedClass ? "form-check selected-option" : "form-check"}
         id={id}
       >
-        {/* <input
-          className={customClass}
-          type="radio"
-          name={name}
-          id={id}
-          checked={checkedCategory}
-          onChange={toggleInput}
-          customProps
-        /> */}
         <div
           className="container-circle"
           onClick={(e) => onSelectOption(e, name, id)}

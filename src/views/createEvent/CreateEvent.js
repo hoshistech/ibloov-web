@@ -165,10 +165,7 @@ const CreateEvent = (props) => {
       isPaid,
     };
 
-    console.log(94232, newEvent);
-
     await dispatch(createEvent(newEvent, image));
-    // await eventCreatedSuccesshandler();
 
     return;
   };
@@ -191,21 +188,6 @@ const CreateEvent = (props) => {
     setIsCreatedEventSuccess(false);
   };
 
-  const isStepValidHandler = (step) => {
-    if (step === 1) {
-    }
-    switch (step) {
-      case 1:
-        if (selectedCategory === "") {
-          setIsStepValid(false);
-        }
-        return;
-      case 2:
-
-      default:
-        return false;
-    }
-  };
 
   return (
     <section className="mt-3">

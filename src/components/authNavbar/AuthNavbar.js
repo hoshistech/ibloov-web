@@ -6,11 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./AuthNavbar.css";
 import notification from "../../assets/images/notification.png";
-import passport from "../../assets/images/passport.jpg";
+import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif";
+import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 
 const AuthNavbar = (props) => {
   const { user, handleLogout } = props;
-  const { firstName, lastName } = user;
+  const { firstName, lastName, avatar } = user;
+
+  console.log(45, user);
 
   return (
     <ul className="navbar-nav header-list-container">
@@ -64,7 +67,14 @@ const AuthNavbar = (props) => {
           to="/signin"
         >
           <Link to="/signin" className="mr-3">
-            <img src={passport} className="nav-user-image" alt="card" />
+            {/* <img src={passport} className="nav-user-image" alt="card" /> */}
+            <ProgressiveImage
+              src={avatar ? avatar : avatarPlaceHolder}
+              // src={passport}
+              customClass="nav-user-image"
+              placeholder=""
+              alt="card"
+            />
           </Link>
           <span className="mr-3">{`${firstName} ${lastName}`}</span>
           <FontAwesomeIcon className="pt-1 navbar-icon" icon="chevron-down" />

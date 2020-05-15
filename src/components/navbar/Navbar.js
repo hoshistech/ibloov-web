@@ -1,11 +1,13 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import AuthNavbar from "../authNavbar/AuthNavbar";
+import ProgressiveImage from "react-progressive-image";
 
 import "./Navbar.css";
 import NonAuthNavbar from "../nonAuthNavbar/NonAuthNavbar";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../views/login/login.action";
+import Logo from "../logo/Logo";
 
 const Navbar = (props) => {
   const { isAuthenticated, user } = useSelector((state) => state.login);
@@ -29,9 +31,13 @@ const Navbar = (props) => {
   }
 
   return (
-    <nav className={`navbar navbar-expand-lg navbar-dark ${removeAbsolute}`}>
+    <nav
+      className={`navbar navbar-expand-lg navbar-dark ${removeAbsolute} ${pathname.slice(
+        1
+      )}-nav`}
+    >
       <Link className="navbar-brand" to="/">
-        ibloov
+        <Logo />
       </Link>
       <button
         className="navbar-toggler"
