@@ -7,10 +7,22 @@ import Button from "../../components/button/Button";
 import "./DashboardJumbotron.css";
 
 const DashboardJumbotron = (props) => {
-  const { user } = props;
+  const { user, event } = props;
+
+  let image = "https://source.unsplash.com/900x600/?birthday&fm=png";
+
+  if (event) {
+    if (typeof event.images[0] !== "undefined") {
+      image = event.images[0].url;
+    }
+  }
+
+  
+
   const { firstName, lastName } = user;
   return (
     <div className="row dashboard-first-row">
+      {/* <img src={image} alt="popular event" className="dashboard-image" /> */}
       <div className="col-md-4.3 dashboard-profile">
         <div className="row">
           <div className="col-md-4 dashboard-image-container mb-3">

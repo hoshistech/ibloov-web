@@ -23,14 +23,21 @@ const Dashboard = (props) => {
   }, [dispatch]);
 
   let popularEvents = <Loading />;
+  let selectedEvent;
   if (events) {
-    popularEvents = events.slice(0, 5).map((event, index) => {
+    selectedEvent = events[3];
+
+    popularEvents = events.slice(0, 6).map((event, index) => {
       return (
         <Card
           key={event._id}
+          key={event._id}
           name={event.name}
+          eventId={event._id}
           startDate={event.startDate}
           location={event.location}
+          event={event}
+          splashImage="https://source.unsplash.com/250x182/?concert,party"
         />
       );
     });
@@ -40,18 +47,16 @@ const Dashboard = (props) => {
     <Fragment>
       <Navbar />
       <section className="dashboard">
-        <DashboardJumbotron user={user} />
+        <DashboardJumbotron user={user} event={selectedEvent} />
         <div className="mt-4">
-          <h5>SUGGESTED EVENTS</h5>
-
-          <div className="row suggest-event-card">
-            {/* <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card /> */}
-            {popularEvents}
+          <div className="second-row-tab">
+            <h5>SUGGESTED EVENTS</h5>
+            <div className='row suggest-event-active'>
+              <hr /> <hr />
+            </div>
           </div>
+
+          <div className="row suggest-event-card">{popularEvents}</div>
         </div>
       </section>
     </Fragment>

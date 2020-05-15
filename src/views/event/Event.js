@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+import React, { Fragment, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import NavbarJombotron from "../../components/navbarJombotron/NavbarJombotron";
 import Card from "../../components/card/Card";
 import FilterBar from "../../components/filterbar/FilterBar";
@@ -7,7 +7,34 @@ import Footer from "../../components/footer/Footer";
 
 import "./Event.css";
 import Pagination from "../../components/pagination/Pagination";
+import { fetchEvents } from "../homepage/homePage.action";
+import Loading from "../../components/loadingIndicator/Loading";
 const Event = (props) => {
+  const events = useSelector((state) => state.allEvents.events);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchEvents());
+  }, [dispatch]);
+
+  let popularEvents = <Loading />;
+  if (events) {
+    popularEvents = events.slice(0, 6).map((event, index) => {
+      return (
+        <Card
+          key={event._id}
+          key={event._id}
+          name={event.name}
+          eventId={event._id}
+          startDate={event.startDate}
+          location={event.location}
+          event={event}
+          splashImage="https://source.unsplash.com/250x182/?concert,party"
+        />
+      );
+    });
+  }
   return (
     <Fragment>
       <NavbarJombotron
@@ -16,22 +43,7 @@ const Event = (props) => {
       />
       <FilterBar />
 
-      <section className="row event-card-container">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </section>
+      <section className="row event-card-container">{popularEvents}</section>
       <div>
         <Pagination />
       </div>

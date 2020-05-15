@@ -26,11 +26,14 @@ const EventPrice = (props) => {
     increaseTicketType,
     decreaseTicketType,
     changeTicketTypeNumber,
+    onSelectCurrency,
+    setEventPrice,
+    eventPrice,
   } = props;
 
   return (
     <div>
-      <div>
+      <div className="create-event-title-header">
         <h5>What is the price?</h5>
         <small>How much does it cost for the event?</small>
       </div>
@@ -42,7 +45,7 @@ const EventPrice = (props) => {
             name="eventFee"
             id="eventFree"
             value="free"
-            // checked
+            checked={!showPricing}
             onChange={showPriceHandler}
           />
           <label className="form-check-label" htmlFor="exampleRadios1">
@@ -56,6 +59,7 @@ const EventPrice = (props) => {
             name="eventFee"
             id="eventPaid"
             value="paid"
+            checked={showPricing}
             onChange={showPriceHandler}
           />
           <label className="form-check-label" htmlFor="exampleRadios2">
@@ -63,6 +67,38 @@ const EventPrice = (props) => {
           </label>
         </div>
         {showPricing ? (
+          <div className="mt-4">
+            <div className="form-group">
+              <label htmlFor="inputState">Currency</label>
+              <select
+                id="inputState"
+                className="form-control"
+                onChange={onSelectCurrency}
+              >
+                <option value="">select currency</option>
+                <option value="NGN">NGN</option>
+                <option value="USD">USD</option>
+                <option value="EURO">EURO</option>
+              </select>
+            </div>
+            <div className="row mt-3">
+              <label htmlFor="standard" className="price-label">
+                Amount
+              </label>
+              <input
+                type="number"
+                name="ticketAmount"
+                id="ticketAmount"
+                className="form-control price-input"
+                onChange={setEventPrice}
+                value={eventPrice}
+              />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        {false ? (
           <Fragment>
             <div>
               <div className="row">

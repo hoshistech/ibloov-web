@@ -2,7 +2,7 @@
   padding-left: 0px;
   padding-right: 0px;
 }
-/* .step-number-row {
+.step-number-row {
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -18,7 +18,7 @@
   background-color: #ccc;
   z-index: 0;
   left: 1%;
-} */
+}
 
 .step-number-circle {
   border: 1px solid;
@@ -72,6 +72,16 @@
   margin-top: 1rem;
   /* max-width: 600px; */
   /* margin-right: 1rem; */
+}
+
+.create-event-title-header h5 {
+  font-weight: bolder;
+  color: #222222;
+}
+
+.create-event-title-header small {
+  font-weight: bolder;
+  color: #7f7f7f;
 }
 
 /* 
@@ -199,12 +209,19 @@ styling for event restriction
   flex-wrap: wrap;
 }
 
-.restrict-options div {
+.restriction-container {
   margin-right: 1rem;
   font-size: 0.8rem;
-  width: 100px;
+  min-width: 120px;
   margin-top: 1rem;
   color: #968f8f;
+  margin-left: 0px;
+}
+
+.restriction-container .form-check {
+  margin-right: 1rem;
+  display: flex;
+  padding-left: 0px;
 }
 
 .gift-wishlist {
@@ -212,6 +229,11 @@ styling for event restriction
 }
 
 .wishlist-button {
+  color: #2a5799;
+  text-decoration: underline;
+}
+
+.wishlist-button:hover {
   color: #2a5799;
   text-decoration: underline;
 }
@@ -308,5 +330,13 @@ styling for event restriction
   .event-desc-container {
     min-width: 789px;
     /* min-width: 968px; */
+  }
+
+  .event-description-fist-row .col-md-6 {
+    margin-right: 4rem;
+  }
+
+  .restrict-options {
+    width: 400px;
   }
 }

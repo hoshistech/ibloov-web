@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-.card-container a {
+.card-container .event-more-details {
   text-decoration: none;
   color: initial;
 }

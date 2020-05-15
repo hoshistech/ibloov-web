@@ -73,6 +73,61 @@
   margin: 10px;
 }
 
+.second-row-tab h5 {
+  color: #313131;
+  font-family: Avenir;
+  font-size: 13px;
+}
+
+.suggest-event-active {
+  /* border-top: 1px solid red; */
+  width: 100px;
+}
+
+.suggest-event-active hr:first-child {
+  width: 54px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 15px;
+  border: 3px solid #b4c427;
+}
+.suggest-event-active hr {
+  width: 9px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border: 3px solid #b4c427;
+  border-radius: 5px;
+}
+
+.suggest-event-card .card-container {
+  width: 200px;
+}
+
+.suggest-event-card .card-container .card-image {
+  width: 200px;
+  height: 150px;
+}
+
+.suggest-event-card .card-container .card-month {
+ font-size: 11px;
+}
+
+.suggest-event-card .card-container .card-day {
+  font-size: 14px;
+ }
+
+ .suggest-event-card .card-container .stat-image {
+  width: 25px;
+  height: 25px;
+}
+
+.suggest-event-card .card-container .event-body {
+  padding: 0.5rem;
+}
+.suggest-event-card .card-container .event-name {
+  font-size: 11px;
+}
+
 @media only screen and (min-width: 768px) {
   .dashboard-user-info {
     text-align: left;
@@ -90,19 +145,34 @@
 
 @media only screen and (min-width: 992px) {
   .dashboard-first-row {
-    background-image: linear-gradient(to right, #463d3d, #a99f9e69),
-      url("../../assets/images/Image14.png");
+    /* background-image: linear-gradient(to right, #000000ef, #00000000),
+      url("../../assets/images/Image14.png"); */
     background-repeat: no-repeat;
     color: #fff;
     background-size: 900px 65vh;
     background-position: top;
     background-position-x: right;
-    background-color: #463d3d;
+    /* background-color: #463d3d; */
+    /* background-color: linear-gradient(to right, #000000ef, #00000000); */
+    background: transparent
+      linear-gradient(180deg, #000000ef 0%, #00000000 100%) 0% 0% no-repeat
+      padding-box;
     /* opacity: 0.8; */
     font-weight: bolder;
     height: 60vh;
     padding-bottom: 3rem;
   }
+
+  .dashboard-image {
+    position: absolute;
+    height: 65vh;
+    right: 20px;
+    width: 900px;
+    opacity: 0.5;
+    z-index: -1;
+    /* background: rgba(76, 175, 80, 0.3); */
+  }
+
   .dashboard-profile {
     margin: 0px;
     align-self: flex-end;

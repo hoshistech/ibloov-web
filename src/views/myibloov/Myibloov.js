@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from "react";
-import PropTypes from "prop-types";
+import React, { Fragment, useState, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./Myibloov.css";
 import Button from "../../components/button/Button";
@@ -8,15 +8,60 @@ import { Link } from "react-router-dom";
 import Card from "../../components/card/Card";
 import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 import CreateEvent from "../createEvent/CreateEvent";
+import Loading from "../../components/loadingIndicator/Loading";
+import { fetchEvents } from "../homepage/homePage.action";
 const Myibloov = (props) => {
-
   const [selectedTab, setSelectedTab] = useState("event");
-  // const [myCreatedEvent, setMyCreatedEvent] = useState(true);
-  // const [showCreate, setShowCreate] = useState(false);
+  const [myCreatedEvent, setMyCreatedEvent] = useState(true);
+  const [showCreate, setShowCreate] = useState(false);
+
+  const events = useSelector((state) => state.allEvents.events);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchEvents());
+  }, [dispatch]);
+
+  let myEvents = <Loading />;
+  let attendingEvents = "";
+
+  if (events) {
+    myEvents = events.slice(0, 6).map((event) => {
+      return (
+        <Card
+          key={event._id}
+          key={event._id}
+          name={event.name}
+          eventId={event._id}
+          startDate={event.startDate}
+          location={event.location}
+          event={event}
+          myEvent={true}
+          splashImage="https://source.unsplash.com/250x182/?concert,party"
+        />
+      );
+    });
+
+    attendingEvents = events.slice(0, 4).map((event) => {
+      return (
+        <Card
+          key={event._id}
+          key={event._id}
+          name={event.name}
+          eventId={event._id}
+          startDate={event.startDate}
+          location={event.location}
+          event={event}
+          splashImage="https://source.unsplash.com/250x182/?concert,party"
+        />
+      );
+    });
+  }
 
   // testing purpose
-  const [myCreatedEvent, setMyCreatedEvent] = useState(false);
-  const [showCreate, setShowCreate] = useState(true);
+  // const [myCreatedEvent, setMyCreatedEvent] = useState(false);
+  // const [showCreate, setShowCreate] = useState(true);
 
   const selectedTabHandler = (e) => {
     const tabSwitch = e.target.name;
@@ -123,7 +168,7 @@ const Myibloov = (props) => {
                     >
                       Events I have created
                     </Link>
-                    <div>4</div>
+                    <div>6</div>
                   </div>
 
                   <div
@@ -141,7 +186,7 @@ const Myibloov = (props) => {
                     >
                       Events I am attending
                     </Link>
-                    <div>6</div>
+                    <div>4</div>
                   </div>
                 </div>
               ) : (
@@ -152,19 +197,19 @@ const Myibloov = (props) => {
             <div className="row mt-2 my-created-event">
               {selectedTab === "event" ? (
                 <Fragment>
-                  {myCreatedEvent ? (
-                    <Fragment>
-                      <Card />
-                      <Card />
-                      <Card />
-                      <Card />
-                    </Fragment>
-                  ) : (
-                    <Fragment>
-                      <PromotedEventCard />
-                      <Card />
-                    </Fragment>
-                  )}
+                  {myCreatedEvent
+                    ? // <Fragment>
+                      //   <Card />
+                      //   <Card />
+                      //   <Card />
+                      //   <Card />
+                      // </Fragment>
+                      myEvents
+                    : // <Fragment>
+                      //   <PromotedEventCard />
+                      //   <Card />
+                      // </Fragment>
+                      attendingEvents}
                 </Fragment>
               ) : (
                 <PromotedEventCard />
@@ -184,7 +229,5 @@ const Myibloov = (props) => {
     </div>
   );
 };
-
-Myibloov.propTypes = {};
 
 export default Myibloov;
