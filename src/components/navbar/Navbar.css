@@ -1,5 +1,5 @@
 .navbar {
-  /* background-image: linear-gradient(to right, #463d3d, #a99f9e69),
+  /* /* background-image: linear-gradient(to right, #463d3d, #a99f9e69),
     url("../../assets/images/Image14.png");
   background-repeat: no-repeat;
   color: #fff;
@@ -10,15 +10,18 @@
   opacity: 0.8;
   font-weight: bolder; */
   position: absolute;
-  width: 95%;
-  margin: 0px 20px;
+  width: 100%;
   z-index: 10;
-  margin-top: 15px;
+  margin-top: -15px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
 }
 
 #navbarNavDropdown {
   background-color: #000000;
   margin-right: 29px;
+  margin-top: -30px;
 }
 
 .header-list-container li {
@@ -50,9 +53,28 @@
   /* margin-left: 0.5rem; */
 }
 
+.remove-nav-absolute {
+  position: relative;
+  background-image: linear-gradient(to right, #463d3d, #a99f9e69),
+    url("../../assets/images/Image14.png");
+  background-repeat: no-repeat;
+  color: #fff;
+  background-size: 900px 300px;
+  background-position: top;
+  background-position-x: right;
+  background-color: #463d3d;
+  opacity: 0.8;
+  font-weight: bolder;
+  margin-top: 0px;
+}
+
 @media only screen and (max-width: 768px) {
   .navbar-toggler {
     margin-right: 10%;
+  }
+
+  .myibloov-nav .navbar-toggler {
+    margin-right: 0%;
   }
 }
 
@@ -66,18 +88,14 @@
   #navbarNavDropdown {
     background-color: transparent;
   }
-  .remove-nav-absolute {
-    position: relative;
-    background-image: linear-gradient(to right, #463d3d, #a99f9e69),
-      url("../../assets/images/Image14.png");
-    background-repeat: no-repeat;
-    color: #fff;
-    background-size: 900px 300px;
-    background-position: top;
-    background-position-x: right;
-    background-color: #463d3d;
-    opacity: 0.8;
-    font-weight: bolder;
+}
+
+@media only screen and (min-width: 1024px) {
+  #navbarNavDropdown {
+    margin-top: 15px;
+  }
+  .navbar {
+    height: 70px;
     margin-top: 0px;
   }
 }

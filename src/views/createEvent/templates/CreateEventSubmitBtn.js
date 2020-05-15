@@ -13,8 +13,6 @@ const CreateEventSubmitBtn = (props) => {
     dateTimeValid,
   } = props;
 
-  console.log("dateTimeValid", dateTimeValid);
-
   const nextStep = isStepValid && formIsValid && dateTimeValid;
   return (
     <div className="myibloov-create-button-container">
@@ -28,7 +26,7 @@ const CreateEventSubmitBtn = (props) => {
       <Button
         customClassName="mybloov-create-event-btn-2  bold-600"
         onClick={formCount === 4 ? submitEventHandler : nextQuestionHandler}
-        // btndisabled={!nextStep}
+        btndisabled={!nextStep}
       >
         {formCount === 4 ? "Create Event" : "Next"}
       </Button>

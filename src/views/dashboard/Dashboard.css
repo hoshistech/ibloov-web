@@ -4,6 +4,22 @@
 .dashboard-first-row {
   margin: 0px;
 }
+.dashboard-first-row {
+  /* background-image: linear-gradient(to right, #000000ef, #00000000),
+    url("../../assets/images/Image14.png"); */
+  background-repeat: no-repeat;
+  color: #fff;
+  background-size: 900px 65vh;
+  background-position: top;
+  background-position-x: right;
+  background: transparent linear-gradient(180deg, #000000ef 0%, #6c6c6c 100%) 0%
+    0% no-repeat padding-box;
+  /* opacity: 0.8; */
+  font-weight: bolder;
+  height: 60vh;
+  padding-bottom: 3rem;
+  padding-top: 40%;
+}
 .dashboard-image-container {
   /* width: 100%; */
 }
@@ -33,6 +49,7 @@
 
 .dashboard-welcome-container {
   margin: 0px auto;
+  padding: 1rem;
 }
 
 .dashboard-stat-container {
@@ -109,14 +126,14 @@
 }
 
 .suggest-event-card .card-container .card-month {
- font-size: 11px;
+  font-size: 11px;
 }
 
 .suggest-event-card .card-container .card-day {
   font-size: 14px;
- }
+}
 
- .suggest-event-card .card-container .stat-image {
+.suggest-event-card .card-container .stat-image {
   width: 25px;
   height: 25px;
 }
@@ -161,6 +178,7 @@
     font-weight: bolder;
     height: 60vh;
     padding-bottom: 3rem;
+    padding-top: 5px;
   }
 
   .dashboard-image {
@@ -198,5 +216,11 @@
 @media only screen and (min-width: 1132px) and (max-width: 1479px) {
   .suggest-event-card {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .dashboard-welcome-container {
+    display: none;
   }
 }

@@ -52,21 +52,11 @@ export const authLogin = (userDetail, history) => {
 
         const decodedToken = jwt.decode(data);
 
-        const {
-          local,
-          email,
-          isPhoneNumberVerified,
-          isEmailVerified,
-        } = decodedToken.user;
-
         const user = {
-          firstName: local.firstName,
-          lastName: local.lastName,
-          email,
-          isEmailVerified,
-          isPhoneNumberVerified,
+          firstName: decodedToken.user.local.firstName,
+          lastName: decodedToken.user.local.lastName,
+          ...decodedToken.user,
         };
-
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", JSON.stringify(data));
 

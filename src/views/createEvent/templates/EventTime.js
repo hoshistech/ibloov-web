@@ -100,7 +100,6 @@ const EventTime = (props) => {
 
   const selectCurrencyHandler = (e) => {
     const selectedCurrency = e.target.value;
-    console.log("curr", selectedCurrency);
     if (selectedCurrency === "") {
       return;
     }

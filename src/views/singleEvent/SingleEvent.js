@@ -26,8 +26,6 @@ const SingleEvent = (props) => {
   let foundEvent;
   let startDate;
   if (event) {
-    console.log(88, event);
-
     foundEvent = event;
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
   }
