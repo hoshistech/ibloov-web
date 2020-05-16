@@ -16,31 +16,29 @@ const Myibloov = (props) => {
   const [showCreate, setShowCreate] = useState(false);
 
   const events = useSelector((state) => state.allEvents.events);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchEvents());
-  }, [dispatch]);
+  const { _id: userId } = useSelector((state) => state.login.user);
 
   let myEvents = <Loading />;
   let attendingEvents = "";
 
   if (events) {
-    myEvents = events.slice(0, 6).map((event) => {
-      return (
-        <Card
-          key={event._id}
-          key={event._id}
-          name={event.name}
-          eventId={event._id}
-          startDate={event.startDate}
-          location={event.location}
-          event={event}
-          myEvent={true}
-          splashImage="https://source.unsplash.com/250x182/?concert,party"
-        />
-      );
+    const userEvents = events.filter((event) => event.userId._id === userId);
+    myEvents = userEvents.map((event) => {
+      if (event.userId._id === userId) {
+        return (
+          <Card
+            key={event._id}
+            key={event._id}
+            name={event.name}
+            eventId={event._id}
+            startDate={event.startDate}
+            location={event.location}
+            event={event}
+            myEvent={true}
+            splashImage="https://source.unsplash.com/250x182/?concert,party"
+          />
+        );
+      }
     });
 
     attendingEvents = events.slice(0, 4).map((event) => {
@@ -168,7 +166,7 @@ const Myibloov = (props) => {
                     >
                       Events I have created
                     </Link>
-                    <div>6</div>
+                    <div>{myEvents ? myEvents.length : ""}</div>
                   </div>
 
                   <div

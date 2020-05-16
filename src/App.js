@@ -32,12 +32,13 @@ import {
   faMapMarkerAlt,
   faCheckCircle,
   faArrowLeft,
+  faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
 import Signup from "./views/signup/Signup";
 import Login from "./views/login/Login";
-import setupStore from "./store/reducer";
+// import setupStore from "./store/reducer";
 import Event from "./views/event/Event";
 import HomePage from "./views/homepage/HomePage";
 import { checkAuth, getUser } from "./utils/helper";
@@ -49,8 +50,16 @@ import Dashboard from "./views/dashboard/Dashboard";
 import VerifyPhoneNumber from "./views/verifyPhoneNumber/VerifyPhoneNumber";
 import SingleEvent from "./views/singleEvent/SingleEvent";
 import Footer from "./components/footer/Footer";
+import { persistReducer, persistStore } from "redux-persist";
 
-const store = setupStore();
+import { setupStore } from "./store/reducer/index";
+import { PersistGate } from "redux-persist/integration/react";
+import persistedReducer from "./store/reducer/rootReducer";
+import EventPay from "./views/singleEvent/templates/eventPay/EventPay";
+import DropIn from "./views/singleEvent/templates/eventPay/DropIn";
+
+const store = setupStore(persistedReducer);
+const persistor = persistStore(store);
 
 if (localStorage.token) {
   const isAuthenticated = checkAuth();
@@ -60,7 +69,6 @@ if (localStorage.token) {
     store.dispatch(userLoginSuccess(token, user));
   }
 }
-
 
 library.add(
   faShareAlt,
@@ -100,48 +108,56 @@ function NoMatch() {
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <div className="App">
-          <Switch>
-            <Route path="/signup">
-              <Signup />
-            </Route>
-            <Route path="/test">
-              <TestPage />
-            </Route>
-            <Route path="/signin">
-              <Login />
-            </Route>
-            <Route path="/events">
-              <div>
-                <Event />
-                <Footer />
-              </div>
-            </Route>
-            <Route path="/" exact>
-              <div>
-                <HomePage />
-                <Footer />
-              </div>
-            </Route>
-            <PrivateRoute path="/dashboard">
-              <Dashboard />
-            </PrivateRoute>
-            <PrivateRoute path="/myibloov">
-              <Myibloov />
-            </PrivateRoute>
-            <PrivateRoute path="/event/:eventId">
-              <SingleEvent />
-            </PrivateRoute>
-            <PrivateRoute path="/verify-phone">
-              <VerifyPhoneNumber />
-            </PrivateRoute>
-            <Route path="*">
-              <NoMatch />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+      <PersistGate persistor={persistor}>
+        <Router>
+          <div className="App">
+            <Switch>
+              <Route path="/signup">
+                <Signup />
+              </Route>
+              <Route path="/test">
+                <TestPage />
+              </Route>
+              <Route path="/signin">
+                <Login />
+              </Route>
+              <Route path="/events">
+                <div>
+                  <Event />
+                  <Footer />
+                </div>
+              </Route>
+              <Route path="/" exact>
+                <div>
+                  <HomePage />
+                  <Footer />
+                </div>
+              </Route>
+              <PrivateRoute path="/dashboard">
+                <Dashboard />
+              </PrivateRoute>
+              <PrivateRoute path="/myibloov">
+                <Myibloov />
+              </PrivateRoute>
+              <PrivateRoute path="/event/:eventId">
+                <SingleEvent />
+              </PrivateRoute>
+              <PrivateRoute path="/verify-phone">
+                <VerifyPhoneNumber />
+              </PrivateRoute>
+              <PrivateRoute path="/pay">
+                <div>
+                  {/* <DropIn /> */}
+                  <EventPay />
+                </div>
+              </PrivateRoute>
+              <Route path="*">
+                <NoMatch />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </PersistGate>
     </Provider>
   );
 }

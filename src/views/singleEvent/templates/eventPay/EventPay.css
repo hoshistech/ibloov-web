@@ -1,0 +1,89 @@
+.single-event-pay-btn {
+  border: 1px solid #ffa79d;
+  color: #ffffff;
+  margin-left: 10px;
+  background-color: #ffa79d;
+  font-size: 15px;
+  padding: 0.5rem 1.2rem;
+}
+
+#dropin-container {
+  width: 90%;
+  margin: 0px auto;
+}
+
+.payment-loading {
+  text-align: center;
+}
+
+.event-pay-form-container {
+  margin: 0px auto;
+}
+
+.pay-event-title {
+  color: #ffffff;
+}
+
+.pay-event-submit-btn {
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  margin-left: 5%;
+}
+
+.pay-event-submit-btn:hover {
+  color: black;
+}
+
+.payment-success-container {
+  text-align: center;
+  color: #ffffff;
+  margin-top: 40%;
+  position: relative;
+}
+.payment-success-card {
+  width: 200px;
+}
+.payment-success-container h5 {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.payment-success-container p {
+  font-size: 10px;
+  font-weight: bolder;
+}
+
+.payment-success-icon {
+  font-size: 40px;
+  color: green;
+  position: absolute;
+  right: 20%;
+  bottom: 50%;
+}
+
+.payment-fail-container {
+  text-align: center;
+  color: #ffffff;
+  margin-top: 0%;
+  position: relative;
+}
+.payment-fail-card {
+  width: 200px;
+}
+.payment-fail-container h5 {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.payment-fail-container p {
+  font-size: 10px;
+  font-weight: bolder;
+}
+
+.payment-fail-icon {
+  font-size: 40px;
+  color: green;
+  position: absolute;
+  right: 20%;
+  bottom: 50%;
+}

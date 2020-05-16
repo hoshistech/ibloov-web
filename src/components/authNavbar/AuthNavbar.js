@@ -13,7 +13,6 @@ const AuthNavbar = (props) => {
   const { user, handleLogout } = props;
   const { firstName, lastName, avatar } = user;
 
-  console.log(45, user);
 
   return (
     <ul className="navbar-nav header-list-container">
