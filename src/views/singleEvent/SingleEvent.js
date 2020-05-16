@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Navbar from "../../components/navbar/Navbar";
 import SingleEventHeader from "./templates/singleEventHeader/SingleEventHeader";
@@ -16,7 +16,10 @@ import moment from "moment";
 import { getEvent } from "./singleEvent.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import EventPay from "./templates/eventPay/EventPay";
+import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
+import SideOverLayContainer from "../../components/sideOverLayContainer/SideOverLayContainer";
 const SingleEvent = (props) => {
+  const [openPay, setOpenPay] = useState(false);
   const { eventId } = useParams();
 
   const dispatch = useDispatch();
@@ -25,6 +28,7 @@ const SingleEvent = (props) => {
 
   let foundEvent;
   let startDate;
+  let eventPrice;
   if (event) {
     foundEvent = event;
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
@@ -33,6 +37,14 @@ const SingleEvent = (props) => {
   useEffect(() => {
     dispatch(getEvent(eventId));
   }, [dispatch, eventId]);
+
+  const closePayView = () => {
+    setOpenPay(false);
+  };
+
+  const togglePayView = () => {
+    setOpenPay(!openPay);
+  };
 
   return (
     <Fragment>
@@ -58,10 +70,14 @@ const SingleEvent = (props) => {
                       <div>
                         <p>
                           {foundEvent.currency} {foundEvent.amount}
+                          <Button
+                            btndisabled={false}
+                            onClick={togglePayView}
+                            customClassName="single-event-pay-btn"
+                          >
+                            PAY
+                          </Button>
                         </p>
-                        {/* <Button btndisabled={false} onClick={() => {}}>
-                          PAY
-                        </Button> */}
                       </div>
                     ) : (
                       "FREE"
@@ -107,10 +123,6 @@ const SingleEvent = (props) => {
                 <h4 className="single-event-header-title">Dates and Time</h4>
                 <p>
                   Start: <span className="event-start-date">{startDate}</span>
-                </p>
-                <p>
-                  End:{" "}
-                  <span className="event-end-date">Mar 23, 2020 @ 12.00pm</span>
                 </p>
                 <div>
                   <Button
@@ -170,6 +182,19 @@ const SingleEvent = (props) => {
             </div>
           </div>
         )}
+
+        <SideOverLayContainer
+          openSide={openPay}
+          customClassName=""
+          toggleOpenSide={() => setOpenPay(!openPay)}
+        >
+          <div className="event-pay-form-container">
+            <EventPay
+              closePayView={closePayView}
+              eventPrice={foundEvent ? foundEvent.amount : ""}
+            />
+          </div>
+        </SideOverLayContainer>
       </section>
     </Fragment>
   );

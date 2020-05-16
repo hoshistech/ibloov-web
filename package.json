@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "braintree-web": "^3.62.1",
+    "braintree-web-drop-in": "^1.22.1",
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.25.3",
@@ -26,7 +27,9 @@
     "react-time-picker": "^4.0.1",
     "react-toastify": "^5.5.0",
     "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
+    "render-if": "^0.1.1",
     "serve": "^11.3.0"
   },
   "scripts": {

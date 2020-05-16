@@ -16,12 +16,6 @@ const Dashboard = (props) => {
   const { user } = useSelector((state) => state.login);
   const events = useSelector((state) => state.allEvents.events);
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchEvents());
-  }, [dispatch]);
-
   let popularEvents = <Loading />;
   let selectedEvent;
   if (events) {
@@ -51,7 +45,7 @@ const Dashboard = (props) => {
         <div className="mt-4">
           <div className="second-row-tab">
             <h5>SUGGESTED EVENTS</h5>
-            <div className='row suggest-event-active'>
+            <div className="row suggest-event-active">
               <hr /> <hr />
             </div>
           </div>

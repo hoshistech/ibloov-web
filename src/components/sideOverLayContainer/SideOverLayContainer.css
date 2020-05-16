@@ -1,0 +1,81 @@
+/* The side navigation menu */
+.ibloov-sidenav {
+  height: 100%; /* 100% Full-height */
+  /* width: 0; 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 99; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: #1d1d1e8f; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  display: flex;
+}
+
+/* The navigation menu links */
+.ibloov-sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.ibloov-sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.ibloov-sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left 0.5s;
+  padding: 20px;
+}
+
+.close-ibloov-side {
+  width: 0;
+}
+.open-ibloov-side {
+  width: 40%;
+  transition: 0.5s;
+  background: #053b83 0% 0% no-repeat padding-box;
+}
+
+.ibloove-side-close-btn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  color: #ffff;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .ibloov-sidenav {
+    padding-top: 15px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .open-ibloov-side {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .open-ibloov-side {
+    width: 60%;
+  }
+}
