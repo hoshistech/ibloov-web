@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import renderIf from "render-if";
 import axios from "../../../../utils/axiosConfig";
-// import RNMessageChannel from "react-native-webview-messaging";
 import DropIn from "braintree-web-drop-in";
 import util from "util";
 import Loading from "../../../../components/loadingIndicator/Loading";
@@ -33,9 +31,15 @@ const EventPay = (props) => {
   const [message, setMessage] = useState("Loading...");
   const [touchForm, setTouchForm] = useState(false);
 
+  const [formInstance, setFormInstance] = useState(false);
+  const [paymentStart, setPaymentStart] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [paymentFailed, setPaymentFailed] = useState(false);
+
   useEffect(() => {
     registerMessageListener();
-  }, []);
+    createCreditCardUI();
+  }, [paymentFailed, paymentSuccess]);
 
   const registerMessageListener = () => {
     PrintElement();
@@ -46,10 +50,11 @@ const EventPay = (props) => {
   const handleGoBack = () => {
     closePayView();
     setPaymentStatus(null);
-    createCreditCardUI();
+    setPaymentFailed(false);
+    setPaymentSuccess(false);
   };
 
-  const createCreditCardUI = async (clientToken) => {
+  const createCreditCardUI = async () => {
     try {
       const response = await axios.get(
         "/v1/payment/braintree/generate/client_token"
@@ -83,53 +88,60 @@ const EventPay = (props) => {
           },
         },
       });
+      setFormInstance(true);
+      setPaymentFailed(false);
       setDropinInstance(instance);
-    } catch (error) {}
+    } catch (error) {
+      setPaymentFailed(true);
+    }
   };
 
   const handleSubmitPayment = () => {
     dropinInstance.requestPaymentMethod(async (error, response) => {
       setPaymentStatus("PAYMENT_PROCESSING");
+      setPaymentStart(true);
       setMessage("Verifying...");
       if (error) {
         if (!dropinInstance.isPaymentMethodRequestable()) {
           setPaymentStatus(null);
+          setPaymentStart(false);
+          setPaymentFailed(true);
           return;
         }
         dropinInstance.clearSelectedPaymentMethod();
         setPaymentStatus("PAYMENT_FAILED");
+        setPaymentStart(false);
+        setPaymentFailed(true);
       } else {
         const { nonce } = response;
         let confirmPay;
 
         try {
-
           confirmPay = await axios.post("/v1/payment/checkout", {
             amount: eventPrice,
             nonceFromTheClient: nonce,
           });
         } catch (error) {
           setPaymentStatus("PAYMENT_FAILED");
+          setPaymentFailed(true);
           return;
         }
-
+        setPaymentStart(false);
+        setPaymentFailed(false);
+        setPaymentSuccess(true);
         setPaymentStatus("PAYMENT_SUCCESSFUL");
       }
     });
   };
-
   return (
     <div>
       <div>
-        {renderIf(
-          (dropinInstance === null && paymentStatus === null) ||
-            paymentStatus === "PAYMENT_PROCESSING"
-        )(
+        {renderIf((dropinInstance === null || paymentStart) && !paymentFailed)(
           <div className="payment-loading">
             <Loading />
           </div>
         )}
-        {renderIf(paymentStatus !== "PAYMENT_SUCCESSFUL")(
+        {renderIf((!paymentStart || !paymentFailed) && !paymentSuccess)(
           <div>
             <h5 className="pay-event-title">Enter your card details</h5>
             <div id="dropin-container" />
@@ -145,19 +157,20 @@ const EventPay = (props) => {
         )}
       </div>
       <div>
-        {renderIf(paymentStatus === null && typeof dropinInstance !== null)(
-          <div>
-            {/* <Button
-              customClassName="pay-event-submit-btn"
-              btndisabled={false}
-              onClick={handleSubmitPayment}
-              id="submit-button"
-            >
-              Submit Payment
-            </Button> */}
-          </div>
-        )}
-        {renderIf(paymentStatus === "PAYMENT_SUCCESSFUL")(
+        {
+          renderIf(dropinInstance && !paymentStart)()
+          // <div>
+          //   <Button
+          //     customClassName="pay-event-submit-btn"
+          //     btndisabled={false}
+          //     onClick={handleSubmitPayment}
+          //     id="submit-button"
+          //   >
+          //     Submit Payment2
+          //   </Button>
+          // </div>
+        }
+        {renderIf(paymentSuccess)(
           <div className="payment-success-container">
             <ProgressiveImage
               src={creditCard}
@@ -185,7 +198,7 @@ const EventPay = (props) => {
             </div>
           </div>
         )}
-        {renderIf(paymentStatus === "PAYMENT_FAILED")(
+        {renderIf(paymentFailed || paymentStatus === "PAYMENT_FAILED")(
           <div className="payment-fail-container">
             <ProgressiveImage
               src={creditCard}
@@ -201,8 +214,12 @@ const EventPay = (props) => {
               <h5>There was a problem with your payment, please try again</h5>
               <p>Return to select a payment method</p>
               <Button
-                // onClick={closePayView}
-                onClick={handleGoBack}
+                onClick={closePayView}
+                onClick={() => {
+                  setPaymentFailed(false);
+                  setPaymentStart(false);
+                  setPaymentStatus(null);
+                }}
                 btndisabled={false}
                 customClassName="pay-event-submit-btn"
               >

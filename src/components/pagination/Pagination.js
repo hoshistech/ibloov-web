@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Button from "../button/Button";
 
 import "./Pagination.css";
@@ -13,7 +12,5 @@ const Pagination = (props) => {
     </div>
   );
 };
-
-Pagination.propTypes = {};
 
 export default Pagination;

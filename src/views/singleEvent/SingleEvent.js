@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import Navbar from "../../components/navbar/Navbar";
 import SingleEventHeader from "./templates/singleEventHeader/SingleEventHeader";
 
@@ -16,8 +15,8 @@ import moment from "moment";
 import { getEvent } from "./singleEvent.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import EventPay from "./templates/eventPay/EventPay";
-import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
 import SideOverLayContainer from "../../components/sideOverLayContainer/SideOverLayContainer";
+
 const SingleEvent = (props) => {
   const [openPay, setOpenPay] = useState(false);
   const { eventId } = useParams();
@@ -50,7 +49,7 @@ const SingleEvent = (props) => {
     <Fragment>
       <Navbar />
       <section>
-        <SingleEventHeader />
+        <SingleEventHeader category={event ? foundEvent.category : ""} />
 
         {!event ? (
           <div className="single-event-loading">

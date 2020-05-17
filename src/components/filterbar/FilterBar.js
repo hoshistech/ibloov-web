@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import "./FilterBar.css";
 import Button from "../button/Button";
@@ -35,6 +34,5 @@ const FilterBar = (props) => {
   );
 };
 
-FilterBar.propTypes = {};
 
 export default FilterBar;

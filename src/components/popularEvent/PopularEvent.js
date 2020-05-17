@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Button from "../button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -56,6 +55,5 @@ const PopularEvent = (props) => {
   );
 };
 
-PopularEvent.propTypes = {};
 
 export default PopularEvent;

@@ -50,13 +50,11 @@ import Dashboard from "./views/dashboard/Dashboard";
 import VerifyPhoneNumber from "./views/verifyPhoneNumber/VerifyPhoneNumber";
 import SingleEvent from "./views/singleEvent/SingleEvent";
 import Footer from "./components/footer/Footer";
-import { persistReducer, persistStore } from "redux-persist";
+import { persistStore } from "redux-persist";
 
 import { setupStore } from "./store/reducer/index";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedReducer from "./store/reducer/rootReducer";
-import EventPay from "./views/singleEvent/templates/eventPay/EventPay";
-import DropIn from "./views/singleEvent/templates/eventPay/DropIn";
 
 const store = setupStore(persistedReducer);
 const persistor = persistStore(store);
@@ -144,12 +142,6 @@ function App() {
               </PrivateRoute>
               <PrivateRoute path="/verify-phone">
                 <VerifyPhoneNumber />
-              </PrivateRoute>
-              <PrivateRoute path="/pay">
-                <div>
-                  {/* <DropIn /> */}
-                  <EventPay />
-                </div>
               </PrivateRoute>
               <Route path="*">
                 <NoMatch />

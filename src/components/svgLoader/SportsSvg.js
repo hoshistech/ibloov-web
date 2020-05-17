@@ -31,6 +31,6 @@ const SportsSvg = (props) => {
   );
 };
 
-SportsSvg.propTypes = {};
+SportsSvg.propTypes = {fill: PropTypes.string};
 
 export default SportsSvg;

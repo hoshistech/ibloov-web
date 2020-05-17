@@ -81,6 +81,8 @@ const CorporateSvg = (props) => {
   );
 };
 
-CorporateSvg.propTypes = {};
+CorporateSvg.propTypes = {
+  fill: PropTypes.string,
+};
 
 export default CorporateSvg;

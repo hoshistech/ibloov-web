@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const NightLifeSvg = (props) => {
   // <style>.a{fill:#d3d3d3;}.b{clip-path:url(#a);}</style>
@@ -50,6 +49,5 @@ const NightLifeSvg = (props) => {
   );
 };
 
-NightLifeSvg.propTypes = {};
 
 export default NightLifeSvg;

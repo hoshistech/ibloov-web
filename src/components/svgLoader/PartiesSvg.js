@@ -95,6 +95,6 @@ const PartiesSvg = (props) => {
   );
 };
 
-PartiesSvg.propTypes = {};
+PartiesSvg.propTypes = {fill: PropTypes.string};
 
 export default PartiesSvg;

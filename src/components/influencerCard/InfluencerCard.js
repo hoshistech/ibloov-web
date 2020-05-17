@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import PlaceImage from "../../assets/images/bg3.jpg";
 
@@ -57,14 +56,12 @@ const InfluencerCard = (props) => {
     <div className={`${customClassName}  most-places-card `}>
       <img
         src={image || PlaceImage}
-        alt="image"
+        alt="city"
         className="most-influencer-image"
       />
       {cardDetails}
     </div>
   );
 };
-
-InfluencerCard.propTypes = {};
 
 export default InfluencerCard;
