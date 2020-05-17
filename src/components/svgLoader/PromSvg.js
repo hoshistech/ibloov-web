@@ -30,6 +30,6 @@ const PromSvg = (props) => {
   );
 };
 
-PromSvg.propTypes = {};
+PromSvg.propTypes = {fill: PropTypes.string};
 
 export default PromSvg;

@@ -1,8 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import CategoryCard from "../../components/categoryCard/CategoryCard";
-
 import InfluencerCard from "../../components/influencerCard/InfluencerCard";
 import HashTag from "../../components/hashTag/HashTag";
 import ViewEventProfileCard from "../../components/viewEventProfileCard/ViewEventProfileCard";
@@ -10,7 +7,6 @@ import Card from "../../components/card/Card";
 import SingleComment from "../../components/singleComment/SingleComment";
 import CreateComment from "../../components/createComment/CreateComment";
 import FriendProfileHeader from "../../components/friendProfileHeader/FriendProfileHeader";
-import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 import TelephoneInput from "../../components/telephoneInput/TelephoneInput";
 import PhoneNumberVerification from "../../components/phoneNumberVerification/PhoneNumberVerification";
 

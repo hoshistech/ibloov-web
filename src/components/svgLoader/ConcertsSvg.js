@@ -55,6 +55,6 @@ const ConcertsSvg = (props) => {
   );
 };
 
-ConcertsSvg.propTypes = {};
+ConcertsSvg.propTypes = { fill: PropTypes.string };
 
 export default ConcertsSvg;

@@ -170,6 +170,6 @@ const HenNightSvg = (props) => {
   );
 };
 
-HenNightSvg.propTypes = {};
+HenNightSvg.propTypes = {fill: PropTypes.string};
 
 export default HenNightSvg;

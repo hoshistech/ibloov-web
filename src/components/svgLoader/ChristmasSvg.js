@@ -85,6 +85,8 @@ const ChristmasSvg = (props) => {
   );
 };
 
-ChristmasSvg.propTypes = {};
+ChristmasSvg.propTypes = {
+  fill: PropTypes.string
+};
 
 export default ChristmasSvg;

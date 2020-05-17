@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Navbar from "../navbar/Navbar";
 import "./NavbarJombotron.css";
 
@@ -16,6 +15,5 @@ const NavbarJombotron = (props) => {
   );
 };
 
-NavbarJombotron.propTypes = {};
 
 export default NavbarJombotron;

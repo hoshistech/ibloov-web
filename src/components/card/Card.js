@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 
-import cardImage from "../../assets/images/background.jpg";
-import passport from "../../assets/images/passport.jpg";
 import "./Card.css";
-import Button from "../button/Button";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { genRandomNumber } from "../../utils/helper";
 
 const Card = (props) => {
   const { name, startDate, location, eventId, event, myEvent } = props;
-  const [splashImage, setSplashImage] = useState("");
   const { category } = event;
 
   let image = "";

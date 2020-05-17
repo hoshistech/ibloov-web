@@ -59,6 +59,8 @@ const ConferencesSvg = (props) => {
   );
 };
 
-ConferencesSvg.propTypes = {};
+ConferencesSvg.propTypes = {
+  fill: PropTypes.string
+};
 
 export default ConferencesSvg;

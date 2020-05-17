@@ -14,7 +14,12 @@ const WeddingSvg = (props) => {
     >
       <defs>
         <clipPath id="a">
-          <rect className="a" width="70" height="70" transform="translate(35 12)" />
+          <rect
+            className="a"
+            width="70"
+            height="70"
+            transform="translate(35 12)"
+          />
         </clipPath>
       </defs>
       <g className="b" transform="translate(-35 -12)">
@@ -65,6 +70,6 @@ const WeddingSvg = (props) => {
   );
 };
 
-WeddingSvg.propTypes = {};
+WeddingSvg.propTypes = { fill: PropTypes.string };
 
 export default WeddingSvg;

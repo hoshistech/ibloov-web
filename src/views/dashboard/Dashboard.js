@@ -1,9 +1,6 @@
-import React, { Fragment, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { Fragment } from "react";
 
 import Navbar from "../../components/navbar/Navbar";
-import passport from "../../assets/images/passport.jpg";
-import Button from "../../components/button/Button";
 
 import "./Dashboard.css";
 import Card from "../../components/card/Card";
@@ -57,6 +54,5 @@ const Dashboard = (props) => {
   );
 };
 
-Dashboard.propTypes = {};
 
 export default Dashboard;

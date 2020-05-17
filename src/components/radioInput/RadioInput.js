@@ -1,22 +1,8 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 
 import "./RadioInput.css";
 const RadioInput = (props) => {
-  const [checkedCategory, setCheckedCategory] = useState(false);
-  const {
-    radioName,
-    customClass,
-    name,
-    id,
-    selectedClass,
-    onSelectOption,
-  } = props;
-
-
-  const toggleInput = () => {
-    setCheckedCategory(!checkedCategory);
-  };
+  const { radioName, name, id, selectedClass, onSelectOption } = props;
 
   return (
     <div id={id} className="row restriction-container">

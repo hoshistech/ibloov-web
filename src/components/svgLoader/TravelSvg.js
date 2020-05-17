@@ -40,6 +40,6 @@ const TravelSvg = (props) => {
   );
 };
 
-TravelSvg.propTypes = {};
+TravelSvg.propTypes = {fill: PropTypes.string};
 
 export default TravelSvg;

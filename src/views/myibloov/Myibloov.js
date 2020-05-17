@@ -1,6 +1,6 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import "./Myibloov.css";
 import Button from "../../components/button/Button";
@@ -9,7 +9,7 @@ import Card from "../../components/card/Card";
 import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 import CreateEvent from "../createEvent/CreateEvent";
 import Loading from "../../components/loadingIndicator/Loading";
-import { fetchEvents } from "../homepage/homePage.action";
+
 const Myibloov = (props) => {
   const [selectedTab, setSelectedTab] = useState("event");
   const [myCreatedEvent, setMyCreatedEvent] = useState(true);
@@ -39,6 +39,7 @@ const Myibloov = (props) => {
           />
         );
       }
+      return;
     });
 
     attendingEvents = events.slice(0, 4).map((event) => {

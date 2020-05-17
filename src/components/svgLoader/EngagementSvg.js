@@ -56,6 +56,8 @@ const EngagementSvg = (props) => {
   );
 };
 
-EngagementSvg.propTypes = {};
+EngagementSvg.propTypes = {
+  fill: PropTypes.string
+};
 
 export default EngagementSvg;
