@@ -7,7 +7,6 @@ import Card from "../../components/card/Card";
 import DashboardJumbotron from "../../components/dashboardJumbotron/DashboardJumbotron";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../components/loadingIndicator/Loading";
-import { fetchEvents } from "../homepage/homePage.action";
 
 const Dashboard = (props) => {
   const { user } = useSelector((state) => state.login);

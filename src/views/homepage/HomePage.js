@@ -37,6 +37,7 @@ const HomePage = (props) => {
   let popularEvents = <Loading />;
   let upcomingEvents = "";
   if (events) {
+
     popularEvents = events
       .slice(0, 4)
       .map((event) => (

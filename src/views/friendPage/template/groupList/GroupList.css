@@ -1,0 +1,114 @@
+.groups-menu {
+  color: black;
+  font-size: 30px;
+  margin-top: 5px;
+}
+
+.group-list {
+  display: flex;
+}
+
+.group-list-item {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.list-item-active {
+  background-color: #ffc6c187;
+}
+.group-list-container {
+  margin-top: 1.2rem;
+}
+
+.group-list-item-container:nth-child(even) {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.group-list-item-container {
+  background-color: #dedcdc;
+}
+
+.group-list-name {
+  color: #ccc;
+  border: none !important;
+  font-weight: bolder;
+  font-size: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .friendlist-table-header .group-name {
+    display: none;
+  }
+
+  .friendlist-table-data .email,
+  .group,
+  .action {
+    display: none;
+  }
+  .group-list-container {
+    width: 0px;
+    transition: 0.5s;
+    overflow: hidden;
+  }
+
+  .group-list-item-container {
+    background-color: #dedcdc;
+  }
+
+  .group-list-container-open-menu-bar {
+    /* background-color: #dedcdc; */
+    width: 70%;
+    transition: 0.5s;
+    left: 20%;
+    position: absolute;
+  }
+  .group-list-container-open-menu-bar .group-list-name {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .friendlist-table-header .group-name {
+    display: none;
+  }
+
+  .friendlist-table-data .email,
+  .group {
+    display: none;
+  }
+  .groups-menu {
+    display: none;
+  }
+
+  .group-list-container {
+    /* background-color: #dedcdc; */
+    width: 70%;
+    display: block;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .group-list-header .email {
+    display: none;
+  }
+
+  .group-list-data .email,
+  .group,
+  .action {
+    display: none;
+  }
+  .group-list-item-container {
+    margin-top: 0.7rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .group-list-name {
+    margin-top: 0.2rem;
+  }
+  .group-list-container {
+    width: 30%;
+  }
+}

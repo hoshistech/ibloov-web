@@ -51,14 +51,14 @@
   /* transition-delay: 0.2s; */
 }
 .myibloov-nav-active a {
-  opacity: 100;
+  opacity: 1;
   color: #2a5799;
   font-weight: bolder;
 }
 
 .myibloov-nav-link a {
   color: #2a5799;
-  /* opacity: 40%; */
+  opacity: 0.4;
 }
 
 .create-event-btn-container {

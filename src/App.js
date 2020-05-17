@@ -33,6 +33,9 @@ import {
   faCheckCircle,
   faArrowLeft,
   faTimesCircle,
+  faSearch,
+  faEllipsisV,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
@@ -55,6 +58,7 @@ import { persistStore } from "redux-persist";
 import { setupStore } from "./store/reducer/index";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedReducer from "./store/reducer/rootReducer";
+import FriendPage from "./views/friendPage/FriendPage";
 
 const store = setupStore(persistedReducer);
 const persistor = persistStore(store);
@@ -86,7 +90,11 @@ library.add(
   faHandHolding,
   faMapMarkerAlt,
   faCheckCircle,
-  faArrowLeft
+  faArrowLeft,
+  faTimesCircle,
+  faSearch,
+  faEllipsisV,
+  faBars
 );
 
 function NoMatch() {
@@ -139,6 +147,9 @@ function App() {
               </PrivateRoute>
               <PrivateRoute path="/event/:eventId">
                 <SingleEvent />
+              </PrivateRoute>
+              <PrivateRoute path="/myfriends">
+                <FriendPage />
               </PrivateRoute>
               <PrivateRoute path="/verify-phone">
                 <VerifyPhoneNumber />
