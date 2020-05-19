@@ -29,7 +29,6 @@ const EventPay = (props) => {
   const [dropinInstance, setDropinInstance] = useState(null);
   const [paymentStatus, setPaymentStatus] = useState("");
   const [message, setMessage] = useState("Loading...");
-  const [touchForm, setTouchForm] = useState(false);
 
   const [formInstance, setFormInstance] = useState(false);
   const [paymentStart, setPaymentStart] = useState(false);
@@ -92,8 +91,7 @@ const EventPay = (props) => {
       setFormInstance(true);
       setPaymentFailed(false);
       setDropinInstance(instance);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleSubmitPayment = () => {
@@ -203,7 +201,7 @@ const EventPay = (props) => {
               <h5>There was a problem with your payment, please try again</h5>
               <p>Return to select a payment method</p>
               <Button
-                onClick={closePayView}
+                // onClick={closePayView}
                 onClick={() => {
                   setPaymentFailed(false);
                   setPaymentStart(false);

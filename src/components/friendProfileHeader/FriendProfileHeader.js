@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import passport from "../../assets/images/passport.jpg";
 import location from "../../assets/images/location.png";
@@ -48,6 +47,5 @@ const FriendProfileHeader = (props) => {
   );
 };
 
-FriendProfileHeader.propTypes = {};
 
 export default FriendProfileHeader;

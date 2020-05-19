@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Button from "../../../components/button/Button";
 import FriendSmallCard from "../../../components/friendSmallCard/FriendSmallCard";
 
@@ -47,6 +46,5 @@ const EventCollaborators = (props) => {
   );
 };
 
-EventCollaborators.propTypes = {};
 
 export default EventCollaborators;

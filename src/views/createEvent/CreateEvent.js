@@ -3,7 +3,6 @@ import React, { useReducer, useCallback, useState, useEffect } from "react";
 import "./CreateEvent.css";
 
 import "./CreateEvent.css";
-import Button from "../../components/button/Button";
 import EventType from "./templates/EventType";
 import EventDescription from "./templates/EventDescription";
 import EventTime from "./templates/EventTime";
@@ -13,7 +12,6 @@ import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { createEvent, eventCreateEnd } from "./createEvent.action";
 import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
-import moment from "moment";
 
 const CreateEvent = (props) => {
   const [formCount, setFormCount] = useState(1);

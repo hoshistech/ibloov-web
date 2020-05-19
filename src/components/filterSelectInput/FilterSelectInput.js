@@ -18,6 +18,10 @@ const FilterSelectInput = (props) => {
   );
 };
 
-FilterSelectInput.propTypes = {};
+FilterSelectInput.propTypes = {
+  empty: PropTypes.bool,
+  placeHolder: PropTypes.string,
+  label: PropTypes.string,
+};
 
 export default FilterSelectInput;

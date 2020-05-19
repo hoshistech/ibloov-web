@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import StarRatingComponent from "react-star-rating-component";
 
 import Input from "../input/Input";
@@ -86,6 +85,5 @@ const CreateComment = (props) => {
   );
 };
 
-CreateComment.propTypes = {};
 
 export default CreateComment;

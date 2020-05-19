@@ -1,25 +1,17 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import faker from "faker";
 import Navbar from "../../components/navbar/Navbar";
-import { useSelector } from "react-redux";
 
 import "./FriendPage.css";
-import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
-import Card from "../../components/card/Card";
-import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
-import CreateEvent from "../createEvent/CreateEvent";
-import Loading from "../../components/loadingIndicator/Loading";
-import Input from "../../components/input/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FriendList from "./template/friendList.js/FriendList";
 import GroupList from "./template/groupList/GroupList";
 import { genRandomNumber } from "../../utils/helper";
+import DropDown from "../../components/dropDown/DropDown";
 
 const FriendPage = (props) => {
   const [selectedTab, setSelectedTab] = useState("group");
-  const [myCreatedEvent, setMyCreatedEvent] = useState(true);
-  const [showCreate, setShowCreate] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState("Family");
 
   // testing purpose
@@ -31,22 +23,12 @@ const FriendPage = (props) => {
 
     e.preventDefault();
     setSelectedTab(tabSwitch);
-    setShowCreate(false);
   };
 
   const selectedGroupHandler = (index) => {
     setSelectedGroup(contactGroups[index - 1]);
   };
 
-  const selectMyEventHandler = (e) => {
-    e.preventDefault();
-    setMyCreatedEvent(!myCreatedEvent);
-  };
-
-  const createButtonHandler = (e) => {
-    e.preventDefault();
-    setShowCreate(!showCreate);
-  };
   const contactGroups = [
     "Family",
     "Church Friends",
@@ -71,7 +53,6 @@ const FriendPage = (props) => {
         groups: contactGroups[genRandomNumber(0, 6)],
       })
     );
-
 
   const friends = [
     {
@@ -176,8 +157,8 @@ const FriendPage = (props) => {
               </div>
             </div>
           </div>
-          <div>
-            <div className="">Sort: most recent </div>
+          <div className="mr-5">
+            <DropDown />
           </div>
         </div>
         <div>

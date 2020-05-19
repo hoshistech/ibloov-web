@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Button from "../button/Button";
 
@@ -52,6 +51,5 @@ const NonAuthNavbar = (props) => {
   );
 };
 
-NonAuthNavbar.propTypes = {};
 
 export default NonAuthNavbar;

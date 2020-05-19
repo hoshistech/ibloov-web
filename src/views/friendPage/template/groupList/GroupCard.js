@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import ProgressiveImage from "../../../../components/progressiveImage/ProgressiveImage";
-import { genRandomNumber } from "../../../../utils/helper";
 
 const GroupCard = (props) => {
   const { groupName, numberContact, selected, name, selectGroup } = props;

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import StarRatingComponent from "react-star-rating-component";
 
 import passport from "../../assets/images/passport.jpg";
@@ -24,7 +23,7 @@ const SingleComment = (props) => {
               starColor="#FCC1BA"
               starCount={5}
               emptyStarColor="black"
-              renderStarIconHalf='half' 
+              renderStarIconHalf="half"
               value={4.5}
             />
           </div>
@@ -46,7 +45,5 @@ const SingleComment = (props) => {
     </div>
   );
 };
-
-SingleComment.propTypes = {};
 
 export default SingleComment;

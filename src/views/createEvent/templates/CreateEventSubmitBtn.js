@@ -34,6 +34,12 @@ const CreateEventSubmitBtn = (props) => {
   );
 };
 
-CreateEventSubmitBtn.propTypes = {};
+CreateEventSubmitBtn.propTypes = {
+  nextQuestionHandler: PropTypes.func,
+  previousQuestionHandler: PropTypes.func,
+  formCount: PropTypes.number,
+  submitEventHandler: PropTypes.func,
+  formIsValid: PropTypes.bool,
+};
 
 export default CreateEventSubmitBtn;

@@ -28,7 +28,6 @@ const Myibloov = (props) => {
         return (
           <Card
             key={event._id}
-            key={event._id}
             name={event.name}
             eventId={event._id}
             startDate={event.startDate}
@@ -45,7 +44,6 @@ const Myibloov = (props) => {
     attendingEvents = events.slice(0, 4).map((event) => {
       return (
         <Card
-          key={event._id}
           key={event._id}
           name={event.name}
           eventId={event._id}

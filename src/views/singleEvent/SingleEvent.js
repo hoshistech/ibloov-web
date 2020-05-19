@@ -27,7 +27,6 @@ const SingleEvent = (props) => {
 
   let foundEvent;
   let startDate;
-  let eventPrice;
   if (event) {
     foundEvent = event;
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");

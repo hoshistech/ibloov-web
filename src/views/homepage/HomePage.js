@@ -5,7 +5,6 @@ import background from "../../assets/images/carousel/bg4.png";
 import background3 from "../../assets/images/carousel/carousel22.png";
 
 import "./HomePage.css";
-import FilterBar from "../../components/filterbar/FilterBar";
 import PopularEvent from "../../components/popularEvent/PopularEvent";
 import CategoryCard from "../../components/categoryCard/CategoryCard";
 

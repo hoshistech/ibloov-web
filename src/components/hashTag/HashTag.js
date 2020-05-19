@@ -12,6 +12,8 @@ const HashTag = (props) => {
   );
 };
 
-HashTag.propTypes = {};
+HashTag.propTypes = {
+  tagValue: PropTypes.string.isRequired,
+};
 
 export default HashTag;

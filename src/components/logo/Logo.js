@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Image from "../progressiveImage/ProgressiveImage";
 import LogoImage from "../../assets/images/splash_logo.png";
 
@@ -14,7 +13,5 @@ const Logo = (props) => {
     />
   );
 };
-
-Logo.propTypes = {};
 
 export default Logo;
