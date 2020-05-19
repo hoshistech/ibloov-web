@@ -22,6 +22,8 @@ const SelectInput = (props) => {
   );
 };
 
-SelectInput.propTypes = {};
+SelectInput.propTypes = {
+  placeHolder: PropTypes.string
+};
 
 export default SelectInput;

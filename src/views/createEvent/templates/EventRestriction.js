@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import RadioInput from "../../../components/radioInput/RadioInput";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../../../components/button/Button";
 import Toggle from "../../../components/Toggle/Toggle";

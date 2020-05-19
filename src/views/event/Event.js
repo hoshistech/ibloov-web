@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import NavbarJombotron from "../../components/navbarJombotron/NavbarJombotron";
 import Card from "../../components/card/Card";
 import FilterBar from "../../components/filterbar/FilterBar";
-import Footer from "../../components/footer/Footer";
 
 import "./Event.css";
 import Pagination from "../../components/pagination/Pagination";
@@ -23,7 +22,6 @@ const Event = (props) => {
     popularEvents = events.map((event, index) => {
       return (
         <Card
-          key={event._id}
           key={event._id}
           name={event.name}
           eventId={event._id}

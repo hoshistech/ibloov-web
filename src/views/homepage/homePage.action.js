@@ -1,7 +1,5 @@
 import axios from "../../utils/axiosConfig";
 // import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
-import { toast } from "react-toastify";
 import {
   FETCH_ALL_EVENTS_START,
   FETCH_ALL_EVENTS_SUCCESS,

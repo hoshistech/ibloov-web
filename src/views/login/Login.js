@@ -1,5 +1,4 @@
 import React, { useReducer, useCallback } from "react";
-import axios from "../../utils/axiosConfig";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -75,14 +74,15 @@ const Login = (props) => {
 
     dispatch(authLogin(newUser, history));
   };
-  const socialAuthHandler = (e, id) => {
+
+  /*   const socialAuthHandler = (e, id) => {
     const googleAuth = "https://ibloov.xpasson.com:4000/auth/google";
     window.location = googleAuth;
     axios
       .get("/auth/google")
       .then((response) => {})
       .catch((error) => {});
-  };
+  }; */
 
   if (token) {
     return <Redirect to="/" />;

@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./GroupList.css";
 import ProgressiveImage from "../../../../components/progressiveImage/ProgressiveImage";
 import GroupCard from "./GroupCard";
-import Loading from "../../../../components/loadingIndicator/Loading";
-import { genRandomNumber } from "../../../../utils/helper";
 const GroupList = (props) => {
   const { friendList, pickedGroup, picked } = props;
   const [openSideBar, setOpenSideBar] = useState(false);

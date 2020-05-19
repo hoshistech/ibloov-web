@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import CategoryCard from "../../../components/categoryCard/CategoryCard";
 import NightLifeSvg from "../../../components/svgLoader/NightLifeSvg";
 import ConcertsSvg from "../../../components/svgLoader/ConcertsSvg";
 import ConferencesSvg from "../../../components/svgLoader/ConferencesSvg";
@@ -13,14 +12,13 @@ import SportsSvg from "../../../components/svgLoader/SportsSvg";
 import TravelSvg from "../../../components/svgLoader/TravelSvg";
 import WeddingSvg from "../../../components/svgLoader/WeddingSvg";
 import ChristmasSvg from "../../../components/svgLoader/ChristmasSvg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreateEventCategory from "../../../components/createEventCategory/CreateEventCategory";
 
 const EventType = (props) => {
   const { categoryHandler } = props;
   const [selected, setSelected] = useState("");
   const [svgFill, setSvgFill] = useState("#ccc");
-  const [selectedCategories, setSelectedCategories] = useState();
+  // const [selectedCategories, setSelectedCategories] = useState();
 
   // const onSelectEventType = (category) => {
   //   let newCategory;

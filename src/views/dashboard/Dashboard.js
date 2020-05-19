@@ -5,7 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import "./Dashboard.css";
 import Card from "../../components/card/Card";
 import DashboardJumbotron from "../../components/dashboardJumbotron/DashboardJumbotron";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Loading from "../../components/loadingIndicator/Loading";
 
 const Dashboard = (props) => {
@@ -20,7 +20,6 @@ const Dashboard = (props) => {
     popularEvents = events.slice(0, 6).map((event, index) => {
       return (
         <Card
-          key={event._id}
           key={event._id}
           name={event.name}
           eventId={event._id}

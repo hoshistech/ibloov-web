@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import cardImage from "../../assets/images/background.jpg";
 import "./PromotedEventCard.css";
@@ -21,6 +20,5 @@ const PromotedEventCard = (props) => {
   );
 };
 
-PromotedEventCard.propTypes = {};
 
 export default PromotedEventCard;

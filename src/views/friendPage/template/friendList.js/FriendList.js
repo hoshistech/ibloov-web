@@ -1,10 +1,8 @@
 import React from "react";
 
 import "./FriendList.css";
-import PlaceImage from "../../../../assets/images/bg3.jpg";
 import ProgressiveImage from "../../../../components/progressiveImage/ProgressiveImage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Loading from "../../../../components/loadingIndicator/Loading";
 
 const FriendList = (props) => {
   const { friendList } = props;

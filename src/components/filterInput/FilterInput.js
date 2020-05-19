@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Input from "../input/Input";
 
 const FilterInput = (props) => {
-
   const { empty } = props;
   return (
     <div className="filter-input-container">
@@ -29,6 +28,8 @@ const FilterInput = (props) => {
   );
 };
 
-FilterInput.propTypes = {};
+FilterInput.propTypes = {
+  empty: PropTypes.bool,
+};
 
 export default FilterInput;
