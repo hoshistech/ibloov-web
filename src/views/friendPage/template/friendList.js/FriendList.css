@@ -1,0 +1,98 @@
+.ibloov-friendlist-container {
+  margin-top: 2rem;
+}
+
+.ibloov-friendlist-container table thead tr th {
+  color: #ccc;
+  border: none !important;
+  font-weight: bolder;
+}
+
+.friendlist-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+.friendlist-name {
+  font-size: 13px;
+  padding: 5px 0px;
+}
+
+.friendlist-phone-number {
+  font-size: 13px;
+  padding-top: 23px !important;
+  font-weight: bolder;
+  color: #222222;
+}
+
+.friendlist-table-data .email {
+  font-size: 13px;
+  padding-top: 23px !important;
+  font-weight: bolder;
+  color: #222222;
+}
+
+.friendlist-info {
+  display: flex;
+  color: #222222;
+}
+
+.friendlist-info p {
+  margin-bottom: -5px;
+  font-weight: bolder;
+}
+
+.friendlist-info span {
+  font-weight: lighter;
+}
+
+.friendlist-table-data .action-icon {
+  color: #ccc;
+}
+
+.friendlist-table-data .group div {
+  background-color: #ffe3df;
+  /* width: 50px; */
+  height: 25px;
+  padding: 5px 1rem;
+  text-align: center;
+  border-radius: 20px;
+  margin-right: 5px;
+  color: #fc705f;
+  font-size: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .friendlist-table-header .email,
+  .group,
+  .action {
+    display: none;
+  }
+
+  .friendlist-table-data .email,
+  .group,
+  .action {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .friendlist-table-data .group {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .friendlist-table-data .group div {
+    background-color: #ffe3df;
+    /* width: 50px; */
+    height: 30px;
+    padding: 9px 3rem;
+    text-align: center;
+    border-radius: 20px;
+    margin-right: 5px;
+    color: #fc705f;
+    font-size: 10px;
+  }
+}

@@ -1,5 +1,9 @@
 .event-card-container {
-    width: 80%;
-    margin: 4rem auto;
-    justify-content: space-between;
+  width: 80%;
+  margin: 4rem auto;
+  /* justify-content: space-between; */
+}
+
+.event-card-container .card-container {
+  margin-right: 1rem;
 }

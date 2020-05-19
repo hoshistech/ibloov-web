@@ -18,7 +18,7 @@ export const fetchAllEventStart = () => {
 export const fetchAllEventSuccess = (events, likedEvents) => {
   return {
     type: FETCH_ALL_EVENTS_SUCCESS,
-    events: events,
+    events,
     likedEvents,
   };
 };
@@ -41,8 +41,8 @@ export const fetchEvents = () => {
         },
       })
       .then((response) => {
-        const { data } = response.data;
-        dispatch(fetchAllEventSuccess(data));
+        const { events, likedEvents } = response.data.data;
+        dispatch(fetchAllEventSuccess(events, likedEvents));
       })
       .catch((error) => {
         dispatch(fetchAllEventFailed("error"));

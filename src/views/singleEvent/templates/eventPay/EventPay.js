@@ -38,7 +38,6 @@ const EventPay = (props) => {
 
   useEffect(() => {
     registerMessageListener();
-    createCreditCardUI();
   }, [paymentFailed, paymentSuccess]);
 
   const registerMessageListener = () => {
@@ -54,13 +53,14 @@ const EventPay = (props) => {
     setPaymentSuccess(false);
   };
 
-  const createCreditCardUI = async () => {
+  const createCreditCardUI = async (clientToken) => {
     try {
       const response = await axios.get(
         "/v1/payment/braintree/generate/client_token"
       );
 
       const clientToken = response.data.data;
+
       const instance = await DropIn.create({
         authorization: clientToken,
         container: "#dropin-container",
@@ -88,11 +88,11 @@ const EventPay = (props) => {
           },
         },
       });
+
       setFormInstance(true);
       setPaymentFailed(false);
       setDropinInstance(instance);
     } catch (error) {
-      setPaymentFailed(true);
     }
   };
 
@@ -119,6 +119,7 @@ const EventPay = (props) => {
         try {
           confirmPay = await axios.post("/v1/payment/checkout", {
             amount: eventPrice,
+            // amount: 1000,
             nonceFromTheClient: nonce,
           });
         } catch (error) {
@@ -133,6 +134,7 @@ const EventPay = (props) => {
       }
     });
   };
+
   return (
     <div>
       <div>
@@ -157,19 +159,6 @@ const EventPay = (props) => {
         )}
       </div>
       <div>
-        {
-          renderIf(dropinInstance && !paymentStart)()
-          // <div>
-          //   <Button
-          //     customClassName="pay-event-submit-btn"
-          //     btndisabled={false}
-          //     onClick={handleSubmitPayment}
-          //     id="submit-button"
-          //   >
-          //     Submit Payment2
-          //   </Button>
-          // </div>
-        }
         {renderIf(paymentSuccess)(
           <div className="payment-success-container">
             <ProgressiveImage
@@ -207,7 +196,7 @@ const EventPay = (props) => {
               alt="credit-card"
             />
             <FontAwesomeIcon
-              className="pt-1 payment-success-icon"
+              className="pt-1 payment-fail-icon"
               icon="times-circle"
             />
             <div>
@@ -230,7 +219,7 @@ const EventPay = (props) => {
         )}
       </div>
       {/* this div is used to display the PrintElement data to the page*/}
-      <div id="messages" />
+      <div id="messages"></div>
     </div>
   );
 };

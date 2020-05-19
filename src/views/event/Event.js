@@ -20,7 +20,7 @@ const Event = (props) => {
 
   let popularEvents = <Loading />;
   if (events) {
-    popularEvents = events.slice(0, 6).map((event, index) => {
+    popularEvents = events.map((event, index) => {
       return (
         <Card
           key={event._id}

@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ProgressiveImg from "react-progressive-image";
-
+import imgPlaceholder from "../../assets/images/img_placeholder.gif";
 const ProgressiveImage = (props) => {
   const { src, placeholder, customClass, alt } = props;
   return (
-    <ProgressiveImg src={src} placeholder={placeholder}>
+    <ProgressiveImg src={src} placeholder={imgPlaceholder}>
       {(src) => <img className={customClass} src={src} alt={alt} />}
     </ProgressiveImg>
   );
