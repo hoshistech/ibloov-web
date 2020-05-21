@@ -1,18 +1,19 @@
 .view-event-profile-img {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border-radius: 30px;
   border: 2px solid #fff;
 }
 
 .view-event-profile-detail p {
   margin-bottom: -0.7rem;
-  font-size: 0.9rem;
+  font-size: 18px;
 }
 
 .view-event-profile-detail small {
-  font-size: 0.7rem;
+  font-size: 12px;
   color: #ff3434;
+  cursor: pointer;
 }
 
 .view-event-stat-container {
@@ -23,8 +24,8 @@
   border-radius: 10px;
   /* opacity: 1; */
   padding: 1rem;
-  margin: 0px auto;
-  /* max-width: 320px; */
+  /* margin: 0px auto; */
+  max-width: 320px;
 }
 
 .view-event-profile-container {
@@ -33,7 +34,7 @@
   /* width: 200px; */
   width: 95%;
   margin-left: 0px;
-  margin: 0px auto;
+  /* margin: 0px auto; */
   max-width: 320px;
 }
 

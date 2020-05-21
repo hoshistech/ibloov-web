@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./FriendList.css";
 import ProgressiveImage from "../../../../components/progressiveImage/ProgressiveImage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FriendProfile from "../friendProfile/FriendProfile";
 
 const FriendList = (props) => {
   const { friendList } = props;
 
-  const friendData = friendList.map((friend) => (
-    <tr className="friendlist-table-data">
+  const [openFriendProfile, setOpenFriendProfile] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
+
+  const openFriendProfileHandler = (user) => {
+    setOpenFriendProfile(!openFriendProfile);
+    if (!openFriendProfile) {
+      setCurrentUser(user);
+    }
+  };
+
+  const friendData = friendList.map((friend, index) => (
+    <tr
+      className="friendlist-table-data"
+      key={index}
+      onClick={() => openFriendProfileHandler(friend)}
+    >
       <td className="friendlist-info-container">
         <div className="friendlist-info">
           <ProgressiveImage
@@ -52,6 +67,11 @@ const FriendList = (props) => {
         </thead>
         <tbody>{friendData}</tbody>
       </table>
+      <FriendProfile
+        openProfile={openFriendProfile}
+        setOpenProfile={openFriendProfileHandler}
+        user={currentUser}
+      />
     </div>
   );
 };

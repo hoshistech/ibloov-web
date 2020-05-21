@@ -5,19 +5,34 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import passport from "../../assets/images/passport.jpg";
 import "./ViewEventProfileCard.css";
 import Button from "../button/Button";
+import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif";
+import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 
 const ViewEventProfileCard = (props) => {
-  const { user } = props;
-  const name = `${user.local.firstName} ${user.local.lastName}`;
+  const { user, openFriendProfile } = props;
+
+  let name;
+  let profileImage;
+
+  if (user) {
+    const firstName = user.local.firstName ? user.local.firstName : "";
+    const lastName = user.local.lastName ? user.local.lastName : "";
+    name = `${firstName} ${lastName}`;
+    profileImage = user.avatar ? user.avatar : avatarPlaceHolder;
+  }
   return (
     <div>
       <div className="row view-event-profile-container">
         <div className="mr-2">
-          <img src={passport} className="view-event-profile-img" alt="card" />
+          <ProgressiveImage
+            src={profileImage}
+            customClass="view-event-profile-img"
+            alt="card"
+          />
         </div>
         <div className="view-event-profile-detail">
           <p>{name}</p>
-          <small>View Profile</small>
+          <small onClick={openFriendProfile}>View Profile</small>
         </div>
       </div>
       <div className="mt-3 view-event-stat-container">

@@ -1,0 +1,43 @@
+.friend-profile-section {
+  margin-top: 3rem;
+  padding: 5px 0px 5px 10px;
+}
+
+.friend-profile-title {
+  color: #20316a;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+}
+
+.friend-profile-card-wrapper {
+  /* padding: 5px 10px; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.friend-profile-card-wrapper .friend-profile-card-container {
+  margin-right: 7px;
+  margin-bottom: 10px;
+}
+
+.friend-profile-side {
+  background-color: white;
+}
+
+@media only screen and (min-width: 768px) {
+  .friend-profile-section {
+    margin-top: 3rem;
+    padding: 5px 3rem;
+  }
+
+  .friend-profile-card-wrapper .friend-profile-card-container {
+    margin-right: 2rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  /* .friend-profile-info-container {
+    max-height: 250px;
+  } */
+}

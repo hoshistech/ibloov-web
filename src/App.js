@@ -35,6 +35,7 @@ import {
   faSearch,
   faEllipsisV,
   faBars,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
@@ -93,7 +94,8 @@ library.add(
   faTimesCircle,
   faSearch,
   faEllipsisV,
-  faBars
+  faBars,
+  faUser
 );
 
 function NoMatch() {

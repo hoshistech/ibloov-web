@@ -16,11 +16,14 @@ import { getEvent } from "./singleEvent.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import EventPay from "./templates/eventPay/EventPay";
 import SideOverLayContainer from "../../components/sideOverLayContainer/SideOverLayContainer";
+import FriendProfile from "../friendPage/template/friendProfile/FriendProfile";
 
 const SingleEvent = (props) => {
   const [openPay, setOpenPay] = useState(false);
-  const { eventId } = useParams();
+  const [openFriendProfile, setOpenFriendProfile] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
 
+  const { eventId } = useParams();
   const dispatch = useDispatch();
 
   const event = useSelector((state) => state.singleEvent.event);
@@ -30,6 +33,7 @@ const SingleEvent = (props) => {
   if (event) {
     foundEvent = event;
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
+    // setCurrentUser(foundEvent.userId);
   }
 
   useEffect(() => {
@@ -42,6 +46,13 @@ const SingleEvent = (props) => {
 
   const togglePayView = () => {
     setOpenPay(!openPay);
+  };
+
+  const openFriendProfileHandler = (user) => {
+    setOpenFriendProfile(!openFriendProfile);
+    if (!openFriendProfile) {
+      setCurrentUser(user);
+    }
   };
 
   return (
@@ -115,7 +126,10 @@ const SingleEvent = (props) => {
             </div>
             <div className="col-md-4">
               <div>
-                <ViewEventProfileCard user={foundEvent.userId} />
+                <ViewEventProfileCard
+                  user={foundEvent.userId}
+                  openFriendProfile={openFriendProfileHandler}
+                />
               </div>
               <div className="mt-3 mb-3 single-event-date-container">
                 <h4 className="single-event-header-title">Dates and Time</h4>
@@ -183,7 +197,7 @@ const SingleEvent = (props) => {
 
         <SideOverLayContainer
           openSide={openPay}
-          customClassName=""
+          customClassName="event-pay-side"
           toggleOpenSide={() => setOpenPay(!openPay)}
         >
           <div className="event-pay-form-container">
@@ -193,6 +207,12 @@ const SingleEvent = (props) => {
             />
           </div>
         </SideOverLayContainer>
+
+        <FriendProfile
+          openProfile={openFriendProfile}
+          setOpenProfile={openFriendProfileHandler}
+          user={foundEvent ? foundEvent.userId : ""}
+        />
       </section>
     </Fragment>
   );
