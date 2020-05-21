@@ -11,7 +11,7 @@ import { genRandomNumber } from "../../utils/helper";
 import DropDown from "../../components/dropDown/DropDown";
 
 const FriendPage = (props) => {
-  const [selectedTab, setSelectedTab] = useState("group");
+  const [selectedTab, setSelectedTab] = useState("ibloov");
   const [selectedGroup, setSelectedGroup] = useState("Family");
 
   // testing purpose

@@ -1,0 +1,47 @@
+.friend-profile-card-container {
+  width: 170px;
+  background-color: white;
+  box-shadow: 0px 3px 10px #00000029;
+  border-radius: 5px;
+}
+
+.friend-profile-card-image-container {
+  position: relative;
+}
+
+.friend-profile-card-image {
+  width: 170px;
+  height: 105px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.friend-card-price {
+  background-color: #6e6f6f;
+  color: #ffffff;
+  position: absolute;
+  top: 15%;
+  font-size: 11px;
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  padding: 4px 0px;
+  font-weight: bolder;
+  margin-left: -5px;
+}
+
+.friend-profile-card-details {
+  padding: 10px;
+}
+
+.friend-profile-card-details h2 {
+  color: #20316a;
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.friend-profile-card-details p {
+  color: #6e6f6f;
+  font-size: 10px;
+  margin-bottom: 0px;
+}

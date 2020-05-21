@@ -4,7 +4,7 @@ import "./SideOverLayContainer.css";
 import Button from "../button/Button";
 
 const SideOverLayContainer = (props) => {
-  const { openSide, toggleOpenSide, children } = props;
+  const { openSide, toggleOpenSide, children, customClassName } = props;
 
   let classNames = "ibloov-sidenav close-ibloov-side";
 
@@ -13,7 +13,7 @@ const SideOverLayContainer = (props) => {
   }
 
   return (
-    <div id="ibloov-sidenav" className={classNames}>
+    <div id="ibloov-sidenav" className={`${customClassName} ${classNames}`}>
       <Button
         customClassName="ibloove-side-close-btn"
         btndisabled={false}

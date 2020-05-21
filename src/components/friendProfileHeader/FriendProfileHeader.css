@@ -52,6 +52,17 @@
   padding: 0.2rem 2rem;
 }
 
+@media only screen and (max-width: 768px) {
+  .friend-follow-stat {
+    margin-right: 30px;
+  }
+}
+
+.friend-profile-info-container {
+  width: min-content;
+  min-width: 100vw;
+}
+
 @media only screen and (min-width: 768px) {
   .friend-profile-info {
     justify-content: start;
@@ -68,5 +79,22 @@
   .friend-follow-stat-container {
     margin-left: 0px;
     justify-content: flex-start;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .friend-profile-info {
+    height: 232px;
+    width: 100%;
+  }
+  .friend-name {
+    font-size: 30px;
+  }
+  .friend-profile {
+    font-size: 15px;
+  }
+
+  .friend-follow-stat {
+    margin-right: 3rem !important;
   }
 }
