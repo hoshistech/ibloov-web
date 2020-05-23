@@ -8,25 +8,18 @@ import "./FriendProfileHeader.css";
 import Button from "../button/Button";
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 const FriendProfileHeader = (props) => {
-  const { user } = props;
+  const { user, handleFollowUser } = props;
 
   let name;
   let profileImage;
+  let userId;
 
   if (user) {
-    const firstName = user.local.firstName ? user.local.firstName : "";
-    const lastName = user.local.lastName ? user.local.lastName : "";
-    name = `${firstName} ${lastName}`;
+    name = user.name;
+    userId = user._id;
     profileImage = user.avatar ? user.avatar : avatarPlaceHolder;
   }
-  // const firstName = user.local.firstName ? user.local.firstName : "";
-  // const lastName = user.local.lastName ? user.local.lastName : "";
-  // const name = `${firstName} ${lastName}`;
 
-  // let profileImage;
-  // if (!user.avatar) {
-  //   profileImage = "https://source.unsplash.com/250x182/?avatar";
-  // }
   return (
     <div className="friend-profile-info-container">
       <div className="row friend-profile-info">
@@ -61,8 +54,8 @@ const FriendProfileHeader = (props) => {
             <div className="friend-follow-btn-container">
               <Button
                 customClassName="friend-follow-btn bold-600"
-                //   onClick={handleLogin}
-                //   disabled={!formState.formIsValid}
+                onClick={() => handleFollowUser(userId)}
+                btndisabled={false}
               >
                 following
               </Button>

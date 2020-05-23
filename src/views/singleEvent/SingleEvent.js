@@ -17,6 +17,7 @@ import Loading from "../../components/loadingIndicator/Loading";
 import EventPay from "./templates/eventPay/EventPay";
 import SideOverLayContainer from "../../components/sideOverLayContainer/SideOverLayContainer";
 import FriendProfile from "../friendPage/template/friendProfile/FriendProfile";
+import { followUser } from "../friendPage/friendPage.action";
 
 const SingleEvent = (props) => {
   const [openPay, setOpenPay] = useState(false);
@@ -27,10 +28,15 @@ const SingleEvent = (props) => {
   const dispatch = useDispatch();
 
   const event = useSelector((state) => state.singleEvent.event);
+  const { _id: authUser } = useSelector((state) => state.login.user);
+
+  console.log(88, authUser);
 
   let foundEvent;
   let startDate;
   if (event) {
+    console.log(22, event);
+
     foundEvent = event;
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
     // setCurrentUser(foundEvent.userId);
@@ -53,6 +59,10 @@ const SingleEvent = (props) => {
     if (!openFriendProfile) {
       setCurrentUser(user);
     }
+  };
+
+  const handleFollowUserHandler = (userId) => {
+    dispatch(followUser(userId));
   };
 
   return (
@@ -129,6 +139,7 @@ const SingleEvent = (props) => {
                 <ViewEventProfileCard
                   user={foundEvent.userId}
                   openFriendProfile={openFriendProfileHandler}
+                  authUser={authUser}
                 />
               </div>
               <div className="mt-3 mb-3 single-event-date-container">
@@ -177,12 +188,6 @@ const SingleEvent = (props) => {
                       icon={["fab", "twitter"]}
                     />
                   </div>
-                  {/* <div className="share-icon-instagram">
-                  <FontAwesomeIcon
-                    className="share-icon"
-                    icon={["fab", "instagram"]}
-                  />
-                </div> */}
                   <div className="share-icon-linkedin">
                     <FontAwesomeIcon
                       className="share-icon"
@@ -212,6 +217,7 @@ const SingleEvent = (props) => {
           openProfile={openFriendProfile}
           setOpenProfile={openFriendProfileHandler}
           user={foundEvent ? foundEvent.userId : ""}
+          handleFollowUser={handleFollowUserHandler}
         />
       </section>
     </Fragment>

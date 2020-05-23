@@ -10,8 +10,12 @@ import EventRestriction from "./templates/EventRestriction";
 import CreateEventSubmitBtn from "./templates/CreateEventSubmitBtn";
 import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { createEvent, eventCreateEnd } from "./createEvent.action";
+import {
+  createEvent,
+  eventCreateEnd,
+} from "./createEvent.action";
 import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
+import { fetchEvents } from "../homepage/homePage.action";
 
 const CreateEvent = (props) => {
   const [formCount, setFormCount] = useState(1);
@@ -170,6 +174,7 @@ const CreateEvent = (props) => {
 
   useEffect(() => {
     eventCreatedSuccesshandler();
+    dispatch(fetchEvents());
   }, [isEventCreated]);
 
   const eventCreatedSuccesshandler = () => {
@@ -184,8 +189,8 @@ const CreateEvent = (props) => {
     e.preventDefault();
     dispatch(eventCreateEnd());
     setIsCreatedEventSuccess(false);
+    window.location.reload();
   };
-
 
   return (
     <section className="mt-3">

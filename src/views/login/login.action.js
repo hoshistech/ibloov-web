@@ -60,9 +60,7 @@ export const authLogin = (userDetail, history) => {
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", JSON.stringify(data));
 
-        setTimeout(() => {
-          history.push("/events");
-        }, 3000);
+        history.push("/dashboard");
 
         dispatch(userLoginSuccess(data, user));
       })

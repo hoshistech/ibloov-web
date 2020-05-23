@@ -29,9 +29,15 @@
 }
 
 .terms-condition {
-  font-size: 0.55em;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: bolder;
   margin: 0.65rem auto;
+  color: #20316a;
+}
+
+.terms-condition a {
+  text-decoration: underline;
+  color: #20316a;
 }
 
 .terms-checkbox {
@@ -84,7 +90,7 @@
 }
 
 .auth-button-container {
-  margin: 4em auto 0 auto;
+  margin: 2em auto 0 auto;
   width: 100%;
 }
 

@@ -9,41 +9,55 @@ import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 
 const ViewEventProfileCard = (props) => {
-  const { user, openFriendProfile } = props;
+  const { user, openFriendProfile, authUser } = props;
 
   let name;
   let profileImage;
+  let eventUserId;
 
   if (user) {
+    console.log(13, user);
     const firstName = user.local.firstName ? user.local.firstName : "";
     const lastName = user.local.lastName ? user.local.lastName : "";
+    eventUserId = user._id;
     name = `${firstName} ${lastName}`;
     profileImage = user.avatar ? user.avatar : avatarPlaceHolder;
   }
   return (
     <div>
-      <div className="row view-event-profile-container">
-        <div className="mr-2">
-          <ProgressiveImage
-            src={profileImage}
-            customClass="view-event-profile-img"
-            alt="card"
-          />
-        </div>
-        <div className="view-event-profile-detail">
-          <p>{name}</p>
-          <small onClick={openFriendProfile}>View Profile</small>
-        </div>
+      <div className="view-event-profile-container prof-cont">
+        {eventUserId === authUser ? (
+          <div className="single-event-edit">EDIT EVENT</div>
+        ) : (
+          <div className="row view-event-profile-container">
+            <div className="mr-2">
+              <ProgressiveImage
+                src={profileImage}
+                customClass="view-event-profile-img"
+                alt="card"
+              />
+            </div>
+            <div className="view-event-profile-detail">
+              <p>{name}</p>
+              <small onClick={openFriendProfile}>View Profile</small>
+            </div>
+          </div>
+        )}
       </div>
       <div className="mt-3 view-event-stat-container">
         <div className="view-event-profile-button-container">
-          <Button
-            customClassName="view-event-btn bloove-event-now-btn"
-            onClick={() => {}}
-            btndisabled={false}
-          >
-            BLOOV EVENT NOW
-          </Button>
+          {eventUserId === authUser ? (
+            ""
+          ) : (
+            <Button
+              customClassName="view-event-btn bloove-event-now-btn"
+              onClick={() => {}}
+              btndisabled={false}
+            >
+              BLOOV EVENT NOW
+            </Button>
+          )}
+
           <Button
             customClassName="mt-2 view-event-btn bloove-promote-event-btn"
             onClick={() => {}}

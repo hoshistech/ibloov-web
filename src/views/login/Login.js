@@ -7,6 +7,7 @@ import "./Login.css";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
 import { authLogin } from "./login.action";
+import Logo from "../../components/logo/Logo";
 
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
@@ -92,13 +93,13 @@ const Login = (props) => {
     <section className="banner login-section row">
       <div className="col-md-7 perfect-center">
         <Link to="/">
-          <h2 className="auth-logo  font-bold">ibloov LOGO</h2>
+          <Logo customClassName="auth-page-logo" />
         </Link>
       </div>
       <div className="col-md-5 auth-form-container perfect-center">
         <div className="auth-container">
           <div>
-            <h4>Sign in</h4>
+            <h2>Sign in</h2>
             <div>
               <p className="small-info-text">
                 Are you a new user?{" "}
@@ -144,7 +145,7 @@ const Login = (props) => {
             </div>
             <div className="divider-container mt-2">
               <div className="social-divider"></div>
-              <p className="divider-content">Or Use</p>
+              <p className="divider-content">Or Sign in with</p>
               <div className="social-divider"></div>
             </div>
             <div className="auth-button-container-social-login">

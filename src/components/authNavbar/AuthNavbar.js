@@ -13,9 +13,18 @@ const AuthNavbar = (props) => {
   const { user, handleLogout } = props;
   const { firstName, lastName, avatar } = user;
 
-
   return (
     <ul className="navbar-nav header-list-container">
+      <li className="nav-item">
+        <NavLink
+          activeClassName="selected-path"
+          className="nav-link"
+          to="/events"
+        >
+          EVENTS
+        </NavLink>
+        <div className="navlink-border-bottom"></div>
+      </li>
       <li className="nav-item active">
         <NavLink
           activeClassName="selected-path"
@@ -82,6 +91,9 @@ const AuthNavbar = (props) => {
           className="dropdown-menu auth-nav-dropdown"
           aria-labelledby="navbarDropdown"
         >
+          <Link className="dropdown-item" to="/myibloov" onClick={() => {}}>
+            New Event
+          </Link>
           <Link className="dropdown-item" to="/" onClick={handleLogout}>
             Logout
           </Link>

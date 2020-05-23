@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FriendProfile from "../friendProfile/FriendProfile";
 
 const FriendList = (props) => {
-  const { friendList } = props;
+  const { friendList, handleFollowUser } = props;
 
   const [openFriendProfile, setOpenFriendProfile] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
@@ -71,6 +71,7 @@ const FriendList = (props) => {
         openProfile={openFriendProfile}
         setOpenProfile={openFriendProfileHandler}
         user={currentUser}
+        handleFollowUser={handleFollowUser}
       />
     </div>
   );

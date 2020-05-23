@@ -33,13 +33,11 @@ export const fetchEvents = () => {
   return (dispatch) => {
     dispatch(fetchAllEventStart());
     return axios
-      .get("/v1/event", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
+      .get("/v1/event")
       .then((response) => {
-        const { events, likedEvents } = response.data.data;
+        // const { events, likedEvents } = response.data.data;
+        const likedEvents = [];
+        const events = response.data.data;
         dispatch(fetchAllEventSuccess(events, likedEvents));
       })
       .catch((error) => {

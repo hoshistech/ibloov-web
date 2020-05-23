@@ -52,6 +52,10 @@
   padding: 0.2rem 2rem;
 }
 
+.friend-follow-btn:hover {
+  color: #20316a;
+}
+
 @media only screen and (max-width: 768px) {
   .friend-follow-stat {
     margin-right: 30px;

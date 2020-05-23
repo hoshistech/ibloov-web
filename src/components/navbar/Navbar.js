@@ -37,7 +37,7 @@ const Navbar = (props) => {
       )}-nav`}
     >
       <Link className="navbar-brand" to="/">
-        <Logo />
+        <Logo customClassName="navbar-logo" />
       </Link>
       <button
         className="navbar-toggler"
