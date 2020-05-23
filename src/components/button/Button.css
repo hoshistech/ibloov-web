@@ -4,6 +4,12 @@
   border-radius: 50px;
   font-size: 0.8em;
   opacity: 1;
+  color: #222222;
+  font-weight: bolder;
+}
+
+.auth-button.btn:hover {
+  color: #222222;
 }
 
 .header-button {

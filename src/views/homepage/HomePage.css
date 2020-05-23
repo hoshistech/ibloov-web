@@ -8,7 +8,13 @@
   position: absolute;
 } */
 
-.homepage-section {
+.homepage-section .popular-categories-section,
+.upcoming-events,
+.advert-section,
+.most-blooving-section,
+.bloobing-influencers-section,
+.hashtag-section {
+  margin-top: 5rem;
 }
 
 .homepage-carousel {
@@ -27,7 +33,7 @@
 }
 
 .section-header-text h4 {
-  font-size: 40px;
+  font-size: 30px;
   color: #222222;
   opacity: 100;
   font-weight: bolder;
@@ -118,6 +124,7 @@
   overflow-x: scroll;
   flex-wrap: nowrap;
   display: flex;
+  justify-content: center;
 }
 
 .hashtag-card-container div {
@@ -137,6 +144,12 @@
 
   .carousel img {
     height: auto;
+  }
+
+  .hashtag-section {
+    width: 70%;
+    margin: 5rem auto;
+    overflow: hidden;
   }
 }
 

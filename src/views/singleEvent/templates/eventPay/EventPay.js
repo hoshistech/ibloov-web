@@ -112,6 +112,7 @@ const EventPay = (props) => {
         setPaymentFailed(true);
       } else {
         const { nonce } = response;
+
         let confirmPay;
 
         try {

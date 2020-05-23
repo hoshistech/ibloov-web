@@ -6,6 +6,7 @@ import homepageReducer from "../../views/homepage/homePage.reducer";
 import singleEventReducer from "../../views/singleEvent/singleEvent.reducer";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import friendPageReducer from "../../views/friendPage/friendPage.reducer";
 
 const persistConfig = {
   key: "root",
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   createEvent: createEventReducer,
   allEvents: homepageReducer,
   singleEvent: singleEventReducer,
+  friend: friendPageReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -36,7 +36,6 @@ const HomePage = (props) => {
   let popularEvents = <Loading />;
   let upcomingEvents = "";
   if (events) {
-
     popularEvents = events
       .slice(0, 4)
       .map((event) => (
@@ -164,7 +163,7 @@ const HomePage = (props) => {
         <section className="homepage-search">
           <SearchBar />
         </section>
-        <section className="popular-categories-section mt-3">
+        <section className="popular-categories-section">
           <div className="section-header-text">
             <h4>Popular Categories</h4>
             <p>Select any of the category below to display the featured</p>
@@ -229,7 +228,7 @@ const HomePage = (props) => {
           </div>
         </section>
 
-        <section className="upcoming-events mt-3">
+        <section className="upcoming-events">
           <div className="section-header-text">
             <h4>Upcoming Events</h4>
             <p>Select any of the event below to display the event</p>
@@ -238,7 +237,7 @@ const HomePage = (props) => {
             <div className="row upcoming-event-cards">{upcomingEvents}</div>
           </div>
         </section>
-        <section className="upcoming-events mt-3">
+        <section className="upcoming-events">
           <div className="section-header-text">
             <h4>Popular Events</h4>
             <p>Select any of the event below to display the event</p>
@@ -252,7 +251,7 @@ const HomePage = (props) => {
             <img src={advertbanner} alt="advert" className="advert-image" />
           </div>
         </section>
-        <section className="most-blooving-section mt-3">
+        <section className="most-blooving-section">
           <div className="section-header-text">
             <h4>Most Blooving Places</h4>
             <p>Cities with the most iBloov events</p>
@@ -295,7 +294,7 @@ const HomePage = (props) => {
             />
           </div>
         </section>
-        <section className="mt-3 bloobing-influencers-section">
+        <section className="bloobing-influencers-section">
           <div className="section-header-text">
             <h4>Most Blooving Influencers</h4>
             <p>Your most favorite influencers</p>
@@ -343,7 +342,7 @@ const HomePage = (props) => {
             />
           </div>
         </section>
-        <section className="mt-3 mb-2 hashtag-section">
+        <section className="mb-2 hashtag-section">
           <div className="section-header-text">
             <h4>Most Blooving Hashtags</h4>
             <p>The event hashtags that are making the rave</p>
@@ -352,16 +351,9 @@ const HomePage = (props) => {
             <HashTag tagValue="TiwaLiveOnStage" />
             <HashTag tagValue="grammyNight" />
             <HashTag tagValue="covidConcert" />
-            <HashTag tagValue="BirthdayParty" />
             <HashTag tagValue="Headies" />
             <HashTag tagValue="Wizkid" />
             <HashTag tagValue="DrakeAlbumLaunch" />
-            <HashTag tagValue="Beyonce" />
-            <HashTag tagValue="BirthdayParty" />
-            <HashTag tagValue="Headies" />
-            <HashTag tagValue="Wizkid" />
-            <HashTag tagValue="DrakeAlbumLaunch" />
-            <HashTag tagValue="Beyonce" />
           </div>
         </section>
       </section>

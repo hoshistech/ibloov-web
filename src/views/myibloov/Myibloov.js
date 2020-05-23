@@ -1,10 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import { useSelector } from "react-redux";
 
 import "./Myibloov.css";
 import Button from "../../components/button/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Card from "../../components/card/Card";
 import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 import CreateEvent from "../createEvent/CreateEvent";
@@ -17,6 +17,7 @@ const Myibloov = (props) => {
 
   const events = useSelector((state) => state.allEvents.events);
   const { _id: userId } = useSelector((state) => state.login.user);
+  const history = useHistory();
 
   let myEvents = <Loading />;
   let attendingEvents = "";
@@ -77,6 +78,13 @@ const Myibloov = (props) => {
     setShowCreate(!showCreate);
   };
 
+  // useEffect(() => {}, [selectedTab]);
+
+  const redirectTabHandler = (tab) => {
+    setSelectedTab(tab);
+    history.push("/myibloov");
+  };
+
   return (
     <div className="myibloov-container">
       <div>
@@ -85,7 +93,7 @@ const Myibloov = (props) => {
       <section className="myibloov">
         <div className="myibloov-nav-container row mt-3">
           <div className="myibloov-nav-first">
-            <div className="myibloov-nav-header mr-5">My iBloov</div>
+            <div className="myibloov-nav-header">My iBloov</div>
             <div>
               <div className="myibloov-nav-links">
                 <div
@@ -194,19 +202,7 @@ const Myibloov = (props) => {
             <div className="row mt-2 my-created-event">
               {selectedTab === "event" ? (
                 <Fragment>
-                  {myCreatedEvent
-                    ? // <Fragment>
-                      //   <Card />
-                      //   <Card />
-                      //   <Card />
-                      //   <Card />
-                      // </Fragment>
-                      myEvents
-                    : // <Fragment>
-                      //   <PromotedEventCard />
-                      //   <Card />
-                      // </Fragment>
-                      attendingEvents}
+                  {myCreatedEvent ? myEvents : attendingEvents}
                 </Fragment>
               ) : (
                 <PromotedEventCard />
@@ -216,7 +212,10 @@ const Myibloov = (props) => {
         ) : (
           <Fragment>
             {selectedTab === "event" ? (
-              <CreateEvent handleCreateButton={createButtonHandler} />
+              <CreateEvent
+                handleCreateButton={createButtonHandler}
+                selectedTab={redirectTabHandler}
+              />
             ) : (
               <div>create wishlist</div>
             )}

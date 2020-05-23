@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authSignup } from "./signup.action";
 import TelephoneInput from "../../components/telephoneInput/TelephoneInput";
 import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
+import Logo from "../../components/logo/Logo";
 
 const Signup = (props) => {
   const { history } = props;
@@ -89,19 +90,18 @@ const Signup = (props) => {
     <section className="banner row">
       <div className="col-md-7 perfect-center">
         <Link to="/">
-          <h2 className="auth-logo  font-bold">ibloov LOGO</h2>
+          <Logo customClassName="auth-page-logo" />
         </Link>
       </div>
       <div className="col-md-5 perfect-center auth-form-container">
         <div className="auth-container">
           <div>
-            <h4 className="font-bold">Create an account</h4>
+            <h2 className="font-bold">Create an account</h2>
             <div>
               <p className="small-info-text">
-                Already Registered?{" "}
-                <Link to="/signin" className="font-bold text-dark">
-                  {" "}
-                  Sign in now!
+                Have you already registered?
+                <Link to="/signin" className="font-bold ml-1">
+                  Sign in here
                 </Link>
               </p>
             </div>
@@ -187,7 +187,8 @@ const Signup = (props) => {
                 className="form-check-label terms-condition"
                 htmlFor="invalidCheck"
               >
-                I agree to the Terms and conditions and Privacy policy
+                I agree to the <Link>Terms and conditions</Link> and{" "}
+                <Link>Privacy policy</Link>
               </label>
               <div className="invalid-feedback">
                 You must agree before submitting.
@@ -198,9 +199,9 @@ const Signup = (props) => {
               <Button
                 customClassName="auth-button bold-600"
                 onClick={handleSignup}
-                btndisabled={!(formState.formIsValid && checkTerms)}
+                // btndisabled={!(formState.formIsValid && checkTerms)}
               >
-                Continue
+                CREATE AN ACCOUNT
               </Button>
             </div>
           </form>

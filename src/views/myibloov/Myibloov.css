@@ -213,10 +213,11 @@
     font-size: 1.5rem;
     color: #888484;
     font-weight: bolder;
+    margin-right: 10rem;
   }
-  .myibloov-nav-first {
+  /* .myibloov-nav-first {
     width: 300px;
-  }
+  } */
   .myibloov-second-row {
     position: relative;
   }

@@ -9,10 +9,14 @@ import FriendList from "./template/friendList.js/FriendList";
 import GroupList from "./template/groupList/GroupList";
 import { genRandomNumber } from "../../utils/helper";
 import DropDown from "../../components/dropDown/DropDown";
+import { useDispatch } from "react-redux";
+import { followUser } from "./friendPage.action";
 
 const FriendPage = (props) => {
   const [selectedTab, setSelectedTab] = useState("ibloov");
   const [selectedGroup, setSelectedGroup] = useState("Family");
+
+  const dispatch = useDispatch();
 
   // testing purpose
   // const [myCreatedEvent, setMyCreatedEvent] = useState(false);
@@ -27,6 +31,10 @@ const FriendPage = (props) => {
 
   const selectedGroupHandler = (index) => {
     setSelectedGroup(contactGroups[index - 1]);
+  };
+
+  const followUserHandler = (userId) => {
+    dispatch(followUser(userId));
   };
 
   const contactGroups = [
@@ -46,6 +54,7 @@ const FriendPage = (props) => {
     .map((num, index) =>
       aa.push({
         image: faker.image.avatar(),
+        _id: faker.random.uuid(),
         name: `${faker.name.firstName()} ${faker.name.lastName()}`,
         phoneNumber: faker.phone.phoneNumber(),
         email: faker.internet.email(),
@@ -59,6 +68,7 @@ const FriendPage = (props) => {
       image:
         "https://pbs.twimg.com/profile_images/1113161698372927488/jvGhU8iU_400x400.jpg",
       name: "Damilola Adekoya",
+      _id: faker.random.uuid(),
       phoneNumber: "+2348037145164",
       email: "dharmykoya38@gmail.com",
       groups: "family",
@@ -66,6 +76,7 @@ const FriendPage = (props) => {
     {
       image: faker.image.avatar(),
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+      _id: faker.random.uuid(),
       phoneNumber: faker.phone.phoneNumber(),
       email: faker.internet.email(),
       groups: "family",
@@ -73,6 +84,7 @@ const FriendPage = (props) => {
     {
       image: faker.image.avatar(),
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+      _id: faker.random.uuid(),
       phoneNumber: faker.phone.phoneNumber(),
       email: faker.internet.email(),
       groups: "friend",
@@ -162,7 +174,14 @@ const FriendPage = (props) => {
           </div>
         </div>
         <div>
-          {selectedTab === "ibloov" ? <FriendList friendList={friends} /> : ""}
+          {selectedTab === "ibloov" ? (
+            <FriendList
+              friendList={friends}
+              handleFollowUser={followUserHandler}
+            />
+          ) : (
+            ""
+          )}
           {selectedTab === "group" ? (
             <GroupList
               friendList={friends}
