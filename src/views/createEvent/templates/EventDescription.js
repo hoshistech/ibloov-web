@@ -2,9 +2,10 @@ import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import Input from "../../../components/input/Input";
 import DragableImageUpload from "../../../components/dragableImageUpload/DragableImageUpload";
+import LocationSearchInput from "../components/placesAutoComplete/PlacesAutoComplete";
 
 const EventDescription = (props) => {
-  const { inputChangeHandler, imageUpload } = props;
+  const { inputChangeHandler, imageUpload, pickedLocation } = props;
   const fileInputRef = useRef("");
 
   const onFilesAddedHandler = (image) => {
@@ -13,7 +14,7 @@ const EventDescription = (props) => {
 
   return (
     <div className="event-desc-container">
-      <div className='create-event-title-header'>
+      <div className="create-event-title-header">
         <h5>Tell us about the event</h5>
         <small>Fill the details and give information about the event</small>
       </div>
@@ -62,7 +63,7 @@ const EventDescription = (props) => {
             </div>
             <div className="event-location">
               <label htmlFor="location">Location</label>
-              <Input
+              {/* <Input
                 name="location"
                 type="text"
                 customClassName="form-control"
@@ -72,7 +73,8 @@ const EventDescription = (props) => {
                 errorText="Please enter a valid location."
                 required
                 onInputChange={inputChangeHandler}
-              />
+              /> */}
+              <LocationSearchInput pickedLocation={pickedLocation} />
             </div>
           </div>
           <div className="col-md-6">

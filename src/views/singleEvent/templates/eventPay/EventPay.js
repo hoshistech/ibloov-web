@@ -10,19 +10,6 @@ import ProgressiveImage from "../../../../components/progressiveImage/Progressiv
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import creditCard from "../../../../assets/images/credit_card.svg";
 
-// print passed information in an html element; useful for debugging
-// since console.log and debug statements won't work in a conventional way
-const PrintElement = (data) => {
-  if (typeof data === "object") {
-    let el = document.createElement("pre");
-    el.innerHTML = util.inspect(data, { showHidden: false, depth: null });
-    document.getElementById("messages").appendChild(el);
-  } else if (typeof data === "string") {
-    let el = document.createElement("pre");
-    el.innerHTML = data;
-    document.getElementById("messages").appendChild(el);
-  }
-};
 
 const EventPay = (props) => {
   const { closePayView, eventPrice } = props;
@@ -40,8 +27,6 @@ const EventPay = (props) => {
   }, [paymentFailed, paymentSuccess]);
 
   const registerMessageListener = () => {
-    PrintElement();
-
     createCreditCardUI();
   };
 
@@ -115,17 +100,21 @@ const EventPay = (props) => {
 
         let confirmPay;
 
-        try {
-          confirmPay = await axios.post("/v1/payment/checkout", {
-            amount: eventPrice,
-            // amount: 1000,
-            nonceFromTheClient: nonce,
-          });
-        } catch (error) {
-          setPaymentStatus("PAYMENT_FAILED");
-          setPaymentFailed(true);
-          return;
-        }
+        console.log(11, response)
+        
+        console.log(12, nonce);
+
+        // try {
+        //   confirmPay = await axios.post("/v1/payment/checkout", {
+        //     amount: eventPrice,
+        //     // amount: 1000,
+        //     nonceFromTheClient: nonce,
+        //   });
+        // } catch (error) {
+        //   setPaymentStatus("PAYMENT_FAILED");
+        //   setPaymentFailed(true);
+        //   return;
+        // }
         setPaymentStart(false);
         setPaymentFailed(false);
         setPaymentSuccess(true);

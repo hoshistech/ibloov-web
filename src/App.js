@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import "react-toastify/dist/ReactToastify.min.css";
 import {
@@ -59,6 +59,7 @@ import { setupStore } from "./store/reducer/index";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedReducer from "./store/reducer/rootReducer";
 import FriendPage from "./views/friendPage/FriendPage";
+import Axios from "axios";
 
 const store = setupStore(persistedReducer);
 const persistor = persistStore(store);
@@ -113,6 +114,17 @@ function NoMatch() {
   );
 }
 function App() {
+  // useEffect(() => {
+  //   console.log(123, "hello");
+
+  //   Axios.get("https://ipapi.co/json/")
+  //     .then((response) => {
+  //       console.log(12, response);
+  //     })
+  //     .catch((error) => console.log(12, error));
+  // }, []);
+
+  // https://ipapi.co/json/
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>

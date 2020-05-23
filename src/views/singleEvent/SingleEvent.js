@@ -17,6 +17,7 @@ import Loading from "../../components/loadingIndicator/Loading";
 import EventPay from "./templates/eventPay/EventPay";
 import SideOverLayContainer from "../../components/sideOverLayContainer/SideOverLayContainer";
 import FriendProfile from "../friendPage/template/friendProfile/FriendProfile";
+import EventMap from "./templates/eventMap/EventMap";
 import { followUser } from "../friendPage/friendPage.action";
 
 const SingleEvent = (props) => {
@@ -30,15 +31,20 @@ const SingleEvent = (props) => {
   const event = useSelector((state) => state.singleEvent.event);
   const { _id: authUser } = useSelector((state) => state.login.user);
 
-  console.log(88, authUser);
-
   let foundEvent;
   let startDate;
+  let eventTags;
   if (event) {
-    console.log(22, event);
-
     foundEvent = event;
+    console.log(14, event);
+
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
+    eventTags = foundEvent.eventCode[0]
+      .split(", ")
+      .map((code, index) => <HashTag key={index} tagValue={code} />);
+
+    const a = foundEvent.eventCode[0].split(", ");
+    console.log(11, a);
     // setCurrentUser(foundEvent.userId);
   }
 
@@ -159,15 +165,16 @@ const SingleEvent = (props) => {
               </div>
               <div className="mt-3 mb-3 single-event-second-col-container">
                 <h4 className="single-event-header-title">Event Location</h4>
-                <div>map</div>
+                {/* <div>map</div> */}
+                <div>
+                  <EventMap />
+                </div>
                 <div>{foundEvent.location.address}</div>
               </div>
               <div className="mt-3 mb-3 single-event-second-col-container">
                 <h4 className="single-event-header-title">Tags</h4>
                 <div className="single-comment-hashtag-container">
-                  <HashTag tagValue="TiwaLiveOnStage" />
-                  <HashTag tagValue="wizzy" />
-                  <HashTag tagValue="TiwaLiveOnStage" />
+                  {eventTags ? eventTags : "No tags for this event"}
                 </div>
               </div>
               <div className="mt-3 mb-3 single-event-second-col-container">
