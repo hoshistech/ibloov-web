@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import "./Myibloov.css";
 import Button from "../../components/button/Button";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import Card from "../../components/card/Card";
 import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 import CreateEvent from "../createEvent/CreateEvent";
@@ -17,7 +17,15 @@ const Myibloov = (props) => {
 
   const events = useSelector((state) => state.allEvents.events);
   const { _id: userId } = useSelector((state) => state.login.user);
+
   const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      if (location.state.action === "newEvent") setShowCreate(true);
+    }
+  }, []);
 
   let myEvents = <Loading />;
   let attendingEvents = "";
@@ -76,13 +84,6 @@ const Myibloov = (props) => {
   const createButtonHandler = (e) => {
     e.preventDefault();
     setShowCreate(!showCreate);
-  };
-
-  // useEffect(() => {}, [selectedTab]);
-
-  const redirectTabHandler = (tab) => {
-    setSelectedTab(tab);
-    history.push("/myibloov");
   };
 
   return (
@@ -212,10 +213,7 @@ const Myibloov = (props) => {
         ) : (
           <Fragment>
             {selectedTab === "event" ? (
-              <CreateEvent
-                handleCreateButton={createButtonHandler}
-                selectedTab={redirectTabHandler}
-              />
+              <CreateEvent handleCreateButton={createButtonHandler} />
             ) : (
               <div>create wishlist</div>
             )}

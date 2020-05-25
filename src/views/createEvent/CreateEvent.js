@@ -14,6 +14,7 @@ import { createEvent, eventCreateEnd } from "./createEvent.action";
 import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
 import { fetchEvents } from "../homepage/homePage.action";
 
+
 const CreateEvent = (props) => {
   const [formCount, setFormCount] = useState(1);
   const [EventDetail, setEventDetail] = useState("");
@@ -30,6 +31,8 @@ const CreateEvent = (props) => {
   const [location, setLocation] = useState("");
 
   const dispatch = useDispatch();
+
+
 
   const isEventCreated = useSelector((state) => state.createEvent.success);
 
