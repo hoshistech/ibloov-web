@@ -91,7 +91,15 @@ const AuthNavbar = (props) => {
           className="dropdown-menu auth-nav-dropdown"
           aria-labelledby="navbarDropdown"
         >
-          <Link className="dropdown-item" to="/myibloov" onClick={() => {}}>
+          <Link
+            className="dropdown-item"
+            // to="/myibloov/?action=new-event"
+            to={{
+              pathname: "/myibloov",
+              state: { action: "newEvent" },
+            }}
+            onClick={() => {}}
+          >
             New Event
           </Link>
           <Link className="dropdown-item" to="/" onClick={handleLogout}>
