@@ -1,0 +1,39 @@
+.autocomplete-dropdown-container {
+  min-height: 150px;
+  background-color: #e2e9f4;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  max-width: 395px;
+  width: 100%;
+  border: 1px solid #e2e9f4;
+  position: fixed;
+  z-index: 99;
+  max-height: 150px;
+}
+
+.suggestion-item {
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.suggestion-item:nth-child(even) {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.suggestion-item--active {
+  background-color: #2a5799;
+  padding: 0.5rem;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.no-suggestion {
+  height: 0px;
+}
+
+@media only screen and (max-width: 768px) {
+  .autocomplete-dropdown-container {
+    position: absolute;
+  }
+}

@@ -16,7 +16,6 @@ const ViewEventProfileCard = (props) => {
   let eventUserId;
 
   if (user) {
-    console.log(13, user);
     const firstName = user.local.firstName ? user.local.firstName : "";
     const lastName = user.local.lastName ? user.local.lastName : "";
     eventUserId = user._id;

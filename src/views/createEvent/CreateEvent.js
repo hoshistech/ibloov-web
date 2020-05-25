@@ -10,10 +10,7 @@ import EventRestriction from "./templates/EventRestriction";
 import CreateEventSubmitBtn from "./templates/CreateEventSubmitBtn";
 import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createEvent,
-  eventCreateEnd,
-} from "./createEvent.action";
+import { createEvent, eventCreateEnd } from "./createEvent.action";
 import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
 import { fetchEvents } from "../homepage/homePage.action";
 
@@ -30,6 +27,7 @@ const CreateEvent = (props) => {
   const [eventPrice, setEventPrice] = useState();
   const [isPrivateEvent, setIsPrivateEvent] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
+  const [location, setLocation] = useState("");
 
   const dispatch = useDispatch();
 
@@ -148,6 +146,10 @@ const CreateEvent = (props) => {
     setImage(image);
   };
 
+  const locationhandler = (address) => {
+    setLocation(address);
+  };
+
   const onsubmitEventHandler = async () => {
     const eventTicket = {
       currency: isPaid ? eventPrice.currency : "",
@@ -159,7 +161,7 @@ const CreateEvent = (props) => {
       eventCode: formState.inputValues.eventCode,
       category: selectedCategory,
       controls: eventRestrictions,
-      address: formState.inputValues.location,
+      address: location.address,
       notifyMe: notifyMe,
       ...eventTicket,
       startDate: eventTime,
@@ -264,6 +266,7 @@ const CreateEvent = (props) => {
                 <EventDescription
                   inputChangeHandler={inputChangeHandler}
                   imageUpload={imageUploadHandler}
+                  pickedLocation={locationhandler}
                 />
               </div>
               <div className={formCount === 3 ? "show-question" : "question"}>
