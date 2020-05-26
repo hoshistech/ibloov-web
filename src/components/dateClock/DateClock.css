@@ -1,7 +1,18 @@
+.clock-picker-container {
+  position: relative;
+}
+
 .react-time-picker {
   height: 38px;
 }
 .react-time-picker__wrapper {
   border-radius: 5px;
   border-color: #ced4da;
+  width: 140px;
+}
+
+.date-clock-icon {
+  position: absolute;
+  right: 5%;
+  top: 30%;
 }

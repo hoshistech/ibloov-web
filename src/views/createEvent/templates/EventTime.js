@@ -18,11 +18,11 @@ const EventTime = (props) => {
   const [currency, setCurrency] = useState("");
   const [isPaid, setIsPaid] = useState(false);
 
-  const onBlurHandler = () => {
+  const toTextHandler = () => {
     startDateRef.current.type = "text";
   };
 
-  const onFocusHandler = () => {
+  const toDateHandler = () => {
     startDateRef.current.type = "date";
   };
 
@@ -126,15 +126,16 @@ const EventTime = (props) => {
                 placeholder="Thur, 22nd Mar, 2020"
                 aria-describedby="event start date"
                 onChange={onEventDateHandler}
-                onFocus={onFocusHandler}
-                onBlur={onBlurHandler}
-                onClick={onFocusHandler}
+                onFocus={toDateHandler}
+                onBlur={toTextHandler}
+                onClick={toDateHandler}
+                onMouseOver={toDateHandler}
                 required
               />
               <FontAwesomeIcon
                 className="event-start-icon"
                 icon="calendar-alt"
-                onClick={onFocusHandler}
+                onClick={toDateHandler}
               />
             </div>
             <div className="event-date-input-container">
@@ -142,33 +143,6 @@ const EventTime = (props) => {
               <DateClock timeHandler={setTimeHandler} name="timeStart" />
             </div>
           </div>
-          {/* <div className="row mb-4">
-            <div className="event-date-input-container">
-              <label htmlFor="eventStartDate2">Ends</label>
-              <input
-                name="eventEndDate"
-                type="text"
-                className="form-control event-date-input"
-                ref={endDateRef}
-                id="eventStartDate"
-                placeholder="Thur, 22nd Mar, 2020"
-                aria-describedby="event end date"
-                onChange={onEventDateHandler}
-                onFocus={onFocusHandler}
-                onBlur={onBlurHandler}
-                required
-              />
-              <FontAwesomeIcon
-                className="event-start-icon"
-                icon="calendar-alt"
-                onClick={onFocusHandler}
-              />
-            </div>
-            <div className="event-date-input-container">
-              <label htmlFor="eventStartTime">To</label>
-              <DateClock timeHandler={setTimeHandler} name="timeEnd" />
-            </div>
-          </div> */}
           <div>
             <p className="private-toggle">is this a private event? </p>
             <Toggle handleClick={privateEventHandler} />

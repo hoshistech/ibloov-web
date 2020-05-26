@@ -39,12 +39,12 @@ const SingleEvent = (props) => {
     console.log(14, event);
 
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
-    eventTags = foundEvent.eventCode[0]
-      .split(", ")
-      .map((code, index) => <HashTag key={index} tagValue={code} />);
 
-    const a = foundEvent.eventCode[0].split(", ");
-    console.log(11, a);
+    if (foundEvent.eventCode.length > 0) {
+      eventTags = foundEvent.eventCode[0]
+        .split(", ")
+        .map((code, index) => <HashTag key={index} tagValue={code} />);
+    }
     // setCurrentUser(foundEvent.userId);
   }
 
@@ -165,7 +165,6 @@ const SingleEvent = (props) => {
               </div>
               <div className="mt-3 mb-3 single-event-second-col-container">
                 <h4 className="single-event-header-title">Event Location</h4>
-                {/* <div>map</div> */}
                 <div>
                   <EventMap />
                 </div>

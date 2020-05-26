@@ -4,28 +4,29 @@ import { useSelector } from "react-redux";
 
 import "./Myibloov.css";
 import Button from "../../components/button/Button";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Card from "../../components/card/Card";
 import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 import CreateEvent from "../createEvent/CreateEvent";
 import Loading from "../../components/loadingIndicator/Loading";
+import DropDown from "../../components/dropDown/DropDown";
 
 const Myibloov = (props) => {
   const [selectedTab, setSelectedTab] = useState("event");
   const [myCreatedEvent, setMyCreatedEvent] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
+  const [showDropDown, setShowDropDown] = useState(false);
 
   const events = useSelector((state) => state.allEvents.events);
   const { _id: userId } = useSelector((state) => state.login.user);
 
-  const history = useHistory();
   const location = useLocation();
 
   useEffect(() => {
     if (location.state) {
       if (location.state.action === "newEvent") setShowCreate(true);
     }
-  }, []);
+  }, [location]);
 
   let myEvents = <Loading />;
   let attendingEvents = "";
@@ -86,13 +87,26 @@ const Myibloov = (props) => {
     setShowCreate(!showCreate);
   };
 
+  const toggleDropdownOptionHandler = (id) => {
+    console.log(id);
+
+    if (id === "dropdownId") {
+      setShowDropDown(!showDropDown);
+      return;
+    }
+    setShowDropDown(false);
+  };
+
   return (
     <div className="myibloov-container">
       <div>
         <Navbar />
       </div>
       <section className="myibloov">
-        <div className="myibloov-nav-container row mt-3">
+        <div
+          className="myibloov-nav-container row mt-3"
+          onClick={() => toggleDropdownOptionHandler("")}
+        >
           <div className="myibloov-nav-first">
             <div className="myibloov-nav-header">My iBloov</div>
             <div>
@@ -198,9 +212,17 @@ const Myibloov = (props) => {
               ) : (
                 ""
               )}
-              <div className="sort-container">Sort: most recent </div>
+              <div className="sort-container">
+                <DropDown
+                  toggleDropdownOption={toggleDropdownOptionHandler}
+                  showDropDown={showDropDown}
+                />
+              </div>
             </div>
-            <div className="row mt-2 my-created-event">
+            <div
+              className="row mt-2 my-created-event"
+              onClick={() => toggleDropdownOptionHandler("")}
+            >
               {selectedTab === "event" ? (
                 <Fragment>
                   {myCreatedEvent ? myEvents : attendingEvents}
@@ -211,7 +233,7 @@ const Myibloov = (props) => {
             </div>
           </Fragment>
         ) : (
-          <Fragment>
+          <Fragment onClick={() => toggleDropdownOptionHandler("")}>
             {selectedTab === "event" ? (
               <CreateEvent handleCreateButton={createButtonHandler} />
             ) : (

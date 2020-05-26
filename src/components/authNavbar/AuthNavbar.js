@@ -75,10 +75,8 @@ const AuthNavbar = (props) => {
           to="/signin"
         >
           <Link to="/signin" className="mr-3">
-            {/* <img src={passport} className="nav-user-image" alt="card" /> */}
             <ProgressiveImage
               src={avatar ? avatar : avatarPlaceHolder}
-              // src={passport}
               customClass="nav-user-image"
               placeholder=""
               alt="card"
@@ -93,12 +91,10 @@ const AuthNavbar = (props) => {
         >
           <Link
             className="dropdown-item"
-            // to="/myibloov/?action=new-event"
             to={{
               pathname: "/myibloov",
               state: { action: "newEvent" },
             }}
-            onClick={() => {}}
           >
             New Event
           </Link>

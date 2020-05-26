@@ -14,7 +14,6 @@ import { createEvent, eventCreateEnd } from "./createEvent.action";
 import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
 import { fetchEvents } from "../homepage/homePage.action";
 
-
 const CreateEvent = (props) => {
   const [formCount, setFormCount] = useState(1);
   const [EventDetail, setEventDetail] = useState("");
@@ -22,7 +21,7 @@ const CreateEvent = (props) => {
   const [isCreatedEventSuccess, setIsCreatedEventSuccess] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [eventRestrictions, setEventRestrictions] = useState([]);
-  const [notifyMe, setNotifyMe] = useState(false);
+  const [notifyMe, setNotifyMe] = useState(true);
   const [image, setImage] = useState("");
   const [isStepValid, setIsStepValid] = useState(false);
   const [eventPrice, setEventPrice] = useState();
@@ -31,8 +30,6 @@ const CreateEvent = (props) => {
   const [location, setLocation] = useState("");
 
   const dispatch = useDispatch();
-
-
 
   const isEventCreated = useSelector((state) => state.createEvent.success);
 

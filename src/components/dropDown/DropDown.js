@@ -5,18 +5,24 @@ import "./DropDown.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DropDown = (props) => {
-  const [showDropDown, setShowDropDown] = useState(false);
+  const { toggleDropdownOption, showDropDown } = props;
+  // const [showDropDown, setShowDropDown] = useState(false);
 
-  const toggleDropdownOptionHandler = () => {
-    setShowDropDown(!showDropDown);
-  };
+  // if (condition) {
+
+  // }
+
+  // const toggleDropdownOptionHandler = () => {
+  //   setShowDropDown(!showDropDown);
+  // };
 
   const dropdownToggle = showDropDown ? "open-dropdwon" : "close-dropdown";
   return (
     <div className="dropdown-container">
       <div
         className="dropdown-title"
-        onClick={toggleDropdownOptionHandler}
+        // onClick={() => toggleDropdownOptionHandler("dropdownId")}
+        onClick={() => toggleDropdownOption("dropdownId")}
         name="dropdownId"
       >
         Sort:
