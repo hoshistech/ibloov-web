@@ -10,7 +10,7 @@ const SingleEventHeader = (props) => {
   return (
     <div className="single-event-header">
       <div className="single-event-header-content">
-        <div>
+        <div className="goback">
           <FontAwesomeIcon className="navbar-icon" icon="arrow-left" />
           <span
             className="ml-2"

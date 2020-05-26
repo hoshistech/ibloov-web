@@ -39,7 +39,7 @@
 
 .category-card-icon {
   position: absolute;
-  top: 0%;
+  top: -10%;
   color: green;
   right: 0%;
 }

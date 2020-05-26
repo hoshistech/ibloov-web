@@ -10,9 +10,8 @@
 
 .dropdown-option-container {
   border: 1px solid #ccc;
-  border-top: none;
   font-size: 13px;
-  width: 161px;
+  width: 157px;
   position: absolute;
   background: white;
 }

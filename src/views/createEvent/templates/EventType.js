@@ -47,7 +47,7 @@ const EventType = (props) => {
 
   return (
     <div className="event-type-container">
-      <div className='create-event-title-header'>
+      <div className="create-event-title-header">
         <h5>What Kind of event are you planning?</h5>
         <small>Please choose from the options so we can help</small>
       </div>
@@ -65,7 +65,7 @@ const EventType = (props) => {
         </CreateEventCategory>
 
         <CreateEventCategory
-          categoryTitle="Concerts"
+          categoryTitle="Festival & Concerts"
           categoryCount={20}
           showCount={false}
           selectHandler={onSelectEventType}
@@ -76,53 +76,31 @@ const EventType = (props) => {
           <ConcertsSvg fill={svgFill} />
         </CreateEventCategory>
         <CreateEventCategory
-          categoryTitle="Conferences"
+          categoryTitle="Outdoors"
           categoryCount={20}
           showCount={false}
           selectHandler={onSelectEventType}
           selected={selected}
-          name="conferences"
+          name="outdoors"
           red={<ConferencesSvg fill="red" className="create-event-svg" />}
         >
           <ConferencesSvg fill={svgFill} />
         </CreateEventCategory>
 
         <CreateEventCategory
-          categoryTitle="Corporate"
+          categoryTitle="Online"
           categoryCount={20}
           showCount={false}
           selectHandler={onSelectEventType}
           selected={selected}
-          name="corporate"
-          red={<CorporateSvg fill="red" className="create-event-svg" />}
-        >
-          <CorporateSvg fill={svgFill} />
-        </CreateEventCategory>
-
-        <CreateEventCategory
-          categoryTitle="Engagement"
-          categoryCount={20}
-          showCount={false}
-          selectHandler={onSelectEventType}
-          selected={selected}
-          name="engagement"
+          name="online"
           red={<EngagementSvg fill="red" className="create-event-svg" />}
         >
           <EngagementSvg fill={svgFill} />
         </CreateEventCategory>
+
         <CreateEventCategory
-          categoryTitle="Hen Night"
-          categoryCount={20}
-          showCount={false}
-          selectHandler={onSelectEventType}
-          selected={selected}
-          name="henNight"
-          red={<HenNightSvg fill="red" className="create-event-svg" />}
-        >
-          <HenNightSvg fill={svgFill} />
-        </CreateEventCategory>
-        <CreateEventCategory
-          categoryTitle="Parties"
+          categoryTitle="House Parties"
           categoryCount={20}
           showCount={false}
           selectHandler={onSelectEventType}
@@ -134,7 +112,7 @@ const EventType = (props) => {
         </CreateEventCategory>
 
         <CreateEventCategory
-          categoryTitle="Prom"
+          categoryTitle="Private Event"
           categoryCount={20}
           showCount={false}
           selectHandler={onSelectEventType}
@@ -145,7 +123,7 @@ const EventType = (props) => {
           <PromSvg fill={svgFill} />
         </CreateEventCategory>
 
-        <CreateEventCategory
+        {/*  <CreateEventCategory
           categoryTitle="Sports"
           categoryCount={20}
           showCount={false}
@@ -170,6 +148,18 @@ const EventType = (props) => {
         </CreateEventCategory>
 
         <CreateEventCategory
+          categoryTitle="Corporate"
+          categoryCount={20}
+          showCount={false}
+          selectHandler={onSelectEventType}
+          selected={selected}
+          name="corporate"
+          red={<CorporateSvg fill="red" className="create-event-svg" />}
+        >
+          <CorporateSvg fill={svgFill} />
+        </CreateEventCategory>
+
+        <CreateEventCategory
           categoryTitle="Wedding"
           categoryCount={20}
           showCount={false}
@@ -191,7 +181,7 @@ const EventType = (props) => {
           red={<ChristmasSvg fill="red" className="create-event-svg" />}
         >
           <ChristmasSvg fill={svgFill} />
-        </CreateEventCategory>
+        </CreateEventCategory> */}
       </div>
     </div>
   );
