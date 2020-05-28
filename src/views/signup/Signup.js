@@ -1,5 +1,6 @@
-import React, { useState, useReducer, useCallback } from "react";
+import React, { useState, useReducer, useCallback, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
+import Axios from "axios";
 
 import "./Signup.css";
 import Input from "../../components/input/Input";
@@ -14,7 +15,7 @@ const Signup = (props) => {
   const { history } = props;
 
   const [checkTerms, setCheckTerms] = useState(false);
-  const [countryCode, setCountryCode] = useState("+234");
+  const [countryCode, setCountryCode] = useState("");
 
   const authErrors = useSelector((state) => state.signup.error);
   const { token } = useSelector((state) => state.login);
@@ -37,6 +38,15 @@ const Signup = (props) => {
   };
 
   const [formState, dispatchFormState] = useReducer(formReducer, initilaState);
+
+  useEffect(() => {
+    Axios.get("https://ipapi.co/json/")
+      .then((response) => {
+        const { country_calling_code: callingCode } = response.data;
+        setCountryCode(callingCode);
+      })
+      .catch((error) => {});
+  }, []);
 
   const inputChangeHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {

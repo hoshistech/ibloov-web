@@ -54,7 +54,7 @@ const PhoneNumberVerification = (props) => {
               <Button
                 customClassName="auth-button bold-600"
                 onClick={sendVerificationCodeHandler}
-                // disabled={!formState.formIsValid}
+                disabled={false}
               >
                 Resend
               </Button>
@@ -137,7 +137,7 @@ const PhoneNumberVerification = (props) => {
               <Button
                 customClassName="auth-button bold-600"
                 onClick={verifyCodeHandler}
-                // disabled={!formState.formIsValid}
+                disabled={false}
               >
                 Verify
               </Button>

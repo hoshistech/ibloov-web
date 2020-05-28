@@ -114,15 +114,7 @@ function NoMatch() {
   );
 }
 function App() {
-  // useEffect(() => {
-  //   console.log(123, "hello");
 
-  //   Axios.get("https://ipapi.co/json/")
-  //     .then((response) => {
-  //       console.log(12, response);
-  //     })
-  //     .catch((error) => console.log(12, error));
-  // }, []);
 
   // https://ipapi.co/json/
   return (
