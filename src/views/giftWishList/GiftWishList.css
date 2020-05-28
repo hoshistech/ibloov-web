@@ -1,0 +1,62 @@
+.wishlist-container {
+  margin-top: 40px;
+}
+.wishlist-header-text {
+  align-self: flex-end;
+}
+.wishlist-header-text h2 {
+  color: #20316a;
+  font-weight: bolder;
+  font-size: 25px;
+  margin-bottom: 0px;
+}
+
+.wishlist-header-text p {
+  color: #6e6f6f;
+  font-weight: bolder;
+  font-size: 12px;
+}
+
+.wishlist-header-image {
+  height: 400px;
+}
+
+.wishlist-gift-image-container {
+  margin-right: 10px;
+}
+
+.gift-wishlist-card {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0px;
+}
+
+.gift-wishlist-card:last-child {
+  border-bottom: 0px;
+}
+
+.wishlist-gift-image {
+  width: 169px;
+  height: 92px;
+}
+
+.wishlist-gift-details {
+  padding-top: 5px;
+}
+
+.wishlist-gift-date {
+  color: #393939;
+  font-size: 13px;
+  opacity: 0.4;
+  margin-bottom: 2px;
+}
+
+.wishlist-gift-name {
+  color: #20316a;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.wishlist-gift-count {
+  color: #393939;
+  font-size: 13px;
+}

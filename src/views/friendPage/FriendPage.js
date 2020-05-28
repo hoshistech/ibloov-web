@@ -15,6 +15,7 @@ import { followUser } from "./friendPage.action";
 const FriendPage = (props) => {
   const [selectedTab, setSelectedTab] = useState("ibloov");
   const [selectedGroup, setSelectedGroup] = useState("Family");
+  const [showDropDown, setShowDropDown] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -35,6 +36,16 @@ const FriendPage = (props) => {
 
   const followUserHandler = (userId) => {
     dispatch(followUser(userId));
+  };
+
+  const toggleDropdownOptionHandler = (id) => {
+    console.log(id);
+
+    if (id === "dropdownId") {
+      setShowDropDown(!showDropDown);
+      return;
+    }
+    setShowDropDown(false);
   };
 
   const contactGroups = [
@@ -170,7 +181,10 @@ const FriendPage = (props) => {
             </div>
           </div>
           <div className="mr-5">
-            <DropDown />
+            <DropDown
+              toggleDropdownOption={toggleDropdownOptionHandler}
+              showDropDown={showDropDown}
+            />
           </div>
         </div>
         <div>

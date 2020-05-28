@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../../../components/button/Button";
 import Toggle from "../../../components/Toggle/Toggle";
 import EventCollaborators from "./EventCollaborators";
+import SideOverLayContainer from "../../../components/sideOverLayContainer/SideOverLayContainer";
+import GiftWishList from "../../giftWishList/GiftWishList";
 
 const EventRestriction = (props) => {
   const { eventRestrictionsHandler, notificationHandler } = props;
@@ -15,9 +17,14 @@ const EventRestriction = (props) => {
   const [seniorCitizen, setSeniorCitizen] = useState(false);
   const [none, setNone] = useState(false);
   const [noChildren, setNoChildren] = useState(false);
+  const [openGiftWishList, setOpenGiftWishList] = useState(true);
 
   const handlelabelClick = (e) => {
     setLabel(!label);
+  };
+
+  const openGiftwishListHandler = () => {
+    setOpenGiftWishList(!openGiftWishList);
   };
 
   const selectOptionHandler = (e, name, id) => {
@@ -52,7 +59,7 @@ const EventRestriction = (props) => {
   return (
     <div className="row">
       <div>
-        <div className='create-event-title-header'>
+        <div className="create-event-title-header">
           <h5>Any restriction to the event?</h5>
           <small>Set conditions to be met before attending the event</small>
         </div>
@@ -121,7 +128,7 @@ const EventRestriction = (props) => {
           <FontAwesomeIcon className="" icon="gift" />
           <Button
             customClassName="wishlist-button bold-600"
-            onClick={() => {}}
+            onClick={openGiftwishListHandler}
             btndisabled={false}
           >
             Add Gift Wishlist
@@ -145,6 +152,13 @@ const EventRestriction = (props) => {
       <div>
         <EventCollaborators />
       </div>
+      <SideOverLayContainer
+        openSide={openGiftWishList}
+        customClassName="wishlist-side-container"
+        toggleOpenSide={openGiftwishListHandler}
+      >
+        <GiftWishList />
+      </SideOverLayContainer>
     </div>
   );
 };
