@@ -214,6 +214,8 @@ const SingleEvent = (props) => {
             <EventPay
               closePayView={closePayView}
               eventPrice={foundEvent ? foundEvent.amount : ""}
+              currency={foundEvent ? foundEvent.currency : ""}
+              eventId={foundEvent ? foundEvent._id : ""}
             />
           </div>
         </SideOverLayContainer>

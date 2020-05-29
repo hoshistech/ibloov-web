@@ -7,19 +7,21 @@
 
 .prof-cont {
   border-radius: 10px;
-  text-align: center;
 }
 
 .view-event-profile-detail p {
   margin-bottom: -0.7rem;
   font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 150px;
+  text-overflow: ellipsis;
 }
 
 .view-event-profile-detail small {
   font-size: 12px;
   color: #ff3434;
   cursor: pointer;
-  margin-left: -36px;
 }
 
 .single-event-edit {
@@ -93,6 +95,12 @@
   font-size: 12px;
   margin-right: 4px;
   color: #2a5799;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .view-event-profile-detail p {
+    max-width: 100px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
