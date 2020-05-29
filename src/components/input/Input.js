@@ -32,6 +32,7 @@ const inputReducer = (state, action) => {
 
 const Input = (props) => {
   const {
+    textArea,
     customClassName,
     handleBlur,
     handleChange,
@@ -95,19 +96,40 @@ const Input = (props) => {
 
   return (
     <Fragment>
-      <input
-        {...customProps}
-        type={type}
-        placeholder={placeHolder}
-        className={customClassName}
-        name={name}
-        value={inputState.value || value}
-        onChange={(e) => textChangeHandler(e)}
-        onBlur={lostFocusHandler}
-      />
-      <p className="input-error">
-        {!inputState.isValid && inputState.touched ? errorText : ""}
-      </p>
+      {textArea ? (
+        <Fragment>
+          <textarea
+            className="form-control"
+            name={name}
+            id={id}
+            placeholder="Tell us about he event"
+            rows="4"
+            value={inputState.value || value}
+            onChange={(e) => textChangeHandler(e)}
+            onBlur={lostFocusHandler}
+          ></textarea>
+          <p className="input-error">
+            {!inputState.isValid && inputState.touched ? errorText : ""}
+          </p>
+        </Fragment>
+      ) : (
+        <Fragment>
+          {" "}
+          <input
+            {...customProps}
+            type={type}
+            placeholder={placeHolder}
+            className={customClassName}
+            name={name}
+            value={inputState.value || value}
+            onChange={(e) => textChangeHandler(e)}
+            onBlur={lostFocusHandler}
+          />
+          <p className="input-error">
+            {!inputState.isValid && inputState.touched ? errorText : ""}
+          </p>
+        </Fragment>
+      )}
     </Fragment>
   );
 };

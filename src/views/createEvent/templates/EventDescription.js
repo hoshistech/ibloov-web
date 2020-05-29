@@ -5,7 +5,11 @@ import DragableImageUpload from "../../../components/dragableImageUpload/Dragabl
 import LocationSearchInput from "../components/placesAutoComplete/PlacesAutoComplete";
 
 const EventDescription = (props) => {
-  const { inputChangeHandler, imageUpload, pickedLocation } = props;
+  const {
+    inputChangeHandler,
+    imageUpload,
+    pickedLocation,
+  } = props;
   const fileInputRef = useRef("");
 
   const onFilesAddedHandler = (image) => {
@@ -53,28 +57,19 @@ const EventDescription = (props) => {
           <div className="col-md-6">
             <div>
               <label htmlFor="eventDetail">Event Detail</label>
-              <textarea
-                className="form-control"
-                name="eventDetail"
+              <Input
+                textArea={true}
                 id="eventDetail"
-                placeholder="Tell us about he event"
-                rows="4"
-              ></textarea>
+                name="eventDetail"
+                onInputChange={inputChangeHandler}
+                errorText="Please describe the event."
+              />
             </div>
             <div className="event-location">
               <label htmlFor="location">Location</label>
-              {/* <Input
-                name="location"
-                type="text"
-                customClassName="form-control"
-                id="location"
-                placeHolder="Lagos, Nigeria"
-                aria-describedby="location"
-                errorText="Please enter a valid location."
-                required
-                onInputChange={inputChangeHandler}
-              /> */}
-              <LocationSearchInput pickedLocation={pickedLocation} />
+              <LocationSearchInput
+                pickedLocation={pickedLocation}
+              />
             </div>
           </div>
           <div className="col-md-6">

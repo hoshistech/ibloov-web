@@ -26,6 +26,7 @@ const SingleEvent = (props) => {
   const [currentUser, setCurrentUser] = useState("");
 
   const { eventId } = useParams();
+
   const dispatch = useDispatch();
 
   const event = useSelector((state) => state.singleEvent.event);
@@ -36,8 +37,6 @@ const SingleEvent = (props) => {
   let eventTags;
   if (event) {
     foundEvent = event;
-    console.log(14, event);
-
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
 
     if (foundEvent.eventCode.length > 0) {

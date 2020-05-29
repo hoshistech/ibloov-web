@@ -39,7 +39,6 @@ const FriendPage = (props) => {
   };
 
   const toggleDropdownOptionHandler = (id) => {
-    console.log(id);
 
     if (id === "dropdownId") {
       setShowDropDown(!showDropDown);

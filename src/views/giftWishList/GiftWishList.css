@@ -15,6 +15,7 @@
   color: #6e6f6f;
   font-weight: bolder;
   font-size: 12px;
+  margin-top: 10px;
 }
 
 .wishlist-header-image {
@@ -23,6 +24,10 @@
 
 .wishlist-gift-image-container {
   margin-right: 10px;
+}
+
+.wishlist-gift-container {
+  margin-top: 20px;
 }
 
 .gift-wishlist-card {

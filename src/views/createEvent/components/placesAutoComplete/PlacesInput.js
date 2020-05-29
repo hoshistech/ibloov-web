@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Input from "../../../../components/input/Input";
 
 const PlacesInput = ({
   getInputProps,
@@ -18,9 +19,9 @@ const PlacesInput = ({
         />
         <div
           className={
-            suggestions.length === 0
-              ? "no-suggestion"
-              : "autocomplete-dropdown-container"
+            suggestions.length > 1
+              ? "autocomplete-dropdown-container"
+              : "no-suggestion"
           }
         >
           {loading && <div>Loading...</div>}
