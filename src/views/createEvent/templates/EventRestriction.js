@@ -17,7 +17,7 @@ const EventRestriction = (props) => {
   const [seniorCitizen, setSeniorCitizen] = useState(false);
   const [none, setNone] = useState(false);
   const [noChildren, setNoChildren] = useState(false);
-  const [openGiftWishList, setOpenGiftWishList] = useState(true);
+  const [openGiftWishList, setOpenGiftWishList] = useState(false);
 
   const handlelabelClick = (e) => {
     setLabel(!label);

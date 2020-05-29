@@ -9,10 +9,10 @@ import Button from "../../../../components/button/Button";
 import ProgressiveImage from "../../../../components/progressiveImage/ProgressiveImage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import creditCard from "../../../../assets/images/credit_card.svg";
-
+import { getUser } from "../../../../utils/helper";
 
 const EventPay = (props) => {
-  const { closePayView, eventPrice } = props;
+  const { closePayView, eventPrice, currency, eventId } = props;
   const [dropinInstance, setDropinInstance] = useState(null);
   const [paymentStatus, setPaymentStatus] = useState("");
   const [message, setMessage] = useState("Loading...");
@@ -26,7 +26,7 @@ const EventPay = (props) => {
     registerMessageListener();
   }, [paymentFailed, paymentSuccess]);
 
-  const registerMessageListener = () => {
+  const registerMessageListener = async () => {
     createCreditCardUI();
   };
 
@@ -38,9 +38,15 @@ const EventPay = (props) => {
   };
 
   const createCreditCardUI = async (clientToken) => {
+    const { token } = await getUser();
     try {
       const response = await axios.get(
-        "/v1/payment/braintree/generate/client_token"
+        "/v1/payment/braintree/generate/client_token",
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       const clientToken = response.data.data;
@@ -100,21 +106,30 @@ const EventPay = (props) => {
 
         let confirmPay;
 
-        console.log(11, response)
-        
-        console.log(12, nonce);
+        const { token } = await getUser();
+        const paymentDetails = {
+          amount: 1,
+          nonceFromTheClient: nonce,
+          currency,
+          resource: "event",
+          resourceId: eventId,
+        };
 
-        // try {
-        //   confirmPay = await axios.post("/v1/payment/checkout", {
-        //     amount: eventPrice,
-        //     // amount: 1000,
-        //     nonceFromTheClient: nonce,
-        //   });
-        // } catch (error) {
-        //   setPaymentStatus("PAYMENT_FAILED");
-        //   setPaymentFailed(true);
-        //   return;
-        // }
+        try {
+          confirmPay = await axios.post(
+            "/v1/payment/checkout",
+            paymentDetails,
+            {
+              headers: {
+                authorization: `Bearer ${token}`,
+              },
+            }
+          );
+        } catch (error) {
+          setPaymentStatus("PAYMENT_FAILED");
+          setPaymentFailed(true);
+          return;
+        }
         setPaymentStart(false);
         setPaymentFailed(false);
         setPaymentSuccess(true);
