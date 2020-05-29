@@ -16,7 +16,7 @@ import { fetchEvents } from "../homepage/homePage.action";
 
 const CreateEvent = (props) => {
   const [formCount, setFormCount] = useState(1);
-  const [EventDetail, setEventDetail] = useState("");
+  const [eventDetail, setEventDetail] = useState("");
   const [eventTime, setEventTime] = useState("");
   const [isCreatedEventSuccess, setIsCreatedEventSuccess] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -37,12 +37,12 @@ const CreateEvent = (props) => {
     inputValues: {
       eventTitle: "",
       eventCode: "",
-      location: "",
+      eventDetail: "",
     },
     inputValidities: {
       eventTitle: false,
       eventCode: false,
-      location: false,
+      eventDetail: false,
     },
     formIsValid: true,
   };
@@ -116,6 +116,12 @@ const CreateEvent = (props) => {
     setIsStepValid(true);
   };
 
+  // const eventDetailHandler = (e) => {
+  //   e.preventDefault();
+  //   const value = e.target.value;
+  //   setEventDetail(value);
+  // };
+
   const eventRestrictionsHandler = (restriction) => {
     const currentRestrictions = [...eventRestrictions];
 
@@ -159,6 +165,7 @@ const CreateEvent = (props) => {
     const newEvent = {
       name: formState.inputValues.eventTitle,
       eventCode: formState.inputValues.eventCode,
+      description: formState.inputValues.eventDetail,
       category: selectedCategory,
       controls: eventRestrictions,
       address: location.address,

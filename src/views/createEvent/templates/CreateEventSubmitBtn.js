@@ -12,10 +12,16 @@ const CreateEventSubmitBtn = (props) => {
     isStepValid,
     dateTimeValid,
   } = props;
-
   const nextStep = isStepValid && formIsValid && dateTimeValid;
   return (
-    <div className="myibloov-create-button-container">
+    <div
+      // className="myibloov-create-button-container"
+      className={
+        formCount === 2
+          ? "myibloov-create-button-container myibloov-description-btn"
+          : "myibloov-create-button-container"
+      }
+    >
       <Button
         customClassName="mybloov-create-event-btn-2  bold-600"
         onClick={previousQuestionHandler}

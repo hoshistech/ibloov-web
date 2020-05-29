@@ -11,7 +11,7 @@ const NonAuthNavbar = (props) => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link color-white" to="/events">
+        <Link className="nav-link color-white event-link" to="/events">
           LIVE EVENTS
         </Link>
       </li>
@@ -26,7 +26,7 @@ const NonAuthNavbar = (props) => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link to="/signin">
+        <Link to="/signin" className="login-btn" data-testid="login-btn">
           <Button
             customClassName="header-button header-button-login bold-600"
             onClick={() => {}}
@@ -37,7 +37,7 @@ const NonAuthNavbar = (props) => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link to="/signup">
+        <Link to="/signup" className="register-btn">
           <Button
             customClassName="header-button header-button-register bold-600"
             onClick={() => {}}
@@ -50,6 +50,5 @@ const NonAuthNavbar = (props) => {
     </ul>
   );
 };
-
 
 export default NonAuthNavbar;

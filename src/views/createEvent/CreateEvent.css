@@ -117,6 +117,7 @@ styling for event desc
 
 .event-location {
   margin-top: 1rem;
+  height: 250px;
 }
 
 /* 
@@ -250,6 +251,14 @@ styling for event restriction
 
 .step-container {
   position: relative;
+}
+
+.myibloov-description-btn {
+  margin-top: -40px;
+}
+
+.myibloov-description-btn .btn {
+  z-index: 99;
 }
 
 @media only screen and (min-width: 663px) {
