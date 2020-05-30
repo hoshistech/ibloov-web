@@ -8,7 +8,13 @@ import "./FriendProfile.css";
 import FriendProfileCard from "./templates/friendProfileCard/FriendProfileCard";
 
 const FriendProfile = (props) => {
-  const { openProfile, setOpenProfile, user, handleFollowUser } = props;
+  const {
+    openProfile,
+    setOpenProfile,
+    user,
+    handleFollowUser,
+    isFollowingAuthor,
+  } = props;
 
   if (user.local) {
     user.name = `${user.local.firstName} ${user.local.lastName}`;
@@ -21,7 +27,11 @@ const FriendProfile = (props) => {
         customClassName="friend-profile-side"
         toggleOpenSide={setOpenProfile}
       >
-        <FriendProfileHeader user={user} handleFollowUser={handleFollowUser} />
+        <FriendProfileHeader
+          user={user}
+          handleFollowUser={handleFollowUser}
+          isFollowingAuthor={isFollowingAuthor}
+        />
         <section className="friend-profile-section">
           <h3 className="friend-profile-title">EVENTS CREATED</h3>
           <div className="friend-profile-card-wrapper">

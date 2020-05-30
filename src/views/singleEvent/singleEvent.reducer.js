@@ -3,12 +3,16 @@ import {
   FETCH_SINGLE_EVENT_START,
   FETCH_SINGLE_EVENT_SUCCESS,
   FETCH_SINGLE_EVENT_FAIL,
+  FOLLOW_EVENT_SUCCESS,
+  FOLLOW_EVENT_ERROR,
 } from "../../store/actionTypes";
 
 const initialState = {
   event: null,
   loading: false,
   error: null,
+  follow: null,
+  isFollowingEvent: null,
 };
 
 const fetchEventStart = (state) => {
@@ -22,6 +26,7 @@ const fetchEventSuccess = (state, action) => {
     event: action.event,
     loading: false,
     error: null,
+    isFollowingEvent: action.isFollowing,
   });
 };
 
@@ -29,6 +34,19 @@ const fetchEventFail = (state, action) => {
   return updateObject(state, {
     error: action.error,
     loading: false,
+  });
+};
+
+const followEventSuccess = (state, action) => {
+  return updateObject(state, {
+    follow: action.follow,
+    error: null,
+  });
+};
+
+const followEventFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
   });
 };
 
@@ -40,6 +58,10 @@ export default (state = initialState, action) => {
       return fetchEventSuccess(state, action);
     case FETCH_SINGLE_EVENT_FAIL:
       return fetchEventFail(state, action);
+    case FOLLOW_EVENT_SUCCESS:
+      return followEventSuccess(state, action);
+    case FOLLOW_EVENT_ERROR:
+      return followEventFail(state, action);
 
     default:
       return state;

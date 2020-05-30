@@ -3,6 +3,8 @@ import {
   FETCH_SINGLE_EVENT_START,
   FETCH_SINGLE_EVENT_SUCCESS,
   FETCH_SINGLE_EVENT_FAIL,
+  FOLLOW_EVENT_SUCCESS,
+  FOLLOW_EVENT_ERROR,
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
 
@@ -12,16 +14,31 @@ export const fetchSingleEventStart = () => {
   };
 };
 
-export const fetchSingleEventSuccess = (event) => {
+export const fetchSingleEventSuccess = (event, isFollowing) => {
   return {
     type: FETCH_SINGLE_EVENT_SUCCESS,
     event,
+    isFollowing,
   };
 };
 
 export const fetchSingleEventFailed = (error) => {
   return {
     type: FETCH_SINGLE_EVENT_FAIL,
+    error,
+  };
+};
+
+export const followEventSuccess = (follow) => {
+  return {
+    type: FOLLOW_EVENT_SUCCESS,
+    follow,
+  };
+};
+
+export const followEventFailed = (error) => {
+  return {
+    type: FOLLOW_EVENT_ERROR,
     error,
   };
 };
@@ -39,7 +56,32 @@ export const getEvent = (eventId) => {
       .then((response) => {
         const { data } = response.data;
 
-        dispatch(fetchSingleEventSuccess(data));
+        dispatch(fetchSingleEventSuccess(data, data.isFollowing));
+      })
+      .catch((error) => {
+        dispatch(fetchSingleEventFailed("error"));
+      });
+  };
+};
+
+export const followEvent = (eventId) => {
+  const { token } = getUser();
+  return (dispatch) => {
+    return axios
+      .patch(
+        `/v1/event/togglefollow/${eventId}`,
+        { none: "none" },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(33, response.data);
+        const { data } = response.data;
+
+        dispatch(followEventSuccess(data));
       })
       .catch((error) => {
         dispatch(fetchSingleEventFailed("error"));

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import faker from "faker";
 import Navbar from "../../components/navbar/Navbar";
 
@@ -9,15 +9,49 @@ import FriendList from "./template/friendList.js/FriendList";
 import GroupList from "./template/groupList/GroupList";
 import { genRandomNumber } from "../../utils/helper";
 import DropDown from "../../components/dropDown/DropDown";
-import { useDispatch } from "react-redux";
-import { followUser } from "./friendPage.action";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  followUser,
+  getFriendRequestList,
+  acceptFriendRequest,
+  denyFriendRequest,
+} from "./friendPage.action";
+import FriendRequest from "./template/friendRequest/FriendRequest";
 
 const FriendPage = (props) => {
-  const [selectedTab, setSelectedTab] = useState("ibloov");
+  const [selectedTab, setSelectedTab] = useState("request");
   const [selectedGroup, setSelectedGroup] = useState("Family");
   const [showDropDown, setShowDropDown] = useState(false);
 
   const dispatch = useDispatch();
+
+  const { friendRequestList, userFollowing } = useSelector(
+    (state) => state.friend
+  );
+
+  let requestList;
+
+  if (friendRequestList) {
+    requestList = friendRequestList;
+  }
+
+  const fetchFriendRequest = useCallback(() => {
+    dispatch(getFriendRequestList());
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchFriendRequest();
+  }, [fetchFriendRequest]);
+
+  const acceptFriendRequestHandler = (requestId) => {
+    dispatch(acceptFriendRequest(requestId));
+    // dispatch(fetchFriendRequest());
+  };
+
+  const rejectFriendRequestHandler = (requestId) => {
+    dispatch(denyFriendRequest(requestId));
+    // dispatch(fetchFriendRequest());
+  };
 
   // testing purpose
   // const [myCreatedEvent, setMyCreatedEvent] = useState(false);
@@ -27,6 +61,10 @@ const FriendPage = (props) => {
     const tabSwitch = e.target.name;
 
     e.preventDefault();
+
+    if (tabSwitch === "request") {
+      fetchFriendRequest();
+    }
     setSelectedTab(tabSwitch);
   };
 
@@ -39,7 +77,6 @@ const FriendPage = (props) => {
   };
 
   const toggleDropdownOptionHandler = (id) => {
-
     if (id === "dropdownId") {
       setShowDropDown(!showDropDown);
       return;
@@ -204,7 +241,15 @@ const FriendPage = (props) => {
           ) : (
             ""
           )}
-          {selectedTab === "request" ? "request" : ""}
+          {selectedTab === "request" ? (
+            <FriendRequest
+              friendRequestList={requestList}
+              acceptFriendRequest={acceptFriendRequestHandler}
+              rejectFriendrequest={rejectFriendRequestHandler}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </section>
     </div>

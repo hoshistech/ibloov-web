@@ -8,6 +8,7 @@ import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
 import { authLogin } from "./login.action";
 import Logo from "../../components/logo/Logo";
+import { getUserFollowing } from "../friendPage/friendPage.action";
 
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
@@ -73,7 +74,8 @@ const Login = (props) => {
       ...formState.inputValues,
     };
 
-    dispatch(authLogin(newUser, history));
+    await dispatch(authLogin(newUser, history));
+    dispatch(getUserFollowing());
   };
 
   /*   const socialAuthHandler = (e, id) => {
