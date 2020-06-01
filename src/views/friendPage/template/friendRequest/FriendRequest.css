@@ -1,0 +1,46 @@
+.friendRequest-table-header .request-date {
+  display: none;
+}
+
+.friendRequest-table-data .group {
+  display: block;
+}
+
+.friendRequest-table-data .date {
+  display: none;
+}
+.accept-btn {
+  background-color: #2a5799;
+  height: 30px;
+  padding: 5px 3rem;
+  text-align: center;
+  border-radius: 20px;
+  margin-right: 5px;
+  color: white;
+  font-size: 10px;
+}
+
+.cancel-btn {
+  background-color: #ffe3df;
+  height: 30px;
+  padding: 5px 3rem;
+  text-align: center;
+  border-radius: 20px;
+  margin-right: 5px;
+  color: #fc705f;
+  font-size: 10px;
+}
+
+.cancel-btn:hover {
+  color: #fc705f;
+}
+
+.ibloov-friendlist-container .lds-ring {
+  display: block;
+}
+
+@media only screen and (max-width: 601px) {
+  .cancel-btn {
+    margin-top: 10px;
+  }
+}

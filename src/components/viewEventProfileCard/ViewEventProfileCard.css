@@ -28,6 +28,7 @@
   color: #222222;
   font-size: 15px;
   padding: 8px 0px;
+  text-align: center;
 }
 
 .view-event-stat-container {
@@ -74,6 +75,11 @@
 }
 .bloove-event-now-btn:hover {
   color: white;
+}
+
+.bloove-event-follow-btn {
+  background-color: #fcc1ba;
+  color: black;
 }
 
 .bloove-promote-event-btn {

@@ -6,7 +6,7 @@ import FilterBar from "../../components/filterbar/FilterBar";
 
 import "./Event.css";
 import Pagination from "../../components/pagination/Pagination";
-import { fetchEvents } from "../homepage/homePage.action";
+import { fetchLiveEvents } from "../homepage/homePage.action";
 import Loading from "../../components/loadingIndicator/Loading";
 const Event = (props) => {
   const events = useSelector((state) => state.allEvents.events);
@@ -14,7 +14,7 @@ const Event = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchEvents());
+    dispatch(fetchLiveEvents());
   }, [dispatch]);
 
   let popularEvents = <Loading />;
@@ -36,7 +36,7 @@ const Event = (props) => {
   return (
     <Fragment>
       <NavbarJombotron
-        headerTitle="Life Events"
+        headerTitle="Live Events"
         headerDescription="Live events across various locations"
       />
       <FilterBar />

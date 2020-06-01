@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -9,11 +9,26 @@ import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 
 const ViewEventProfileCard = (props) => {
-  const { user, openFriendProfile, authUser } = props;
+  const {
+    user,
+    openFriendProfile,
+    authUser,
+    handleFollowEvent,
+    isFollowing,
+  } = props;
+
+  const [isFollowingEvent, setIsFollowingEvent] = useState(isFollowing);
 
   let name;
   let profileImage;
   let eventUserId;
+
+  console.log(22, isFollowing);
+
+  const toggleFollowingEvent = () => {
+    setIsFollowingEvent(!isFollowingEvent);
+    handleFollowEvent();
+  };
 
   if (user) {
     const firstName = user.local.firstName ? user.local.firstName : "";
@@ -48,13 +63,24 @@ const ViewEventProfileCard = (props) => {
           {eventUserId === authUser ? (
             ""
           ) : (
-            <Button
-              customClassName="view-event-btn bloove-event-now-btn"
-              onClick={() => {}}
-              btndisabled={false}
-            >
-              BLOOV EVENT NOW
-            </Button>
+            <Fragment>
+              <Button
+                customClassName="view-event-btn bloove-event-now-btn"
+                onClick={() => {}}
+                btndisabled={false}
+              >
+                BLOOV EVENT NOW
+              </Button>
+              <Button
+                customClassName="mt-2 view-event-btn bloove-event-follow-btn"
+                // onClick={() => handleFollowEvent()}
+                onClick={toggleFollowingEvent}
+                btndisabled={false}
+              >
+                {/* {isFollowing ? "UNFOLLOW EVENT" : "FOLLOW EVENT"} */}
+                {isFollowingEvent ? "UNFOLLOW EVENT" : "FOLLOW EVENT"}
+              </Button>
+            </Fragment>
           )}
 
           <Button

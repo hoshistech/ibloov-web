@@ -8,11 +8,13 @@ import "./FriendProfileHeader.css";
 import Button from "../button/Button";
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 const FriendProfileHeader = (props) => {
-  const { user, handleFollowUser } = props;
+  const { user, handleFollowUser, isFollowingAuthor } = props;
 
   let name;
   let profileImage;
   let userId;
+
+  console.log(9999, isFollowingAuthor);
 
   if (user) {
     name = user.name;
@@ -57,7 +59,7 @@ const FriendProfileHeader = (props) => {
                 onClick={() => handleFollowUser(userId)}
                 btndisabled={false}
               >
-                following
+                {isFollowingAuthor ? "Following" : "Follow"}
               </Button>
             </div>
           </div>

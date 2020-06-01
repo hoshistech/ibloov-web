@@ -73,10 +73,10 @@
     display: none;
   }
 
-  .friendlist-table-data .email,
+  /* .friendlist-table-data .email,
   .group {
     display: none;
-  }
+  } */
   .groups-menu {
     display: none;
   }

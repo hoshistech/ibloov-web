@@ -60,6 +60,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import persistedReducer from "./store/reducer/rootReducer";
 import FriendPage from "./views/friendPage/FriendPage";
 import Axios from "axios";
+import { getUserFollowing } from "./views/friendPage/friendPage.action";
 
 const store = setupStore(persistedReducer);
 const persistor = persistStore(store);
@@ -114,8 +115,6 @@ function NoMatch() {
   );
 }
 function App() {
-
-
   // https://ipapi.co/json/
   return (
     <Provider store={store}>

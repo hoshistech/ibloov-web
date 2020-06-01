@@ -76,10 +76,10 @@ const GroupList = (props) => {
       </td>
       <td className="friendlist-phone-number">{friend.phoneNumber}</td>
       <td className="email">{friend.email}</td>
-      <td className="group">
+      {/* <td className="group">
         <div>family</div>
         <div>friend</div>
-      </td>
+      </td> */}
       <td className="action">
         <FontAwesomeIcon className="action-icon" icon="ellipsis-v" />
       </td>

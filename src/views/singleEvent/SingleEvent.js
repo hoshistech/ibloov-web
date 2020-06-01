@@ -12,13 +12,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { getEvent } from "./singleEvent.action";
+import { getEvent, followEvent } from "./singleEvent.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import EventPay from "./templates/eventPay/EventPay";
 import SideOverLayContainer from "../../components/sideOverLayContainer/SideOverLayContainer";
 import FriendProfile from "../friendPage/template/friendProfile/FriendProfile";
 import EventMap from "./templates/eventMap/EventMap";
-import { followUser } from "../friendPage/friendPage.action";
+import { followUser, getUserFollowing } from "../friendPage/friendPage.action";
 
 const SingleEvent = (props) => {
   const [openPay, setOpenPay] = useState(false);
@@ -29,15 +29,24 @@ const SingleEvent = (props) => {
 
   const dispatch = useDispatch();
 
-  const event = useSelector((state) => state.singleEvent.event);
+  const { event, isFollowingEvent } = useSelector((state) => state.singleEvent);
   const { _id: authUser } = useSelector((state) => state.login.user);
+  const { userFollowing } = useSelector((state) => state.friend);
 
   let foundEvent;
   let startDate;
   let eventTags;
+  let isFollowingAuthor;
   if (event) {
     foundEvent = event;
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
+
+    isFollowingAuthor = userFollowing.find(
+      (user) => user.id === event.userId._id
+    );
+
+    // return '5eb9d67ba75f18002a4e497d' === event.userId._id;
+    console.log(444, isFollowingAuthor);
 
     if (foundEvent.eventCode.length > 0) {
       eventTags = foundEvent.eventCode[0]
@@ -49,6 +58,7 @@ const SingleEvent = (props) => {
 
   useEffect(() => {
     dispatch(getEvent(eventId));
+    dispatch(getUserFollowing());
   }, [dispatch, eventId]);
 
   const closePayView = () => {
@@ -68,6 +78,10 @@ const SingleEvent = (props) => {
 
   const handleFollowUserHandler = (userId) => {
     dispatch(followUser(userId));
+  };
+
+  const followEventHandler = () => {
+    dispatch(followEvent(eventId));
   };
 
   return (
@@ -145,6 +159,8 @@ const SingleEvent = (props) => {
                   user={foundEvent.userId}
                   openFriendProfile={openFriendProfileHandler}
                   authUser={authUser}
+                  handleFollowEvent={followEventHandler}
+                  isFollowing={isFollowingEvent}
                 />
               </div>
               <div className="mt-3 mb-3 single-event-date-container">
@@ -225,6 +241,7 @@ const SingleEvent = (props) => {
           setOpenProfile={openFriendProfileHandler}
           user={foundEvent ? foundEvent.userId : ""}
           handleFollowUser={handleFollowUserHandler}
+          isFollowingAuthor={isFollowingAuthor ? true : false}
         />
       </section>
     </Fragment>

@@ -35,13 +35,41 @@ export const fetchEvents = () => {
     return axios
       .get("/v1/event")
       .then((response) => {
-        // const { events, likedEvents } = response.data.data;
         const likedEvents = [];
         const events = response.data.data;
         dispatch(fetchAllEventSuccess(events, likedEvents));
       })
       .catch((error) => {
+        console.log(99, error);
         dispatch(fetchAllEventFailed("error"));
       });
+  };
+};
+
+export const fetchLiveEvents = () => {
+  const { token } = getUser();
+  return (dispatch) => {
+    dispatch(fetchAllEventStart());
+    return (
+      axios
+        // .get("/v1/event")
+        .get("/v1/event/live", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log(99, response.data.data);
+
+          const { events, likedEvents } = response.data.data;
+          console.log(88, events);
+          
+          dispatch(fetchAllEventSuccess(events, likedEvents));
+        })
+        .catch((error) => {
+          console.log(99, error);
+          dispatch(fetchAllEventFailed("error"));
+        })
+    );
   };
 };

@@ -19,9 +19,10 @@ import Card from "../../components/card/Card";
 import InfluencerCard from "../../components/influencerCard/InfluencerCard";
 import HashTag from "../../components/hashTag/HashTag";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchEvents } from "./homePage.action";
+import { fetchEvents, fetchLiveEvents } from "./homePage.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import SearchBar from "./templates/searchBar/SearchBar";
+import { getUser } from "../../utils/helper";
 const HomePage = (props) => {
   const svgFill = "#f8535361";
 
@@ -29,9 +30,15 @@ const HomePage = (props) => {
 
   const dispatch = useDispatch();
 
+  const { token } = getUser();
+
   useEffect(() => {
-    dispatch(fetchEvents());
-  }, [dispatch]);
+    if (token) {
+      dispatch(fetchLiveEvents());
+    } else {
+      dispatch(fetchEvents());
+    }
+  }, [dispatch, token]);
 
   let popularEvents = <Loading />;
   let upcomingEvents = "";
