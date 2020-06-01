@@ -45,9 +45,6 @@ const SingleEvent = (props) => {
       (user) => user.id === event.userId._id
     );
 
-    // return '5eb9d67ba75f18002a4e497d' === event.userId._id;
-    console.log(444, isFollowingAuthor);
-
     if (foundEvent.eventCode.length > 0) {
       eventTags = foundEvent.eventCode[0]
         .split(", ")

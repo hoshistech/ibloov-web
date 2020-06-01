@@ -23,8 +23,6 @@ const ViewEventProfileCard = (props) => {
   let profileImage;
   let eventUserId;
 
-  console.log(22, isFollowing);
-
   const toggleFollowingEvent = () => {
     setIsFollowingEvent(!isFollowingEvent);
     handleFollowEvent();

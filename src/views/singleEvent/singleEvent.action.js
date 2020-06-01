@@ -78,7 +78,6 @@ export const followEvent = (eventId) => {
         }
       )
       .then((response) => {
-        console.log(33, response.data);
         const { data } = response.data;
 
         dispatch(followEventSuccess(data));
