@@ -14,8 +14,6 @@ const FriendProfileHeader = (props) => {
   let profileImage;
   let userId;
 
-  console.log(9999, isFollowingAuthor);
-
   if (user) {
     name = user.name;
     userId = user._id;

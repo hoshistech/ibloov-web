@@ -74,6 +74,7 @@ export const logout = () => {
   // remove token
   localStorage.removeItem("user");
   localStorage.removeItem("token");
+  localStorage.removeItem("persist:root");
   return (dispatch) => {
     dispatch(userLogout());
   };

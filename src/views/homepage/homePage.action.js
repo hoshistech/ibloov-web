@@ -40,7 +40,6 @@ export const fetchEvents = () => {
         dispatch(fetchAllEventSuccess(events, likedEvents));
       })
       .catch((error) => {
-        console.log(99, error);
         dispatch(fetchAllEventFailed("error"));
       });
   };
@@ -50,26 +49,19 @@ export const fetchLiveEvents = () => {
   const { token } = getUser();
   return (dispatch) => {
     dispatch(fetchAllEventStart());
-    return (
-      axios
-        // .get("/v1/event")
-        .get("/v1/event/live", {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          console.log(99, response.data.data);
+    return axios
+      .get("/v1/event/live", {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const { events, likedEvents } = response.data.data;
 
-          const { events, likedEvents } = response.data.data;
-          console.log(88, events);
-          
-          dispatch(fetchAllEventSuccess(events, likedEvents));
-        })
-        .catch((error) => {
-          console.log(99, error);
-          dispatch(fetchAllEventFailed("error"));
-        })
-    );
+        dispatch(fetchAllEventSuccess(events, likedEvents));
+      })
+      .catch((error) => {
+        dispatch(fetchAllEventFailed("error"));
+      });
   };
 };

@@ -102,8 +102,6 @@ export const getUserFollowing = (userId) => {
     userId = user.id;
   }
 
-  console.log(1223, userId);
-
   return (dispatch) => {
     return axios
       .get(`/v1/user/following/${userId}`, {
