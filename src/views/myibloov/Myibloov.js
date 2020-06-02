@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./Myibloov.css";
 import Button from "../../components/button/Button";
@@ -10,6 +10,7 @@ import PromotedEventCard from "../../components/promotedEventCard/PromotedEventC
 import CreateEvent from "../createEvent/CreateEvent";
 import Loading from "../../components/loadingIndicator/Loading";
 import DropDown from "../../components/dropDown/DropDown";
+import { getUserEvents } from "../homepage/homePage.action";
 
 const Myibloov = (props) => {
   const [selectedTab, setSelectedTab] = useState("event");
@@ -17,7 +18,9 @@ const Myibloov = (props) => {
   const [showCreate, setShowCreate] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
 
-  const events = useSelector((state) => state.allEvents.events);
+  const dispatch = useDispatch();
+
+  const { events, userEvents } = useSelector((state) => state.allEvents);
   const { _id: userId } = useSelector((state) => state.login.user);
 
   const location = useLocation();
@@ -26,13 +29,14 @@ const Myibloov = (props) => {
     if (location.state) {
       if (location.state.action === "newEvent") setShowCreate(true);
     }
-  }, [location]);
+    dispatch(getUserEvents());
+  }, [location, dispatch]);
 
   let myEvents = <Loading />;
   let attendingEvents = "";
 
   if (events) {
-    const userEvents = events.filter((event) => event.userId._id === userId);
+    // const userEvents = events.filter((event) => event.userId._id === userId);
     myEvents = userEvents.map((event) => {
       if (event.userId._id === userId) {
         return (
@@ -88,7 +92,6 @@ const Myibloov = (props) => {
   };
 
   const toggleDropdownOptionHandler = (id) => {
-
     if (id === "dropdownId") {
       setShowDropDown(!showDropDown);
       return;

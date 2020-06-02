@@ -1,11 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import SideOverLayContainer from "../../../../components/sideOverLayContainer/SideOverLayContainer";
 import FriendProfileHeader from "../../../../components/friendProfileHeader/FriendProfileHeader";
 
 import "./FriendProfile.css";
 import FriendProfileCard from "./templates/friendProfileCard/FriendProfileCard";
+import {  useSelector } from "react-redux";
+import Loading from "../../../../components/loadingIndicator/Loading";
 
 const FriendProfile = (props) => {
   const {
@@ -15,9 +16,25 @@ const FriendProfile = (props) => {
     handleFollowUser,
     isFollowingAuthor,
   } = props;
+  const { userEvents } = useSelector((state) => state.allEvents);
 
   if (user.local) {
     user.name = `${user.local.firstName} ${user.local.lastName}`;
+  }
+
+  let myEvents = <Loading />;
+
+  if (userEvents) {
+    myEvents = userEvents.map((event) => (
+      <FriendProfileCard
+        name={event.name}
+        eventId={event._id}
+        isPaid={event.isPaid}
+        amount={event.amount}
+        startDate={event.startDate}
+        image={event.images[0]}
+      />
+    ));
   }
 
   return (
@@ -34,12 +51,7 @@ const FriendProfile = (props) => {
         />
         <section className="friend-profile-section">
           <h3 className="friend-profile-title">EVENTS CREATED</h3>
-          <div className="friend-profile-card-wrapper">
-            <FriendProfileCard />
-            <FriendProfileCard />
-            <FriendProfileCard />
-            <FriendProfileCard />
-          </div>
+          <div className="friend-profile-card-wrapper">{myEvents}</div>
         </section>
       </SideOverLayContainer>
     </div>

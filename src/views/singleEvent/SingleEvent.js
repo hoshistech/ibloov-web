@@ -19,6 +19,7 @@ import SideOverLayContainer from "../../components/sideOverLayContainer/SideOver
 import FriendProfile from "../friendPage/template/friendProfile/FriendProfile";
 import EventMap from "./templates/eventMap/EventMap";
 import { followUser, getUserFollowing } from "../friendPage/friendPage.action";
+import { getUserEvents } from "../homepage/homePage.action";
 
 const SingleEvent = (props) => {
   const [openPay, setOpenPay] = useState(false);
@@ -40,7 +41,6 @@ const SingleEvent = (props) => {
   if (event) {
     foundEvent = event;
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
-
     isFollowingAuthor = userFollowing.find(
       (user) => user.id === event.userId._id
     );
@@ -50,6 +50,8 @@ const SingleEvent = (props) => {
         .split(", ")
         .map((code, index) => <HashTag key={index} tagValue={code} />);
     }
+
+    dispatch(getUserEvents(event.userId._id));
     // setCurrentUser(foundEvent.userId);
   }
 
@@ -239,6 +241,7 @@ const SingleEvent = (props) => {
           user={foundEvent ? foundEvent.userId : ""}
           handleFollowUser={handleFollowUserHandler}
           isFollowingAuthor={isFollowingAuthor ? true : false}
+          // userEvents={}
         />
       </section>
     </Fragment>

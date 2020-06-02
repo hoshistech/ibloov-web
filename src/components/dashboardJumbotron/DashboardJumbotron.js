@@ -21,7 +21,6 @@ const DashboardJumbotron = (props) => {
   const { firstName, lastName } = user;
   return (
     <div className="row dashboard-first-row">
-      {/* <img src={image} alt="popular event" className="dashboard-image" /> */}
       <div className="col-md-4.3 dashboard-profile">
         <div className="row">
           <div className="col-md-4 dashboard-image-container mb-3">

@@ -3,12 +3,16 @@ import {
   FETCH_ALL_EVENTS_START,
   FETCH_ALL_EVENTS_SUCCESS,
   FETCH_ALL_EVENTS_FAIL,
+  FETCH_USER_EVENTS_START,
+  FETCH_USER_EVENTS_SUCCESS,
+  FETCH_USER_EVENTS_FAIL,
 } from "../../store/actionTypes";
 
 const initialState = {
   events: null,
   likedEvents: null,
   loading: false,
+  userEvents: null,
 };
 
 const allEventStart = (state) => {
@@ -32,6 +36,27 @@ const allEventFail = (state, action) => {
   });
 };
 
+const userEventStart = (state) => {
+  return updateObject(state, {
+    loading: true,
+  });
+};
+
+const userEventSuccess = (state, action) => {
+  
+  return updateObject(state, {
+    userEvents: action.myEvents,
+    loading: false,
+  });
+};
+
+const userEventFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false,
+  });
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ALL_EVENTS_START:
@@ -40,6 +65,12 @@ export default (state = initialState, action) => {
       return allEventSuccess(state, action);
     case FETCH_ALL_EVENTS_FAIL:
       return allEventFail(state, action);
+    case FETCH_USER_EVENTS_START:
+      return userEventStart(state, action);
+    case FETCH_USER_EVENTS_SUCCESS:
+      return userEventSuccess(state, action);
+    case FETCH_USER_EVENTS_FAIL:
+      return userEventFail(state, action);
 
     default:
       return state;
