@@ -154,21 +154,21 @@ const Login = (props) => {
               <Button
                 customClassName="btn-outline-secondary bold-600 auth-google mb-2"
                 // onClick={(e) => socialAuthHandler(e, "google")}
-                onclick={() => {}}
+                onClick={() => {}}
                 btndisabled={false}
               >
                 <FontAwesomeIcon className="" icon={["fab", "google-plus-g"]} />
               </Button>
               <Button
                 customClassName="auth-facebook bold-600 mb-2"
-                onclick={() => {}}
+                onClick={() => {}}
                 btndisabled={false}
               >
                 <FontAwesomeIcon className="" icon={["fab", "facebook-f"]} />
               </Button>
               <Button
                 customClassName="auth-twitter bold-600 mb-2"
-                onclick={() => {}}
+                onClick={() => {}}
                 btndisabled={false}
               >
                 <FontAwesomeIcon className="" icon={["fab", "twitter"]} />

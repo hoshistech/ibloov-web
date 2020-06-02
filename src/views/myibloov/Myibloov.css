@@ -121,11 +121,12 @@
   color: #222222;
   background: #ff6464;
   border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  font-size: 0.7rem;
-  margin-top: 0.2rem;
+  width: 25px;
+  height: 25px;
+  font-size: 0.6rem;
+  /* margin-top: 0.2rem; */
   text-align: center;
+  padding: 5px 5px;
 }
 
 .myibloov-event-link-active {

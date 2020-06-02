@@ -4,6 +4,9 @@ import {
   FETCH_ALL_EVENTS_START,
   FETCH_ALL_EVENTS_SUCCESS,
   FETCH_ALL_EVENTS_FAIL,
+  FETCH_USER_EVENTS_START,
+  FETCH_USER_EVENTS_SUCCESS,
+  FETCH_USER_EVENTS_FAIL,
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
 
@@ -24,6 +27,26 @@ export const fetchAllEventSuccess = (events, likedEvents) => {
 export const fetchAllEventFailed = (error) => {
   return {
     type: FETCH_ALL_EVENTS_FAIL,
+    error,
+  };
+};
+
+export const fetchUserEventsStart = () => {
+  return {
+    type: FETCH_USER_EVENTS_START,
+  };
+};
+
+export const fetchUserEventsSuccess = (myEvents) => {
+  return {
+    type: FETCH_USER_EVENTS_SUCCESS,
+    myEvents: myEvents,
+  };
+};
+
+export const fetchUserEventsFailed = (error) => {
+  return {
+    type: FETCH_USER_EVENTS_FAIL,
     error,
   };
 };
@@ -62,6 +85,31 @@ export const fetchLiveEvents = () => {
       })
       .catch((error) => {
         dispatch(fetchAllEventFailed("error"));
+      });
+  };
+};
+
+export const getUserEvents = (userId) => {
+  const { token } = getUser();
+  let url = "/v1/user/events";
+  if (userId) {
+    url = `/v1/user/events/${userId}`;
+  }
+  return (dispatch) => {
+    dispatch(fetchUserEventsStart());
+    return axios
+      .get(url, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const { data } = response.data;
+
+        dispatch(fetchUserEventsSuccess(data));
+      })
+      .catch((error) => {
+        dispatch(fetchUserEventsFailed("error"));
       });
   };
 };
