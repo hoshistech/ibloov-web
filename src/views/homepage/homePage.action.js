@@ -95,6 +95,7 @@ export const getUserEvents = (userId) => {
   if (userId) {
     url = `/v1/user/events/${userId}`;
   }
+
   return (dispatch) => {
     dispatch(fetchUserEventsStart());
     return axios

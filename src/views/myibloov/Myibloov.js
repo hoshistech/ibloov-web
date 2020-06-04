@@ -11,11 +11,13 @@ import CreateEvent from "../createEvent/CreateEvent";
 import Loading from "../../components/loadingIndicator/Loading";
 import DropDown from "../../components/dropDown/DropDown";
 import { getUserEvents } from "../homepage/homePage.action";
+import WishlistCard from "../../components/wishlistCard/WishlistCard";
+import CreateWishlist from "../createWishlist/CreateWishlist";
 
 const Myibloov = (props) => {
-  const [selectedTab, setSelectedTab] = useState("event");
+  const [selectedTab, setSelectedTab] = useState("wishlist");
   const [myCreatedEvent, setMyCreatedEvent] = useState(true);
-  const [showCreate, setShowCreate] = useState(false);
+  const [showCreate, setShowCreate] = useState(true);
   const [showDropDown, setShowDropDown] = useState(false);
 
   const dispatch = useDispatch();
@@ -29,29 +31,31 @@ const Myibloov = (props) => {
     if (location.state) {
       if (location.state.action === "newEvent") setShowCreate(true);
     }
+    console.log(99, "loo");
+
     dispatch(getUserEvents());
   }, [location, dispatch]);
 
   let myEvents = <Loading />;
   let attendingEvents = "";
 
-  if (events) {
+  if (userEvents) {
     // const userEvents = events.filter((event) => event.userId._id === userId);
     myEvents = userEvents.map((event) => {
-      if (event.userId._id === userId) {
-        return (
-          <Card
-            key={event._id}
-            name={event.name}
-            eventId={event._id}
-            startDate={event.startDate}
-            location={event.location}
-            event={event}
-            myEvent={true}
-            splashImage="https://source.unsplash.com/250x182/?concert,party"
-          />
-        );
-      }
+      // if (event.userId._id === userId) {
+      return (
+        <Card
+          key={event._id}
+          name={event.name}
+          eventId={event._id}
+          startDate={event.startDate}
+          location={event.location}
+          event={event}
+          myEvent={true}
+          splashImage="https://source.unsplash.com/250x182/?concert,party"
+        />
+      );
+      // }
       return;
     });
 
@@ -221,27 +225,30 @@ const Myibloov = (props) => {
                 />
               </div>
             </div>
-            <div
-              className="row mt-2 my-created-event"
-              onClick={() => toggleDropdownOptionHandler("")}
-            >
+            <div onClick={() => toggleDropdownOptionHandler("")}>
               {selectedTab === "event" ? (
-                <Fragment>
+                <div className="row mt-2 my-created-event">
                   {myCreatedEvent ? myEvents : attendingEvents}
-                </Fragment>
+                </div>
               ) : (
-                <PromotedEventCard />
+                <div className="row my-created-wishlist">
+                  <WishlistCard />
+                  <WishlistCard />
+                  <WishlistCard />
+                  <WishlistCard />
+                  <WishlistCard />
+                </div>
               )}
             </div>
           </Fragment>
         ) : (
-          <Fragment onClick={() => toggleDropdownOptionHandler("")}>
+          <div onClick={() => toggleDropdownOptionHandler("")}>
             {selectedTab === "event" ? (
               <CreateEvent handleCreateButton={createButtonHandler} />
             ) : (
-              <div>create wishlist</div>
+              <CreateWishlist />
             )}
-          </Fragment>
+          </div>
         )}
       </section>
     </div>

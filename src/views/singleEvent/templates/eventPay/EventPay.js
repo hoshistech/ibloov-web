@@ -108,7 +108,8 @@ const EventPay = (props) => {
 
         const { token } = await getUser();
         const paymentDetails = {
-          amount: 1,
+          // amount: 1,
+          amount: eventPrice,
           nonceFromTheClient: nonce,
           currency,
           resource: "event",

@@ -208,6 +208,11 @@
   color: #879eb4;
 } */
 
+.my-created-wishlist {
+  margin-top: 40px;
+  z-index: -9999;
+}
+
 @media only screen and (min-width: 992px) {
   .myibloov-nav-header {
     display: block;
@@ -225,6 +230,7 @@
   .sort-container {
     position: absolute;
     right: 0%;
+    z-index: 9999;
   }
 
   .myibloov {
