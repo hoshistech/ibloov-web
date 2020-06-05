@@ -48,15 +48,10 @@ export const getEvent = (eventId) => {
   return (dispatch) => {
     dispatch(fetchSingleEventStart());
     return axios
-      .get(`/v1/event/${eventId}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
+      .get(`/v1/event/${eventId}`)
       .then((response) => {
         const { data } = response.data;
-
-        dispatch(fetchSingleEventSuccess(data, data.isFollowing));
+        dispatch(fetchSingleEventSuccess(data, data.followers));
       })
       .catch((error) => {
         dispatch(fetchSingleEventFailed("error"));

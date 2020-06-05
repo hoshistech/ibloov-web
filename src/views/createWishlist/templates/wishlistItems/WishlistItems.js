@@ -9,6 +9,11 @@ const wishlistItems = [
   { name: "Iphone X", price: 150, currency: "$", image: headset },
   { name: "Beats Head Phone", price: 30, currency: "$", image: headset },
   { name: "Sun Glasses", price: 70, currency: "$", image: headset },
+  { name: "Sun", price: 70, currency: "$", image: headset },
+  { name: "Water bottle", price: 70, currency: "$", image: headset },
+  { name: "sanitizers", price: 70, currency: "$", image: headset },
+  { name: "camera", price: 70, currency: "$", image: headset },
+  { name: "samsung s8", price: 70, currency: "$", image: headset },
 ];
 
 const WishlistItems = (props) => {
@@ -52,15 +57,14 @@ const WishlistItems = (props) => {
 
     const itemIndex = selectedItems.findIndex((item) => item.name === name);
     if (itemIndex > -1) {
-
       return;
     }
     setSelectedItems([...selectedItems, selectedItem]);
   };
 
   return (
-    <div className="row">
-      <div className="mb-3">
+    <div className="row wishlist-items-container">
+      <div className="mb-3 wishlist-add-items ml-3">
         <div className="create-event-title-header">
           <h5>Add Items</h5>
           <small>Add different items to the list</small>
@@ -76,7 +80,7 @@ const WishlistItems = (props) => {
               onChange={inputChangeHandler}
             />
           </div>
-          <div className="items-container">
+          <div className="row items-container">
             {filteredItems.map((list) => (
               <ItemCard
                 image={headset}
@@ -88,12 +92,12 @@ const WishlistItems = (props) => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="wishlist-selected mr-4">
         <div className="create-event-title-header">
           <h5>Wishlist Items</h5>
           <small>Items currently on the list</small>
         </div>
-        <div className="selected-items-container">
+        <div className="row selected-items-container">
           {selectedItems.map((list) => (
             <ItemCard
               image={headset}

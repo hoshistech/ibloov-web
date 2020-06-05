@@ -8,7 +8,12 @@ import "./FriendProfileHeader.css";
 import Button from "../button/Button";
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 const FriendProfileHeader = (props) => {
-  const { user, handleFollowUser, isFollowingAuthor } = props;
+  const {
+    user,
+    handleFollowUser,
+    isFollowingAuthor,
+    isUserAuthenticated,
+  } = props;
 
   let name;
   let profileImage;
@@ -51,15 +56,19 @@ const FriendProfileHeader = (props) => {
               </div>
             </div>
 
-            <div className="friend-follow-btn-container">
-              <Button
-                customClassName="friend-follow-btn bold-600"
-                onClick={() => handleFollowUser(userId)}
-                btndisabled={false}
-              >
-                {isFollowingAuthor ? "Following" : "Follow"}
-              </Button>
-            </div>
+            {isUserAuthenticated ? (
+              <div className="friend-follow-btn-container">
+                <Button
+                  customClassName="friend-follow-btn bold-600"
+                  onClick={() => handleFollowUser(userId)}
+                  btndisabled={false}
+                >
+                  {isFollowingAuthor ? "Following" : "Follow"}
+                </Button>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

@@ -30,20 +30,28 @@ const SingleEvent = (props) => {
 
   const dispatch = useDispatch();
 
-  const { event, isFollowingEvent } = useSelector((state) => state.singleEvent);
-  const { _id: authUser } = useSelector((state) => state.login.user);
+  const { event, eventFollowers } = useSelector((state) => state.singleEvent);
+
+  // const { _id: authUser } = useSelector((state) => state.login.user);
+  const authenticated = useSelector((state) => state.login.user);
+
+  let authUser;
+
   const { userFollowing } = useSelector((state) => state.friend);
 
   let foundEvent;
   let startDate;
   let eventTags;
   let isFollowingAuthor;
+  let isUserFollowingEvent;
+
+  if (authenticated) {
+    authUser = authenticated._id;
+  }
+
   if (event) {
     foundEvent = event;
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
-    isFollowingAuthor = userFollowing.find(
-      (user) => user.id === event.userId._id
-    );
 
     if (foundEvent.eventCode.length > 0) {
       eventTags = foundEvent.eventCode[0]
@@ -51,14 +59,26 @@ const SingleEvent = (props) => {
         .map((code, index) => <HashTag key={index} tagValue={code} />);
     }
 
-    dispatch(getUserEvents(event.userId._id));
+    if (authenticated) {
+      isUserFollowingEvent = eventFollowers.find(
+        (user) => user.userId._id === authUser
+      );
+      dispatch(getUserEvents(event.userId._id));
+    }
+    if (userFollowing) {
+      isFollowingAuthor = userFollowing.find(
+        (user) => user.id === event.userId._id
+      );
+    }
     // setCurrentUser(foundEvent.userId);
   }
 
   useEffect(() => {
     dispatch(getEvent(eventId));
-    dispatch(getUserFollowing());
-  }, [dispatch, eventId]);
+    if (authenticated) {
+      dispatch(getUserFollowing());
+    }
+  }, [dispatch, eventId, authenticated]);
 
   const closePayView = () => {
     setOpenPay(false);
@@ -70,9 +90,9 @@ const SingleEvent = (props) => {
 
   const openFriendProfileHandler = (user) => {
     setOpenFriendProfile(!openFriendProfile);
-    if (!openFriendProfile) {
-      setCurrentUser(user);
-    }
+    // if (!openFriendProfile) {
+    //   setCurrentUser(user);
+    // }
   };
 
   const handleFollowUserHandler = (userId) => {
@@ -103,7 +123,7 @@ const SingleEvent = (props) => {
                     <span>{foundEvent.location.address}</span>
                   </div>
                   <div className="single-event-price">
-                    {foundEvent.isPaid ? (
+                    {foundEvent.isPaid && authenticated ? (
                       <div>
                         <p>
                           {foundEvent.currency} {foundEvent.amount}
@@ -159,7 +179,8 @@ const SingleEvent = (props) => {
                   openFriendProfile={openFriendProfileHandler}
                   authUser={authUser}
                   handleFollowEvent={followEventHandler}
-                  isFollowing={isFollowingEvent}
+                  isFollowing={isUserFollowingEvent}
+                  isUserAuthenticated={authenticated ? true : false}
                 />
               </div>
               <div className="mt-3 mb-3 single-event-date-container">
@@ -220,29 +241,35 @@ const SingleEvent = (props) => {
           </div>
         )}
 
-        <SideOverLayContainer
-          openSide={openPay}
-          customClassName="event-pay-side"
-          toggleOpenSide={() => setOpenPay(!openPay)}
-        >
-          <div className="event-pay-form-container">
-            <EventPay
-              closePayView={closePayView}
-              eventPrice={foundEvent ? foundEvent.amount : ""}
-              currency={foundEvent ? foundEvent.currency : ""}
-              eventId={foundEvent ? foundEvent._id : ""}
-            />
-          </div>
-        </SideOverLayContainer>
-
-        <FriendProfile
-          openProfile={openFriendProfile}
-          setOpenProfile={openFriendProfileHandler}
-          user={foundEvent ? foundEvent.userId : ""}
-          handleFollowUser={handleFollowUserHandler}
-          isFollowingAuthor={isFollowingAuthor ? true : false}
-          // userEvents={}
-        />
+        <Fragment>
+          {authUser ? (
+            <SideOverLayContainer
+              openSide={openPay}
+              customClassName="event-pay-side"
+              toggleOpenSide={() => setOpenPay(!openPay)}
+            >
+              <div className="event-pay-form-container">
+                <EventPay
+                  closePayView={closePayView}
+                  eventPrice={foundEvent ? foundEvent.amount : ""}
+                  currency={foundEvent ? foundEvent.currency : ""}
+                  eventId={foundEvent ? foundEvent._id : ""}
+                />
+              </div>
+            </SideOverLayContainer>
+          ) : (
+            ""
+          )}
+          <FriendProfile
+            openProfile={openFriendProfile}
+            setOpenProfile={openFriendProfileHandler}
+            user={foundEvent ? foundEvent.userId : ""}
+            handleFollowUser={handleFollowUserHandler}
+            isFollowingAuthor={isFollowingAuthor ? true : false}
+            isUserAuthenticated={authenticated ? true : false}
+            // userEvents={}
+          />
+        </Fragment>
       </section>
     </Fragment>
   );

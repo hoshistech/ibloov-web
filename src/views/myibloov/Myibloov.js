@@ -31,8 +31,6 @@ const Myibloov = (props) => {
     if (location.state) {
       if (location.state.action === "newEvent") setShowCreate(true);
     }
-    console.log(99, "loo");
-
     dispatch(getUserEvents());
   }, [location, dispatch]);
 

@@ -12,7 +12,7 @@ const initialState = {
   loading: false,
   error: null,
   follow: null,
-  isFollowingEvent: null,
+  eventFollowers: null,
 };
 
 const fetchEventStart = (state) => {
@@ -26,7 +26,7 @@ const fetchEventSuccess = (state, action) => {
     event: action.event,
     loading: false,
     error: null,
-    isFollowingEvent: action.isFollowing,
+    eventFollowers: action.isFollowing,
   });
 };
 

@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from "react";
+import React, { useReducer, useCallback, useEffect, useState } from "react";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Login.css";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
+import { useLocation } from "react-router-dom";
 import { authLogin } from "./login.action";
 import Logo from "../../components/logo/Logo";
 import { getUserFollowing } from "../friendPage/friendPage.action";
@@ -37,7 +38,16 @@ const formReducer = (state, action) => {
 
 const Login = (props) => {
   const history = useHistory();
+  const location = useLocation();
   const { token, error } = useSelector((state) => state.login);
+  const [previousLocation, setPreviousLocation] = useState("");
+
+  useEffect(() => {
+
+    if (location.state) {
+      setPreviousLocation(location.state.from);
+    }
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -74,7 +84,7 @@ const Login = (props) => {
       ...formState.inputValues,
     };
 
-    await dispatch(authLogin(newUser, history));
+    await dispatch(authLogin(newUser, history, previousLocation));
     dispatch(getUserFollowing());
   };
 

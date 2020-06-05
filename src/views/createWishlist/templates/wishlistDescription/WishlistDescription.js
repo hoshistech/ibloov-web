@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Input from "../../../../components/input/Input";
 import DragableImageUpload from "../../../../components/dragableImageUpload/DragableImageUpload";
 
+import "./WishlistDescription.css";
+
 const WishlistDescription = (props) => {
   const { inputChangeHandler, imageUpload } = props;
   const fileInputRef = useRef("");
@@ -18,8 +20,8 @@ const WishlistDescription = (props) => {
         <small>Fill the information below</small>
       </div>
       <div>
-        <div className="row event-description-fist-row">
-          <div className="col-md-6">
+        <div className="event-description-fist-row">
+          <div className="">
             <label htmlFor="event-title">Wishlist Title</label>
             <Input
               name="wishlistTitle"
@@ -33,7 +35,7 @@ const WishlistDescription = (props) => {
               onInputChange={inputChangeHandler}
             />
           </div>
-          <div className="col-md-6">
+          <div className="">
             <label htmlFor="upload">Choose Background Image</label>
             <DragableImageUpload
               fileInputRef={fileInputRef}

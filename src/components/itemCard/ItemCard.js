@@ -7,7 +7,7 @@ import "./ItemCard.css";
 const ItemCard = (props) => {
   const { image, name, price, handleSelectedItem } = props;
   return (
-    <div className="row item-card" onClick={() => handleSelectedItem(name)}>
+    <div className="item-card" onClick={() => handleSelectedItem(name)}>
       <div className="item-details">
         <h5>{name}</h5>
         <p>${price}</p>

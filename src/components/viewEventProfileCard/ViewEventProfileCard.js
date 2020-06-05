@@ -7,6 +7,7 @@ import "./ViewEventProfileCard.css";
 import Button from "../button/Button";
 import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif";
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
+import { useHistory } from "react-router-dom";
 
 const ViewEventProfileCard = (props) => {
   const {
@@ -15,7 +16,10 @@ const ViewEventProfileCard = (props) => {
     authUser,
     handleFollowEvent,
     isFollowing,
+    isUserAuthenticated,
   } = props;
+
+  const history = useHistory();
 
   const [isFollowingEvent, setIsFollowingEvent] = useState(isFollowing);
 
@@ -24,6 +28,13 @@ const ViewEventProfileCard = (props) => {
   let eventUserId;
 
   const toggleFollowingEvent = () => {
+    if (!isUserAuthenticated) {
+      history.push({
+        pathname: "/signin",
+        state: { from: history.location.pathname },
+      });
+      return;
+    }
     setIsFollowingEvent(!isFollowingEvent);
     handleFollowEvent();
   };
@@ -34,6 +45,11 @@ const ViewEventProfileCard = (props) => {
     eventUserId = user._id;
     name = `${firstName} ${lastName}`;
     profileImage = user.avatar ? user.avatar : avatarPlaceHolder;
+  }
+
+  let followButton = "FOLLOW EVENT";
+  if (isFollowingEvent) {
+    followButton = "UNFOLLOW EVENT";
   }
   return (
     <div>
@@ -71,12 +87,10 @@ const ViewEventProfileCard = (props) => {
               </Button>
               <Button
                 customClassName="mt-2 view-event-btn bloove-event-follow-btn"
-                // onClick={() => handleFollowEvent()}
                 onClick={toggleFollowingEvent}
                 btndisabled={false}
               >
-                {/* {isFollowing ? "UNFOLLOW EVENT" : "FOLLOW EVENT"} */}
-                {isFollowingEvent ? "UNFOLLOW EVENT" : "FOLLOW EVENT"}
+                {isUserAuthenticated ? followButton : "FOLLOW EVENT"}
               </Button>
             </Fragment>
           )}
