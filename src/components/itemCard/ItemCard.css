@@ -8,6 +8,8 @@
   width: 120px;
   margin-right: 10px;
   margin-bottom: 10px;
+  display: flex;
+  height: 80px;
 }
 
 .item-details {

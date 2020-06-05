@@ -91,7 +91,6 @@ const CreateWishlist = (props) => {
                   <p>2</p>
                 </div>
               </div>
-              <span className="vertical-line"></span>
             </div>
           </div>
         </div>

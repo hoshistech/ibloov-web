@@ -38,7 +38,7 @@ export const userLogout = () => {
   };
 };
 
-export const authLogin = (userDetail, history) => {
+export const authLogin = (userDetail, history, previousLocation) => {
   // const userDetails = {
   //   email: "dami@yahoo.com",
   //   password: "ibloov",
@@ -60,7 +60,11 @@ export const authLogin = (userDetail, history) => {
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", JSON.stringify(data));
 
-        history.push("/dashboard");
+        if (previousLocation) {
+          history.push(previousLocation);
+        } else {
+          history.push("/dashboard");
+        }
 
         dispatch(userLoginSuccess(data, user));
       })

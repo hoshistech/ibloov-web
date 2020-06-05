@@ -98,10 +98,12 @@ export const followUser = (userId) => {
 
 export const getUserFollowing = (userId) => {
   const { token, user } = getUser();
+  // if (!token) {
+  //   return;
+  // }
   if (!userId) {
     userId = user.id;
   }
-
   return (dispatch) => {
     return axios
       .get(`/v1/user/following/${userId}`, {

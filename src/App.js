@@ -143,15 +143,18 @@ function App() {
                   <Footer />
                 </div>
               </Route>
+              <Route path="/event/:eventId" exact>
+                <SingleEvent />
+              </Route>
               <PrivateRoute path="/dashboard">
                 <Dashboard />
               </PrivateRoute>
               <PrivateRoute path="/myibloov">
                 <Myibloov />
               </PrivateRoute>
-              <PrivateRoute path="/event/:eventId">
+              {/* <PrivateRoute path="/event/:eventId">
                 <SingleEvent />
-              </PrivateRoute>
+              </PrivateRoute> */}
               <PrivateRoute path="/myfriends">
                 <FriendPage />
               </PrivateRoute>

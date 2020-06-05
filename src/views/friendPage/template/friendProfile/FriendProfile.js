@@ -5,7 +5,7 @@ import FriendProfileHeader from "../../../../components/friendProfileHeader/Frie
 
 import "./FriendProfile.css";
 import FriendProfileCard from "./templates/friendProfileCard/FriendProfileCard";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Loading from "../../../../components/loadingIndicator/Loading";
 
 const FriendProfile = (props) => {
@@ -15,9 +15,9 @@ const FriendProfile = (props) => {
     user,
     handleFollowUser,
     isFollowingAuthor,
+    isUserAuthenticated,
   } = props;
   const { userEvents } = useSelector((state) => state.allEvents);
-
   if (user.local) {
     user.name = `${user.local.firstName} ${user.local.lastName}`;
   }
@@ -27,6 +27,7 @@ const FriendProfile = (props) => {
   if (userEvents) {
     myEvents = userEvents.map((event) => (
       <FriendProfileCard
+        key={event._id}
         name={event.name}
         eventId={event._id}
         isPaid={event.isPaid}
@@ -48,6 +49,7 @@ const FriendProfile = (props) => {
           user={user}
           handleFollowUser={handleFollowUser}
           isFollowingAuthor={isFollowingAuthor}
+          isUserAuthenticated={isUserAuthenticated}
         />
         <section className="friend-profile-section">
           <h3 className="friend-profile-title">EVENTS CREATED</h3>
