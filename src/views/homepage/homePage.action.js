@@ -106,10 +106,12 @@ export const getUserEvents = (userId) => {
       })
       .then((response) => {
         const { data } = response.data;
-
+        console.log(222, data);
         dispatch(fetchUserEventsSuccess(data));
       })
       .catch((error) => {
+        console.log(222, error);
+
         dispatch(fetchUserEventsFailed("error"));
       });
   };

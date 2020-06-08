@@ -7,6 +7,7 @@ import "./FriendProfile.css";
 import FriendProfileCard from "./templates/friendProfileCard/FriendProfileCard";
 import { useSelector } from "react-redux";
 import Loading from "../../../../components/loadingIndicator/Loading";
+import { Link, useHistory } from "react-router-dom";
 
 const FriendProfile = (props) => {
   const {
@@ -21,6 +22,8 @@ const FriendProfile = (props) => {
   if (user.local) {
     user.name = `${user.local.firstName} ${user.local.lastName}`;
   }
+
+  const history = useHistory();
 
   let myEvents = <Loading />;
 
@@ -53,7 +56,24 @@ const FriendProfile = (props) => {
         />
         <section className="friend-profile-section">
           <h3 className="friend-profile-title">EVENTS CREATED</h3>
-          <div className="friend-profile-card-wrapper">{myEvents}</div>
+          <div className="friend-profile-card-wrapper">
+            {isUserAuthenticated ? (
+              myEvents
+            ) : (
+              <p>
+                Please{" "}
+                <Link
+                  to={{
+                    pathname: "/signin",
+                    state: { from: history.location.pathname },
+                  }}
+                >
+                  login
+                </Link>{" "}
+                to view events created by {user.name}.
+              </p>
+            )}
+          </div>
         </section>
       </SideOverLayContainer>
     </div>

@@ -10,9 +10,10 @@ const CreateWishlistSubmitBtn = (props) => {
     submitEventHandler,
     formIsValid,
     isStepValid,
-    dateTimeValid,
   } = props;
-  //   const nextStep = isStepValid && formIsValid && dateTimeValid;
+
+  // const nextStep = isStepValid && formIsValid;
+  const nextStep = formIsValid;
   return (
     <div className="myibloov-create-button-container">
       <Button
@@ -25,7 +26,8 @@ const CreateWishlistSubmitBtn = (props) => {
       <Button
         customClassName="mybloov-create-event-btn-2  bold-600"
         onClick={formCount === 2 ? submitEventHandler : nextQuestionHandler}
-        btndisabled={false}
+        btndisabled={!nextStep}
+        // btndisabled={false}
       >
         {formCount === 2 ? "Finish" : "Next"}
       </Button>

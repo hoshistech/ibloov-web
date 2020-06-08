@@ -7,6 +7,7 @@ import WishlistItems from "./templates/wishlistItems/WishlistItems";
 const CreateWishlist = (props) => {
   const [formCount, setFormCount] = useState(2);
   const [image, setImage] = useState("");
+  const [wishlistItems, setWishlistItems] = useState([]);
 
   const imageUploadHandler = (image) => {
     setImage(image);
@@ -14,14 +15,10 @@ const CreateWishlist = (props) => {
 
   const initilaState = {
     inputValues: {
-      eventTitle: "",
-      eventCode: "",
-      eventDetail: "",
+      wishilistName: "",
     },
     inputValidities: {
-      eventTitle: false,
-      eventCode: false,
-      eventDetail: false,
+      wishilistName: false,
     },
     formIsValid: true,
   };
@@ -58,7 +55,38 @@ const CreateWishlist = (props) => {
     }
   };
 
-  const onsubmitEventHandler = () => {};
+  const addWishlistItemsHandler = (item) => {
+    const currentWishlistItems = [...wishlistItems];
+
+    const check = currentWishlistItems.find(
+      (wishlistItem) => wishlistItem.name === item.name
+    );
+
+    let updatedWishlistItems;
+
+    if (check) {
+      updatedWishlistItems = currentWishlistItems.filter(
+        (wishlistItem) => wishlistItem.name !== item.name
+      );
+    } else {
+      updatedWishlistItems = [...currentWishlistItems, item];
+    }
+
+    // setEventRestrictions(updatedRestrictions);
+    // console.log(339, item);
+
+    setWishlistItems(updatedWishlistItems);
+  };
+
+  const onsubmitEventHandler = () => {
+    const newWishlist = {
+      name: formState.inputValues.wishilistName,
+      image: image,
+      items: wishlistItems,
+    };
+
+    console.log(88, newWishlist);
+  };
 
   return (
     <section className="mt-3">
@@ -106,7 +134,7 @@ const CreateWishlist = (props) => {
               </div>
               <div className={formCount === 2 ? "show-question" : "question"}>
                 <p>step {formCount}</p>
-                <WishlistItems />
+                <WishlistItems wishlistItemHandler={addWishlistItemsHandler} />
               </div>
               <CreateWishlistSubmitBtn
                 nextQuestionHandler={nextQuestionHandler}

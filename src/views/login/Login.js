@@ -43,8 +43,9 @@ const Login = (props) => {
   const [previousLocation, setPreviousLocation] = useState("");
 
   useEffect(() => {
-
     if (location.state) {
+      console.log(55, location);
+
       setPreviousLocation(location.state.from);
     }
   }, []);

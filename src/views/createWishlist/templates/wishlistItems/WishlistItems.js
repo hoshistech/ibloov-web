@@ -17,6 +17,7 @@ const wishlistItems = [
 ];
 
 const WishlistItems = (props) => {
+  const { wishlistItemHandler } = props;
   const [searchInput, setSearchInput] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
@@ -60,6 +61,8 @@ const WishlistItems = (props) => {
       return;
     }
     setSelectedItems([...selectedItems, selectedItem]);
+
+    wishlistItemHandler(selectedItem);
   };
 
   return (
@@ -83,6 +86,7 @@ const WishlistItems = (props) => {
           <div className="row items-container">
             {filteredItems.map((list) => (
               <ItemCard
+                key={list.name}
                 image={headset}
                 name={list.name}
                 price={list.price}
