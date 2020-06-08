@@ -24,12 +24,12 @@ const WishlistDescription = (props) => {
           <div className="">
             <label htmlFor="event-title">Wishlist Title</label>
             <Input
-              name="wishlistTitle"
+              name="wishilistName"
               type="text"
               customClassName="form-control auth-input"
-              id="wishlistTitle"
+              id="wishilistName"
               placeHolder="Name of the Wishlist"
-              aria-describedby="wishlistTitle"
+              aria-describedby="wishilistName"
               errorText="Please enter a valid name"
               required
               onInputChange={inputChangeHandler}

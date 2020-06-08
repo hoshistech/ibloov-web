@@ -15,9 +15,9 @@ import WishlistCard from "../../components/wishlistCard/WishlistCard";
 import CreateWishlist from "../createWishlist/CreateWishlist";
 
 const Myibloov = (props) => {
-  const [selectedTab, setSelectedTab] = useState("wishlist");
+  const [selectedTab, setSelectedTab] = useState("event");
   const [myCreatedEvent, setMyCreatedEvent] = useState(true);
-  const [showCreate, setShowCreate] = useState(true);
+  const [showCreate, setShowCreate] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
 
   const dispatch = useDispatch();

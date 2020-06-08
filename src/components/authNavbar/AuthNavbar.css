@@ -56,6 +56,10 @@
   font-weight: bolder;
 }
 
+.user-image-dropdown #navbarDropdown {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 991px) {
   .user-image-dropdown {
     margin-top: -10px;
