@@ -21,7 +21,7 @@ const Navbar = (props) => {
     dispatch(logout());
   };
 
-  const paths = ["myibloov", "myfriends"];
+  const paths = ["myibloov", "myfriends", "privacy"];
 
   const found = paths.find((path) => path === pathname.slice(1));
 
