@@ -42,20 +42,23 @@ const Footer = (props) => {
           <div className="col-md-2.3 pl-3 mt-4">
             <h5>About us</h5>
             <ul className="footer-ul">
-              <Link to='#'>
+              <Link to="#">
                 <p>About us</p>
               </Link>
-              <Link to='#'>
+              <Link to="#">
                 <p>Team</p>
               </Link>
-              <Link to='#'>
+              <Link to="#">
                 <p>Career</p>
               </Link>
-              <Link to='#'>
+              <Link to="#">
                 <p>Services</p>
               </Link>
-              <Link to='#'>
+              <Link to="#">
                 <p>Contact</p>
+              </Link>
+              <Link to="/privacy">
+                <p>Privacy policy</p>
               </Link>
             </ul>
           </div>
@@ -78,7 +81,7 @@ const Footer = (props) => {
             </div>
           </div>
         </div>
-        <div className='mt-4 footer-courtesy'>
+        <div className="mt-4 footer-courtesy">
           <p>(c) 2020 iBloov. All rights reserved</p>
         </div>
       </footer>

@@ -61,6 +61,7 @@ import persistedReducer from "./store/reducer/rootReducer";
 import FriendPage from "./views/friendPage/FriendPage";
 import Axios from "axios";
 import { getUserFollowing } from "./views/friendPage/friendPage.action";
+import PrivacyPolicy from "./views/privacyPolicy/PrivacyPolicy";
 
 const store = setupStore(persistedReducer);
 const persistor = persistStore(store);
@@ -146,15 +147,15 @@ function App() {
               <Route path="/event/:eventId" exact>
                 <SingleEvent />
               </Route>
+              <Route path="/privacy" exact>
+                <PrivacyPolicy />
+              </Route>
               <PrivateRoute path="/dashboard">
                 <Dashboard />
               </PrivateRoute>
               <PrivateRoute path="/myibloov">
                 <Myibloov />
               </PrivateRoute>
-              {/* <PrivateRoute path="/event/:eventId">
-                <SingleEvent />
-              </PrivateRoute> */}
               <PrivateRoute path="/myfriends">
                 <FriendPage />
               </PrivateRoute>
