@@ -311,17 +311,11 @@ const CreateEvent = (props) => {
         <EventSuccessSideBar
           closeSuccessMessage={closeEventCreatedMessage}
           customClassName={isCreatedEventSuccess ? "show-create-success" : ""}
+          message="Your event has been registered"
         />
       ) : (
         ""
       )}
-      {/* <Button
-        onClick={uplod}
-        customClassName="event-success-btn"
-        btndisabled={false}
-      >
-        show event success
-      </Button> */}
     </section>
   );
 };

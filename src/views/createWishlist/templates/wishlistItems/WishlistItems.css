@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.wishlist-add-items {
+  max-width: 650px;
+}
+
 .items-search-icon {
   position: absolute;
   top: 40%;
@@ -24,10 +28,22 @@
 
 .items-container {
   margin-top: 20px;
+  overflow: scroll;
+  height: 200px;
 }
 
 .selected-items-container {
   max-width: 400px;
+}
+
+.item-card-loading {
+  text-align: center;
+}
+
+.item-card-loading .lds-ring div {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -40,6 +56,13 @@
 
   .wishlist-add-items {
     order: 2;
+  }
+  .items-search-icon {
+    left: 3%;
+  }
+
+  .items-search-input {
+    padding-left: 45px;
   }
 }
 
@@ -58,5 +81,13 @@
   }
   .wishlist-selected {
     width: 400px;
+  }
+
+  .items-search-icon {
+    left: 3%;
+  }
+
+  .items-search-input {
+    padding-left: 45px;
   }
 }

@@ -44,8 +44,6 @@ const Login = (props) => {
 
   useEffect(() => {
     if (location.state) {
-      console.log(55, location);
-
       setPreviousLocation(location.state.from);
     }
   }, []);

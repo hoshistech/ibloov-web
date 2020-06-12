@@ -37,7 +37,7 @@ export const eventCreateEnd = (error) => {
   };
 };
 
-const uploadImage = async (image, token) => {
+export const uploadImage = async (image, token) => {
   const formData = new FormData();
   formData.append("upload", image);
 
@@ -61,15 +61,6 @@ const uploadImage = async (image, token) => {
 
 export const createEvent = (eventDetails, image) => {
   const { token } = getUser();
-  // const eventDetail = {
-  //   name: "European awards 2019",
-  //   category: "Concert",
-  //   startDate: "2020-11-17 08:30",
-  //   endDate: "2020-11-17 23:30",
-  //   isPrivate: false,
-  //   address: "Lagos, Nigeria",
-  // };
-  const tok = "ffff";
   return async (dispatch) => {
     dispatch(eventCreateStart());
     try {
