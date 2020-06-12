@@ -1,13 +1,28 @@
-import React, { useState, useReducer, useCallback } from "react";
+import React, { useState, useReducer, useCallback, useEffect } from "react";
 import WishlistDescription from "./templates/wishlistDescription/WishlistDescription";
 import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
 import CreateWishlistSubmitBtn from "./templates/createWishlistSubmitBtn/CreateWishlistSubmitBtn";
 import WishlistItems from "./templates/wishlistItems/WishlistItems";
+import { useDispatch, useSelector } from "react-redux";
+import { createWishlist, endCreateWishlist } from "./createWishlist.action";
+import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
+import Modal from "../../components/modal/Modal";
 
+import "./CreateWishlist.css";
 const CreateWishlist = (props) => {
-  const [formCount, setFormCount] = useState(2);
+  const [formCount, setFormCount] = useState(1);
   const [image, setImage] = useState("");
   const [wishlistItems, setWishlistItems] = useState([]);
+  const [isCreatedWishlistSuccess, setIsWishlistSuccess] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const {
+    success: isWishlistCreated,
+    createError: error,
+    loading,
+  } = useSelector((state) => state.wishlist);
 
   const imageUploadHandler = (image) => {
     setImage(image);
@@ -56,37 +71,42 @@ const CreateWishlist = (props) => {
   };
 
   const addWishlistItemsHandler = (item) => {
-    const currentWishlistItems = [...wishlistItems];
-
-    const check = currentWishlistItems.find(
-      (wishlistItem) => wishlistItem.name === item.name
-    );
-
-    let updatedWishlistItems;
-
-    if (check) {
-      updatedWishlistItems = currentWishlistItems.filter(
-        (wishlistItem) => wishlistItem.name !== item.name
-      );
-    } else {
-      updatedWishlistItems = [...currentWishlistItems, item];
-    }
-
-    // setEventRestrictions(updatedRestrictions);
-    // console.log(339, item);
-
-    setWishlistItems(updatedWishlistItems);
+    setWishlistItems([...wishlistItems, item]);
   };
 
   const onsubmitEventHandler = () => {
     const newWishlist = {
       name: formState.inputValues.wishilistName,
-      image: image,
       items: wishlistItems,
     };
 
-    console.log(88, newWishlist);
+    dispatch(createWishlist(newWishlist, image));
   };
+
+  const wishlistCreatedSuccesshandler = useCallback(() => {
+    if (isWishlistCreated) {
+      setIsWishlistSuccess(true);
+      return;
+    }
+    setIsWishlistSuccess(false);
+  }, [isWishlistCreated]);
+
+  const closeWishlistCreatedMessage = (e) => {
+    e.preventDefault();
+    // dispatch(eventCreateEnd());
+    setIsWishlistSuccess(false);
+    window.location.reload();
+  };
+
+  const closeModalHandler = () => {
+    dispatch(endCreateWishlist());
+    setShowModal(false);
+  };
+
+  useEffect(() => {
+    wishlistCreatedSuccesshandler();
+    // dispatch(fetchEvents());
+  }, [isWishlistCreated, error, wishlistCreatedSuccesshandler]);
 
   return (
     <section className="mt-3">
@@ -147,6 +167,31 @@ const CreateWishlist = (props) => {
             </form>
           </div>
         </div>
+      </div>
+      {isWishlistCreated ? (
+        <EventSuccessSideBar
+          closeSuccessMessage={closeWishlistCreatedMessage}
+          message="Your wishlist has been created"
+          customClassName={
+            isCreatedWishlistSuccess ? "show-create-success" : ""
+          }
+        />
+      ) : (
+        ""
+      )}
+      <div className={error ? "wishlist-error-container" : ""}>
+        {error ? (
+          <div onClick={closeModalHandler} className="back-drop"></div>
+        ) : null}
+
+        <Modal
+          showModal={error ? true : false}
+          handleCloseModal={closeModalHandler}
+          modalHeader="Create Wishlist Error"
+        >
+          Something went wrong, Please fill all the wishlist details and try
+          again
+        </Modal>
       </div>
     </section>
   );

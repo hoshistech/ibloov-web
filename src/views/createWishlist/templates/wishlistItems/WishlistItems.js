@@ -4,6 +4,10 @@ import ItemCard from "../../../../components/itemCard/ItemCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./WishlistItems.css";
+import Axios from "../../../../utils/axiosConfig";
+import { getSearchedItems } from "../../createWishlist.action";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../../../components/loadingIndicator/Loading";
 const wishlistItems = [
   { name: "Ladies watch", price: 50, currency: "$", image: headset },
   { name: "Iphone X", price: 150, currency: "$", image: headset },
@@ -21,48 +25,52 @@ const WishlistItems = (props) => {
   const [searchInput, setSearchInput] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
+  // const [loading, setLoading] = useState(false);
+
+  const { wishlistItems, loading } = useSelector((state) => state.wishlist);
+  const dispatch = useDispatch();
 
   const inputChangeHandler = (e) => {
     const value = e.target.value;
-    setSearchInput(value);
-    // const foundItems = wishlistItems.filter(
-    //   (item) =>
-    //     item.name.toLowerCase().indexOf(searchInput.toLowerCase()) !== -1
-    // );
-    // const foundItems = wishlistItems.filter((item) =>
-    //   item.name.toLowerCase().includes(searchInput.toLowerCase())
-    // );
-    // console.log(10023, foundItems);
 
-    // setFilteredItems([...foundItems]);
+    setSearchInput(value);
+
+    if (value.length > 3) {
+      searchProduct(value);
+    }
   };
 
-  useEffect(() => {
-    setFilteredItems(
-      wishlistItems.filter((item) =>
-        item.name.toLowerCase().includes(searchInput.toLowerCase())
-      )
-    );
-    if (searchInput === "") {
-      setFilteredItems([]);
-    }
-  }, [searchInput]);
-
-  const addToSelectedItemsHandler = (name) => {
+  const addToSelectedItemsHandler = (
+    id,
+    name,
+    price,
+    currency,
+    image,
+    link
+  ) => {
     // get the selected item from the array of items
-    const selectedItem = filteredItems.find((item) => item.name === name);
+    const newItem = {
+      id,
+      title: name,
+      price,
+      currency,
+      link,
+      image,
+    };
 
-    // get the unselected items fromt the array of items
-    const remainingItem = filteredItems.filter((item) => item.name !== name);
-    setFilteredItems([...remainingItem]);
-
-    const itemIndex = selectedItems.findIndex((item) => item.name === name);
+    const itemIndex = selectedItems.findIndex((item) => item.link === link);
     if (itemIndex > -1) {
       return;
     }
-    setSelectedItems([...selectedItems, selectedItem]);
+    setSelectedItems([...selectedItems, newItem]);
 
-    wishlistItemHandler(selectedItem);
+    // send it as data to the create wishlist componenets
+    wishlistItemHandler(newItem);
+  };
+
+  const searchProduct = async () => {
+    dispatch(getSearchedItems(searchInput));
+    return;
   };
 
   return (
@@ -80,20 +88,37 @@ const WishlistItems = (props) => {
               type="search"
               placeholder="Search for products to add"
               aria-label="Search"
-              onChange={inputChangeHandler}
+              // onChange={inputChangeHandler}
+              onKeyUp={inputChangeHandler}
             />
           </div>
-          <div className="row items-container">
-            {filteredItems.map((list) => (
-              <ItemCard
-                key={list.name}
-                image={headset}
-                name={list.name}
-                price={list.price}
-                handleSelectedItem={addToSelectedItemsHandler}
-              />
-            ))}
-          </div>
+          {loading && !wishlistItems ? (
+            <div className="item-card-loading">
+              <Loading />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {wishlistItems ? (
+            <div className="row items-container">
+              {wishlistItems.map((list) => (
+                <ItemCard
+                  key={list.id}
+                  id={list.id}
+                  image={list.image}
+                  link={list.link}
+                  name={list.title}
+                  price={list.price}
+                  priceRaw={list.price_raw.split(" ")[0]}
+                  forSelectedItems={false}
+                  handleSelectedItem={addToSelectedItemsHandler}
+                />
+              ))}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="wishlist-selected mr-4">
@@ -101,16 +126,24 @@ const WishlistItems = (props) => {
           <h5>Wishlist Items</h5>
           <small>Items currently on the list</small>
         </div>
-        <div className="row selected-items-container">
-          {selectedItems.map((list) => (
-            <ItemCard
-              image={headset}
-              name={list.name}
-              price={list.price}
-              handleSelectedItem={addToSelectedItemsHandler}
-            />
-          ))}
-        </div>
+        {selectedItems ? (
+          <div className="row selected-items-container">
+            {selectedItems.map((list) => (
+              <ItemCard
+                key={list.id}
+                id={list.id}
+                image={list.image}
+                name={list.title}
+                price={list.price}
+                priceRaw={list.currency}
+                forSelectedItems={true}
+                // handleSelectedItem={addToSelectedItemsHandler}
+              />
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

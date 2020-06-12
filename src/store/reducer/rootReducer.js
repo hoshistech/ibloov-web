@@ -7,6 +7,8 @@ import singleEventReducer from "../../views/singleEvent/singleEvent.reducer";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import friendPageReducer from "../../views/friendPage/friendPage.reducer";
+import createWishlistReducer from "../../views/createWishlist/createWishlist.reducer";
+import allWishlistReducer from "../../views/createWishlist/allWishlist.reducer";
 
 const persistConfig = {
   key: "root",
@@ -19,7 +21,9 @@ const rootReducer = combineReducers({
   createEvent: createEventReducer,
   allEvents: homepageReducer,
   singleEvent: singleEventReducer,
-  friend: friendPageReducer
+  friend: friendPageReducer,
+  wishlist: createWishlistReducer,
+  allWishlist: allWishlistReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

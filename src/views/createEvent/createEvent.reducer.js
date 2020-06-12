@@ -4,7 +4,7 @@ import {
   CREATE_EVENT_START,
   CREATE_EVENT_SUCCESS,
   CREATE_EVENT_FAIL,
-  CREATE_EVENT_END
+  CREATE_EVENT_END,
 } from "../../store/actionTypes";
 
 const initialState = {

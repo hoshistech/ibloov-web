@@ -13,6 +13,10 @@ import DropDown from "../../components/dropDown/DropDown";
 import { getUserEvents } from "../homepage/homePage.action";
 import WishlistCard from "../../components/wishlistCard/WishlistCard";
 import CreateWishlist from "../createWishlist/CreateWishlist";
+import {
+  fetchAllWishlist,
+  getUserWishlist,
+} from "../createWishlist/allWishlist.action";
 
 const Myibloov = (props) => {
   const [selectedTab, setSelectedTab] = useState("event");
@@ -24,6 +28,7 @@ const Myibloov = (props) => {
 
   const { events, userEvents } = useSelector((state) => state.allEvents);
   const { _id: userId } = useSelector((state) => state.login.user);
+  const { userWishlist } = useSelector((state) => state.allWishlist);
 
   const location = useLocation();
 
@@ -32,15 +37,16 @@ const Myibloov = (props) => {
       if (location.state.action === "newEvent") setShowCreate(true);
     }
     dispatch(getUserEvents());
+    dispatch(fetchAllWishlist());
+    dispatch(getUserWishlist());
   }, [location, dispatch]);
 
   let myEvents = <Loading />;
   let attendingEvents = "";
+  let myWishlist = <Loading />;
 
   if (userEvents) {
-    // const userEvents = events.filter((event) => event.userId._id === userId);
     myEvents = userEvents.map((event) => {
-      // if (event.userId._id === userId) {
       return (
         <Card
           key={event._id}
@@ -53,7 +59,6 @@ const Myibloov = (props) => {
           splashImage="https://source.unsplash.com/250x182/?concert,party"
         />
       );
-      // }
       return;
     });
 
@@ -72,9 +77,18 @@ const Myibloov = (props) => {
     });
   }
 
-  // testing purpose
-  // const [myCreatedEvent, setMyCreatedEvent] = useState(false);
-  // const [showCreate, setShowCreate] = useState(true);
+  if (userWishlist) {
+    myWishlist = userWishlist.map((wishlist) => (
+      <WishlistCard
+        key={wishlist._id}
+        title={wishlist.name}
+        date={wishlist.createdAt}
+        image={wishlist.images}
+        user={wishlist.userId}
+        itemNumber={wishlist.items.length}
+      />
+    ));
+  }
 
   const selectedTabHandler = (e) => {
     const tabSwitch = e.target.name;
@@ -229,13 +243,7 @@ const Myibloov = (props) => {
                   {myCreatedEvent ? myEvents : attendingEvents}
                 </div>
               ) : (
-                <div className="row my-created-wishlist">
-                  <WishlistCard />
-                  <WishlistCard />
-                  <WishlistCard />
-                  <WishlistCard />
-                  <WishlistCard />
-                </div>
+                <div className="row my-created-wishlist">{myWishlist}</div>
               )}
             </div>
           </Fragment>
