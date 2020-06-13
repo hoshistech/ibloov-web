@@ -27,6 +27,7 @@ const Dashboard = (props) => {
           location={event.location}
           event={event}
           splashImage="https://source.unsplash.com/250x182/?concert,party"
+          invitees={event.invitees}
         />
       );
     });

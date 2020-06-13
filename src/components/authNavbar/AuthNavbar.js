@@ -21,7 +21,7 @@ const AuthNavbar = (props) => {
           className="nav-link"
           to="/events"
         >
-          EVENTS
+          Events
         </NavLink>
         <div className="navlink-border-bottom"></div>
       </li>
@@ -31,7 +31,7 @@ const AuthNavbar = (props) => {
           className="nav-link"
           to="/dashboard"
         >
-          DASHBOARD <span className="sr-only">(current)</span>
+          Dashboard <span className="sr-only">(current)</span>
         </NavLink>
         <div className="navlink-border-bottom"></div>
       </li>
@@ -41,7 +41,7 @@ const AuthNavbar = (props) => {
           className="nav-link"
           to="/myibloov"
         >
-          MY iBLOOV
+          My ibloov
         </NavLink>
         <div className="navlink-border-bottom"></div>
       </li>
@@ -51,7 +51,7 @@ const AuthNavbar = (props) => {
           className="nav-link"
           to="/myfriends"
         >
-          MY FRIENDS
+          My friends
         </NavLink>
         <div className="navlink-border-bottom"></div>
       </li>

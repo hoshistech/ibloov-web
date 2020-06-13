@@ -179,7 +179,7 @@ const CreateWishlist = (props) => {
       ) : (
         ""
       )}
-      <div className={error ? "wishlist-error-container" : ""}>
+      {/* <div className={error ? "wishlist-error-container" : ""}>
         {error ? (
           <div onClick={closeModalHandler} className="back-drop"></div>
         ) : null}
@@ -192,7 +192,7 @@ const CreateWishlist = (props) => {
           Something went wrong, Please fill all the wishlist details and try
           again
         </Modal>
-      </div>
+      </div> */}
     </section>
   );
 };
