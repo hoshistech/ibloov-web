@@ -6,9 +6,18 @@ import moment from "moment";
 import "./Card.css";
 import { Link } from "react-router-dom";
 import { genRandomNumber } from "../../utils/helper";
+import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 
 const Card = (props) => {
-  const { name, startDate, location, eventId, event, myEvent } = props;
+  const {
+    name,
+    startDate,
+    location,
+    eventId,
+    event,
+    myEvent,
+    invitees,
+  } = props;
   const { category } = event;
 
   let image = "";
@@ -31,21 +40,22 @@ const Card = (props) => {
     // const randomNumber = Math.floor(Math.random() * Math.floor(6));
     const randomNumber = genRandomNumber(0, 7);
     const image = [
-      "https://source.unsplash.com/250x182/?lady",
-      "https://source.unsplash.com/250x182/?girl",
-      "https://source.unsplash.com/250x182/?women",
-      "https://source.unsplash.com/250x182/?guy",
-      "https://source.unsplash.com/250x182/?man",
-      "https://source.unsplash.com/250x182/?boy",
-      "https://source.unsplash.com/250x182/blackwomen",
+      "https://source.unsplash.com/40x40/?lady",
+      "https://source.unsplash.com/40x40/?girl",
+      "https://source.unsplash.com/40x40/?women",
+      "https://source.unsplash.com/40x40/?guy",
+      "https://source.unsplash.com/40x40/?man",
+      "https://source.unsplash.com/40x40/?boy",
+      "https://source.unsplash.com/40x40/blackwomen",
     ];
-    return image[randomNumber];
+    // return image[randomNumber];
+    return [image[randomNumber], image[genRandomNumber(0, randomNumber)]];
   };
+
+  const randomAttendes = invitees.length;
 
   const smallImage = randomAteendingImage();
   image = randomImage();
-
-  const randomAttendes = genRandomNumber(9, 50);
 
   if (typeof event.images[0] !== "undefined") {
     image = event.images[0].url;
@@ -94,27 +104,30 @@ const Card = (props) => {
             <div className="event-stat mt-2">
               <div className="attending-event-container">
                 <div className="attending-event">
-                  <img
-                    src="https://source.unsplash.com/40x40/?female"
-                    className="stat-image"
+                  <ProgressiveImage
+                    src={smallImage[0]}
+                    customClass="stat-image"
                     alt="card"
                   />
-                  <img
-                    // src="https://source.unsplash.com/40x40/?lady"
+                  <ProgressiveImage
                     src={smallImage}
-                    className="stat-image"
+                    customClass="stat-image"
                     alt="card"
                   />
-                  <img
-                    src="https://source.unsplash.com/40x40/?guy"
-                    className="stat-image"
+                  <ProgressiveImage
+                    src={smallImage[1]}
+                    customClass="stat-image"
                     alt="card"
                   />
                 </div>
-                <div className="ml-4 number-attending">
-                  <p>+{randomAttendes}</p>
-                  <p>going</p>
-                </div>
+                {randomAttendes > 0 ? (
+                  <div className="ml-4 number-attending">
+                    <p>+{randomAttendes}</p>
+                    <p>going</p>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
               {/* <div className="attend-button">
               <Button

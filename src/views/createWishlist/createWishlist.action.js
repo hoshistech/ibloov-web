@@ -1,5 +1,5 @@
 import axios from "../../utils/axiosConfig";
-import { toast } from "react-toastify";
+import { toastr } from "react-redux-toastr";
 import {
   FETCH_WISHLIST_ITEMS_FAIL,
   FETCH_WISHLIST_ITEMS_START,
@@ -81,7 +81,7 @@ export const createWishlist = (wishlistDetails, image) => {
     try {
       let imageLocation;
       if (image) {
-        imageLocation = await uploadImage(image, token);
+        imageLocation = await uploadImage(image, token, "wishlist");
         wishlistDetails.images = imageLocation;
       }
 
@@ -98,6 +98,16 @@ export const createWishlist = (wishlistDetails, image) => {
       dispatch(createWishlistSuccess(message, data));
     } catch (error) {
       // const { message } = error.response.data;
+      toastr.error(
+        "WishList Error",
+        "Error creating wishlist, Please fill detail appropriately",
+        {
+          timeOut: 0,
+          type: "error",
+          position: "top-right", // This will override the global props position.
+          attention: true, // This will add a shadow like the confirm method.
+        }
+      );
 
       dispatch(createWishlistFailed("something went wrong"));
     }

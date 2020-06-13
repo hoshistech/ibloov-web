@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
+import ReduxToastr from "react-redux-toastr";
 import "react-toastify/dist/ReactToastify.min.css";
 import {
   BrowserRouter as Router,
@@ -37,6 +38,7 @@ import {
   faBars,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
 import "./App.css";
 import Signup from "./views/signup/Signup";
@@ -119,6 +121,14 @@ function App() {
   // https://ipapi.co/json/
   return (
     <Provider store={store}>
+      <ReduxToastr
+        preventDuplicates
+        getState={(state) => state.toastr} // This is the default
+        transitionIn="fadeIn"
+        transitionOut="fadeOut"
+        progressBar
+        closeOnToastrClick
+      />
       <PersistGate persistor={persistor}>
         <Router>
           <div className="App">

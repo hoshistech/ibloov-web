@@ -35,7 +35,7 @@ const WishlistItems = (props) => {
 
     setSearchInput(value);
 
-    if (value.length > 3) {
+    if (value.length > 2) {
       searchProduct(value);
     }
   };

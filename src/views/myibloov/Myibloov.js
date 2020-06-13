@@ -57,6 +57,7 @@ const Myibloov = (props) => {
           event={event}
           myEvent={true}
           splashImage="https://source.unsplash.com/250x182/?concert,party"
+          invitees={8}
         />
       );
       return;
@@ -72,6 +73,7 @@ const Myibloov = (props) => {
           location={event.location}
           event={event}
           splashImage="https://source.unsplash.com/250x182/?concert,party"
+          invitees={8}
         />
       );
     });

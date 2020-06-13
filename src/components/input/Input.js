@@ -56,13 +56,13 @@ const Input = (props) => {
   const [inputState, dispatch] = useReducer(inputReducer, initialState);
 
   useEffect(() => {
-    // if (inputState.touched) {
-    //   onInputChange(id, inputState.value, inputState.isValid);
-    // }
-
-    if (value) {
-      onInputChange(id, value, inputState.isValid);
+    if (inputState.touched) {
+      onInputChange(id, inputState.value, inputState.isValid);
     }
+
+    // if (value) {
+    //   onInputChange(id, value, inputState.isValid);
+    // }
   }, [inputState, onInputChange, id]);
 
   const textChangeHandler = (e) => {

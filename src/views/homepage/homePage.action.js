@@ -60,6 +60,7 @@ export const fetchEvents = () => {
       .then((response) => {
         const likedEvents = [];
         const events = response.data.data;
+
         dispatch(fetchAllEventSuccess(events, likedEvents));
       })
       .catch((error) => {

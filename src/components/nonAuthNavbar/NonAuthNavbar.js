@@ -7,24 +7,24 @@ const NonAuthNavbar = (props) => {
     <ul className="navbar-nav header-list-container">
       <li className="nav-item active">
         <Link className="nav-link color-white" to="/">
-          HOME <span className="sr-only">(current)</span>
+          Home <span className="sr-only">(current)</span>
         </Link>
       </li>
       <li className="nav-item">
         <Link className="nav-link color-white event-link" to="/events">
-          LIVE EVENTS
+          Live events
         </Link>
       </li>
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <Link className="nav-link color-white" to="#">
           EXCLUSIVES
         </Link>
-      </li>
-      <li className="nav-item">
+      </li> */}
+      {/* <li className="nav-item">
         <Link className="nav-link color-white" to="#">
           CONTACT
         </Link>
-      </li>
+      </li> */}
       <li className="nav-item">
         <Link to="/signin" className="login-btn" data-testid="login-btn">
           <Button
