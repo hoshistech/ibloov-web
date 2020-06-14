@@ -16,7 +16,7 @@ const FriendProfileHeader = (props) => {
   } = props;
 
   let name;
-  let profileImage;
+  let profileImage = avatarPlaceHolder;
   let userId;
 
   if (user) {

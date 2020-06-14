@@ -45,7 +45,7 @@ export const authLogin = (userDetail, history, previousLocation) => {
   // };
   return (dispatch) => {
     dispatch(userLoginStart());
-    return axios
+    return axios(false)
       .post("/auth/local/web", userDetail)
       .then(async (response) => {
         const { data } = response.data;

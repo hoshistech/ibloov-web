@@ -35,18 +35,17 @@ export const eventCreateEnd = (error) => {
   };
 };
 
-export const uploadImage = async (image, token, resource) => {
+export const uploadImage = async (image, resource) => {
   const formData = new FormData();
   formData.append("upload", image);
 
   try {
-    const uploadImage = await axios.post(
-      `/v1/do/upload/event${resource}`,
+    const uploadImage = await axios(true).post(
+      `/v1/do/upload/${resource}`,
       formData,
       {
         headers: {
           "Content-Type": "multipart/form-data",
-          authorization: `Bearer ${token}`,
         },
       }
     );
@@ -61,18 +60,13 @@ export const uploadImage = async (image, token, resource) => {
 };
 
 export const createEvent = (eventDetails, image) => {
-  const { token } = getUser();
   return async (dispatch) => {
     dispatch(eventCreateStart());
     try {
-      const imageLocation = await uploadImage(image, token, "event");
+      const imageLocation = await uploadImage(image, "event");
 
       eventDetails.images = imageLocation;
-      const response = await axios.post("/v1/event/create", eventDetails, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios(true).post("/v1/event/create", eventDetails);
       const { data, message } = response.data.data;
 
       dispatch(eventCreateSuccess(message, data));

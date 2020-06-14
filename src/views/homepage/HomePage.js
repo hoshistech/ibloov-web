@@ -44,6 +44,7 @@ const HomePage = (props) => {
   let upcomingEvents = "";
   if (events) {
     popularEvents = events
+      .filter((event) => event.isPrivate !== true)
       .slice(0, 4)
       .map((event) => (
         <Card
@@ -59,6 +60,7 @@ const HomePage = (props) => {
       ));
 
     upcomingEvents = events
+      .filter((event) => event.isPrivate !== true)
       .slice(-4)
       .map((event) => (
         <Card

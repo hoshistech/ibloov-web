@@ -55,7 +55,7 @@ export const fetchEvents = () => {
   const { token } = getUser();
   return (dispatch) => {
     dispatch(fetchAllEventStart());
-    return axios
+    return axios(false)
       .get("/v1/event")
       .then((response) => {
         const likedEvents = [];
@@ -70,17 +70,13 @@ export const fetchEvents = () => {
 };
 
 export const fetchLiveEvents = () => {
-  const { token } = getUser();
   return (dispatch) => {
     dispatch(fetchAllEventStart());
-    return axios
-      .get("/v1/event/live", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
+    return axios(true)
+      .get("/v1/event/live")
       .then((response) => {
         const { events, likedEvents } = response.data.data;
+        console.log(34, events);
 
         dispatch(fetchAllEventSuccess(events, likedEvents));
       })
@@ -91,7 +87,6 @@ export const fetchLiveEvents = () => {
 };
 
 export const getUserEvents = (userId) => {
-  const { token } = getUser();
   let url = "/v1/user/events";
   if (userId) {
     url = `/v1/user/events/${userId}`;
@@ -99,12 +94,8 @@ export const getUserEvents = (userId) => {
 
   return (dispatch) => {
     dispatch(fetchUserEventsStart());
-    return axios
-      .get(url, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
+    return axios(true)
+      .get(url)
       .then((response) => {
         const { data } = response.data;
         dispatch(fetchUserEventsSuccess(data));

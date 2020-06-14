@@ -54,12 +54,8 @@ export const fetchAllWishlist = () => {
   const { token } = getUser();
   return (dispatch) => {
     dispatch(fetchAllWishlistStart());
-    return axios
-      .get("/v1/wishlist", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
+    return axios(true)
+      .get("/v1/wishlist")
       .then((response) => {
         const { data } = response.data;
 
@@ -80,12 +76,8 @@ export const getUserWishlist = (userId) => {
 
   return (dispatch) => {
     dispatch(fetchUserWishlistStart());
-    return axios
-      .get(url, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
+    return axios(true)
+      .get(url)
       .then((response) => {
         const { data } = response.data;
         dispatch(fetchUserWishlistSuccess(data));

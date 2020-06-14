@@ -34,7 +34,7 @@ export const verifiyPhoneNumber = (code, userId, history) => {
   return (dispatch) => {
     dispatch(verifyCodeStart());
     return (
-      axios
+      axios(false)
         //   .post(`${process.env.API}/v1/user/register`, userDetails)
         .get(`/v1/user/mobilenumber/verifycode/${userId}/${code}`)
         .then((response) => {
@@ -87,7 +87,7 @@ export const sendVerificationCode = (userId, history) => {
   return (dispatch) => {
     // dispatch(verifyCodeStart());
     return (
-      axios
+      axios(false)
         //   .post(`${process.env.API}/v1/user/register`, userDetails)
         .post(`/v1/user/mobilenumber/sendverificationcode/${userId}`)
         .then((response) => {

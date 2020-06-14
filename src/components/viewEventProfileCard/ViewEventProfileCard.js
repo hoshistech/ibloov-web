@@ -17,9 +17,13 @@ const ViewEventProfileCard = (props) => {
     handleFollowEvent,
     isFollowing,
     isUserAuthenticated,
+    numberAttendingEvents,
+    numberEventLikes,
   } = props;
 
   const history = useHistory();
+
+  console.log(88, numberAttendingEvents);
 
   const [isFollowingEvent, setIsFollowingEvent] = useState(isFollowing);
 
@@ -47,9 +51,9 @@ const ViewEventProfileCard = (props) => {
     profileImage = user.avatar ? user.avatar : avatarPlaceHolder;
   }
 
-  let followButton = "FOLLOW EVENT";
+  let followButton = "Follow Event";
   if (isFollowingEvent) {
-    followButton = "UNFOLLOW EVENT";
+    followButton = "Unfollow Event";
   }
   return (
     <div>
@@ -67,7 +71,11 @@ const ViewEventProfileCard = (props) => {
             </div>
             <div className="view-event-profile-detail">
               <p>{name}</p>
-              <small onClick={openFriendProfile}>View Profile</small>
+              {isUserAuthenticated ? (
+                <small onClick={openFriendProfile}>View Profile</small>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         )}
@@ -83,14 +91,14 @@ const ViewEventProfileCard = (props) => {
                 onClick={() => {}}
                 btndisabled={false}
               >
-                BLOOV EVENT NOW
+                Bloov Event
               </Button>
               <Button
                 customClassName="mt-2 view-event-btn bloove-event-follow-btn"
                 onClick={toggleFollowingEvent}
                 btndisabled={false}
               >
-                {isUserAuthenticated ? followButton : "FOLLOW EVENT"}
+                {isUserAuthenticated ? followButton : "Follow Event"}
               </Button>
             </Fragment>
           )}
@@ -100,26 +108,32 @@ const ViewEventProfileCard = (props) => {
             onClick={() => {}}
             btndisabled={false}
           >
-            PROMOTE EVENT
+            Promote Event
           </Button>
         </div>
         <div>
           <div className="mt-4 attending-event-container">
-            <div className="attending-event">
-              <img src={passport} className="stat-image" alt="card" />
-              <img src={passport} className="stat-image" alt="card" />
-              <img src={passport} className="stat-image" alt="card" />
-            </div>
-            <div className="ml-4 mr-4 number-attending">
-              <p className="no-margin-p">+42 going</p>
-            </div>
+            {numberAttendingEvents < 1 ? (
+              ""
+            ) : (
+              <Fragment>
+                <div className="attending-event">
+                  <img src={passport} className="stat-image" alt="card" />
+                  <img src={passport} className="stat-image" alt="card" />
+                  <img src={passport} className="stat-image" alt="card" />
+                </div>
+                <div className="ml-4 mr-4 number-attending">
+                  <p className="no-margin-p">+{numberAttendingEvents} going</p>
+                </div>
+              </Fragment>
+            )}
+
             <div className="view-event-card-icon-container">
               <FontAwesomeIcon
                 className="view-event-card-icon heart"
                 icon="heart"
               />
-              {/* <img src={heart} className="view-event-card-icon heart" /> */}
-              <span className="no-margin-p">120</span>
+              <span className="no-margin-p">{numberEventLikes}</span>
             </div>
           </div>
         </div>
