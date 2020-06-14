@@ -19,20 +19,22 @@ const Event = (props) => {
 
   let popularEvents = <Loading />;
   if (events) {
-    popularEvents = events.map((event, index) => {
-      return (
-        <Card
-          key={event._id}
-          name={event.name}
-          eventId={event._id}
-          startDate={event.startDate}
-          location={event.location}
-          event={event}
-          splashImage="https://source.unsplash.com/250x182/?concert,party"
-          invitees={event.invitees}
-        />
-      );
-    });
+    popularEvents = events
+      .filter((event) => event.isPrivate !== true)
+      .map((event, index) => {
+        return (
+          <Card
+            key={event._id}
+            name={event.name}
+            eventId={event._id}
+            startDate={event.startDate}
+            location={event.location}
+            event={event}
+            splashImage="https://source.unsplash.com/250x182/?concert,party"
+            invitees={event.invitees}
+          />
+        );
+      });
   }
   return (
     <Fragment>

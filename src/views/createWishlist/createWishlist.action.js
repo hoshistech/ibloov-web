@@ -75,24 +75,18 @@ export const getSearchedItems = (searchValue) => {
 };
 
 export const createWishlist = (wishlistDetails, image) => {
-  const { token } = getUser();
   return async (dispatch) => {
     dispatch(createWishlistStart());
     try {
       let imageLocation;
       if (image) {
-        imageLocation = await uploadImage(image, token, "wishlist");
+        imageLocation = await uploadImage(image, "wishlist");
         wishlistDetails.images = imageLocation;
       }
 
-      const response = await axios.post(
+      const response = await axios(true).post(
         "/v1/wishlist/create",
-        wishlistDetails,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
+        wishlistDetails
       );
       const { data, message } = response.data.data;
       dispatch(createWishlistSuccess(message, data));

@@ -44,6 +44,8 @@ const SingleEvent = (props) => {
   let eventTags;
   let isFollowingAuthor;
   let isUserFollowingEvent;
+  let attendingEvents;
+  let eventLikes;
 
   if (authenticated) {
     authUser = authenticated._id;
@@ -52,6 +54,12 @@ const SingleEvent = (props) => {
   if (event) {
     foundEvent = event;
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
+
+    attendingEvents = event.invitees.filter(
+      (event) => event.accepted === "YES"
+    );
+
+    eventLikes = event.likes.length;
 
     if (foundEvent.eventCode.length > 0) {
       eventTags = foundEvent.eventCode[0]
@@ -65,6 +73,7 @@ const SingleEvent = (props) => {
       );
       dispatch(getUserEvents(event.userId._id));
     }
+
     if (userFollowing) {
       isFollowingAuthor = userFollowing.find(
         (user) => user.id === event.userId._id
@@ -181,6 +190,8 @@ const SingleEvent = (props) => {
                   handleFollowEvent={followEventHandler}
                   isFollowing={isUserFollowingEvent}
                   isUserAuthenticated={authenticated ? true : false}
+                  numberAttendingEvents={attendingEvents.length}
+                  numberEventLikes={eventLikes}
                 />
               </div>
               <div className="mt-3 mb-3 single-event-date-container">

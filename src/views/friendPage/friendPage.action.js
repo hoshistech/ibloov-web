@@ -97,20 +97,14 @@ export const followUser = (userId) => {
 };
 
 export const getUserFollowing = (userId) => {
-  const { token, user } = getUser();
-  // if (!token) {
-  //   return;
-  // }
+  const { user } = getUser();
+
   if (!userId) {
     userId = user.id;
   }
   return (dispatch) => {
-    return axios
-      .get(`/v1/user/following/${userId}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
+    return axios(true)
+      .get(`/v1/user/following/${userId}`)
       .then((response) => {
         const { data } = response.data;
         dispatch(getUserFollowingSuccess(data));
@@ -125,12 +119,8 @@ export const getFriendRequestList = () => {
   const { token } = getUser();
   return (dispatch) => {
     dispatch(fetchFriendRequestStart());
-    return axios
-      .get("/v1/user/followrequests", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
+    return axios(true)
+      .get("/v1/user/followrequests")
       .then((response) => {
         const { data } = response.data;
 
@@ -147,18 +137,9 @@ export const getFriendRequestList = () => {
 };
 
 export const acceptFriendRequest = (requestId) => {
-  const { token } = getUser();
   return (dispatch) => {
-    return axios
-      .post(
-        `/v1/request/accept/${requestId}`,
-        {},
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      )
+    return axios(true)
+      .post(`/v1/request/accept/${requestId}`, {})
       .then((response) => {
         const { data } = response.data;
         dispatch(acceptFriendRequestSuccess(data));
@@ -170,18 +151,9 @@ export const acceptFriendRequest = (requestId) => {
 };
 
 export const denyFriendRequest = (requestId) => {
-  const { token } = getUser();
   return (dispatch) => {
-    return axios
-      .post(
-        `/v1/request/deny/${requestId}`,
-        {},
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      )
+    return axios(true)
+      .post(`/v1/request/deny/${requestId}`, {})
       .then((response) => {
         const { data } = response.data;
         dispatch(acceptFriendRequestSuccess(data));

@@ -30,7 +30,7 @@ export const userSignupFailed = (authError) => {
 export const authSignup = (userDetails, phoneDetails, history) => {
   return (dispatch) => {
     dispatch(userSignupStart());
-    return axios
+    return axios(false)
       .post("/v1/user/register", userDetails)
       .then((response) => {
         const { data } = response.data;

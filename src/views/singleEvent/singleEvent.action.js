@@ -43,14 +43,34 @@ export const followEventFailed = (error) => {
   };
 };
 
+// export const getEvent = (eventId) => {
+//   const { token } = getUser();
+//   return (dispatch) => {
+//     dispatch(fetchSingleEventStart());
+//     return axios
+//       .get(`/v1/event/${eventId}`)
+//       .then((response) => {
+//         const { data } = response.data;
+//         console.log(213, data);
+
+//         dispatch(fetchSingleEventSuccess(data, data.followers));
+//       })
+//       .catch((error) => {
+//         dispatch(fetchSingleEventFailed("error"));
+//       });
+//   };
+// };
+
 export const getEvent = (eventId) => {
   const { token } = getUser();
   return (dispatch) => {
     dispatch(fetchSingleEventStart());
-    return axios
+    return axios(false)
       .get(`/v1/event/${eventId}`)
       .then((response) => {
         const { data } = response.data;
+        console.log(213, data);
+
         dispatch(fetchSingleEventSuccess(data, data.followers));
       })
       .catch((error) => {
@@ -62,16 +82,8 @@ export const getEvent = (eventId) => {
 export const followEvent = (eventId) => {
   const { token } = getUser();
   return (dispatch) => {
-    return axios
-      .patch(
-        `/v1/event/togglefollow/${eventId}`,
-        { none: "none" },
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      )
+    return axios(true)
+      .patch(`/v1/event/togglefollow/${eventId}`, { none: "none" })
       .then((response) => {
         const { data } = response.data;
 
