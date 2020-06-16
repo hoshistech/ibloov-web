@@ -40,6 +40,10 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.items-search-input:focus {
+  background-color: #ebebeb;
+}
+
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;

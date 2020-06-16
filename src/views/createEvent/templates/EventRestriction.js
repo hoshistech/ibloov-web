@@ -9,7 +9,11 @@ import SideOverLayContainer from "../../../components/sideOverLayContainer/SideO
 import GiftWishList from "../../giftWishList/GiftWishList";
 
 const EventRestriction = (props) => {
-  const { eventRestrictionsHandler, notificationHandler } = props;
+  const {
+    eventRestrictionsHandler,
+    notificationHandler,
+    addCollaborator,
+  } = props;
   const [label, setLabel] = useState(false);
   const [womenOnly, setWomenOnly] = useState(false);
   const [childrenOnly, setChildrenOnly] = useState(false);
@@ -150,7 +154,7 @@ const EventRestriction = (props) => {
         </div>
       </div>
       <div>
-        <EventCollaborators />
+        <EventCollaborators addCollaborator={addCollaborator} />
       </div>
       <SideOverLayContainer
         openSide={openGiftWishList}
