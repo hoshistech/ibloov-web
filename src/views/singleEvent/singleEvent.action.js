@@ -7,6 +7,7 @@ import {
   FOLLOW_EVENT_ERROR,
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
+import { toastr } from "react-redux-toastr";
 
 export const fetchSingleEventStart = () => {
   return {
@@ -43,24 +44,6 @@ export const followEventFailed = (error) => {
   };
 };
 
-// export const getEvent = (eventId) => {
-//   const { token } = getUser();
-//   return (dispatch) => {
-//     dispatch(fetchSingleEventStart());
-//     return axios
-//       .get(`/v1/event/${eventId}`)
-//       .then((response) => {
-//         const { data } = response.data;
-//         console.log(213, data);
-
-//         dispatch(fetchSingleEventSuccess(data, data.followers));
-//       })
-//       .catch((error) => {
-//         dispatch(fetchSingleEventFailed("error"));
-//       });
-//   };
-// };
-
 export const getEvent = (eventId) => {
   const { token } = getUser();
   return (dispatch) => {
@@ -69,8 +52,6 @@ export const getEvent = (eventId) => {
       .get(`/v1/event/${eventId}`)
       .then((response) => {
         const { data } = response.data;
-        console.log(213, data);
-
         dispatch(fetchSingleEventSuccess(data, data.followers));
       })
       .catch((error) => {
@@ -85,11 +66,39 @@ export const followEvent = (eventId) => {
     return axios(true)
       .patch(`/v1/event/togglefollow/${eventId}`, { none: "none" })
       .then((response) => {
-        const { data } = response.data;
-
-        dispatch(followEventSuccess(data));
+        const { data, message } = response.data;
+        toastr.success(message);
+        dispatch(followEventSuccess(data.followers));
       })
       .catch((error) => {
+        toastr.error("failed to follow event", {
+          timeOut: 5000,
+          type: "error",
+          attention: true,
+        });
+        dispatch(fetchSingleEventFailed("error"));
+      });
+  };
+};
+
+export const bloovEvent = (eventId) => {
+  const { token } = getUser();
+  return (dispatch) => {
+    return axios(true)
+      .patch(`/v1/event/invite/setattendingstatus/${eventId}`, {
+        status: "YES",
+      })
+      .then((response) => {
+        const { data } = response.data;
+        toastr.success("operation successful");
+        dispatch(fetchSingleEventSuccess(data, data.followers));
+      })
+      .catch((error) => {
+        toastr.error("failed to bloov event", {
+          timeOut: 5000,
+          type: "error",
+          attention: true,
+        });
         dispatch(fetchSingleEventFailed("error"));
       });
   };

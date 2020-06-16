@@ -15,17 +15,18 @@ import {
   getFriendRequestList,
   acceptFriendRequest,
   denyFriendRequest,
+  getUserFriends,
 } from "./friendPage.action";
 import FriendRequest from "./template/friendRequest/FriendRequest";
 
 const FriendPage = (props) => {
-  const [selectedTab, setSelectedTab] = useState("request");
+  const [selectedTab, setSelectedTab] = useState("ibloov");
   const [selectedGroup, setSelectedGroup] = useState("Family");
   const [showDropDown, setShowDropDown] = useState(false);
 
   const dispatch = useDispatch();
 
-  const { friendRequestList, userFollowing } = useSelector(
+  const { friendRequestList, userFollowing, friends } = useSelector(
     (state) => state.friend
   );
 
@@ -37,25 +38,22 @@ const FriendPage = (props) => {
 
   const fetchFriendRequest = useCallback(() => {
     dispatch(getFriendRequestList());
+    dispatch(getUserFriends());
   }, [dispatch]);
 
   useEffect(() => {
     fetchFriendRequest();
-  }, [fetchFriendRequest]);
+  }, []);
 
-  const acceptFriendRequestHandler = (requestId) => {
-    dispatch(acceptFriendRequest(requestId));
-    // dispatch(fetchFriendRequest());
+  const acceptFriendRequestHandler = async (requestId) => {
+    await dispatch(acceptFriendRequest(requestId));
+    // dispatch(getUserFriends());
   };
 
   const rejectFriendRequestHandler = (requestId) => {
     dispatch(denyFriendRequest(requestId));
     // dispatch(fetchFriendRequest());
   };
-
-  // testing purpose
-  // const [myCreatedEvent, setMyCreatedEvent] = useState(false);
-  // const [showCreate, setShowCreate] = useState(true);
 
   const selectedTabHandler = (e) => {
     const tabSwitch = e.target.name;
@@ -110,7 +108,7 @@ const FriendPage = (props) => {
       })
     );
 
-  const friends = [
+  const groundFriends = [
     {
       image:
         "https://pbs.twimg.com/profile_images/1113161698372927488/jvGhU8iU_400x400.jpg",
@@ -226,15 +224,16 @@ const FriendPage = (props) => {
         <div>
           {selectedTab === "ibloov" ? (
             <FriendList
-              friendList={friends}
+              friendList={groundFriends}
               handleFollowUser={followUserHandler}
+              friends={friends}
             />
           ) : (
             ""
           )}
           {selectedTab === "group" ? (
             <GroupList
-              friendList={friends}
+              friendList={groundFriends}
               pickedGroup={selectedGroupHandler}
               picked={selectedGroup}
             />

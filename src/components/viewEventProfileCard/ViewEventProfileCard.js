@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -15,18 +15,15 @@ const ViewEventProfileCard = (props) => {
     openFriendProfile,
     authUser,
     handleFollowEvent,
+    isAttending,
     isFollowing,
     isUserAuthenticated,
     numberAttendingEvents,
     numberEventLikes,
+    handleBloovEvent,
   } = props;
 
   const history = useHistory();
-
-  console.log(88, numberAttendingEvents);
-
-  const [isFollowingEvent, setIsFollowingEvent] = useState(isFollowing);
-
   let name;
   let profileImage;
   let eventUserId;
@@ -39,8 +36,18 @@ const ViewEventProfileCard = (props) => {
       });
       return;
     }
-    setIsFollowingEvent(!isFollowingEvent);
     handleFollowEvent();
+  };
+
+  const bloovEvent = () => {
+    if (!isUserAuthenticated) {
+      history.push({
+        pathname: "/signin",
+        state: { from: history.location.pathname },
+      });
+      return;
+    }
+    handleBloovEvent();
   };
 
   if (user) {
@@ -52,9 +59,12 @@ const ViewEventProfileCard = (props) => {
   }
 
   let followButton = "Follow Event";
-  if (isFollowingEvent) {
+  if (isFollowing) {
     followButton = "Unfollow Event";
   }
+
+  let bloovButton = "Bloov Event";
+
   return (
     <div>
       <div className="view-event-profile-container prof-cont">
@@ -86,13 +96,18 @@ const ViewEventProfileCard = (props) => {
             ""
           ) : (
             <Fragment>
-              <Button
-                customClassName="view-event-btn bloove-event-now-btn"
-                onClick={() => {}}
-                btndisabled={false}
-              >
-                Bloov Event
-              </Button>
+              {isAttending ? (
+                <div className="text-center">Attendance Confirmed</div>
+              ) : (
+                <Button
+                  customClassName="view-event-btn bloove-event-now-btn"
+                  onClick={bloovEvent}
+                  btndisabled={false}
+                >
+                  {/* {isUserAuthenticated ? bloovButton : "Bloov Event"} */}
+                  Bloov Event
+                </Button>
+              )}
               <Button
                 customClassName="mt-2 view-event-btn bloove-event-follow-btn"
                 onClick={toggleFollowingEvent}

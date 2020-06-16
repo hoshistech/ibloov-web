@@ -7,6 +7,9 @@ import {
   FETCH_ALL_FRIEND_REQUEST_FAIL,
   FETCH_ALL_USER_FOLLOWING_SUCCESS,
   FETCH_ALL_USER_FOLLOWING_FAIL,
+  FETCH_USER_FRIENDS_START,
+  FETCH_USER_FRIENDS_SUCCESS,
+  FETCH_USER_FRIENDS_FAIL,
 } from "../../store/actionTypes";
 
 const initialState = {
@@ -14,6 +17,7 @@ const initialState = {
   error: null,
   user: null,
   friendRequestList: null,
+  friends: null,
 };
 
 const followUserSuccess = (state, action) => {
@@ -62,6 +66,26 @@ const fetchUserFollowingFail = (state, action) => {
   });
 };
 
+const fetchUserFriendsStart = (state, action) => {
+  return updateObject(state, {
+    loading: true,
+  });
+};
+
+const fetchUserFriendsSuccess = (state, action) => {
+  return updateObject(state, {
+    loading: false,
+    friends: action.friends,
+  });
+};
+
+const fetchUserFriendsFail = (state, action) => {
+  return updateObject(state, {
+    loading: false,
+    error: action.error,
+  });
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW_USER:
@@ -78,6 +102,12 @@ export default (state = initialState, action) => {
       return fetchUserFollowingSuccess(state, action);
     case FETCH_ALL_USER_FOLLOWING_FAIL:
       return fetchUserFollowingFail(state, action);
+    case FETCH_USER_FRIENDS_START:
+      return fetchUserFriendsStart(state, action);
+    case FETCH_USER_FRIENDS_SUCCESS:
+      return fetchUserFriendsSuccess(state, action);
+    case FETCH_USER_FRIENDS_FAIL:
+      return fetchUserFriendsFail(state, action);
 
     default:
       return state;
