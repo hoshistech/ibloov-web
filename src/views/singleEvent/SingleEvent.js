@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { getEvent, followEvent } from "./singleEvent.action";
+import { getEvent, followEvent, bloovEvent } from "./singleEvent.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import EventPay from "./templates/eventPay/EventPay";
 import SideOverLayContainer from "../../components/sideOverLayContainer/SideOverLayContainer";
@@ -44,6 +44,7 @@ const SingleEvent = (props) => {
   let eventTags;
   let isFollowingAuthor;
   let isUserFollowingEvent;
+  let isUserAttendingEvent;
   let attendingEvents;
   let eventLikes;
 
@@ -53,6 +54,7 @@ const SingleEvent = (props) => {
 
   if (event) {
     foundEvent = event;
+
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
 
     attendingEvents = event.invitees.filter(
@@ -66,11 +68,14 @@ const SingleEvent = (props) => {
         .split(", ")
         .map((code, index) => <HashTag key={index} tagValue={code} />);
     }
-
-    if (authenticated) {
+    if (authenticated && eventFollowers) {
       isUserFollowingEvent = eventFollowers.find(
-        (user) => user.userId._id === authUser
+        (user) => user.userId._id === authUser || user.userId === authUser
       );
+      isUserAttendingEvent = foundEvent.invitees.find(
+        (user) => user.accepted === "YES" && user.userId._id === authUser
+      );
+
       dispatch(getUserEvents(event.userId._id));
     }
 
@@ -110,6 +115,10 @@ const SingleEvent = (props) => {
 
   const followEventHandler = () => {
     dispatch(followEvent(eventId));
+  };
+
+  const bloovEventHandler = () => {
+    dispatch(bloovEvent(eventId));
   };
 
   return (
@@ -188,10 +197,12 @@ const SingleEvent = (props) => {
                   openFriendProfile={openFriendProfileHandler}
                   authUser={authUser}
                   handleFollowEvent={followEventHandler}
+                  handleBloovEvent={bloovEventHandler}
                   isFollowing={isUserFollowingEvent}
                   isUserAuthenticated={authenticated ? true : false}
                   numberAttendingEvents={attendingEvents.length}
                   numberEventLikes={eventLikes}
+                  isAttending={isUserAttendingEvent}
                 />
               </div>
               <div className="mt-3 mb-3 single-event-date-container">

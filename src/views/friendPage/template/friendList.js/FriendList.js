@@ -4,9 +4,11 @@ import "./FriendList.css";
 import ProgressiveImage from "../../../../components/progressiveImage/ProgressiveImage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FriendProfile from "../friendProfile/FriendProfile";
+import Loading from "../../../../components/loadingIndicator/Loading";
+import avatarPlaceHolder from "../../../../assets/images/profile_placeholder_small.gif";
 
 const FriendList = (props) => {
-  const { friendList, handleFollowUser } = props;
+  const { friendList, handleFollowUser, friends } = props;
 
   const [openFriendProfile, setOpenFriendProfile] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
@@ -18,36 +20,39 @@ const FriendList = (props) => {
     }
   };
 
-  const friendData = friendList.map((friend, index) => (
-    <tr
-      className="friendlist-table-data"
-      key={index}
-      onClick={() => openFriendProfileHandler(friend)}
-    >
-      <td className="friendlist-info-container">
-        <div className="friendlist-info">
-          <ProgressiveImage
-            src={friend.image}
-            customClass="friendlist-image"
-            alt="card"
-          />
-          <div className="friendlist-name">
-            <p>{friend.name}</p>
-            <small>optio sit in</small>
+  let friendData;
+  if (friends) {
+    friendData = friends.map((friend) => (
+      <tr
+        className="friendlist-table-data"
+        key={friend.id}
+        onClick={() => openFriendProfileHandler(friend)}
+      >
+        <td className="friendlist-info-container">
+          <div className="friendlist-info">
+            <ProgressiveImage
+              src={friend.avatar ? friend.avatar : avatarPlaceHolder}
+              customClass="friendlist-image"
+              alt="card"
+            />
+            <div className="friendlist-name">
+              <p>{friend.fullName}</p>
+              <small>optio sit in</small>
+            </div>
           </div>
-        </div>
-      </td>
-      <td className="friendlist-phone-number">{friend.phoneNumber}</td>
-      <td className="email">{friend.email}</td>
-      <td className="group">
-        <div>family</div>
-        <div>friend</div>
-      </td>
-      <td className="action">
-        <FontAwesomeIcon className="action-icon" icon="ellipsis-v" />
-      </td>
-    </tr>
-  ));
+        </td>
+        <td className="friendlist-phone-number">{friend.phoneNumber}</td>
+        <td className="email">{friend.email}</td>
+        <td className="group">
+          <div>family</div>
+          <div>friend</div>
+        </td>
+        <td className="action">
+          <FontAwesomeIcon className="action-icon" icon="ellipsis-v" />
+        </td>
+      </tr>
+    ));
+  }
 
   return (
     <div className="ibloov-friendlist-container">

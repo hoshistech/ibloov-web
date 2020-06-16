@@ -76,8 +76,6 @@ export const fetchLiveEvents = () => {
       .get("/v1/event/live")
       .then((response) => {
         const { events, likedEvents } = response.data.data;
-        console.log(34, events);
-
         dispatch(fetchAllEventSuccess(events, likedEvents));
       })
       .catch((error) => {

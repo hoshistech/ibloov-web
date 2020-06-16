@@ -10,6 +10,9 @@ import {
   ACCEPT_FRIEND_REQUEST_FAIL,
   FETCH_ALL_USER_FOLLOWING_SUCCESS,
   FETCH_ALL_USER_FOLLOWING_FAIL,
+  FETCH_USER_FRIENDS_START,
+  FETCH_USER_FRIENDS_SUCCESS,
+  FETCH_USER_FRIENDS_FAIL,
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
 
@@ -73,6 +76,27 @@ export const getUserFollowingFailed = (error) => {
   };
 };
 
+export const fetchUserFriendsStart = () => {
+  return {
+    type: FETCH_USER_FRIENDS_START,
+  };
+};
+
+export const fetchUserFriendsSuccess = (friends) => {
+  return {
+    type: FETCH_USER_FRIENDS_SUCCESS,
+    friends,
+    friends,
+  };
+};
+
+export const fetchUserFriendsFail = (error) => {
+  return {
+    type: FETCH_USER_FRIENDS_FAIL,
+    error,
+  };
+};
+
 export const followUser = (userId) => {
   const { token } = getUser();
   return (dispatch) => {
@@ -115,8 +139,22 @@ export const getUserFollowing = (userId) => {
   };
 };
 
+export const getUserFriends = () => {
+  return (dispatch) => {
+    dispatch(fetchUserFriendsStart());
+    return axios(true)
+      .get("/v1/user/friends")
+      .then((response) => {
+        const { data } = response.data;
+        dispatch(fetchUserFriendsSuccess(data.all));
+      })
+      .catch((error) => {
+        dispatch(fetchUserFriendsFail("error"));
+      });
+  };
+};
+
 export const getFriendRequestList = () => {
-  const { token } = getUser();
   return (dispatch) => {
     dispatch(fetchFriendRequestStart());
     return axios(true)

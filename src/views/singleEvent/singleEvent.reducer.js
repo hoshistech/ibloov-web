@@ -39,7 +39,7 @@ const fetchEventFail = (state, action) => {
 
 const followEventSuccess = (state, action) => {
   return updateObject(state, {
-    follow: action.follow,
+    eventFollowers: action.follow,
     error: null,
   });
 };
