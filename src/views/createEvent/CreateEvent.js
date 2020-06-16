@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createEvent, eventCreateEnd } from "./createEvent.action";
 import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
 import { fetchEvents } from "../homepage/homePage.action";
+import { getUserFriends } from "../friendPage/friendPage.action";
 
 const CreateEvent = (props) => {
   const [formCount, setFormCount] = useState(1);
@@ -28,10 +29,13 @@ const CreateEvent = (props) => {
   const [isPrivateEvent, setIsPrivateEvent] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
   const [location, setLocation] = useState("");
+  const [collaborators, setCollaborators] = useState([]);
 
   const dispatch = useDispatch();
 
   const isEventCreated = useSelector((state) => state.createEvent.success);
+
+  const { friends } = useSelector((state) => state.friend);
 
   const initilaState = {
     inputValues: {
@@ -168,6 +172,7 @@ const CreateEvent = (props) => {
       description: formState.inputValues.eventDetail,
       category: selectedCategory,
       controls: eventRestrictions,
+      collaborator: collaborators,
       address: location.address,
       notifyMe: notifyMe,
       ...eventTicket,
@@ -175,6 +180,7 @@ const CreateEvent = (props) => {
       isPrivate: isPrivateEvent,
       isPaid,
     };
+
 
     await dispatch(createEvent(newEvent, image));
 
@@ -184,6 +190,7 @@ const CreateEvent = (props) => {
   useEffect(() => {
     eventCreatedSuccesshandler();
     dispatch(fetchEvents());
+    dispatch(getUserFriends());
   }, [isEventCreated]);
 
   const eventCreatedSuccesshandler = () => {
@@ -199,6 +206,22 @@ const CreateEvent = (props) => {
     dispatch(eventCreateEnd());
     setIsCreatedEventSuccess(false);
     window.location.reload();
+  };
+
+  const collaboratorsHandler = (user, remove = false) => {
+    const newCollaborator = {
+      email: user.email,
+    };
+
+    let newList;
+    if (remove) {
+      newList = collaborators.filter((friend) => friend.email !== user.email);
+    } else {
+      const currentList = collaborators;
+      newList = [...currentList, newCollaborator];
+    }
+
+    setCollaborators(newList);
   };
 
   return (
@@ -290,6 +313,7 @@ const CreateEvent = (props) => {
                 <EventRestriction
                   eventRestrictionsHandler={eventRestrictionsHandler}
                   notificationHandler={eventNotificationHandler}
+                  addCollaborator={collaboratorsHandler}
                 />
               </div>
               <CreateEventSubmitBtn

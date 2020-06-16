@@ -11,6 +11,10 @@
   color: black;
   padding: 8px 0px;
   margin-bottom: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 79px;
 }
 
 .remove-friend-icon {
@@ -23,6 +27,6 @@
   border-radius: 15px;
   right: -5px;
   top: -5px;
-
+  cursor: pointer;
   position: absolute;
 }
