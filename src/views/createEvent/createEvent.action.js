@@ -72,7 +72,7 @@ export const createEvent = (eventDetails, image) => {
       dispatch(eventCreateSuccess(message, data));
     } catch (error) {
       // const { message } = error.response.data;
-      toastr.error("Event Error", "Error creating event", {
+      toastr.error("Error creating event", {
         timeOut: 0,
         type: "error",
         position: "top-right", // This will override the global props position.

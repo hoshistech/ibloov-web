@@ -6,7 +6,7 @@ import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif";
 
 const FriendSmallCard = (props) => {
-  const { name, avatar, user, removeCollaborator } = props;
+  const { name, avatar, user, removeCollaborator, type } = props;
   return (
     <div className="row friend-small-card">
       <div className="mr-1">
@@ -19,7 +19,7 @@ const FriendSmallCard = (props) => {
       </div>
       <p>{name}</p>
       <span
-        onClick={() => removeCollaborator(user)}
+        onClick={() => removeCollaborator(user, type)}
         className="remove-friend-icon"
       >
         ×
