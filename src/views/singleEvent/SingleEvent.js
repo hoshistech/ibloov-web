@@ -12,7 +12,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { getEvent, followEvent, bloovEvent } from "./singleEvent.action";
+import {
+  getEvent,
+  followEvent,
+  bloovEvent,
+  likeEvent,
+} from "./singleEvent.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import EventPay from "./templates/eventPay/EventPay";
 import SideOverLayContainer from "../../components/sideOverLayContainer/SideOverLayContainer";
@@ -25,12 +30,15 @@ const SingleEvent = (props) => {
   const [openPay, setOpenPay] = useState(false);
   const [openFriendProfile, setOpenFriendProfile] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
+  const [like, setLike] = useState();
 
   const { eventId } = useParams();
 
   const dispatch = useDispatch();
 
-  const { event, eventFollowers } = useSelector((state) => state.singleEvent);
+  const { event, eventFollowers, eventLikes } = useSelector(
+    (state) => state.singleEvent
+  );
 
   // const { _id: authUser } = useSelector((state) => state.login.user);
   const authenticated = useSelector((state) => state.login.user);
@@ -46,7 +54,6 @@ const SingleEvent = (props) => {
   let isUserFollowingEvent;
   let isUserAttendingEvent;
   let attendingEvents;
-  let eventLikes;
 
   if (authenticated) {
     authUser = authenticated._id;
@@ -60,8 +67,7 @@ const SingleEvent = (props) => {
     attendingEvents = event.invitees.filter(
       (event) => event.accepted === "YES"
     );
-
-    eventLikes = event.likes.length;
+    
 
     if (foundEvent.eventCode.length > 0) {
       eventTags = foundEvent.eventCode[0]
@@ -119,6 +125,11 @@ const SingleEvent = (props) => {
 
   const bloovEventHandler = () => {
     dispatch(bloovEvent(eventId));
+  };
+
+  const likeEventHandler = () => {
+    console.log("liking");
+    dispatch(likeEvent(eventId));
   };
 
   return (
@@ -201,8 +212,9 @@ const SingleEvent = (props) => {
                   isFollowing={isUserFollowingEvent}
                   isUserAuthenticated={authenticated ? true : false}
                   numberAttendingEvents={attendingEvents.length}
-                  numberEventLikes={eventLikes}
+                  numberEventLikes={eventLikes.length}
                   isAttending={isUserAttendingEvent}
+                  handleLikeEvent={likeEventHandler}
                 />
               </div>
               <div className="mt-3 mb-3 single-event-date-container">

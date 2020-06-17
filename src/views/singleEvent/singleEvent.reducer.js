@@ -5,6 +5,8 @@ import {
   FETCH_SINGLE_EVENT_FAIL,
   FOLLOW_EVENT_SUCCESS,
   FOLLOW_EVENT_ERROR,
+  LIKE_EVENT_SUCCESS,
+  LIKE_EVENT_ERROR,
 } from "../../store/actionTypes";
 
 const initialState = {
@@ -13,6 +15,7 @@ const initialState = {
   error: null,
   follow: null,
   eventFollowers: null,
+  eventLikes: null,
 };
 
 const fetchEventStart = (state) => {
@@ -27,6 +30,7 @@ const fetchEventSuccess = (state, action) => {
     loading: false,
     error: null,
     eventFollowers: action.isFollowing,
+    eventLikes: action.eventLikes,
   });
 };
 
@@ -50,6 +54,21 @@ const followEventFail = (state, action) => {
   });
 };
 
+const likeEventSuccess = (state, action) => {
+  console.log("action", action.eventLikes);
+
+  return updateObject(state, {
+    eventLikes: action.eventLikes,
+    error: null,
+  });
+};
+
+const likeEventFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+  });
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_SINGLE_EVENT_START:
@@ -62,6 +81,10 @@ export default (state = initialState, action) => {
       return followEventSuccess(state, action);
     case FOLLOW_EVENT_ERROR:
       return followEventFail(state, action);
+    case LIKE_EVENT_SUCCESS:
+      return likeEventSuccess(state, action);
+    case LIKE_EVENT_ERROR:
+      return likeEventFail(state, action);
 
     default:
       return state;
