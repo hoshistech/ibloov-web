@@ -5,6 +5,8 @@ import {
   FETCH_SINGLE_EVENT_FAIL,
   FOLLOW_EVENT_SUCCESS,
   FOLLOW_EVENT_ERROR,
+  LIKE_EVENT_SUCCESS,
+  LIKE_EVENT_ERROR,
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
 import { toastr } from "react-redux-toastr";
@@ -15,11 +17,12 @@ export const fetchSingleEventStart = () => {
   };
 };
 
-export const fetchSingleEventSuccess = (event, isFollowing) => {
+export const fetchSingleEventSuccess = (event, isFollowing, eventLikes) => {
   return {
     type: FETCH_SINGLE_EVENT_SUCCESS,
     event,
     isFollowing,
+    eventLikes,
   };
 };
 
@@ -44,6 +47,20 @@ export const followEventFailed = (error) => {
   };
 };
 
+export const likeEventSuccess = (eventLikes) => {
+  return {
+    type: LIKE_EVENT_SUCCESS,
+    eventLikes,
+  };
+};
+
+export const likeEventFailed = (error) => {
+  return {
+    type: LIKE_EVENT_ERROR,
+    error,
+  };
+};
+
 export const getEvent = (eventId) => {
   const { token } = getUser();
   return (dispatch) => {
@@ -52,7 +69,9 @@ export const getEvent = (eventId) => {
       .get(`/v1/event/${eventId}`)
       .then((response) => {
         const { data } = response.data;
-        dispatch(fetchSingleEventSuccess(data, data.followers));
+        console.log("res", data);
+
+        dispatch(fetchSingleEventSuccess(data, data.followers, data.likes));
       })
       .catch((error) => {
         dispatch(fetchSingleEventFailed("error"));
@@ -100,6 +119,27 @@ export const bloovEvent = (eventId) => {
           attention: true,
         });
         dispatch(fetchSingleEventFailed("error"));
+      });
+  };
+};
+
+export const likeEvent = (eventId) => {
+  const { token } = getUser();
+  return (dispatch) => {
+    return axios(true)
+      .patch(`/v1/event//togglelike/${eventId}`)
+      .then((response) => {
+        const { likes } = response.data.data;
+        console.log(3303, likes);
+        toastr.success("liked!!!");
+        dispatch(likeEventSuccess(likes));
+      })
+      .catch((error) => {
+        toastr.error("unable to like", {
+          timeOut: 2000,
+          type: "error",
+        });
+        dispatch(likeEventFailed("error"));
       });
   };
 };

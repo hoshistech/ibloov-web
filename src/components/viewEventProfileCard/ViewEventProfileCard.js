@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useCallback } from "react";
+import React, { Fragment, useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -21,7 +21,9 @@ const ViewEventProfileCard = (props) => {
     numberAttendingEvents,
     numberEventLikes,
     handleBloovEvent,
+    handleLikeEvent,
   } = props;
+
 
   const history = useHistory();
   let name;
@@ -49,6 +51,8 @@ const ViewEventProfileCard = (props) => {
     }
     handleBloovEvent();
   };
+
+  useEffect(() => {}, [numberEventLikes]);
 
   if (user) {
     const firstName = user.local.firstName ? user.local.firstName : "";
@@ -147,6 +151,7 @@ const ViewEventProfileCard = (props) => {
               <FontAwesomeIcon
                 className="view-event-card-icon heart"
                 icon="heart"
+                onClick={handleLikeEvent}
               />
               <span className="no-margin-p">{numberEventLikes}</span>
             </div>
