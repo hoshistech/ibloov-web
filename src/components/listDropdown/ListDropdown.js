@@ -4,13 +4,17 @@ import Loading from "../loadingIndicator/Loading";
 import "./ListDropdown.css";
 
 const ListDropdown = (props) => {
-  const { customClassName, items, handleClick } = props;
+  const { customClassName, items, handleClick, type } = props;
 
   let displayItem;
 
   if (items) {
     displayItem = items.map((item) => (
-      <li class="list-group-item" onClick={() => handleClick(item)}>
+      <li
+        class="list-group-item"
+        key={item.id}
+        onClick={() => handleClick(item, type)}
+      >
         {item.fullName}
       </li>
     ));

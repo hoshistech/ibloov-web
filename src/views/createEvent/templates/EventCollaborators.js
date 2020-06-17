@@ -6,35 +6,37 @@ import { useSelector } from "react-redux";
 import ListDropdown from "../../../components/listDropdown/ListDropdown";
 
 const EventCollaborators = (props) => {
-  const { addCollaborator } = props;
+  const { addCollaborator, addInvitee } = props;
   const [searchInput, setSearchInput] = useState("");
+
   const [filteredList, setFilteredList] = useState([]);
-  const [selectedInvitees, setSelectedInvitees] = useState();
   const [selectedCollaborators, setSelectedCollaborators] = useState([]);
+
+  const [filteredInviteeList, setFilteredInviteeList] = useState([]);
+  const [selectedInvitees, setSelectedInvitees] = useState([]);
 
   const { friends } = useSelector((state) => state.friend);
 
   const inputChangeHandler = (e) => {
     const value = e.target.value;
+    const name = e.target.name;
     setSearchInput(value.toLowerCase());
-
     if (value.length < 0) {
       setFilteredList([]);
+      setFilteredInviteeList([]);
     }
 
-    searchFriends();
+    if (name === "collaborator") {
+      searchFriends(name);
+    } else {
+      searchFriends(name);
+    }
   };
 
-  const searchFriends = () => {
-    // const itemIndex = friends.indexOf(
-    //   (friend) => friend.fullName === searchInput
-    // );
-    // const itemIndex = friends.map((friend) =>
-    //   friend.fullName.indexOf(searchInput)
-    // );
-
+  const searchFriends = (friendName) => {
     if (searchInput.length === 0) {
       setFilteredList([]);
+      setFilteredInviteeList([]);
       return;
     }
     const currentList = friends;
@@ -45,34 +47,57 @@ const EventCollaborators = (props) => {
       return name.includes(searchInput);
     });
 
-    setFilteredList(newList);
-  };
-
-  const addCollaboratorHandler = (friend) => {
-    const currentList = selectedCollaborators;
-
-    const newList = [...currentList, friend];
-    const itemIndex = selectedCollaborators.findIndex(
-      (pickedFriend) => pickedFriend.id === friend.id
-    );
-    if (itemIndex > -1) {
-      return;
+    if (friendName === "collaborator") {
+      setFilteredList(newList);
+    } else {
+      setFilteredInviteeList(newList);
     }
-    setSelectedCollaborators(newList);
-    addCollaborator(friend);
   };
 
-  const removeCollaboratorHandler = (user) => {
-    const newList = selectedCollaborators.filter(
-      (friend) => friend.id !== user.id
-    );
-
-    setSelectedCollaborators(newList);
-    const remove = true;
-    addCollaborator(user, remove);
+  const addfriendHandler = (friend, type) => {
+    if (type === "collaborator") {
+      const currentList = selectedCollaborators;
+      const newList = [...currentList, friend];
+      const itemIndex = selectedCollaborators.findIndex(
+        (pickedFriend) => pickedFriend.id === friend.id
+      );
+      if (itemIndex > -1) {
+        return;
+      }
+      setSelectedCollaborators(newList);
+      addCollaborator(friend);
+    } else {
+      const currentList = selectedInvitees;
+      const newList = [...currentList, friend];
+      const itemIndex = selectedInvitees.findIndex(
+        (pickedFriend) => pickedFriend.id === friend.id
+      );
+      if (itemIndex > -1) {
+        return;
+      }
+      setSelectedInvitees(newList);
+      addInvitee(friend);
+    }
   };
 
-  const addInviteeHandler = () => {};
+  const removeCollaboratorHandler = (user, type) => {
+    if (type === "collaborator") {
+      const newList = selectedCollaborators.filter(
+        (friend) => friend.id !== user.id
+      );
+
+      setSelectedCollaborators(newList);
+      const remove = true;
+      addCollaborator(user, remove);
+    } else {
+      const newList = selectedInvitees.filter(
+        (friend) => friend.id !== user.id
+      );
+      setSelectedInvitees(newList);
+      const remove = true;
+      addInvitee(user, remove);
+    }
+  };
   return (
     <div className="collaborators-container">
       <div>
@@ -88,8 +113,10 @@ const EventCollaborators = (props) => {
               type="search"
               placeholder="Search for friends to add"
               aria-label="Search"
+              name="collaborator"
               // onChange={inputChangeHandler}
               onKeyUp={inputChangeHandler}
+              autocomplete="off"
             />
           </div>
         </div>
@@ -97,17 +124,20 @@ const EventCollaborators = (props) => {
           <ListDropdown
             customClassName="friend-dropdown-container"
             items={filteredList}
-            handleClick={addCollaboratorHandler}
+            handleClick={addfriendHandler}
+            type="collaborator"
           />
         </div>
         <div className="row mt-2">
           {selectedCollaborators
             ? selectedCollaborators.map((friend) => (
                 <FriendSmallCard
+                  key={friend.id}
                   name={friend.fullName}
                   avatar={friend.avatar}
                   removeCollaborator={removeCollaboratorHandler}
                   user={friend}
+                  type="collaborator"
                 />
               ))
             : ""}
@@ -119,9 +149,41 @@ const EventCollaborators = (props) => {
           <small>Invite other friends to plan the event</small>
         </div>
         <div className="row">
+          <div className="item-search-container">
+            <FontAwesomeIcon className="items-search-icon" icon="search" />
+            <input
+              className="form-control mr-sm-2 items-search-input"
+              type="search"
+              placeholder="Search for friends to invite"
+              aria-label="Search"
+              name="invitee"
+              onKeyUp={inputChangeHandler}
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div>
+          <ListDropdown
+            customClassName="friend-dropdown-container"
+            items={filteredInviteeList}
+            handleClick={addfriendHandler}
+            type="invitee"
+          />
+        </div>
+        <div className="row mt-2">
           <div className="row">
-            <FriendSmallCard name="Luiz Albert" />
-            <FriendSmallCard name="Heinze Shaw" />
+            {selectedInvitees
+              ? selectedInvitees.map((friend) => (
+                  <FriendSmallCard
+                    key={friend.id}
+                    name={friend.fullName}
+                    avatar={friend.avatar}
+                    removeCollaborator={removeCollaboratorHandler}
+                    user={friend}
+                    type="invitee"
+                  />
+                ))
+              : ""}
           </div>
         </div>
       </div>

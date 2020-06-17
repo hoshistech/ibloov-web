@@ -13,6 +13,7 @@ const EventRestriction = (props) => {
     eventRestrictionsHandler,
     notificationHandler,
     addCollaborator,
+    addInvitee,
   } = props;
   const [label, setLabel] = useState(false);
   const [womenOnly, setWomenOnly] = useState(false);
@@ -154,7 +155,10 @@ const EventRestriction = (props) => {
         </div>
       </div>
       <div>
-        <EventCollaborators addCollaborator={addCollaborator} />
+        <EventCollaborators
+          addCollaborator={addCollaborator}
+          addInvitee={addInvitee}
+        />
       </div>
       <SideOverLayContainer
         openSide={openGiftWishList}

@@ -30,6 +30,7 @@ const CreateEvent = (props) => {
   const [isPaid, setIsPaid] = useState(false);
   const [location, setLocation] = useState("");
   const [collaborators, setCollaborators] = useState([]);
+  const [invitee, setInvitee] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -172,7 +173,8 @@ const CreateEvent = (props) => {
       description: formState.inputValues.eventDetail,
       category: selectedCategory,
       controls: eventRestrictions,
-      collaborator: collaborators,
+      coordinators: collaborators,
+      invitees: invitee,
       address: location.address,
       notifyMe: notifyMe,
       ...eventTicket,
@@ -180,7 +182,6 @@ const CreateEvent = (props) => {
       isPrivate: isPrivateEvent,
       isPaid,
     };
-
 
     await dispatch(createEvent(newEvent, image));
 
@@ -220,8 +221,22 @@ const CreateEvent = (props) => {
       const currentList = collaborators;
       newList = [...currentList, newCollaborator];
     }
-
     setCollaborators(newList);
+  };
+
+  const addInviteeHandler = (user, remove = false) => {
+    const newInvite = {
+      email: user.email,
+    };
+
+    let newList;
+    if (remove) {
+      newList = invitee.filter((friend) => friend.email !== user.email);
+    } else {
+      const currentList = invitee;
+      newList = [...currentList, newInvite];
+    }
+    setInvitee(newList);
   };
 
   return (
@@ -314,6 +329,7 @@ const CreateEvent = (props) => {
                   eventRestrictionsHandler={eventRestrictionsHandler}
                   notificationHandler={eventNotificationHandler}
                   addCollaborator={collaboratorsHandler}
+                  addInvitee={addInviteeHandler}
                 />
               </div>
               <CreateEventSubmitBtn
