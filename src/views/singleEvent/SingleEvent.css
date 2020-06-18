@@ -74,23 +74,54 @@
 }
 
 .share-icon {
-  color: white;
-  text-align: center;
+  color: white !important;
+  text-align: center !important;
 }
 
 .share-icon-facebook {
-  background-color: #2a5799;
+  background-color: #2a5799 !important;
+  color: white !important;
+  text-align: center;
+  border-radius: 25px;
+  height: 50px;
+  padding: 14px 0;
+  width: 50px;
+  margin-right: 1rem;
 }
 
 .share-icon-twitter {
-  background-color: #74acff;
+  background-color: #74acff !important;
+  border-radius: 25px;
+  height: 50px;
+  padding: 14px 0;
+  width: 50px;
+  margin-right: 1rem;
 }
 
 .share-icon-instagram {
 }
 
 .share-icon-linkedin {
-  background-color: #0083b4;
+  background-color: #0083b4 !important;
+  border-radius: 25px;
+  height: 50px;
+  padding: 14px 0;
+  width: 50px;
+  margin-right: 1rem;
+}
+
+.share-icon-facebook,
+.share-icon-twitter,
+.share-icon-instagram:focus {
+  background-color: white;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.share-icon-facebook::-webkit-outer-spin-button,
+.share-icon-twitter::-webkit-inner-spin-button,
+.share-icon-instagram::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @media only screen and (min-width: 768px) {

@@ -13,6 +13,11 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+} from "react-share";
+import {
   getEvent,
   followEvent,
   bloovEvent,
@@ -67,7 +72,6 @@ const SingleEvent = (props) => {
     attendingEvents = event.invitees.filter(
       (event) => event.accepted === "YES"
     );
-    
 
     if (foundEvent.eventCode.length > 0) {
       eventTags = foundEvent.eventCode[0]
@@ -128,10 +132,11 @@ const SingleEvent = (props) => {
   };
 
   const likeEventHandler = () => {
-    console.log("liking");
     dispatch(likeEvent(eventId));
   };
 
+  const shareText = "Hey, checkout this awesome event coming up:";
+  const eventUrl = window.location.href;
   return (
     <Fragment>
       <Navbar />
@@ -250,25 +255,37 @@ const SingleEvent = (props) => {
                   Share with friends
                 </h4>
                 <div className="row share-icon-container">
-                  <div className="share-icon-facebook">
+                  <FacebookShareButton
+                    className="share-icon-facebook"
+                    quote={shareText}
+                    url={eventUrl}
+                  >
                     <FontAwesomeIcon
                       className="share-icon"
                       icon={["fab", "facebook-f"]}
                     />
-                  </div>
+                  </FacebookShareButton>
 
-                  <div className="share-icon-twitter">
+                  <TwitterShareButton
+                    className="share-icon-twitter"
+                    quote={shareText}
+                    url={eventUrl}
+                  >
                     <FontAwesomeIcon
                       className="share-icon"
                       icon={["fab", "twitter"]}
                     />
-                  </div>
-                  <div className="share-icon-linkedin">
+                  </TwitterShareButton>
+                  <LinkedinShareButton
+                    className="share-icon-linkedin"
+                    quote={shareText}
+                    url={eventUrl}
+                  >
                     <FontAwesomeIcon
                       className="share-icon"
                       icon={["fab", "linkedin-in"]}
                     />
-                  </div>
+                  </LinkedinShareButton>
                 </div>
               </div>
             </div>
