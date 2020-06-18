@@ -55,8 +55,6 @@ const followEventFail = (state, action) => {
 };
 
 const likeEventSuccess = (state, action) => {
-  console.log("action", action.eventLikes);
-
   return updateObject(state, {
     eventLikes: action.eventLikes,
     error: null,

@@ -69,8 +69,6 @@ export const getEvent = (eventId) => {
       .get(`/v1/event/${eventId}`)
       .then((response) => {
         const { data } = response.data;
-        console.log("res", data);
-
         dispatch(fetchSingleEventSuccess(data, data.followers, data.likes));
       })
       .catch((error) => {
@@ -130,7 +128,6 @@ export const likeEvent = (eventId) => {
       .patch(`/v1/event//togglelike/${eventId}`)
       .then((response) => {
         const { likes } = response.data.data;
-        console.log(3303, likes);
         toastr.success("liked!!!");
         dispatch(likeEventSuccess(likes));
       })
