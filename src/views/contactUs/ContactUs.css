@@ -1,0 +1,77 @@
+.contact-section {
+  background-image: url("../../assets/images/mapImage.png");
+  /* background-image: url("../../assets//images/background.jpg"); */
+  padding: 5% 0px;
+}
+
+.contact-page-container {
+  display: flex;
+  background-color: white;
+  max-width: 900px;
+  margin: 0px auto;
+  display: flex;
+  padding: 25px 10px 50px 10px;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.contact-page-container h3 {
+  color: #2a5799;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.contact-info {
+  display: grid;
+}
+
+.first-col-header p {
+  color: #7f7f7f;
+  font-size: 15px;
+}
+
+.contact-icon {
+  display: flex;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.contact-icon div {
+  margin-right: 10px;
+  color: #ff9e91;
+}
+
+.contact-icon-form {
+  color: #ff9e91;
+  position: absolute;
+  margin-right: 15px;
+  top: 25%;
+  margin-left: 10px;
+}
+
+.btn-send-message {
+  border: 1px solid #ff9d91;
+  border-radius: 10px;
+  color: #ff5a46;
+  font-size: 12px;
+  width: 140px;
+  text-align: center;
+  padding: 10px;
+}
+
+.btn-send-message:hover {
+  color: #ff5a46;
+}
+
+.contact-form-group {
+  position: relative;
+}
+
+.contact-input::placeholder {
+  /* margin-left: 55px !important; */
+  /* padding-left: 5px; */
+}
+
+.contact-input {
+  border-radius: 0px;
+  padding-left: 10%;
+}

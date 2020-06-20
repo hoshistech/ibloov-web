@@ -8,12 +8,11 @@ const NavbarJombotron = (props) => {
     <header className="navbar-container">
       <Navbar />
       <section className="jombotron-text">
-        <h1 className="font-bold">{headerTitle}</h1>
+        <h1 className="jombotron-header">{headerTitle}</h1>
         <p>{headerDescription}</p>
       </section>
     </header>
   );
 };
-
 
 export default NavbarJombotron;
