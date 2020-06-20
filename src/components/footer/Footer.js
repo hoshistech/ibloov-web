@@ -11,7 +11,7 @@ import PicC from "../../assets/images/background.jpg";
 const Footer = (props) => {
   return (
     <Fragment>
-      <footer className="mt-5 footer-content-container">
+      <footer className="footer-content-container">
         <div className="row footer-container">
           <div className="col-md-3 mt-4">
             <h5>ibloov</h5>
@@ -54,7 +54,7 @@ const Footer = (props) => {
               <Link to="#">
                 <p>Services</p>
               </Link>
-              <Link to="#">
+              <Link to="/contact">
                 <p>Contact</p>
               </Link>
               <Link to="/privacy">

@@ -20,11 +20,11 @@ const NonAuthNavbar = (props) => {
           EXCLUSIVES
         </Link>
       </li> */}
-      {/* <li className="nav-item">
-        <Link className="nav-link color-white" to="#">
-          CONTACT
+      <li className="nav-item">
+        <Link className="nav-link color-white" to="/contact">
+          Contact
         </Link>
-      </li> */}
+      </li>
       <li className="nav-item">
         <Link to="/signin" className="login-btn" data-testid="login-btn">
           <Button

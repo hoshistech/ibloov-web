@@ -37,6 +37,9 @@ import {
   faEllipsisV,
   faBars,
   faUser,
+  faPhoneAlt,
+  faEnvelope,
+  faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
@@ -64,6 +67,7 @@ import FriendPage from "./views/friendPage/FriendPage";
 import Axios from "axios";
 import { getUserFollowing } from "./views/friendPage/friendPage.action";
 import PrivacyPolicy from "./views/privacyPolicy/PrivacyPolicy";
+import ContactUs from "./views/contactUs/ContactUs";
 
 const store = setupStore(persistedReducer);
 const persistor = persistStore(store);
@@ -100,7 +104,10 @@ library.add(
   faSearch,
   faEllipsisV,
   faBars,
-  faUser
+  faUser,
+  faPhoneAlt,
+  faEnvelope,
+  faGlobe
 );
 
 function NoMatch() {
@@ -145,6 +152,12 @@ function App() {
               <Route path="/events">
                 <div>
                   <Event />
+                  <Footer />
+                </div>
+              </Route>
+              <Route path="/contact" exact>
+                <div>
+                  <ContactUs />
                   <Footer />
                 </div>
               </Route>

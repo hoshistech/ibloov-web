@@ -20,9 +20,27 @@
   margin-top: 6rem;
 }
 
+.jombotron-header {
+  font-weight: bolder;
+}
+
+.jombotron-text p {
+  font-weight: bold;
+}
+
 @media only screen and (min-width: 991px) {
   .navbar-container {
     /* height: 310px; */
     padding: 1rem;
+  }
+
+  .jombotron-header {
+    font-weight: bolder;
+    font-size: 65px;
+  }
+
+  .jombotron-text p {
+    font-size: 20px;
+    font-weight: bold;
   }
 }
