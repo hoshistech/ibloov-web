@@ -42,3 +42,22 @@ export const genRandomNumber = (min, max) => {
   const number = Math.floor(Math.random() * (max - min)) + min;
   return number;
 };
+
+export const chunkArray = (array, n) => {
+  console.log(34, n);
+
+  if (!array || !array.length) {
+    return [];
+  }
+  const column = 4 - 1;
+  let res = [];
+
+  for (let index = 0; index <= 3; index++) {
+    if (index === column) {
+      res.push(array);
+      continue;
+    }
+    res.push(array.splice(0, n));
+  }
+  return res;
+};
