@@ -68,6 +68,7 @@ import Axios from "axios";
 import { getUserFollowing } from "./views/friendPage/friendPage.action";
 import PrivacyPolicy from "./views/privacyPolicy/PrivacyPolicy";
 import ContactUs from "./views/contactUs/ContactUs";
+import SingleWishlist from "./views/SingleWishlist/SingleWishlist";
 
 const store = setupStore(persistedReducer);
 const persistor = persistStore(store);
@@ -175,6 +176,9 @@ function App() {
               </Route>
               <PrivateRoute path="/dashboard">
                 <Dashboard />
+              </PrivateRoute>
+              <PrivateRoute path="/wishlist/:wishlistId">
+                <SingleWishlist />
               </PrivateRoute>
               <PrivateRoute path="/myibloov">
                 <Myibloov />

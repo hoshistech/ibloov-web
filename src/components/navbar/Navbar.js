@@ -21,9 +21,10 @@ const Navbar = (props) => {
     dispatch(logout());
   };
 
-  const paths = ["myibloov", "myfriends", "privacy"];
+  const paths = ["myibloov", "myfriends", "privacy", "wishlist"];
 
-  const found = paths.find((path) => path === pathname.slice(1));
+  // const found = paths.find((path) => path === pathname.slice(1));
+  const found = paths.find((path) => pathname.slice(1).includes(path));
 
   let removeAbsolute = "";
   if (found) {

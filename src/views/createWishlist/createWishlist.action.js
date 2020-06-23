@@ -62,7 +62,7 @@ export const createWishlistEnd = (error) => {
 export const getSearchedItems = (searchValue) => {
   return (dispatch) => {
     dispatch(getWishlistItemsStart());
-    return axios
+    return axios(false)
       .get(`/v1/shopping/product?q=${searchValue}`)
       .then(async (result) => {
         const items = result.data.data.shopping_results;

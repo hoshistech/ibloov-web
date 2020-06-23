@@ -87,6 +87,7 @@ const Myibloov = (props) => {
         date={wishlist.createdAt}
         image={wishlist.images}
         user={wishlist.userId}
+        wishlistId={wishlist._id}
         itemNumber={wishlist.items.length}
       />
     ));
