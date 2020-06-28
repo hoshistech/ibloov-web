@@ -60,12 +60,16 @@ export const uploadImage = async (image, resource) => {
 };
 
 export const createEvent = (eventDetails, image) => {
+  console.log(99, image);
   return async (dispatch) => {
     dispatch(eventCreateStart());
     try {
-      const imageLocation = await uploadImage(image, "event");
+      let imageLocation;
+      if (image) {
+        imageLocation = await uploadImage(image, "event");
+        eventDetails.images = imageLocation;
+      }
 
-      eventDetails.images = imageLocation;
       const response = await axios(true).post("/v1/event/create", eventDetails);
       const { data, message } = response.data.data;
 

@@ -87,14 +87,17 @@ const Login = (props) => {
     dispatch(getUserFollowing());
   };
 
-  /*   const socialAuthHandler = (e, id) => {
-    const googleAuth = "https://ibloov.xpasson.com:4000/auth/google";
+  const socialAuthHandler = (e, id) => {
+    // const googleAuth = "https://ibloov.xpasson.com:4000/auth/google";
+    const googleAuth = "198.199.91.181:4000/auth/google";
     window.location = googleAuth;
     axios
-      .get("/auth/google")
-      .then((response) => {})
+      .get(googleAuth)
+      .then((response) => {
+        console.log(response.data);
+      })
       .catch((error) => {});
-  }; */
+  };
 
   if (token) {
     return <Redirect to="/" />;
@@ -162,8 +165,8 @@ const Login = (props) => {
             <div className="auth-button-container-social-login">
               <Button
                 customClassName="btn-outline-secondary bold-600 auth-google mb-2"
-                // onClick={(e) => socialAuthHandler(e, "google")}
-                onClick={() => {}}
+                onClick={(e) => socialAuthHandler(e, "google")}
+                // onClick={() => {}}
                 btndisabled={false}
               >
                 <FontAwesomeIcon className="" icon={["fab", "google-plus-g"]} />

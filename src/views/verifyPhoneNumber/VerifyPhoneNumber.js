@@ -16,10 +16,14 @@ import {
   verifiyPhoneNumber,
   sendVerificationCode,
 } from "./verifyPhoneNumber.action";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const VerifyPhoneNumber = (props) => {
   const { history } = props;
+
+  // const history = useHistory()
+
+  console.log(33, history);
 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [countryCode, setCountryCode] = useState("");
