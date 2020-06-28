@@ -44,7 +44,6 @@ export const genRandomNumber = (min, max) => {
 };
 
 export const chunkArray = (array, n) => {
-  console.log(34, n);
 
   if (!array || !array.length) {
     return [];

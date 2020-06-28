@@ -2,6 +2,7 @@ import React, { useReducer, useCallback, useEffect, useState } from "react";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 import "./Login.css";
 import Input from "../../components/input/Input";
@@ -88,15 +89,8 @@ const Login = (props) => {
   };
 
   const socialAuthHandler = (e, id) => {
-    // const googleAuth = "https://ibloov.xpasson.com:4000/auth/google";
-    const googleAuth = "198.199.91.181:4000/auth/google";
+    const googleAuth = "http://198.199.91.181:4000/auth/google";
     window.location = googleAuth;
-    axios
-      .get(googleAuth)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {});
   };
 
   if (token) {
