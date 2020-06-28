@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useCallback, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import Axios from "axios";
 
 import "./Signup.css";
@@ -12,7 +12,7 @@ import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
 import Logo from "../../components/logo/Logo";
 
 const Signup = (props) => {
-  const { history } = props;
+  const history = useHistory();
 
   const [checkTerms, setCheckTerms] = useState(false);
   const [countryCode, setCountryCode] = useState("");
@@ -209,7 +209,7 @@ const Signup = (props) => {
               <Button
                 customClassName="auth-button bold-600"
                 onClick={handleSignup}
-                // btndisabled={!(formState.formIsValid && checkTerms)}
+                btndisabled={!(formState.formIsValid && checkTerms)}
               >
                 CREATE AN ACCOUNT
               </Button>
