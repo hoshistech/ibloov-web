@@ -23,8 +23,6 @@ const VerifyPhoneNumber = (props) => {
 
   // const history = useHistory()
 
-  console.log(33, history);
-
   const [phoneNumber, setPhoneNumber] = useState("");
   const [countryCode, setCountryCode] = useState("");
 

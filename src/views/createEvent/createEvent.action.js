@@ -60,7 +60,6 @@ export const uploadImage = async (image, resource) => {
 };
 
 export const createEvent = (eventDetails, image) => {
-  console.log(99, image);
   return async (dispatch) => {
     dispatch(eventCreateStart());
     try {

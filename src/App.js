@@ -69,6 +69,7 @@ import { getUserFollowing } from "./views/friendPage/friendPage.action";
 import PrivacyPolicy from "./views/privacyPolicy/PrivacyPolicy";
 import ContactUs from "./views/contactUs/ContactUs";
 import SingleWishlist from "./views/SingleWishlist/SingleWishlist";
+import Social from "./components/social/Social";
 
 const store = setupStore(persistedReducer);
 const persistor = persistStore(store);
@@ -167,6 +168,9 @@ function App() {
                   <HomePage />
                   <Footer />
                 </div>
+              </Route>
+              <Route path="/social/:token">
+                <Social />
               </Route>
               <Route path="/event/:eventId" exact>
                 <SingleEvent />

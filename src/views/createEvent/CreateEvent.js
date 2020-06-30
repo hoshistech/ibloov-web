@@ -183,7 +183,6 @@ const CreateEvent = (props) => {
       isPaid,
     };
 
-    console.log(444, image);
     
     await dispatch(createEvent(newEvent, image));
 
