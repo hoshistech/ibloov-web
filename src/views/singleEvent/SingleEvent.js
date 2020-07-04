@@ -15,13 +15,13 @@ import moment from "moment";
 import {
   FacebookShareButton,
   TwitterShareButton,
-  LinkedinShareButton,
+  LinkedinShareButton
 } from "react-share";
 import {
   getEvent,
   followEvent,
   bloovEvent,
-  likeEvent,
+  likeEvent
 } from "./singleEvent.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import EventPay from "./templates/eventPay/EventPay";
@@ -30,8 +30,9 @@ import FriendProfile from "../friendPage/template/friendProfile/FriendProfile";
 import EventMap from "./templates/eventMap/EventMap";
 import { followUser, getUserFollowing } from "../friendPage/friendPage.action";
 import { getUserEvents } from "../homepage/homePage.action";
+import Stripe from "./stripe/Stripe";
 
-const SingleEvent = (props) => {
+const SingleEvent = props => {
   const [openPay, setOpenPay] = useState(false);
   const [openFriendProfile, setOpenFriendProfile] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
@@ -42,15 +43,15 @@ const SingleEvent = (props) => {
   const dispatch = useDispatch();
 
   const { event, eventFollowers, eventLikes } = useSelector(
-    (state) => state.singleEvent
+    state => state.singleEvent
   );
 
   // const { _id: authUser } = useSelector((state) => state.login.user);
-  const authenticated = useSelector((state) => state.login.user);
+  const authenticated = useSelector(state => state.login.user);
 
   let authUser;
 
-  const { userFollowing } = useSelector((state) => state.friend);
+  const { userFollowing } = useSelector(state => state.friend);
 
   let foundEvent;
   let startDate;
@@ -69,9 +70,7 @@ const SingleEvent = (props) => {
 
     startDate = moment(foundEvent.startDate).format("MMMM Do, YYYY @ h:mm a");
 
-    attendingEvents = event.invitees.filter(
-      (event) => event.accepted === "YES"
-    );
+    attendingEvents = event.invitees.filter(event => event.accepted === "YES");
 
     if (foundEvent.eventCode.length > 0) {
       eventTags = foundEvent.eventCode[0]
@@ -80,10 +79,10 @@ const SingleEvent = (props) => {
     }
     if (authenticated && eventFollowers) {
       isUserFollowingEvent = eventFollowers.find(
-        (user) => user.userId._id === authUser || user.userId === authUser
+        user => user.userId._id === authUser || user.userId === authUser
       );
       isUserAttendingEvent = foundEvent.invitees.find(
-        (user) => user.accepted === "YES" && user.userId._id === authUser
+        user => user.accepted === "YES" && user.userId._id === authUser
       );
 
       dispatch(getUserEvents(event.userId._id));
@@ -91,7 +90,7 @@ const SingleEvent = (props) => {
 
     if (userFollowing) {
       isFollowingAuthor = userFollowing.find(
-        (user) => user.id === event.userId._id
+        user => user.id === event.userId._id
       );
     }
     // setCurrentUser(foundEvent.userId);
@@ -112,14 +111,14 @@ const SingleEvent = (props) => {
     setOpenPay(!openPay);
   };
 
-  const openFriendProfileHandler = (user) => {
+  const openFriendProfileHandler = user => {
     setOpenFriendProfile(!openFriendProfile);
     // if (!openFriendProfile) {
     //   setCurrentUser(user);
     // }
   };
 
-  const handleFollowUserHandler = (userId) => {
+  const handleFollowUserHandler = userId => {
     dispatch(followUser(userId));
   };
 
@@ -197,7 +196,7 @@ const SingleEvent = (props) => {
                   <h3 className="single-event-header-title">
                     Comments<span>(1)</span>
                   </h3>
-                  <div className="mt-3 mb-3">
+                  <div className="mt-5 mb-3">
                     <SingleComment />
                   </div>
                   <div className="mt-3 mb-3">
@@ -222,7 +221,7 @@ const SingleEvent = (props) => {
                   handleLikeEvent={likeEventHandler}
                 />
               </div>
-              <div className="mt-3 mb-3 single-event-date-container">
+              <div className="mt-5 mb-3 single-event-date-container">
                 <h4 className="single-event-header-title">Dates and Time</h4>
                 <p>
                   Start: <span className="event-start-date">{startDate}</span>
@@ -237,20 +236,20 @@ const SingleEvent = (props) => {
                   </Button>
                 </div>
               </div>
-              <div className="mt-3 mb-3 single-event-second-col-container">
+              <div className="mt-5 mb-3 single-event-second-col-container">
                 <h4 className="single-event-header-title">Event Location</h4>
                 <div>
                   <EventMap />
                 </div>
                 <div>{foundEvent.location.address}</div>
               </div>
-              <div className="mt-3 mb-3 single-event-second-col-container">
+              <div className="mt-5 mb-3 single-event-second-col-container">
                 <h4 className="single-event-header-title">Tags</h4>
                 <div className="single-comment-hashtag-container">
                   {eventTags ? eventTags : "No tags for this event"}
                 </div>
               </div>
-              <div className="mt-3 mb-3 single-event-second-col-container">
+              <div className="mt-5 mb-3 single-event-second-col-container">
                 <h4 className="single-event-header-title">
                   Share with friends
                 </h4>
@@ -300,12 +299,13 @@ const SingleEvent = (props) => {
               toggleOpenSide={() => setOpenPay(!openPay)}
             >
               <div className="event-pay-form-container">
-                <EventPay
+                {/* <EventPay
                   closePayView={closePayView}
                   eventPrice={foundEvent ? foundEvent.amount : ""}
                   currency={foundEvent ? foundEvent.currency : ""}
                   eventId={foundEvent ? foundEvent._id : ""}
-                />
+                /> */}
+                <Stripe />
               </div>
             </SideOverLayContainer>
           ) : (

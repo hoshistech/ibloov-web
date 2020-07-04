@@ -4,7 +4,7 @@ import StarRatingComponent from "react-star-rating-component";
 import passport from "../../assets/images/passport.jpg";
 import "./SingleComment.css";
 
-const SingleComment = (props) => {
+const SingleComment = props => {
   return (
     <div className="row single-comment-container">
       <div className="mr-3">
@@ -28,7 +28,7 @@ const SingleComment = (props) => {
             />
           </div>
         </div>
-        <div>
+        <div className="comment-body text-truncate">
           There are many variations of passages of Lorem Ipsum available, but
           the majority have suffered alteration in some form, by injected
           humour, or randomised words which don't look even slightly believable.

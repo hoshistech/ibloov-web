@@ -6,7 +6,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useLocation,
+  useLocation
 } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -16,7 +16,7 @@ import {
   faLinkedinIn,
   faInstagram,
   faGoogle,
-  faGooglePlusG,
+  faGooglePlusG
 } from "@fortawesome/free-brands-svg-icons";
 
 import {
@@ -39,9 +39,11 @@ import {
   faUser,
   faPhoneAlt,
   faEnvelope,
-  faGlobe,
+  faGlobe
 } from "@fortawesome/free-solid-svg-icons";
 import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 import "./App.css";
 import Signup from "./views/signup/Signup";
@@ -112,6 +114,8 @@ library.add(
   faGlobe
 );
 
+const stripePromise = loadStripe("pk_test_ZLXamYUP1Hp8QNf5b1B1d1fr00ycTYZS8e");
+
 function NoMatch() {
   let location = useLocation();
 
@@ -132,7 +136,7 @@ function App() {
     <Provider store={store}>
       <ReduxToastr
         preventDuplicates
-        getState={(state) => state.toastr} // This is the default
+        getState={state => state.toastr} // This is the default
         transitionIn="fadeIn"
         transitionOut="fadeOut"
         progressBar
@@ -173,7 +177,9 @@ function App() {
                 <Social />
               </Route>
               <Route path="/event/:eventId" exact>
+                {/* <Elements stripe={stripePromise}> */}
                 <SingleEvent />
+                {/* </Elements> */}
               </Route>
               <Route path="/privacy" exact>
                 <PrivacyPolicy />

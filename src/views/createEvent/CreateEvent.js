@@ -15,7 +15,7 @@ import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSucce
 import { fetchEvents } from "../homepage/homePage.action";
 import { getUserFriends } from "../friendPage/friendPage.action";
 
-const CreateEvent = (props) => {
+const CreateEvent = props => {
   const [formCount, setFormCount] = useState(1);
   const [eventDetail, setEventDetail] = useState("");
   const [eventTime, setEventTime] = useState("");
@@ -34,22 +34,22 @@ const CreateEvent = (props) => {
 
   const dispatch = useDispatch();
 
-  const isEventCreated = useSelector((state) => state.createEvent.success);
+  const isEventCreated = useSelector(state => state.createEvent.success);
 
-  const { friends } = useSelector((state) => state.friend);
+  const { friends } = useSelector(state => state.friend);
 
   const initilaState = {
     inputValues: {
       eventTitle: "",
       eventCode: "",
-      eventDetail: "",
+      eventDetail: ""
     },
     inputValidities: {
       eventTitle: false,
       eventCode: false,
-      eventDetail: false,
+      eventDetail: false
     },
-    formIsValid: true,
+    formIsValid: true
   };
 
   const [formState, dispatchFormState] = useReducer(formReducer, initilaState);
@@ -60,13 +60,13 @@ const CreateEvent = (props) => {
         type: FORM_INPUT_UPDATE,
         value: inputValue,
         isValid: inputValidity,
-        input: inputIdentifier,
+        input: inputIdentifier
       });
     },
     [dispatchFormState]
   );
 
-  const nextQuestionHandler = (e) => {
+  const nextQuestionHandler = e => {
     e.preventDefault();
     if (formCount === 4) {
       setFormCount(4);
@@ -75,7 +75,7 @@ const CreateEvent = (props) => {
     }
   };
 
-  const previousQuestionHandler = (e) => {
+  const previousQuestionHandler = e => {
     e.preventDefault();
     if (formCount === 1) {
       setFormCount(1);
@@ -84,11 +84,11 @@ const CreateEvent = (props) => {
     }
   };
 
-  const eventPriceHandler = (e) => {};
+  const eventPriceHandler = e => {};
 
   const setEventDateHandler = useCallback(
     // (startDate, isPrivate) => {
-    (startDate) => {
+    startDate => {
       // setEventTime({ startDate, isPrivate });
       setEventTime(startDate);
     },
@@ -96,14 +96,14 @@ const CreateEvent = (props) => {
   );
 
   const isEventPrivateHandler = useCallback(
-    (isPrivate) => {
+    isPrivate => {
       setIsPrivateEvent(isPrivate);
     },
     [setIsPrivateEvent]
   );
 
   const isEventPaidHandler = useCallback(
-    (isPaid) => {
+    isPaid => {
       setIsPaid(isPaid);
     },
     [setIsPaid]
@@ -111,12 +111,14 @@ const CreateEvent = (props) => {
 
   const eventPriceDataHandler = useCallback(
     (currency, amount) => {
+      console.log(34, currency, amount);
+
       setEventPrice({ currency, amount });
     },
     [setEventPrice]
   );
 
-  const categoryHandler = (category) => {
+  const categoryHandler = category => {
     setSelectedCategory(category);
     setIsStepValid(true);
   };
@@ -127,18 +129,18 @@ const CreateEvent = (props) => {
   //   setEventDetail(value);
   // };
 
-  const eventRestrictionsHandler = (restriction) => {
+  const eventRestrictionsHandler = restriction => {
     const currentRestrictions = [...eventRestrictions];
 
     const check = currentRestrictions.find(
-      (restrictionVal) => restrictionVal === restriction
+      restrictionVal => restrictionVal === restriction
     );
 
     let updatedRestrictions;
 
     if (check) {
       updatedRestrictions = currentRestrictions.filter(
-        (restrictions) => restrictions !== restriction
+        restrictions => restrictions !== restriction
       );
     } else {
       updatedRestrictions = [...currentRestrictions, restriction];
@@ -147,24 +149,25 @@ const CreateEvent = (props) => {
     setEventRestrictions(updatedRestrictions);
   };
 
-  const eventNotificationHandler = (e) => {
+  const eventNotificationHandler = e => {
     const isNotifyMe = e.target.checked;
 
     setNotifyMe(isNotifyMe);
   };
 
-  const imageUploadHandler = (image) => {
+  const imageUploadHandler = image => {
     setImage(image);
   };
 
-  const locationhandler = (address) => {
+  const locationhandler = address => {
     setLocation(address);
   };
 
   const onsubmitEventHandler = async () => {
     const eventTicket = {
       currency: isPaid ? eventPrice.currency : "",
-      amount: isPaid ? eventPrice.amount : "",
+      // amount: isPaid ? +eventPrice.amount : ""
+      amount: 23
     };
 
     const newEvent = {
@@ -180,10 +183,9 @@ const CreateEvent = (props) => {
       ...eventTicket,
       startDate: eventTime,
       isPrivate: isPrivateEvent,
-      isPaid,
+      isPaid
     };
 
-    
     await dispatch(createEvent(newEvent, image));
 
     return;
@@ -203,7 +205,7 @@ const CreateEvent = (props) => {
     setIsCreatedEventSuccess(false);
   };
 
-  const closeEventCreatedMessage = (e) => {
+  const closeEventCreatedMessage = e => {
     e.preventDefault();
     dispatch(eventCreateEnd());
     setIsCreatedEventSuccess(false);
@@ -212,12 +214,12 @@ const CreateEvent = (props) => {
 
   const collaboratorsHandler = (user, remove = false) => {
     const newCollaborator = {
-      email: user.email,
+      email: user.email
     };
 
     let newList;
     if (remove) {
-      newList = collaborators.filter((friend) => friend.email !== user.email);
+      newList = collaborators.filter(friend => friend.email !== user.email);
     } else {
       const currentList = collaborators;
       newList = [...currentList, newCollaborator];
@@ -227,12 +229,12 @@ const CreateEvent = (props) => {
 
   const addInviteeHandler = (user, remove = false) => {
     const newInvite = {
-      email: user.email,
+      email: user.email
     };
 
     let newList;
     if (remove) {
-      newList = invitee.filter((friend) => friend.email !== user.email);
+      newList = invitee.filter(friend => friend.email !== user.email);
     } else {
       const currentList = invitee;
       newList = [...currentList, newInvite];
