@@ -173,7 +173,7 @@ function App() {
                   <Footer />
                 </div>
               </Route>
-              <Route path="/social/:token">
+              <Route path="/social/:auth/:token">
                 <Social />
               </Route>
               <Route path="/event/:eventId" exact>

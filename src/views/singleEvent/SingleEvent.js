@@ -31,6 +31,10 @@ import EventMap from "./templates/eventMap/EventMap";
 import { followUser, getUserFollowing } from "../friendPage/friendPage.action";
 import { getUserEvents } from "../homepage/homePage.action";
 import Stripe from "./stripe/Stripe";
+import Checkoutt from "./stripe/Checkout2";
+import ApplePay from "./stripe/ApplePay";
+import IbanPay from "./stripe/IbanPay";
+import Checkout from "./stripe/Checkout";
 
 const SingleEvent = props => {
   const [openPay, setOpenPay] = useState(false);
@@ -168,6 +172,11 @@ const SingleEvent = props => {
                             PAY
                           </Button>
                         </p>
+                        {/* <Checkoutt
+                          name={"Your Company Name"}
+                          description={"Item that you sold"}
+                          amount={4.99}
+                        /> */}
                       </div>
                     ) : (
                       "FREE"
@@ -305,7 +314,10 @@ const SingleEvent = props => {
                   currency={foundEvent ? foundEvent.currency : ""}
                   eventId={foundEvent ? foundEvent._id : ""}
                 /> */}
-                <Stripe />
+                {/* <Stripe /> */}
+                <Checkout />
+                {/* <IbanPay /> */}
+                {/* <ApplePay /> */}
               </div>
             </SideOverLayContainer>
           ) : (

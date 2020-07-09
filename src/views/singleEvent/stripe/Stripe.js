@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import CheckoutForm from "./CheckoutForm";
+import IbanPay from "./IbanPay";
+import ApplePay from "./ApplePay";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useHistory } from "react-router-dom";
@@ -14,11 +16,13 @@ const Stripe = props => {
   const history = useHistory();
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm
+      {/* <CheckoutForm
         selectedProduct={45}
         stripe={stripePromise}
         history={history}
-      />
+      /> */}
+      {/* <IbanPay /> */}
+      {/* <ApplePay /> */}
     </Elements>
   );
 };

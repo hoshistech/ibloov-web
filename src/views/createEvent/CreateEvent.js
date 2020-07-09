@@ -111,8 +111,6 @@ const CreateEvent = props => {
 
   const eventPriceDataHandler = useCallback(
     (currency, amount) => {
-      console.log(34, currency, amount);
-
       setEventPrice({ currency, amount });
     },
     [setEventPrice]
@@ -166,8 +164,7 @@ const CreateEvent = props => {
   const onsubmitEventHandler = async () => {
     const eventTicket = {
       currency: isPaid ? eventPrice.currency : "",
-      // amount: isPaid ? +eventPrice.amount : ""
-      amount: 23
+      amount: isPaid ? +eventPrice.amount : ""
     };
 
     const newEvent = {

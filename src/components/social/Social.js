@@ -11,22 +11,27 @@ const Social = () => {
 
   const handleAuth = useCallback(async () => {
     const token = params.token;
+    const auth = params.auth;
+    try {
+      const decodedToken = jwt.decode(token);
+      const check = decodedToken.user[auth];
 
-    const decodedToken = jwt.decode(token);
-    if (decodedToken) {
-      const user = {
-        firstName: decodedToken.user.google.firstName,
-        lastName: decodedToken.user.google.lastName,
-        ...decodedToken.user,
-      };
+      if (check) {
+        const user = {
+          firstName: check.firstName,
+          lastName: check.lastName,
+          ...decodedToken.user
+        };
 
-      localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", JSON.stringify(token));
 
-      await dispatch(userLoginSuccess(token, user));
-
-      history.push("/dashboard");
-    } else {
+        await dispatch(userLoginSuccess(token, user));
+        history.push("/dashboard");
+      } else {
+        history.push("/signin");
+      }
+    } catch (error) {
       history.push("/signin");
     }
   }, [history]);

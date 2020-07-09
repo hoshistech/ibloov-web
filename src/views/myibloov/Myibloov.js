@@ -15,10 +15,10 @@ import WishlistCard from "../../components/wishlistCard/WishlistCard";
 import CreateWishlist from "../createWishlist/CreateWishlist";
 import {
   fetchAllWishlist,
-  getUserWishlist,
+  getUserWishlist
 } from "../createWishlist/allWishlist.action";
 
-const Myibloov = (props) => {
+const Myibloov = props => {
   const [selectedTab, setSelectedTab] = useState("event");
   const [myCreatedEvent, setMyCreatedEvent] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
@@ -26,9 +26,9 @@ const Myibloov = (props) => {
 
   const dispatch = useDispatch();
 
-  const { events, userEvents } = useSelector((state) => state.allEvents);
-  const { _id: userId } = useSelector((state) => state.login.user);
-  const { userWishlist } = useSelector((state) => state.allWishlist);
+  const { events, userEvents } = useSelector(state => state.allEvents);
+  const { _id: userId } = useSelector(state => state.login.user);
+  const { userWishlist } = useSelector(state => state.allWishlist);
 
   const location = useLocation();
 
@@ -46,7 +46,7 @@ const Myibloov = (props) => {
   let myWishlist = <Loading />;
 
   if (userEvents) {
-    myEvents = userEvents.map((event) => {
+    myEvents = userEvents.map(event => {
       return (
         <Card
           key={event._id}
@@ -63,7 +63,7 @@ const Myibloov = (props) => {
       return;
     });
 
-    attendingEvents = events.slice(0, 4).map((event) => {
+    attendingEvents = events.slice(0, 4).map(event => {
       return (
         <Card
           key={event._id}
@@ -80,7 +80,7 @@ const Myibloov = (props) => {
   }
 
   if (userWishlist) {
-    myWishlist = userWishlist.map((wishlist) => (
+    myWishlist = userWishlist.map(wishlist => (
       <WishlistCard
         key={wishlist._id}
         title={wishlist.name}
@@ -93,24 +93,24 @@ const Myibloov = (props) => {
     ));
   }
 
-  const selectedTabHandler = (e) => {
+  const selectedTabHandler = e => {
     const tabSwitch = e.target.name;
     e.preventDefault();
     setSelectedTab(tabSwitch);
     setShowCreate(false);
   };
 
-  const selectMyEventHandler = (e) => {
+  const selectMyEventHandler = e => {
     e.preventDefault();
     setMyCreatedEvent(!myCreatedEvent);
   };
 
-  const createButtonHandler = (e) => {
+  const createButtonHandler = e => {
     e.preventDefault();
     setShowCreate(!showCreate);
   };
 
-  const toggleDropdownOptionHandler = (id) => {
+  const toggleDropdownOptionHandler = id => {
     if (id === "dropdownId") {
       setShowDropDown(!showDropDown);
       return;
