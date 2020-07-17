@@ -18,11 +18,11 @@ const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
     const updatedValues = {
       ...state.inputValues,
-      [action.input]: action.value,
+      [action.input]: action.value
     };
     const updatedValidities = {
       ...state.inputValidities,
-      [action.input]: action.isValid,
+      [action.input]: action.isValid
     };
     let updatedFormIsValid = true;
     for (const key in updatedValidities) {
@@ -31,16 +31,16 @@ const formReducer = (state, action) => {
     return {
       formIsValid: updatedFormIsValid,
       inputValidities: updatedValidities,
-      inputValues: updatedValues,
+      inputValues: updatedValues
     };
   }
   return state;
 };
 
-const Login = (props) => {
+const Login = props => {
   const history = useHistory();
   const location = useLocation();
-  const { token, error } = useSelector((state) => state.login);
+  const { token, error } = useSelector(state => state.login);
   const [previousLocation, setPreviousLocation] = useState("");
 
   useEffect(() => {
@@ -54,13 +54,13 @@ const Login = (props) => {
   const initilaState = {
     inputValues: {
       email: "",
-      password: "",
+      password: ""
     },
     inputValidities: {
       email: false,
-      password: false,
+      password: false
     },
-    formIsValid: false,
+    formIsValid: false
   };
 
   const [formState, dispatchFormState] = useReducer(formReducer, initilaState);
@@ -71,17 +71,17 @@ const Login = (props) => {
         type: FORM_INPUT_UPDATE,
         value: inputValue,
         isValid: inputValidity,
-        input: inputIdentifier,
+        input: inputIdentifier
       });
     },
     [dispatchFormState]
   );
 
-  const handleLogin = async (e) => {
+  const handleLogin = async e => {
     e.preventDefault();
 
     const newUser = {
-      ...formState.inputValues,
+      ...formState.inputValues
     };
 
     await dispatch(authLogin(newUser, history, previousLocation));
@@ -89,8 +89,8 @@ const Login = (props) => {
   };
 
   const socialAuthHandler = (e, id) => {
-    const googleAuth = "http://198.199.91.181:4000/auth/google";
-    window.location = googleAuth;
+    const socialAuth = `https://ibloov-backend.herokuapp.com/auth/${id}`;
+    window.location = socialAuth;
   };
 
   if (token) {
@@ -159,7 +159,7 @@ const Login = (props) => {
             <div className="auth-button-container-social-login">
               <Button
                 customClassName="btn-outline-secondary bold-600 auth-google mb-2"
-                onClick={(e) => socialAuthHandler(e, "google")}
+                onClick={e => socialAuthHandler(e, "google")}
                 // onClick={() => {}}
                 btndisabled={false}
               >
@@ -167,7 +167,7 @@ const Login = (props) => {
               </Button>
               <Button
                 customClassName="auth-facebook bold-600 mb-2"
-                onClick={() => {}}
+                onClick={e => socialAuthHandler(e, "facebook")}
                 btndisabled={false}
               >
                 <FontAwesomeIcon className="" icon={["fab", "facebook-f"]} />
