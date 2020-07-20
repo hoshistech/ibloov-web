@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import SelectInput from "../selectInput/SelectInput";
 
-const FilterSelectInput = (props) => {
-  const { empty, placeHolder, label } = props;
+const FilterSelectInput = props => {
+  const { empty, placeHolder, label, options, selectedCategory } = props;
   return (
     <div className="filter-input-container">
       {empty ? (
@@ -11,7 +11,11 @@ const FilterSelectInput = (props) => {
       ) : (
         <Fragment>
           <label htmlFor="date">{label}</label>
-          <SelectInput placeHolder={placeHolder} />
+          <SelectInput
+            placeHolder={placeHolder}
+            options={options}
+            onSelectCategory={selectedCategory}
+          />
         </Fragment>
       )}
     </div>
@@ -21,7 +25,7 @@ const FilterSelectInput = (props) => {
 FilterSelectInput.propTypes = {
   empty: PropTypes.bool,
   placeHolder: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.string
 };
 
 export default FilterSelectInput;
