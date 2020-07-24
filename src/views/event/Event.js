@@ -6,10 +6,10 @@ import FilterBar from "../../components/filterbar/FilterBar";
 
 import "./Event.css";
 import Pagination from "../../components/pagination/Pagination";
-import { fetchLiveEvents } from "../homepage/homePage.action";
+import { fetchLiveEvents, filterByCategory, filterByLocation } from "../homepage/homePage.action";
 import Loading from "../../components/loadingIndicator/Loading";
-const Event = (props) => {
-  const events = useSelector((state) => state.allEvents.events);
+const Event = props => {
+  const { events, filteredEvents } = useSelector(state => state.allEvents);
 
   const dispatch = useDispatch();
 
@@ -17,10 +17,36 @@ const Event = (props) => {
     dispatch(fetchLiveEvents());
   }, [dispatch]);
 
-  let popularEvents = <Loading />;
-  if (events) {
-    popularEvents = events
-      .filter((event) => event.isPrivate !== true)
+  const filterCategory = e => {
+    const selectedCategory = e.target.value;
+    console.log(66, selectedCategory);
+    if (selectedCategory === "") {
+      return;
+    }
+    dispatch(filterByCategory(selectedCategory));
+  };
+
+  const filterLocation = (location) => {
+    
+
+      dispatch(filterByLocation(location))
+  }
+
+  let eventList = <Loading />;
+  let popularEvents;
+  if (filteredEvents || events) {
+    console.log(9, filteredEvents);
+    if (filteredEvents === undefined || filteredEvents === null) {
+      console.log('trying');
+      popularEvents = events;
+    } else {
+      console.log('not trying');
+      popularEvents = filteredEvents;
+    }
+    console.log(66, popularEvents);
+    if (popularEvents) {
+      eventList = popularEvents
+      .filter(event => event.isPrivate !== true)
       .map((event, index) => {
         return (
           <Card
@@ -35,6 +61,8 @@ const Event = (props) => {
           />
         );
       });
+    }
+    
   }
   return (
     <Fragment>
@@ -42,9 +70,9 @@ const Event = (props) => {
         headerTitle="Live Events"
         headerDescription="Live events across various locations"
       />
-      <FilterBar />
+      <FilterBar selectedCategory={filterCategory} searchEventHandler={filterLocation} />
 
-      <section className="row event-card-container">{popularEvents}</section>
+      <section className="row event-card-container">{eventList}</section>
       <div>
         <Pagination />
       </div>

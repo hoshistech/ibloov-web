@@ -1,9 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import Input from "../input/Input";
 
-const FilterInput = (props) => {
-  const { empty } = props;
+const FilterInput = props => {
+  const { empty, searchTerm } = props; 
+
+  const onInputChange = (e) => {
+    const value = e.target.value;
+    searchTerm(value)
+  };
   return (
     <div className="filter-input-container">
       {empty ? (
@@ -11,16 +16,15 @@ const FilterInput = (props) => {
       ) : (
         <Fragment>
           <label htmlFor="all">in Location</label>
-          <Input
+          <input
             name="all"
             type="text"
-            customClassName="form-control filter-input font-bold"
+            className="form-control filter-input font-bold"
             id="all"
             placeHolder="All"
             aria-describedby="allHelp"
             required
-            // value={this.state.email}
-            // handleChange={this.emailChange.bind(this)}
+            onChange={onInputChange}
           />
         </Fragment>
       )}
@@ -29,7 +33,7 @@ const FilterInput = (props) => {
 };
 
 FilterInput.propTypes = {
-  empty: PropTypes.bool,
+  empty: PropTypes.bool
 };
 
 export default FilterInput;
