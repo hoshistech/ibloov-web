@@ -10,6 +10,9 @@ import {
   FETCH_USER_FRIENDS_START,
   FETCH_USER_FRIENDS_SUCCESS,
   FETCH_USER_FRIENDS_FAIL,
+  FRIEND_START,
+  FRIEND_ERROR,
+  CREATE_GROUP_SUCCESS
 } from "../../store/actionTypes";
 
 const initialState = {
@@ -18,6 +21,7 @@ const initialState = {
   user: null,
   friendRequestList: null,
   friends: null,
+  group: null
 };
 
 const followUserSuccess = (state, action) => {
@@ -86,6 +90,27 @@ const fetchUserFriendsFail = (state, action) => {
   });
 };
 
+
+const friendStart = (state, action) => {
+  return updateObject(state, {
+    loading: true,
+  });
+};
+
+const createGroupSuccess = (state, action) => {
+  return updateObject(state, {
+    loading: false,
+    group: action.group,
+  });
+};
+
+const friendFail = (state, action) => {
+  return updateObject(state, {
+    loading: false,
+    error: action.error,
+  });
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW_USER:
@@ -108,6 +133,12 @@ export default (state = initialState, action) => {
       return fetchUserFriendsSuccess(state, action);
     case FETCH_USER_FRIENDS_FAIL:
       return fetchUserFriendsFail(state, action);
+    case FRIEND_START:
+      return friendStart(state, action);
+    case FRIEND_ERROR: 
+      return friendFail(state, action);
+    case CREATE_GROUP_SUCCESS: 
+      return createGroupSuccess(state, action);
 
     default:
       return state;

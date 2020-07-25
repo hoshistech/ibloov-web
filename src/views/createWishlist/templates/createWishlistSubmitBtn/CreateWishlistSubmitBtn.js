@@ -35,6 +35,5 @@ const CreateWishlistSubmitBtn = (props) => {
   );
 };
 
-CreateWishlistSubmitBtn.propTypes = {};
 
 export default CreateWishlistSubmitBtn;

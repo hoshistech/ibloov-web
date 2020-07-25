@@ -13,153 +13,176 @@ import {
   FETCH_USER_FRIENDS_START,
   FETCH_USER_FRIENDS_SUCCESS,
   FETCH_USER_FRIENDS_FAIL,
+  FRIEND_START,
+  FRIEND_ERROR,
+  CREATE_GROUP_SUCCESS
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
 
 export const toggleFollowUser = () => {
   return {
-    type: FOLLOW_USER,
+    type: FOLLOW_USER
   };
 };
 
 export const toggleFollowUserError = () => {
   return {
-    type: FOLLOW_USER_ERROR,
+    type: FOLLOW_USER_ERROR
   };
 };
 
 export const fetchFriendRequestStart = () => {
   return {
-    type: FETCH_ALL_FRIEND_REQUEST_START,
+    type: FETCH_ALL_FRIEND_REQUEST_START
   };
 };
 
-export const fetchFriendRequestSuccess = (friendRequestList) => {
+export const fetchFriendRequestSuccess = friendRequestList => {
   return {
     type: FETCH_ALL_FRIEND_REQUEST_SUCCESS,
-    friendRequestList,
+    friendRequestList
   };
 };
 
-export const fetchFriendRequestFail = (error) => {
+export const fetchFriendRequestFail = error => {
   return {
     type: FETCH_ALL_FRIEND_REQUEST_FAIL,
-    error,
+    error
   };
 };
 
-export const acceptFriendRequestSuccess = (friendRequestList) => {
+export const acceptFriendRequestSuccess = friendRequestList => {
   return {
     type: ACCEPT_FRIEND_REQUEST_SUCCESS,
-    friendRequestList,
+    friendRequestList
   };
 };
 
-export const acceptFriendRequestFail = (error) => {
+export const acceptFriendRequestFail = error => {
   return {
     type: ACCEPT_FRIEND_REQUEST_FAIL,
-    error,
+    error
   };
 };
 
-export const getUserFollowingSuccess = (followingList) => {
+export const getUserFollowingSuccess = followingList => {
   return {
     type: FETCH_ALL_USER_FOLLOWING_SUCCESS,
-    followingList,
+    followingList
   };
 };
 
-export const getUserFollowingFailed = (error) => {
+export const getUserFollowingFailed = error => {
   return {
     type: FETCH_ALL_USER_FOLLOWING_FAIL,
-    error,
+    error
   };
 };
 
 export const fetchUserFriendsStart = () => {
   return {
-    type: FETCH_USER_FRIENDS_START,
+    type: FETCH_USER_FRIENDS_START
   };
 };
 
-export const fetchUserFriendsSuccess = (friends) => {
+export const fetchUserFriendsSuccess = friends => {
   return {
     type: FETCH_USER_FRIENDS_SUCCESS,
     friends,
-    friends,
+    friends
   };
 };
 
-export const fetchUserFriendsFail = (error) => {
+export const fetchUserFriendsFail = error => {
   return {
     type: FETCH_USER_FRIENDS_FAIL,
-    error,
+    error
   };
 };
 
-export const followUser = (userId) => {
+export const friendStart = () => {
+  return {
+    type: FRIEND_START
+  };
+};
+
+export const createGroupSuccess = group => {
+  return {
+    type: CREATE_GROUP_SUCCESS,
+    group
+  };
+};
+
+export const friendError = error => {
+  return {
+    type: FRIEND_ERROR,
+    error
+  };
+};
+
+export const followUser = userId => {
   const { token } = getUser();
-  return (dispatch) => {
+  return dispatch => {
     return axios
       .post(
         `/v1/user/follow/${userId}`,
         {},
         {
           headers: {
-            authorization: `Bearer ${token}`,
-          },
+            authorization: `Bearer ${token}`
+          }
         }
       )
-      .then((response) => {
+      .then(response => {
         const { data } = response.data;
         dispatch(toggleFollowUser(data));
       })
-      .catch((error) => {
+      .catch(error => {
         dispatch(toggleFollowUserError("error"));
       });
   };
 };
 
-export const getUserFollowing = (userId) => {
+export const getUserFollowing = userId => {
   const { user } = getUser();
 
   if (!userId) {
     userId = user.id;
   }
-  return (dispatch) => {
+  return dispatch => {
     return axios(true)
       .get(`/v1/user/following/${userId}`)
-      .then((response) => {
+      .then(response => {
         const { data } = response.data;
         dispatch(getUserFollowingSuccess(data));
       })
-      .catch((error) => {
+      .catch(error => {
         dispatch(getUserFollowingFailed("error"));
       });
   };
 };
 
 export const getUserFriends = () => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(fetchUserFriendsStart());
     return axios(true)
       .get("/v1/user/friends")
-      .then((response) => {
+      .then(response => {
         const { data } = response.data;
         dispatch(fetchUserFriendsSuccess(data.all));
       })
-      .catch((error) => {
+      .catch(error => {
         dispatch(fetchUserFriendsFail("error"));
       });
   };
 };
 
 export const getFriendRequestList = () => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(fetchFriendRequestStart());
     return axios(true)
       .get("/v1/user/followrequests")
-      .then((response) => {
+      .then(response => {
         const { data } = response.data;
 
         // const list = {
@@ -168,36 +191,56 @@ export const getFriendRequestList = () => {
         // };
         dispatch(fetchFriendRequestSuccess(data));
       })
-      .catch((error) => {
+      .catch(error => {
         dispatch(fetchFriendRequestFail("error"));
       });
   };
 };
 
-export const acceptFriendRequest = (requestId) => {
-  return (dispatch) => {
+export const acceptFriendRequest = requestId => {
+  return dispatch => {
     return axios(true)
       .post(`/v1/request/accept/${requestId}`, {})
-      .then((response) => {
+      .then(response => {
         const { data } = response.data;
         dispatch(acceptFriendRequestSuccess(data));
       })
-      .catch((error) => {
+      .catch(error => {
         dispatch(acceptFriendRequestFail("error"));
       });
   };
 };
 
-export const denyFriendRequest = (requestId) => {
-  return (dispatch) => {
+export const denyFriendRequest = requestId => {
+  return dispatch => {
     return axios(true)
       .post(`/v1/request/deny/${requestId}`, {})
-      .then((response) => {
+      .then(response => {
         const { data } = response.data;
         dispatch(acceptFriendRequestSuccess(data));
       })
-      .catch((error) => {
+      .catch(error => {
         dispatch(acceptFriendRequestFail("error"));
+      });
+  };
+};
+
+export const createGroup = (groupName, history) => {
+  return dispatch => {
+    dispatch(friendStart());
+    return axios(true)
+      .post("/v1/group/create", { name: groupName })
+      .then(response => {
+        const { data } = response.data;
+        history.push({
+          pathname: "/myfriends",
+          state: { action: "group" },
+        });
+
+        dispatch(createGroupSuccess(data));
+      })
+      .catch(error => {
+        dispatch(friendError("something went wrong"));
       });
   };
 };

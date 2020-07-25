@@ -95,8 +95,6 @@ const filterByLocation = (state, action) => {
     eventsFilter = eventsList
   }
 
-  console.log(99, value);
-  console.log(998, eventsFilter);
 
   const filteredValues = eventsFilter.filter(event => {
        return event.location.address.toLowerCase().includes(value)

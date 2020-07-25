@@ -14,12 +14,10 @@ const FilterBar = props => {
    const [search, setSearch] = useState("")
 
   const searchTerm = (value) => {
-    console.log(88, value);
     setSearch(value)
   }
 
   const searchEvent = () => {
-    console.log('ev', search);
     searchEventHandler(search)
   }
 
