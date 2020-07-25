@@ -64,6 +64,22 @@
   opacity: 0.8;
 }
 
+.mybloov-create-group-btn {
+  background-color: #2a5799;
+  /* width: 40%; */
+  border-radius: 50px;
+  color: #ffffff;
+  opacity: 1;
+  padding: 0.5rem 1rem;
+  /* width: 120px; */
+  height: 40px;
+  margin-left: auto;
+  font-size: 15px;
+  margin-top: 5px;
+  min-width: 140px;
+  height: 40px;
+}
+
 @media only screen and (min-width: 768px) {
   .myfriends-search {
     width: 400px;

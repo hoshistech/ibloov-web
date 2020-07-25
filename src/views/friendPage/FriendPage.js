@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import faker from "faker";
 import Navbar from "../../components/navbar/Navbar";
-
+import { Link, useLocation, useHistory } from "react-router-dom";
 import "./FriendPage.css";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FriendList from "./template/friendList.js/FriendList";
 import GroupList from "./template/groupList/GroupList";
@@ -16,18 +15,24 @@ import {
   acceptFriendRequest,
   denyFriendRequest,
   getUserFriends,
+  createGroup
 } from "./friendPage.action";
 import FriendRequest from "./template/friendRequest/FriendRequest";
+import Button from "../../components/button/Button";
+import CreateGroup from "./template/createGroup/CreateGroup";
 
-const FriendPage = (props) => {
+const FriendPage = props => {
   const [selectedTab, setSelectedTab] = useState("ibloov");
   const [selectedGroup, setSelectedGroup] = useState("Family");
   const [showDropDown, setShowDropDown] = useState(false);
+  const [showCreate, setShowCreate] = useState(true);
 
   const dispatch = useDispatch();
+  const history = useHistory()
+  const location = useLocation();
 
   const { friendRequestList, userFollowing, friends } = useSelector(
-    (state) => state.friend
+    state => state.friend
   );
 
   let requestList;
@@ -36,26 +41,32 @@ const FriendPage = (props) => {
     requestList = friendRequestList;
   }
 
-  const fetchFriendRequest = useCallback(() => {
+  const fetchFriendRequest = useCallback(() => {    
     dispatch(getFriendRequestList());
     dispatch(getUserFriends());
   }, [dispatch]);
 
   useEffect(() => {
+    if (location.state) {
+      if (location.state.action === "group") {
+        setSelectedTab(location.state.action);
+        setShowCreate(false);
+      }
+    }
     fetchFriendRequest();
-  }, []);
+  }, [location]);
 
-  const acceptFriendRequestHandler = async (requestId) => {
+  const acceptFriendRequestHandler = async requestId => {
     await dispatch(acceptFriendRequest(requestId));
     // dispatch(getUserFriends());
   };
 
-  const rejectFriendRequestHandler = (requestId) => {
+  const rejectFriendRequestHandler = requestId => {
     dispatch(denyFriendRequest(requestId));
     // dispatch(fetchFriendRequest());
   };
 
-  const selectedTabHandler = (e) => {
+  const selectedTabHandler = e => {
     const tabSwitch = e.target.name;
 
     e.preventDefault();
@@ -66,20 +77,29 @@ const FriendPage = (props) => {
     setSelectedTab(tabSwitch);
   };
 
-  const selectedGroupHandler = (index) => {
+  const selectedGroupHandler = index => {
     setSelectedGroup(contactGroups[index - 1]);
   };
 
-  const followUserHandler = (userId) => {
+  const followUserHandler = userId => {
     dispatch(followUser(userId));
   };
 
-  const toggleDropdownOptionHandler = (id) => {
+  const toggleDropdownOptionHandler = id => {
     if (id === "dropdownId") {
       setShowDropDown(!showDropDown);
       return;
     }
     setShowDropDown(false);
+  };
+
+  const createButtonHandler = e => {
+    e.preventDefault();
+    setShowCreate(!showCreate);
+  };
+
+  const createGroupHandler = groupName => {
+   dispatch(createGroup(groupName, history))
   };
 
   const contactGroups = [
@@ -88,7 +108,7 @@ const FriendPage = (props) => {
     "Colleagues",
     "Mum's Family",
     "Dad's Family",
-    "Italian Holida Friends",
+    "Italian Holida Friends"
   ];
   let aa = [];
 
@@ -104,7 +124,7 @@ const FriendPage = (props) => {
         phoneNumber: faker.phone.phoneNumber(),
         email: faker.internet.email(),
         // groups: ["family"],
-        groups: contactGroups[genRandomNumber(0, 6)],
+        groups: contactGroups[genRandomNumber(0, 6)]
       })
     );
 
@@ -116,7 +136,7 @@ const FriendPage = (props) => {
       _id: faker.random.uuid(),
       phoneNumber: "+2348037145164",
       email: "dharmykoya38@gmail.com",
-      groups: "family",
+      groups: "family"
     },
     {
       image: faker.image.avatar(),
@@ -124,7 +144,7 @@ const FriendPage = (props) => {
       _id: faker.random.uuid(),
       phoneNumber: faker.phone.phoneNumber(),
       email: faker.internet.email(),
-      groups: "family",
+      groups: "family"
     },
     {
       image: faker.image.avatar(),
@@ -132,9 +152,9 @@ const FriendPage = (props) => {
       _id: faker.random.uuid(),
       phoneNumber: faker.phone.phoneNumber(),
       email: faker.internet.email(),
-      groups: "friend",
+      groups: "friend"
     },
-    ...aa,
+    ...aa
   ];
 
   return (
@@ -158,98 +178,113 @@ const FriendPage = (props) => {
               <FontAwesomeIcon className="friend-search-icon" icon="search" />
             </span>
           </div>
+          <Button
+            customClassName="mybloov-create-group-btn bold-600"
+            onClick={createButtonHandler}
+            btndisabled={false}
+          >
+            {showCreate ? "back to friends" : "Create New Group"}
+          </Button>
         </div>
-        <div className="myibloov-nav-container row mt-3">
-          <div className="myibloov-nav-first">
-            <div>
-              <div className="myibloov-nav-links">
-                <div
-                  className={
-                    selectedTab === "ibloov"
-                      ? "myibloov-nav-active mr-3"
-                      : "myibloov-nav-link mr-3"
-                  }
-                >
-                  <Link
-                    to=""
-                    className="create-event-tab-link"
-                    name="ibloov"
-                    onClick={selectedTabHandler}
-                  >
-                    iBloov friends
-                  </Link>
-                </div>
-                <div
-                  className={
-                    selectedTab === "group"
-                      ? "myibloov-nav-active mr-3"
-                      : "myibloov-nav-link mr-3"
-                  }
-                >
-                  <Link
-                    to=""
-                    className="create-event-tab-link"
-                    name="group"
-                    onClick={selectedTabHandler}
-                  >
-                    Groups
-                  </Link>
-                </div>
-                <div
-                  className={
-                    selectedTab === "request"
-                      ? "myibloov-nav-active"
-                      : "myibloov-nav-link"
-                  }
-                >
-                  <Link
-                    to=""
-                    className="create-event-tab-link"
-                    name="request"
-                    onClick={selectedTabHandler}
-                  >
-                    Requests
-                  </Link>
+
+        {showCreate ? (
+          <CreateGroup createGroupHandler={createGroupHandler} />
+        ) : (
+          <>
+            {" "}
+            <div className="myibloov-nav-container row mt-3">
+              <div className="myibloov-nav-first">
+                <div>
+                  <div className="myibloov-nav-links">
+                    <div
+                      className={
+                        selectedTab === "ibloov"
+                          ? "myibloov-nav-active mr-3"
+                          : "myibloov-nav-link mr-3"
+                      }
+                    >
+                      <Link
+                        to=""
+                        className="create-event-tab-link"
+                        name="ibloov"
+                        onClick={selectedTabHandler}
+                      >
+                        iBloov friends
+                      </Link>
+                    </div>
+                    <div
+                      className={
+                        selectedTab === "group"
+                          ? "myibloov-nav-active mr-3"
+                          : "myibloov-nav-link mr-3"
+                      }
+                    >
+                      <Link
+                        to=""
+                        className="create-event-tab-link"
+                        name="group"
+                        onClick={selectedTabHandler}
+                      >
+                        Groups
+                      </Link>
+                    </div>
+                    <div
+                      className={
+                        selectedTab === "request"
+                          ? "myibloov-nav-active"
+                          : "myibloov-nav-link"
+                      }
+                    >
+                      <Link
+                        to=""
+                        className="create-event-tab-link"
+                        name="request"
+                        onClick={selectedTabHandler}
+                      >
+                        Requests
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div className="mr-5">
+                <DropDown
+                  toggleDropdownOption={toggleDropdownOptionHandler}
+                  showDropDown={showDropDown}
+                />
+              </div>
             </div>
-          </div>
-          <div className="mr-5">
-            <DropDown
-              toggleDropdownOption={toggleDropdownOptionHandler}
-              showDropDown={showDropDown}
-            />
-          </div>
-        </div>
-        <div>
-          {selectedTab === "ibloov" ? (
-            <FriendList
-              friendList={groundFriends}
-              handleFollowUser={followUserHandler}
-              friends={friends}
-            />
-          ) : (
-            ""
-          )}
-          {selectedTab === "group" ? (
-            <GroupList
-              friendList={groundFriends}
-              pickedGroup={selectedGroupHandler}
-              picked={selectedGroup}
-            />
-          ) : (
-            ""
-          )}
-          {selectedTab === "request" ? (
-            <FriendRequest
-              friendRequestList={requestList}
-              acceptFriendRequest={acceptFriendRequestHandler}
-              rejectFriendrequest={rejectFriendRequestHandler}
-            />
-          ) : (
-            ""
-          )}
-        </div>
+            <div>
+              {selectedTab === "ibloov" ? (
+                <FriendList
+                  friendList={groundFriends}
+                  handleFollowUser={followUserHandler}
+                  friends={friends}
+                />
+              ) : (
+                ""
+              )}
+              {selectedTab === "group" ? (
+                <GroupList
+                  friendList={groundFriends}
+                  pickedGroup={selectedGroupHandler}
+                  picked={selectedGroup}
+                />
+              ) : (
+                ""
+              )}
+              {selectedTab === "request" ? (
+                <FriendRequest
+                  friendRequestList={requestList}
+                  acceptFriendRequest={acceptFriendRequestHandler}
+                  rejectFriendrequest={rejectFriendRequestHandler}
+                />
+              ) : (
+                ""
+              )}
+            </div>
+          </>
+        )}
       </section>
     </div>
   );

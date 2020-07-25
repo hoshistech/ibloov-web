@@ -55,15 +55,12 @@ const CheckoutForm = () => {
         amount: 23
       })
       .then(res => {
-        console.log(33, res.data);
         const result = res.data;
         setError(null);
-        console.log("res", result);
         // Send the token to your server.
         stripeTokenHandler(result.data);
       })
       .catch(error => {
-        console.log("err", error);
         setError(error.message);
       });
 
@@ -117,10 +114,10 @@ async function stripeTokenHandler(token) {
       amount: 23
     })
     .then(res => {
-      console.log(33, res);
+     // console.log(33, res);
     })
     .catch(err => {
-      console.log("err", err);
+      //console.log("err", err);
     });
 
   return response.json();

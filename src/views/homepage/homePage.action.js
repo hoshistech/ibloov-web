@@ -54,7 +54,6 @@ export const fetchUserEventsFailed = error => {
 };
 
 export const filterByCategory = category => {
-  console.log("cat", category);
   return {
     type: FILTER_BY_CATEGORY,
     category

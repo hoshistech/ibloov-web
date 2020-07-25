@@ -19,7 +19,6 @@ const Event = props => {
 
   const filterCategory = e => {
     const selectedCategory = e.target.value;
-    console.log(66, selectedCategory);
     if (selectedCategory === "") {
       return;
     }
@@ -35,15 +34,11 @@ const Event = props => {
   let eventList = <Loading />;
   let popularEvents;
   if (filteredEvents || events) {
-    console.log(9, filteredEvents);
     if (filteredEvents === undefined || filteredEvents === null) {
-      console.log('trying');
       popularEvents = events;
     } else {
-      console.log('not trying');
       popularEvents = filteredEvents;
     }
-    console.log(66, popularEvents);
     if (popularEvents) {
       eventList = popularEvents
       .filter(event => event.isPrivate !== true)
