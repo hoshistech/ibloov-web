@@ -5,9 +5,9 @@ import "./GroupList.css";
 import ProgressiveImage from "../../../../components/progressiveImage/ProgressiveImage";
 import GroupCard from "./GroupCard";
 const GroupList = (props) => {
-  const { friendList, pickedGroup, picked } = props;
+  const { friendList, pickedGroup, picked, contactGroups } = props;
   const [openSideBar, setOpenSideBar] = useState(false);
-  const [selectedGroup, setSelectedGroup] = useState(1);
+  const [selectedGroup, setSelectedGroup] = useState(pickedGroup);
 
   const groupBy = (lists, key) => {
     return lists.reduce(
@@ -28,36 +28,6 @@ const GroupList = (props) => {
 
   const grouped = groupBy(friendList, "groups");
 
-  // const friendData = friendList.map((friend, index) => {
-  //   if (picked === friend.groups) {
-  //     return (
-  //       <tr className="group-list-data" key={index}>
-  //         <td className="friendlist-info-container">
-  //           <div className="friendlist-info">
-  //             <ProgressiveImage
-  //               src={friend.image}
-  //               customClass="friendlist-image"
-  //               alt="card"
-  //             />
-  //             <div className="friendlist-name">
-  //               <p>{friend.name}</p>
-  //               <small>optio sit in</small>
-  //             </div>
-  //           </div>
-  //         </td>
-  //         <td className="friendlist-phone-number">{friend.phoneNumber}</td>
-  //         <td className="email">{friend.email}</td>
-  //         <td className="group">
-  //           <div>family</div>
-  //           <div>friend</div>
-  //         </td>
-  //         <td className="action">
-  //           <FontAwesomeIcon className="action-icon" icon="ellipsis-v" />
-  //         </td>
-  //       </tr>
-  //     );
-  //   }
-  // });
 
   const friendData = friendList.map((friend, index) => (
     <tr className="group-list-data" key={index}>
@@ -102,14 +72,14 @@ const GroupList = (props) => {
     ? "group-list-container-open-menu-bar"
     : "group-list-container";
 
-  const contactGroups = [
-    "Family",
-    "Church Friends",
-    "Colleagues",
-    "Mum's Family",
-    "Dad's Family",
-    "Italian Holida Friends",
-  ];
+  // const contactGroups = [
+  //   "Family",
+  //   "Church Friends",
+  //   "Colleagues",
+  //   "Mum's Family",
+  //   "Dad's Family",
+  //   "Italian Holida Friends",
+  // ];
 
   return (
     <div className="ibloov-friendlist-container">
@@ -121,16 +91,16 @@ const GroupList = (props) => {
         />
         <div className={openGroupMenu}>
           <h3 className="group-list-name">GROUP NAME</h3>
-          {contactGroups.map((group, index) => (
+          {contactGroups !== null ? contactGroups.map((group, index) => (
             <GroupCard
-              key={index + 1}
-              groupName={group}
+              key={group.uuid}
+              groupName={group.name}
               numberContact={index + 2 * 3}
               selected={selectedGroup}
-              name={index + 1}
+              name={group._id}
               selectGroup={selectGroupHandler}
             />
-          ))}
+          )) : ""}
         </div>
 
         <table className="table">

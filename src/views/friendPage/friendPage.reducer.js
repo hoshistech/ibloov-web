@@ -12,7 +12,9 @@ import {
   FETCH_USER_FRIENDS_FAIL,
   FRIEND_START,
   FRIEND_ERROR,
-  CREATE_GROUP_SUCCESS
+  CREATE_GROUP_SUCCESS,
+  GET_USER_GROUP_SUCCESS,
+  FRIEND_SUCCESS
 } from "../../store/actionTypes";
 
 const initialState = {
@@ -21,93 +23,107 @@ const initialState = {
   user: null,
   friendRequestList: null,
   friends: null,
-  group: null
+  groups: null,
+  success: null
 };
 
 const followUserSuccess = (state, action) => {
   return updateObject(state, {
-    user: action.user,
+    user: action.user
   });
 };
 
 const followUserFail = (state, action) => {
   return updateObject(state, {
-    error: action.error,
+    error: action.error
   });
 };
 
 const fetchFriendRequestStart = (state, action) => {
   return updateObject(state, {
-    loading: true,
+    loading: true
   });
 };
 
 const fetchFriendRequestSuccess = (state, action) => {
   return updateObject(state, {
     loading: false,
-    friendRequestList: action.friendRequestList,
+    friendRequestList: action.friendRequestList
   });
 };
 
 const fetchFriendRequestFail = (state, action) => {
   return updateObject(state, {
     loading: false,
-    error: action.error,
+    error: action.error
   });
 };
 
 const fetchUserFollowingSuccess = (state, action) => {
   return updateObject(state, {
     loading: false,
-    userFollowing: action.followingList,
+    userFollowing: action.followingList
   });
 };
 
 const fetchUserFollowingFail = (state, action) => {
   return updateObject(state, {
     loading: false,
-    error: action.error,
+    error: action.error
   });
 };
 
 const fetchUserFriendsStart = (state, action) => {
   return updateObject(state, {
-    loading: true,
+    loading: true
   });
 };
 
 const fetchUserFriendsSuccess = (state, action) => {
   return updateObject(state, {
     loading: false,
-    friends: action.friends,
+    friends: action.friends
   });
 };
 
 const fetchUserFriendsFail = (state, action) => {
   return updateObject(state, {
     loading: false,
-    error: action.error,
-  });
-};
-
-
-const friendStart = (state, action) => {
-  return updateObject(state, {
-    loading: true,
+    error: action.error
   });
 };
 
 const createGroupSuccess = (state, action) => {
   return updateObject(state, {
     loading: false,
-    group: action.group,
+    group: action.groups
+  });
+};
+
+const getUserGroupSuccess = (state, action) => {
+  return updateObject(state, {
+    loading: false,
+    groups: action.groupList
+  });
+};
+
+const friendStart = (state, action) => {
+  return updateObject(state, {
+    loading: true
+  });
+};
+
+const createSuccess = (state, action) => {
+  return updateObject(state, {
+    loading: false,
+    success: action.message
   });
 };
 
 const friendFail = (state, action) => {
   return updateObject(state, {
     loading: false,
-    error: action.error,
+    error: action.error
   });
 };
 
@@ -135,10 +151,14 @@ export default (state = initialState, action) => {
       return fetchUserFriendsFail(state, action);
     case FRIEND_START:
       return friendStart(state, action);
-    case FRIEND_ERROR: 
+    case FRIEND_ERROR:
       return friendFail(state, action);
-    case CREATE_GROUP_SUCCESS: 
+    case CREATE_GROUP_SUCCESS:
       return createGroupSuccess(state, action);
+    case GET_USER_GROUP_SUCCESS:
+      return getUserGroupSuccess(state, action);
+    case FRIEND_SUCCESS:
+      return createSuccess(state, action);
 
     default:
       return state;

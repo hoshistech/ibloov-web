@@ -15,7 +15,9 @@ import {
   FETCH_USER_FRIENDS_FAIL,
   FRIEND_START,
   FRIEND_ERROR,
-  CREATE_GROUP_SUCCESS
+  CREATE_GROUP_SUCCESS,
+  GET_USER_GROUP_SUCCESS,
+  FRIEND_SUCCESS
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
 
@@ -100,12 +102,6 @@ export const fetchUserFriendsFail = error => {
   };
 };
 
-export const friendStart = () => {
-  return {
-    type: FRIEND_START
-  };
-};
-
 export const createGroupSuccess = group => {
   return {
     type: CREATE_GROUP_SUCCESS,
@@ -113,10 +109,30 @@ export const createGroupSuccess = group => {
   };
 };
 
+export const getUserGroupSuccess = groupList => {
+  return {
+    type: GET_USER_GROUP_SUCCESS,
+    groupList
+  };
+};
+
+export const friendStart = () => {
+  return {
+    type: FRIEND_START
+  };
+};
+
 export const friendError = error => {
   return {
     type: FRIEND_ERROR,
     error
+  };
+};
+
+export const friendSuccess = message => {
+  return {
+    type: FRIEND_SUCCESS,
+    message
   };
 };
 
@@ -234,10 +250,52 @@ export const createGroup = (groupName, history) => {
         const { data } = response.data;
         history.push({
           pathname: "/myfriends",
-          state: { action: "group" },
+          state: { action: "group" }
         });
 
         dispatch(createGroupSuccess(data));
+      })
+      .catch(error => {
+        dispatch(friendError("something went wrong"));
+      });
+  };
+};
+
+export const getUserGroup = () => {
+  return dispatch => {
+    dispatch(friendStart());
+    return axios(true)
+      .get("/v1/group")
+      .then(response => {
+        const { data } = response.data;
+
+        // history.push({
+        //   pathname: "/myfriends",
+        //   state: { action: "group" },
+        // });
+
+        dispatch(getUserGroupSuccess(data));
+      })
+      .catch(error => {
+        dispatch(friendError("something went wrong"));
+      });
+  };
+};
+
+export const addFriendToGroupAction = (groupId, contacts, history) => {
+  return dispatch => {
+    dispatch(friendStart());
+    return axios(true)
+      .patch(`/v1/group/contact/add/${groupId}`, { contacts })
+      .then(response => {
+        const { data, message } = response.data;
+        history.push({
+          pathname: "/myfriends",
+          state: { action: "ibloov" }
+        });
+
+        dispatch(friendSuccess(message));
+        // window.location.reload();
       })
       .catch(error => {
         dispatch(friendError("something went wrong"));

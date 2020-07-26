@@ -4,7 +4,6 @@ import "./FilterBar.css";
 import Button from "../button/Button";
 import FilterInput from "../filterInput/FilterInput";
 import FilterSelectInput from "../filterSelectInput/FilterSelectInput";
-import SelectInput from "../selectInput/SelectInput";
 
 const categories = ["concert", "festival", "sport", "wedding", "party", "birthday", "online"];
 
