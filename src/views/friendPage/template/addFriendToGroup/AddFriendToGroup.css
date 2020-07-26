@@ -1,0 +1,36 @@
+.friendlist-container-1 {
+  height: 200px;
+}
+
+.friendlist-container {
+  height: 200px;
+  overflow-y: scroll;
+  background-color: #dacdcd40;
+}
+
+.add-friend-list-row {
+  /* justify-content: space-evenly; */
+  cursor: pointer;
+  padding: 5px 0px;
+  /* margin-left: 10px */
+  /* display: flex; */
+}
+
+.add-friend-list-row:hover {
+  background-color: #ccc;
+}
+
+.add-friend-select-all {
+  justify-content: space-evenly;
+}
+
+.add-friend-select-all input {
+  cursor: pointer;
+}
+
+.add-friend-name {
+  width: 132px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

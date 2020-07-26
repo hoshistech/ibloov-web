@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import faker from "faker";
+import { toastr } from "react-redux-toastr";
 import Navbar from "../../components/navbar/Navbar";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import "./FriendPage.css";
@@ -15,23 +16,27 @@ import {
   acceptFriendRequest,
   denyFriendRequest,
   getUserFriends,
-  createGroup
+  createGroup,
+  getUserGroup,
+  addFriendToGroupAction
 } from "./friendPage.action";
 import FriendRequest from "./template/friendRequest/FriendRequest";
 import Button from "../../components/button/Button";
 import CreateGroup from "./template/createGroup/CreateGroup";
+import AddFriendToGroup from "./template/addFriendToGroup/AddFriendToGroup";
 
 const FriendPage = props => {
   const [selectedTab, setSelectedTab] = useState("ibloov");
   const [selectedGroup, setSelectedGroup] = useState("Family");
   const [showDropDown, setShowDropDown] = useState(false);
-  const [showCreate, setShowCreate] = useState(true);
+  const [showCreate, setShowCreate] = useState(false);
+  const [showAddFriendToGroup, setShowAddFriendToGroup] = useState(false);
 
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const location = useLocation();
 
-  const { friendRequestList, userFollowing, friends } = useSelector(
+  const { friendRequestList, userFollowing, friends, groups } = useSelector(
     state => state.friend
   );
 
@@ -41,16 +46,20 @@ const FriendPage = props => {
     requestList = friendRequestList;
   }
 
-  const fetchFriendRequest = useCallback(() => {    
+  const fetchFriendRequest = useCallback(() => {
+    // if (selectedTab === "group") {
+    dispatch(getUserGroup());
+    // }
     dispatch(getFriendRequestList());
     dispatch(getUserFriends());
-  }, [dispatch]);
+  }, [dispatch, selectedTab]);
 
   useEffect(() => {
     if (location.state) {
-      if (location.state.action === "group") {
+      if (location.state) {
         setSelectedTab(location.state.action);
         setShowCreate(false);
+        setShowAddFriendToGroup(false);
       }
     }
     fetchFriendRequest();
@@ -68,17 +77,13 @@ const FriendPage = props => {
 
   const selectedTabHandler = e => {
     const tabSwitch = e.target.name;
-
     e.preventDefault();
-
-    if (tabSwitch === "request") {
-      fetchFriendRequest();
-    }
+    fetchFriendRequest();
     setSelectedTab(tabSwitch);
   };
 
   const selectedGroupHandler = index => {
-    setSelectedGroup(contactGroups[index - 1]);
+    setSelectedGroup(index);
   };
 
   const followUserHandler = userId => {
@@ -99,61 +104,71 @@ const FriendPage = props => {
   };
 
   const createGroupHandler = groupName => {
-   dispatch(createGroup(groupName, history))
+    dispatch(createGroup(groupName, history));
   };
 
-  const contactGroups = [
-    "Family",
-    "Church Friends",
-    "Colleagues",
-    "Mum's Family",
-    "Dad's Family",
-    "Italian Holida Friends"
-  ];
+  const toggleAddFriendToGroup = () => {
+    setShowAddFriendToGroup(!showAddFriendToGroup);
+  };
+
+  const handleAddFriendToGroup = (groupId, friends) => {
+    if (groupId === "") {
+      toastr.error("Please select a group", {
+        timeOut: 0,
+        type: "error",
+        position: "top-right", // This will override the global props position.
+        attention: true // This will add a shadow like the confirm method.
+      });
+    }
+    dispatch(addFriendToGroupAction(groupId, friends, history));
+  };
+
+  let contactGroups;
   let aa = [];
+
+  if (groups) {
+    const randomFriends = Array(genRandomNumber(3, 9))
+      .fill()
+      .map((num, index) =>
+        aa.push({
+          image: faker.image.avatar(),
+          _id: faker.random.uuid(),
+          name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+          phoneNumber: faker.phone.phoneNumber(),
+          email: faker.internet.email(),
+          groups: groups[genRandomNumber(0, 6)]
+        })
+      );
+  }
 
   // 1 get the friend data and filter by the value of the selected group
 
-  const randomFriends = Array(genRandomNumber(3, 9))
-    .fill()
-    .map((num, index) =>
-      aa.push({
-        image: faker.image.avatar(),
-        _id: faker.random.uuid(),
-        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-        phoneNumber: faker.phone.phoneNumber(),
-        email: faker.internet.email(),
-        // groups: ["family"],
-        groups: contactGroups[genRandomNumber(0, 6)]
-      })
-    );
-
   const groundFriends = [
-    {
-      image:
-        "https://pbs.twimg.com/profile_images/1113161698372927488/jvGhU8iU_400x400.jpg",
-      name: "Damilola Adekoya",
-      _id: faker.random.uuid(),
-      phoneNumber: "+2348037145164",
-      email: "dharmykoya38@gmail.com",
-      groups: "family"
-    },
-    {
-      image: faker.image.avatar(),
-      name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-      _id: faker.random.uuid(),
-      phoneNumber: faker.phone.phoneNumber(),
-      email: faker.internet.email(),
-      groups: "family"
-    },
-    {
-      image: faker.image.avatar(),
-      name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-      _id: faker.random.uuid(),
-      phoneNumber: faker.phone.phoneNumber(),
-      email: faker.internet.email(),
-      groups: "friend"
-    },
+    // {
+    //   image:
+    //     "https://pbs.twimg.com/profile_images/1113161698372927488/jvGhU8iU_400x400.jpg",
+    //   name: "Damilola Adekoya",
+    //   _id: faker.random.uuid(),
+    //   phoneNumber: "+2348037145164",
+    //   email: "dharmykoya38@gmail.com",
+    //   groups: "family"
+    // },
+    // {
+    //   image: faker.image.avatar(),
+    //   name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    //   _id: faker.random.uuid(),
+    //   phoneNumber: faker.phone.phoneNumber(),
+    //   email: faker.internet.email(),
+    //   groups: "family"
+    // },
+    // {
+    //   image: faker.image.avatar(),
+    //   name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    //   _id: faker.random.uuid(),
+    //   phoneNumber: faker.phone.phoneNumber(),
+    //   email: faker.internet.email(),
+    //   groups: "friend"
+    // },
     ...aa
   ];
 
@@ -254,35 +269,51 @@ const FriendPage = props => {
                 />
               </div>
             </div>
-            <div>
-              {selectedTab === "ibloov" ? (
-                <FriendList
-                  friendList={groundFriends}
-                  handleFollowUser={followUserHandler}
-                  friends={friends}
-                />
-              ) : (
-                ""
-              )}
-              {selectedTab === "group" ? (
-                <GroupList
-                  friendList={groundFriends}
-                  pickedGroup={selectedGroupHandler}
-                  picked={selectedGroup}
-                />
-              ) : (
-                ""
-              )}
-              {selectedTab === "request" ? (
-                <FriendRequest
-                  friendRequestList={requestList}
-                  acceptFriendRequest={acceptFriendRequestHandler}
-                  rejectFriendrequest={rejectFriendRequestHandler}
-                />
-              ) : (
-                ""
-              )}
-            </div>
+            <Button
+              customClassName="bold-600 add-friend-btn ml-auto"
+              onClick={toggleAddFriendToGroup}
+              btndisabled={false}
+            >
+              {showAddFriendToGroup ? "cancel" : "Add friend to group"}
+            </Button>
+            {showAddFriendToGroup ? (
+              <AddFriendToGroup
+                groups={groups}
+                friendList={friends}
+                AddFriendToGroupSubmit={handleAddFriendToGroup}
+              />
+            ) : (
+              <div>
+                {selectedTab === "ibloov" ? (
+                  <FriendList
+                    friendList={groundFriends}
+                    handleFollowUser={followUserHandler}
+                    friends={friends}
+                  />
+                ) : (
+                  ""
+                )}
+                {selectedTab === "group" ? (
+                  <GroupList
+                    friendList={groundFriends}
+                    pickedGroup={selectedGroupHandler}
+                    picked={selectedGroup}
+                    contactGroups={groups}
+                  />
+                ) : (
+                  ""
+                )}
+                {selectedTab === "request" ? (
+                  <FriendRequest
+                    friendRequestList={requestList}
+                    acceptFriendRequest={acceptFriendRequestHandler}
+                    rejectFriendrequest={rejectFriendRequestHandler}
+                  />
+                ) : (
+                  ""
+                )}
+              </div>
+            )}
           </>
         )}
       </section>

@@ -11,7 +11,11 @@ const SelectInput = props => {
       <label className="filter-select-label">
         <FontAwesomeIcon className="card-icon" icon="chevron-down" />
       </label>
-      <select id="cars" className="form-control filter-select" onChange={onSelectCategory}>
+      <select
+        id="cars"
+        className="form-control filter-select"
+        onChange={onSelectCategory}
+      >
         <option value="all">{placeHolder}</option>
         {options
           ? options.map(option => (
