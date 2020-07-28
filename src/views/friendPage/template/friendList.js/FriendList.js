@@ -7,13 +7,13 @@ import FriendProfile from "../friendProfile/FriendProfile";
 import Loading from "../../../../components/loadingIndicator/Loading";
 import avatarPlaceHolder from "../../../../assets/images/profile_placeholder_small.gif";
 
-const FriendList = (props) => {
-  const { friendList, handleFollowUser, friends } = props;
+const FriendList = props => {
+  const { handleFollowUser, friends } = props;
 
   const [openFriendProfile, setOpenFriendProfile] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
 
-  const openFriendProfileHandler = (user) => {
+  const openFriendProfileHandler = user => {
     setOpenFriendProfile(!openFriendProfile);
     if (!openFriendProfile) {
       setCurrentUser(user);
@@ -22,7 +22,7 @@ const FriendList = (props) => {
 
   let friendData;
   if (friends) {
-    friendData = friends.map((friend) => (
+    friendData = friends.map(friend => (
       <tr
         className="friendlist-table-data"
         key={friend.id}

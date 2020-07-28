@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
+import Avatar from "react-avatar";
 import ProgressiveImage from "../../../../components/progressiveImage/ProgressiveImage";
 
-const GroupCard = (props) => {
+const GroupCard = props => {
   const { groupName, numberContact, selected, name, selectGroup } = props;
   let selectedGroup = "";
 
@@ -11,14 +12,20 @@ const GroupCard = (props) => {
       <div
         className="group-list-item-container"
         name={name}
-        onClick={(e) => selectGroup(e, name)}
+        onClick={e => selectGroup(e, name)}
       >
         {" "}
         <div className={`friendlist-info group-list-item ${selectedGroup}`}>
-          <ProgressiveImage
+          {/* <ProgressiveImage
             src={`https://source.unsplash.com/250x324/?${groupName}`}
             customClass="friendlist-image"
             alt="card"
+          /> */}
+          <Avatar
+            size={40}
+            round={true}
+            className="mr-2"
+            name={groupName}
           />
           <div className="friendlist-name">
             <p>{groupName}</p>
