@@ -21,6 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.25.3",
     "react": "next",
+    "react-avatar": "^3.9.7",
     "react-datetime-picker": "^3.0.2",
     "react-dom": "next",
     "react-places-autocomplete": "^7.2.1",

@@ -143,34 +143,7 @@ const FriendPage = props => {
 
   // 1 get the friend data and filter by the value of the selected group
 
-  const groundFriends = [
-    // {
-    //   image:
-    //     "https://pbs.twimg.com/profile_images/1113161698372927488/jvGhU8iU_400x400.jpg",
-    //   name: "Damilola Adekoya",
-    //   _id: faker.random.uuid(),
-    //   phoneNumber: "+2348037145164",
-    //   email: "dharmykoya38@gmail.com",
-    //   groups: "family"
-    // },
-    // {
-    //   image: faker.image.avatar(),
-    //   name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-    //   _id: faker.random.uuid(),
-    //   phoneNumber: faker.phone.phoneNumber(),
-    //   email: faker.internet.email(),
-    //   groups: "family"
-    // },
-    // {
-    //   image: faker.image.avatar(),
-    //   name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-    //   _id: faker.random.uuid(),
-    //   phoneNumber: faker.phone.phoneNumber(),
-    //   email: faker.internet.email(),
-    //   groups: "friend"
-    // },
-    ...aa
-  ];
+  const groundFriends = [...aa];
 
   return (
     <div className="myfriends-container">
@@ -286,7 +259,6 @@ const FriendPage = props => {
               <div>
                 {selectedTab === "ibloov" ? (
                   <FriendList
-                    friendList={groundFriends}
                     handleFollowUser={followUserHandler}
                     friends={friends}
                   />
@@ -295,7 +267,7 @@ const FriendPage = props => {
                 )}
                 {selectedTab === "group" ? (
                   <GroupList
-                    friendList={groundFriends}
+                    friendList={friends}
                     pickedGroup={selectedGroupHandler}
                     picked={selectedGroup}
                     contactGroups={groups}

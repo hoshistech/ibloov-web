@@ -3,11 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./GroupList.css";
 import ProgressiveImage from "../../../../components/progressiveImage/ProgressiveImage";
+import avatarPlaceHolder from "../../../../assets/images/profile_placeholder_small.gif";
 import GroupCard from "./GroupCard";
-const GroupList = (props) => {
+import { isEmpty } from "../../../../utils/helper";
+const GroupList = props => {
   const { friendList, pickedGroup, picked, contactGroups } = props;
   const [openSideBar, setOpenSideBar] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState(pickedGroup);
+  const [selectedGroupContacts, setSelectedGroupContacts] = useState("");
 
   const groupBy = (lists, key) => {
     return lists.reduce(
@@ -26,35 +29,41 @@ const GroupList = (props) => {
     ); // empty object is the initial value for result object
   };
 
-  const grouped = groupBy(friendList, "groups");
+  let friendData = "";
 
-
-  const friendData = friendList.map((friend, index) => (
-    <tr className="group-list-data" key={index}>
-      <td className="friendlist-info-container">
-        <div className="friendlist-info">
-          <ProgressiveImage
-            src={friend.image}
-            customClass="friendlist-image"
-            alt="card"
-          />
-          <div className="friendlist-name">
-            <p>{friend.name}</p>
-            <small>optio sit in</small>
+  if (isEmpty(selectedGroupContacts)) {
+    friendData = (
+      <tr className="group-list-data text-center">No friends in this group</tr>
+    );
+  } else {
+    friendData = selectedGroupContacts.map((friend, index) => (
+      <tr className="group-list-data" key={index}>
+        <td className="friendlist-info-container">
+          <div className="friendlist-info">
+            <ProgressiveImage
+              src={friend.userId.avatar}
+              customClass="friendlist-image"
+              alt="card"
+              placeholder={avatarPlaceHolder}
+            />
+            <div className="friendlist-name">
+              <p>{friend.userId.fullName}</p>
+              <small>optio sit in</small>
+            </div>
           </div>
-        </div>
-      </td>
-      <td className="friendlist-phone-number">{friend.phoneNumber}</td>
-      <td className="email">{friend.email}</td>
-      {/* <td className="group">
-        <div>family</div>
-        <div>friend</div>
-      </td> */}
-      <td className="action">
-        <FontAwesomeIcon className="action-icon" icon="ellipsis-v" />
-      </td>
-    </tr>
-  ));
+        </td>
+        <td className="friendlist-phone-number">{friend.userId.phoneNumber}</td>
+        <td className="email">{friend.userId.email}</td>
+        {/* <td className="group">
+          <div>family</div>
+          <div>friend</div>
+        </td> */}
+        <td className="action">
+          <FontAwesomeIcon className="action-icon" icon="ellipsis-v" />
+        </td>
+      </tr>
+    ));
+  }
 
   const openGroupSideBar = () => {
     setOpenSideBar(!openSideBar);
@@ -64,8 +73,13 @@ const GroupList = (props) => {
     (e, index) => {
       setSelectedGroup(index);
       pickedGroup(index);
+
+      const foundGroup = contactGroups.filter(group => group._id === index);
+      const contacts = foundGroup.map(group => group.contacts);
+
+      setSelectedGroupContacts(...contacts);
     },
-    [pickedGroup, setSelectedGroup]
+    [pickedGroup, setSelectedGroup, contactGroups]
   );
 
   const openGroupMenu = openSideBar
@@ -91,16 +105,18 @@ const GroupList = (props) => {
         />
         <div className={openGroupMenu}>
           <h3 className="group-list-name">GROUP NAME</h3>
-          {contactGroups !== null ? contactGroups.map((group, index) => (
-            <GroupCard
-              key={group.uuid}
-              groupName={group.name}
-              numberContact={index + 2 * 3}
-              selected={selectedGroup}
-              name={group._id}
-              selectGroup={selectGroupHandler}
-            />
-          )) : ""}
+          {contactGroups !== null
+            ? contactGroups.map((group, index) => (
+                <GroupCard
+                  key={group.uuid}
+                  groupName={group.name}
+                  numberContact={group.contacts.length}
+                  selected={selectedGroup}
+                  name={group._id}
+                  selectGroup={selectGroupHandler}
+                />
+              ))
+            : ""}
         </div>
 
         <table className="table">
