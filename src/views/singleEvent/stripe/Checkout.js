@@ -44,41 +44,46 @@ const CheckoutForm = () => {
   // Handle form submission.
   const handleSubmit = async event => {
     event.preventDefault();
-    return;
+    // return;
     const card = elements.getElement(CardElement);
-    // const result = await stripe.createToken(card);
+    const result = await stripe.createToken(card);
 
-    axios(true)
-      .post("v1/payment/stripe/token", {
-        description: "event",
-        currency: "USD",
-        amount: 23
-      })
-      .then(res => {
-        const result = res.data;
-        setError(null);
-        // Send the token to your server.
-        stripeTokenHandler(result.data);
-      })
-      .catch(error => {
-        setError(error.message);
-      });
+    // console.log(result);
+    // return;
 
-    // if (result.error) {
-    //   // Inform the user if there was an error.
-    //   setError(result.error.message);
-    // } else {
-    //   setError(null);
-    //   console.log("res", result);
-    //   // Send the token to your server.
-    //   stripeTokenHandler(result.token);
-    // }
+    // axios(true)
+    //   .post("v1/payment/stripe/token", {
+    //     description: "event",
+    //     currency: "USD",
+    //     amount: 23
+    //   })
+    //   .then(res => {
+    //     const result = res.data;
+    //     setError(null);
+    //     // Send the token to your server.
+    //     stripeTokenHandler(result.data);
+    //   })
+    //   .catch(error => {
+    //     setError(error.message);
+    //   });
+
+    if (result.error) {
+      // Inform the user if there was an error.
+      setError(result.error.message);
+    } else {
+      setError(null);
+      // console.log("res", result);
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="payment-form">
       <div class="form-row">
-        <label for="card-element">Credit or debit card</label>
+        <label for="card-element" className="card-head">
+          Credit or debit card
+        </label>
         <CardElement
           id="card-element"
           options={CARD_ELEMENT_OPTIONS}
@@ -88,7 +93,9 @@ const CheckoutForm = () => {
           {error}
         </div>
       </div>
-      <button type="submit">Submit Payment</button>
+      <button type="submit" className="btn btn-light mt-2">
+        Submit Payment
+      </button>
     </form>
   );
 };
@@ -114,13 +121,14 @@ async function stripeTokenHandler(token) {
       amount: 23
     })
     .then(res => {
-     // console.log(33, res);
+      // console.log(33, res.data);
     })
     .catch(err => {
-      //console.log("err", err);
+      // console.log("err", err);
     });
 
-  return response.json();
+  return;
+  // return response.json();
 }
 // async function stripeTokenHandler(token) {
 //   const response = await fetch("/charge", {

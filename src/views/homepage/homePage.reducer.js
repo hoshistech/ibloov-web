@@ -76,28 +76,26 @@ const filterByCategory = (state, action) => {
   });
 };
 
-
 const filterByLocation = (state, action) => {
   const value = action.location.toLowerCase();
-  const eventsList = state.events
-  const newFilteredEvents = state.filteredEvents
-  let eventsFilter = '';
+  const eventsList = state.events;
+  const newFilteredEvents = state.filteredEvents;
+  let eventsFilter = "";
 
-  if (value == '') {
+  if (value == "") {
     return updateObject(state, {
       loading: false,
       filteredEvents: null
     });
-  } 
-  if(newFilteredEvents.length > 0) {
+  }
+  if (newFilteredEvents.length > 0) {
     eventsFilter = newFilteredEvents;
   } else {
-    eventsFilter = eventsList
+    eventsFilter = eventsList;
   }
 
-
   const filteredValues = eventsFilter.filter(event => {
-       return event.location.address.toLowerCase().includes(value)
+    return event.location.address.toLowerCase().includes(value);
   });
 
   return updateObject(state, {

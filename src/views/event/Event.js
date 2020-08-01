@@ -6,7 +6,11 @@ import FilterBar from "../../components/filterbar/FilterBar";
 
 import "./Event.css";
 import Pagination from "../../components/pagination/Pagination";
-import { fetchLiveEvents, filterByCategory, filterByLocation } from "../homepage/homePage.action";
+import {
+  fetchLiveEvents,
+  filterByCategory,
+  filterByLocation
+} from "../homepage/homePage.action";
 import Loading from "../../components/loadingIndicator/Loading";
 const Event = props => {
   const { events, filteredEvents } = useSelector(state => state.allEvents);
@@ -25,11 +29,9 @@ const Event = props => {
     dispatch(filterByCategory(selectedCategory));
   };
 
-  const filterLocation = (location) => {
-    
-
-      dispatch(filterByLocation(location))
-  }
+  const filterLocation = location => {
+    dispatch(filterByLocation(location));
+  };
 
   let eventList = <Loading />;
   let popularEvents;
@@ -41,23 +43,22 @@ const Event = props => {
     }
     if (popularEvents) {
       eventList = popularEvents
-      .filter(event => event.isPrivate !== true)
-      .map((event, index) => {
-        return (
-          <Card
-            key={event._id}
-            name={event.name}
-            eventId={event._id}
-            startDate={event.startDate}
-            location={event.location}
-            event={event}
-            splashImage="https://source.unsplash.com/250x182/?concert,party"
-            invitees={event.invitees}
-          />
-        );
-      });
+        .filter(event => event.isPrivate !== true)
+        .map((event, index) => {
+          return (
+            <Card
+              key={event._id}
+              name={event.name}
+              eventId={event._id}
+              startDate={event.startDate}
+              location={event.location}
+              event={event}
+              splashImage="https://source.unsplash.com/250x182/?concert,party"
+              invitees={event.invitees}
+            />
+          );
+        });
     }
-    
   }
   return (
     <Fragment>
@@ -65,7 +66,10 @@ const Event = props => {
         headerTitle="Live Events"
         headerDescription="Live events across various locations"
       />
-      <FilterBar selectedCategory={filterCategory} searchEventHandler={filterLocation} />
+      <FilterBar
+        selectedCategory={filterCategory}
+        searchEventHandler={filterLocation}
+      />
 
       <section className="row event-card-container">{eventList}</section>
       <div>
