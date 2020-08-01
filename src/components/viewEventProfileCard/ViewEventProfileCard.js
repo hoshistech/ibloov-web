@@ -9,7 +9,7 @@ import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 import { useHistory } from "react-router-dom";
 
-const ViewEventProfileCard = (props) => {
+const ViewEventProfileCard = props => {
   const {
     user,
     openFriendProfile,
@@ -21,20 +21,20 @@ const ViewEventProfileCard = (props) => {
     numberAttendingEvents,
     numberEventLikes,
     handleBloovEvent,
-    handleLikeEvent,
+    handleLikeEvent
   } = props;
-
 
   const history = useHistory();
   let name;
   let profileImage;
   let eventUserId;
+  let fullName;
 
   const toggleFollowingEvent = () => {
     if (!isUserAuthenticated) {
       history.push({
         pathname: "/signin",
-        state: { from: history.location.pathname },
+        state: { from: history.location.pathname }
       });
       return;
     }
@@ -45,7 +45,7 @@ const ViewEventProfileCard = (props) => {
     if (!isUserAuthenticated) {
       history.push({
         pathname: "/signin",
-        state: { from: history.location.pathname },
+        state: { from: history.location.pathname }
       });
       return;
     }
@@ -57,6 +57,7 @@ const ViewEventProfileCard = (props) => {
   if (user) {
     const firstName = user.local.firstName ? user.local.firstName : "";
     const lastName = user.local.lastName ? user.local.lastName : "";
+    fullName = user.fullName;
     eventUserId = user._id;
     name = `${firstName} ${lastName}`;
     profileImage = user.avatar ? user.avatar : avatarPlaceHolder;
@@ -84,7 +85,7 @@ const ViewEventProfileCard = (props) => {
               />
             </div>
             <div className="view-event-profile-detail">
-              <p>{name}</p>
+              <p>{fullName}</p>
               {isUserAuthenticated ? (
                 <small onClick={openFriendProfile}>View Profile</small>
               ) : (
@@ -163,7 +164,7 @@ const ViewEventProfileCard = (props) => {
 };
 
 ViewEventProfileCard.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.object
 };
 
 export default ViewEventProfileCard;

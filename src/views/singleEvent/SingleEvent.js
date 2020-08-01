@@ -158,6 +158,7 @@ const SingleEvent = props => {
                   <div className="single-event-name-container">
                     <h1 className="single-event-name">{foundEvent.name}</h1>
                     <span>{foundEvent.location.address}</span>
+                    <div className="event-start-date">{startDate}</div>
                   </div>
                   <div className="single-event-price">
                     {foundEvent.isPaid && authenticated ? (
@@ -183,7 +184,9 @@ const SingleEvent = props => {
                     )}
                   </div>
                   <div>
-                    <h2 className="single-event-header-title">Description</h2>
+                    <h3 className="single-event-header-title mt-5">
+                      Description
+                    </h3>
                     <div className="single-event-description">
                       {foundEvent.description
                         ? foundEvent.description
@@ -191,21 +194,21 @@ const SingleEvent = props => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-3 mb-3">
+                {/* <div className="mt-3 mb-3">
                   <h4 className="single-event-header-title">
                     How can I contact the organizer for any question?
                   </h4>
                   <div className="single-event-description">
                     Please fill the form below to contact the organizer
                   </div>
-                </div>
+                </div> */}
               </section>
               <section>
                 <div>
-                  <h3 className="single-event-header-title">
+                  <h5 className="single-event-header-title mt-5">
                     Comments<span>(1)</span>
-                  </h3>
-                  <div className="mt-5 mb-3">
+                  </h5>
+                  <div className="mt-3 mb-3">
                     <SingleComment />
                   </div>
                   <div className="mt-3 mb-3">
@@ -231,10 +234,10 @@ const SingleEvent = props => {
                 />
               </div>
               <div className="mt-5 mb-3 single-event-date-container">
-                <h4 className="single-event-header-title">Dates and Time</h4>
+                {/* <h4 className="single-event-header-title">Dates and Time</h4>
                 <p>
                   Start: <span className="event-start-date">{startDate}</span>
-                </p>
+                </p> */}
                 <div>
                   <Button
                     btndisabled={false}
@@ -250,7 +253,7 @@ const SingleEvent = props => {
                 <div>
                   <EventMap />
                 </div>
-                <div>{foundEvent.location.address}</div>
+                {/* <div>{foundEvent.location.address}</div> */}
               </div>
               <div className="mt-5 mb-3 single-event-second-col-container">
                 <h4 className="single-event-header-title">Tags</h4>

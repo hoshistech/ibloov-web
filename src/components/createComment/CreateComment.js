@@ -5,10 +5,10 @@ import Input from "../input/Input";
 import Button from "../button/Button";
 
 import "./CreateComment.css";
-const CreateComment = (props) => {
+const CreateComment = props => {
   return (
     <div className="create-comment-container">
-      <h3 className="font-bold">Add Comment</h3>
+      <h4 className="font-bold">Add Comment</h4>
       <div>
         <form>
           <div className="row create-comment-star">
@@ -79,11 +79,9 @@ const CreateComment = (props) => {
             </Button>
           </div>
         </form>
-      
       </div>
     </div>
   );
 };
-
 
 export default CreateComment;

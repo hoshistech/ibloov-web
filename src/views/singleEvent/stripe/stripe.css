@@ -35,3 +35,11 @@
 .stripe-card-container {
   width: 90%;
 }
+
+.card-head {
+  color: white;
+}
+
+.payment-form {
+  padding: 20px;
+}
