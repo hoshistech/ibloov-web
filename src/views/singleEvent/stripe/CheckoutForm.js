@@ -18,8 +18,6 @@ export default function CheckoutForm() {
         currency: "USD"
       });
 
-     // console.log(44, order.data.data);
-
       setClientToken(order.data.data);
     };
 
