@@ -30,10 +30,6 @@ import FriendProfile from "../friendPage/template/friendProfile/FriendProfile";
 import EventMap from "./templates/eventMap/EventMap";
 import { followUser, getUserFollowing } from "../friendPage/friendPage.action";
 import { getUserEvents } from "../homepage/homePage.action";
-import Stripe from "./stripe/Stripe";
-import Checkoutt from "./stripe/Checkout2";
-import ApplePay from "./stripe/ApplePay";
-import IbanPay from "./stripe/IbanPay";
 import Checkout from "./stripe/Checkout";
 
 const SingleEvent = props => {
@@ -311,16 +307,10 @@ const SingleEvent = props => {
               toggleOpenSide={() => setOpenPay(!openPay)}
             >
               <div className="event-pay-form-container">
-                {/* <EventPay
-                  closePayView={closePayView}
-                  eventPrice={foundEvent ? foundEvent.amount : ""}
-                  currency={foundEvent ? foundEvent.currency : ""}
-                  eventId={foundEvent ? foundEvent._id : ""}
-                /> */}
-                {/* <Stripe /> */}
-                <Checkout />
-                {/* <IbanPay /> */}
-                {/* <ApplePay /> */}
+                <Checkout
+                  user={authenticated ? authenticated : ""}
+                  event={foundEvent ? foundEvent : ""}
+                />
               </div>
             </SideOverLayContainer>
           ) : (

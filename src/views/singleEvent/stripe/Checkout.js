@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
+import { toastr } from "react-redux-toastr";
 import {
   CardElement,
   Elements,
@@ -7,6 +8,8 @@ import {
   useStripe
 } from "@stripe/react-stripe-js";
 import axios from "../../../utils/axiosConfig";
+
+import "./stripe.css";
 
 // Custom styling can be passed to options when creating an Element.
 const CARD_ELEMENT_OPTIONS = {
@@ -27,54 +30,70 @@ const CARD_ELEMENT_OPTIONS = {
   }
 };
 
-const CheckoutForm = () => {
+const CheckoutForm = props => {
+  const { email, amount, name, currency, description } = props;
+
+  const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
+  const [processing, setProcessing] = useState("");
+  const [disabled, setDisabled] = useState(true);
+  const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
+
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    axios(true)
+      .post("v1/payment/stripe/token", {
+        description: description,
+        currency: "usd",
+        amount: +amount
+      })
+      .then(res => {
+        const result = res.data;
+        setError(null);
+        setClientSecret(result.data);
+      })
+      .catch(error => {
+        setError(error.message);
+      });
+  }, [description, email, amount]);
 
   // Handle real-time validation errors from the card Element.
   const handleChange = event => {
     if (event.error) {
-      setError(event.error.message);
+      setDisabled(event.empty);
+      setError(event.error ? event.error.message : "");
     } else {
       setError(null);
     }
   };
 
-  // Handle form submission.
-  const handleSubmit = async event => {
-    event.preventDefault();
-    // return;
-    const card = elements.getElement(CardElement);
-    const result = await stripe.createToken(card);
-
-    // console.log(result);
-    // return;
-
-    // axios(true)
-    //   .post("v1/payment/stripe/token", {
-    //     description: "event",
-    //     currency: "USD",
-    //     amount: 23
-    //   })
-    //   .then(res => {
-    //     const result = res.data;
-    //     setError(null);
-    //     // Send the token to your server.
-    //     stripeTokenHandler(result.data);
-    //   })
-    //   .catch(error => {
-    //     setError(error.message);
-    //   });
-
-    if (result.error) {
-      // Inform the user if there was an error.
-      setError(result.error.message);
+  const handleSubmit = async ev => {
+    ev.preventDefault();
+    setProcessing(true);
+    const payload = await stripe.confirmCardPayment(clientSecret, {
+      receipt_email: email,
+      payment_method: {
+        card: elements.getElement(CardElement),
+        billing_details: {
+          name
+        }
+      }
+    });
+    if (payload.error) {
+      setError(`Payment failed ${payload.error.message}`);
+      setProcessing(false);
     } else {
       setError(null);
-      // console.log("res", result);
-      // Send the token to your server.
-      stripeTokenHandler(result.token);
+      setProcessing(false);
+      setSucceeded(true);
+      toastr.success("Payment Successful!!!", {
+        timeOut: 0,
+        type: "success",
+        position: "top-right", // This will override the global props position.
+        attention: true // This will add a shadow like the confirm method.
+      });
     }
   };
 
@@ -96,6 +115,17 @@ const CheckoutForm = () => {
       <button type="submit" className="btn btn-light mt-2">
         Submit Payment
       </button>
+      {error && (
+        <div className="card-error" role="alert">
+          {error}
+        </div>
+      )}
+
+      {succeeded ? (
+        <p className="text-light mt-3 text-center">Payment Successful</p>
+      ) : (
+        ""
+      )}
     </form>
   );
 };
@@ -103,43 +133,21 @@ const CheckoutForm = () => {
 // Setup Stripe.js and the Elements provider
 const stripePromise = loadStripe("pk_test_ZLXamYUP1Hp8QNf5b1B1d1fr00ycTYZS8e");
 
-const App = () => {
+const App = props => {
+  const { event, user } = props;
+
+
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm />
+      <CheckoutForm
+        amount={event ? event.amount : ""}
+        email={user ? user.email : ""}
+        name={event ? user.fullName : ""}
+        currency={event ? event.currency : ""}
+        description={"event"}
+      />
     </Elements>
   );
 };
-
-// POST the token ID to your backend.
-async function stripeTokenHandler(token) {
-  const response = await axios(true)
-    .post("v1/payment/stripe/capture", {
-      description: "event",
-      source: token,
-      currency: "USD",
-      amount: 23
-    })
-    .then(res => {
-      // console.log(33, res.data);
-    })
-    .catch(err => {
-      // console.log("err", err);
-    });
-
-  return;
-  // return response.json();
-}
-// async function stripeTokenHandler(token) {
-//   const response = await fetch("/charge", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({ token: token.id })
-//   });
-
-//   return response.json();
-// }
 
 export default App;
