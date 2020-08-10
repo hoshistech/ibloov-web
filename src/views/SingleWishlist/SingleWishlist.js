@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -7,10 +7,9 @@ import {
 
 import "./SingleWishlist.css";
 import Navbar from "../../components/navbar/Navbar";
-import { useHistory, Link, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ItemCard from "../../components/itemCard/ItemCard";
-import { chunkArray, genRandomNumber } from "../../utils/helper";
+import {  genRandomNumber } from "../../utils/helper";
 import { getWishlist } from "./singleWishlist.action";
 import { useDispatch, useSelector } from "react-redux";
 import SingleWishlistItems from "./templates/singleWishlistItems/SingleWishlistItems";
@@ -24,7 +23,7 @@ const SingleWishlist = (props) => {
 
   const dispatch = useDispatch();
 
-  const { wishlist, wishlistItems, itemsLength } = useSelector(
+  const { wishlistItems, itemsLength } = useSelector(
     (state) => state.singleWishlist
   );
 
@@ -32,7 +31,7 @@ const SingleWishlist = (props) => {
     dispatch(getWishlist(wishlistId));
   }, [dispatch, wishlistId]);
 
-  const randomImage = () => {
+ /*  const randomImage = () => {
     // const randomNumber = Math.floor(Math.random() * Math.floor(6));
     const randomNumber = genRandomNumber(0, 10);
     const image = [
@@ -49,7 +48,7 @@ const SingleWishlist = (props) => {
       "https://source.unsplash.com/550x1082/?plates",
     ];
     return image[randomNumber];
-  };
+  }; */
 
   return (
     <div className="single-wishlist-container">

@@ -22,31 +22,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchEvents, fetchLiveEvents } from "./homePage.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import SearchBar from "./templates/searchBar/SearchBar";
-import { getUser } from "../../utils/helper";
-const HomePage = (props) => {
+import { checkAuth } from "../../utils/helper";
+const HomePage = props => {
   const svgFill = "#f8535361";
 
-  const events = useSelector((state) => state.allEvents.events);
+  const events = useSelector(state => state.allEvents.events);
 
   const dispatch = useDispatch();
 
-  const { token } = getUser();
+  // const { token } = getUser();
+  const auth = checkAuth();
 
   useEffect(() => {
-    if (token) {
+    if (auth) {
       dispatch(fetchLiveEvents());
     } else {
       dispatch(fetchEvents());
     }
-  }, [dispatch, token]);
+  }, [dispatch, auth]);
 
   let popularEvents = <Loading />;
   let upcomingEvents = "";
   if (events) {
     popularEvents = events
-      .filter((event) => event.isPrivate !== true)
+      .filter(event => event.isPrivate !== true)
       .slice(0, 4)
-      .map((event) => (
+      .map(event => (
         <Card
           key={event._id}
           name={event.name}
@@ -60,9 +61,9 @@ const HomePage = (props) => {
       ));
 
     upcomingEvents = events
-      .filter((event) => event.isPrivate !== true)
+      .filter(event => event.isPrivate !== true)
       .slice(-4)
-      .map((event) => (
+      .map(event => (
         <Card
           key={event._id}
           name={event.name}

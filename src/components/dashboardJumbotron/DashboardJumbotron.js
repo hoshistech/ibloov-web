@@ -8,13 +8,13 @@ import "./DashboardJumbotron.css";
 const DashboardJumbotron = (props) => {
   const { user, event } = props;
 
-  let image = "https://source.unsplash.com/900x600/?birthday&fm=png";
+  // let image = "https://source.unsplash.com/900x600/?birthday&fm=png";
 
-  if (event) {
-    if (typeof event.images[0] !== "undefined") {
-      image = event.images[0].url;
-    }
-  }
+  // if (event) {
+  //   if (typeof event.images[0] !== "undefined") {
+  //     image = event.images[0].url;
+  //   }
+  // }
 
   
 

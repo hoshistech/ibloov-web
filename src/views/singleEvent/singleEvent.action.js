@@ -22,7 +22,7 @@ export const fetchSingleEventSuccess = (event, isFollowing, eventLikes) => {
     type: FETCH_SINGLE_EVENT_SUCCESS,
     event,
     isFollowing,
-    eventLikes
+    eventLikes: eventLikes ? eventLikes : []
   };
 };
 

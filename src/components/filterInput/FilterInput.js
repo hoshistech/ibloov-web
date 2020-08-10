@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import Input from "../input/Input";
+
 
 const FilterInput = props => {
   const { empty, searchTerm } = props; 

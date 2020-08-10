@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 
 import "./DropDown.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,6 +42,5 @@ const DropDown = (props) => {
   );
 };
 
-DropDown.propTypes = {};
 
 export default DropDown;

@@ -1,24 +1,32 @@
-import React, { Fragment , useState} from "react";
+import React, { useState } from "react";
 
 import "./FilterBar.css";
 import Button from "../button/Button";
 import FilterInput from "../filterInput/FilterInput";
 import FilterSelectInput from "../filterSelectInput/FilterSelectInput";
 
-const categories = ["concert", "festival", "sport", "wedding", "party", "birthday", "online"];
+const categories = [
+  "concert",
+  "festival",
+  "sport",
+  "wedding",
+  "party",
+  "birthday",
+  "online"
+];
 
 const FilterBar = props => {
   const { selectedCategory, searchEventHandler } = props;
 
-   const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
 
-  const searchTerm = (value) => {
-    setSearch(value)
-  }
+  const searchTerm = value => {
+    setSearch(value);
+  };
 
   const searchEvent = () => {
-    searchEventHandler(search)
-  }
+    searchEventHandler(search);
+  };
 
   return (
     // <details open>

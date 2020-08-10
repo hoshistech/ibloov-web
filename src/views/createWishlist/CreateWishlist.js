@@ -6,7 +6,6 @@ import WishlistItems from "./templates/wishlistItems/WishlistItems";
 import { useDispatch, useSelector } from "react-redux";
 import { createWishlist, endCreateWishlist } from "./createWishlist.action";
 import EventSuccessSideBar from "../../components/eventSuccessSideBar/EventSuccessSideBar";
-import Modal from "../../components/modal/Modal";
 
 import "./CreateWishlist.css";
 const CreateWishlist = (props) => {
@@ -14,14 +13,13 @@ const CreateWishlist = (props) => {
   const [image, setImage] = useState("");
   const [wishlistItems, setWishlistItems] = useState([]);
   const [isCreatedWishlistSuccess, setIsWishlistSuccess] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
 
   const {
     success: isWishlistCreated,
     createError: error,
-    loading,
   } = useSelector((state) => state.wishlist);
 
   const imageUploadHandler = (image) => {
@@ -100,7 +98,7 @@ const CreateWishlist = (props) => {
 
   const closeModalHandler = () => {
     dispatch(endCreateWishlist());
-    setShowModal(false);
+    // setShowModal(false);
   };
 
   useEffect(() => {
