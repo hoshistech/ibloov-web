@@ -9,7 +9,6 @@ import {
   CREATE_WISHLIST_FAIL,
   CREATE_WISHLIST_END,
 } from "../../store/actionTypes";
-import { getUser } from "../../utils/helper";
 import { uploadImage } from "../createEvent/createEvent.action";
 
 export const getWishlistItemsStart = () => {

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 
 import ProgressiveImage from "../../../../../components/progressiveImage/ProgressiveImage";
 import avatarPlaceHolder from "../../../../../assets/images/profile_placeholder_small.gif";

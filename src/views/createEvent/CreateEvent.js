@@ -17,7 +17,7 @@ import { getUserFriends } from "../friendPage/friendPage.action";
 
 const CreateEvent = props => {
   const [formCount, setFormCount] = useState(1);
-  const [eventDetail, setEventDetail] = useState("");
+  // const [eventDetail, setEventDetail] = useState("");
   const [eventTime, setEventTime] = useState("");
   const [isCreatedEventSuccess, setIsCreatedEventSuccess] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");

@@ -1,24 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import headset from "../../../../assets/images/headset.png";
 import ItemCard from "../../../../components/itemCard/ItemCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./WishlistItems.css";
-import Axios from "../../../../utils/axiosConfig";
 import { getSearchedItems } from "../../createWishlist.action";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../../components/loadingIndicator/Loading";
-const wishlistItems = [
-  { name: "Ladies watch", price: 50, currency: "$", image: headset },
-  { name: "Iphone X", price: 150, currency: "$", image: headset },
-  { name: "Beats Head Phone", price: 30, currency: "$", image: headset },
-  { name: "Sun Glasses", price: 70, currency: "$", image: headset },
-  { name: "Sun", price: 70, currency: "$", image: headset },
-  { name: "Water bottle", price: 70, currency: "$", image: headset },
-  { name: "sanitizers", price: 70, currency: "$", image: headset },
-  { name: "camera", price: 70, currency: "$", image: headset },
-  { name: "samsung s8", price: 70, currency: "$", image: headset },
-];
+
 
 const WishlistItems = (props) => {
   const { wishlistItemHandler } = props;

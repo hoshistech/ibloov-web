@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import Button from "../../../../components/button/Button";
 import GroupDetails from "./templates/GroupDetails";
 import "./AddFriendToGroup.css";

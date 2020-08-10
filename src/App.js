@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Provider } from "react-redux";
 import ReduxToastr from "react-redux-toastr";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-  fab,
   faTwitter,
   faFacebookF,
   faLinkedinIn,
@@ -43,7 +42,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
 
 import "./App.css";
 import Signup from "./views/signup/Signup";

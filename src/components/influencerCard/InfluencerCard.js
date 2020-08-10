@@ -10,8 +10,6 @@ const InfluencerCard = (props) => {
     placesCard,
     cardTitle,
     userName,
-    followers,
-    events,
     image,
   } = props;
   //   const placesCard = false;

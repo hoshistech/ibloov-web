@@ -7,12 +7,12 @@ import avatarPlaceHolder from "../../../../assets/images/profile_placeholder_sma
 import GroupCard from "./GroupCard";
 import { isEmpty } from "../../../../utils/helper";
 const GroupList = props => {
-  const { friendList, pickedGroup, picked, contactGroups } = props;
+  const { pickedGroup, contactGroups } = props;
   const [openSideBar, setOpenSideBar] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState(pickedGroup);
   const [selectedGroupContacts, setSelectedGroupContacts] = useState("");
 
-  const groupBy = (lists, key) => {
+/*   const groupBy = (lists, key) => {
     return lists.reduce(
       (result, currentValue) => {
         // (result[currentValue[key]] = result[currentValue[key]] || []).push(
@@ -27,7 +27,7 @@ const GroupList = props => {
       },
       [{}]
     ); // empty object is the initial value for result object
-  };
+  }; */
 
   let friendData = "";
 

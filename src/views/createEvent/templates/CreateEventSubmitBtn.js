@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "../../../components/button/Button";
 
-const CreateEventSubmitBtn = (props) => {
+const CreateEventSubmitBtn = props => {
   const {
     nextQuestionHandler,
     previousQuestionHandler,
@@ -10,8 +10,9 @@ const CreateEventSubmitBtn = (props) => {
     submitEventHandler,
     formIsValid,
     isStepValid,
-    dateTimeValid,
+    dateTimeValid
   } = props;
+
   const nextStep = isStepValid && formIsValid && dateTimeValid;
   return (
     <div
@@ -46,7 +47,7 @@ CreateEventSubmitBtn.propTypes = {
   previousQuestionHandler: PropTypes.func,
   formCount: PropTypes.number,
   submitEventHandler: PropTypes.func,
-  formIsValid: PropTypes.bool,
+  formIsValid: PropTypes.bool
 };
 
 export default CreateEventSubmitBtn;
