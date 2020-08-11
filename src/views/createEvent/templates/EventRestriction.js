@@ -15,7 +15,6 @@ const EventRestriction = (props) => {
     addCollaborator,
     addInvitee,
   } = props;
-  const [label, setLabel] = useState(false);
   const [womenOnly, setWomenOnly] = useState(false);
   const [childrenOnly, setChildrenOnly] = useState(false);
   const [adult, setAdult] = useState(false);
@@ -24,10 +23,7 @@ const EventRestriction = (props) => {
   const [noChildren, setNoChildren] = useState(false);
   const [openGiftWishList, setOpenGiftWishList] = useState(false);
 
-  const handlelabelClick = (e) => {
-    setLabel(!label);
-  };
-
+ 
   const openGiftwishListHandler = () => {
     setOpenGiftWishList(!openGiftWishList);
   };

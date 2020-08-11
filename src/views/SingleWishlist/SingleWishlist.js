@@ -9,7 +9,6 @@ import "./SingleWishlist.css";
 import Navbar from "../../components/navbar/Navbar";
 import { useHistory, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  genRandomNumber } from "../../utils/helper";
 import { getWishlist } from "./singleWishlist.action";
 import { useDispatch, useSelector } from "react-redux";
 import SingleWishlistItems from "./templates/singleWishlistItems/SingleWishlistItems";
@@ -31,24 +30,6 @@ const SingleWishlist = (props) => {
     dispatch(getWishlist(wishlistId));
   }, [dispatch, wishlistId]);
 
- /*  const randomImage = () => {
-    // const randomNumber = Math.floor(Math.random() * Math.floor(6));
-    const randomNumber = genRandomNumber(0, 10);
-    const image = [
-      "https://source.unsplash.com/2250x2282/?concert",
-      "https://source.unsplash.com/1250x882/?club",
-      "https://source.unsplash.com/3250x1282/?party",
-      "https://source.unsplash.com/850x782/?show",
-      "https://source.unsplash.com/950x2182/?drinks",
-      "https://source.unsplash.com/1350x1082/?beach",
-      "https://source.unsplash.com/1250x382/?club",
-      "https://source.unsplash.com/950x2182/?food",
-      "https://source.unsplash.com/850x1782/?games",
-      "https://source.unsplash.com/1950x820/?umbrella",
-      "https://source.unsplash.com/550x1082/?plates",
-    ];
-    return image[randomNumber];
-  }; */
 
   return (
     <div className="single-wishlist-container">

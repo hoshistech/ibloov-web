@@ -25,7 +25,7 @@ const ViewEventProfileCard = props => {
   } = props;
 
   const history = useHistory();
-  let name;
+
   let profileImage;
   let eventUserId;
   let fullName;
@@ -59,7 +59,6 @@ const ViewEventProfileCard = props => {
     const lastName = user.local.lastName ? user.local.lastName : "";
     fullName = user.fullName;
     eventUserId = user._id;
-    name = `${firstName} ${lastName}`;
     profileImage = user.avatar ? user.avatar : avatarPlaceHolder;
   }
 

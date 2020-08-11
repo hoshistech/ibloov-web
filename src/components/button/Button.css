@@ -72,7 +72,9 @@
   width: 100%;
   border-radius: 30px;
   font-size: 0.8em;
-  padding: 1rem 0.8rem;
+  /* padding: 1rem 0.8rem; */
+  width: 150px;
+  height: 39px;
 }
 
 .pagination-button {
