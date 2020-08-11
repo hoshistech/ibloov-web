@@ -44,6 +44,7 @@ const HomePage = props => {
   let popularEvents = <Loading />;
   let upcomingEvents = "";
   if (events) {
+    console.log("ev", events);
     popularEvents = events
       .filter(event => event.isPrivate !== true)
       .slice(0, 4)
@@ -55,7 +56,7 @@ const HomePage = props => {
           startDate={event.startDate}
           location={event.location}
           event={event}
-          splashImage="https://source.unsplash.com/250x182/?concert,party"
+          splashImage="https://source.unsplash.com/355x182/?concert,party"
           invitees={event.invitees}
         />
       ));
@@ -71,7 +72,7 @@ const HomePage = props => {
           startDate={event.startDate}
           location={event.location}
           event={event}
-          splashImage="https://source.unsplash.com/250x182/?concert,party"
+          splashImage="https://source.unsplash.com/355x182/?concert,party"
           invitees={event.invitees}
         />
       ));
@@ -175,6 +176,7 @@ const HomePage = props => {
         <section className="homepage-search">
           <SearchBar />
         </section>
+
         <section className="popular-categories-section">
           <div className="section-header-text">
             <h4>Popular Categories</h4>

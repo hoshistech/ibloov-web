@@ -24,7 +24,6 @@ import {
   likeEvent
 } from "./singleEvent.action";
 import Loading from "../../components/loadingIndicator/Loading";
-import EventPay from "./templates/eventPay/EventPay";
 import SideOverLayContainer from "../../components/sideOverLayContainer/SideOverLayContainer";
 import FriendProfile from "../friendPage/template/friendProfile/FriendProfile";
 import EventMap from "./templates/eventMap/EventMap";

@@ -64,16 +64,12 @@
 }
 
 .upcoming-event-cards {
-  width: 95%;
+  width: 100%;
   margin: 0px auto;
   margin: 0px auto;
   padding: 0px 10px;
   overflow-x: scroll;
   justify-content: center;
-}
-
-.upcoming-event-cards .card-container {
-  margin-right: 1rem;
 }
 
 .advert-section {
@@ -129,6 +125,12 @@
 
 .hashtag-card-container div {
   margin-right: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .upcoming-event-cards .card-container {
+    margin-right: 1rem;
+  }
 }
 
 @media only screen and (min-width: 992px) {

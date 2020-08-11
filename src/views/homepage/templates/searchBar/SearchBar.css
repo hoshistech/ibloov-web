@@ -3,8 +3,12 @@
   border-radius: 10px;
   width: 95%;
   margin: 0px auto;
-  /* padding: 1.2rem; */
+  padding: 1.2rem;
   box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
+}
+
+.hompepage-search-input-container {
+  width: 100%;
 }
 
 .hompepage-search-input-container > label {

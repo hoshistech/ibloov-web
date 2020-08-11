@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { genRandomNumber } from "../../utils/helper";
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 
-const Card = (props) => {
+const Card = props => {
   const {
     name,
     startDate,
@@ -16,7 +16,7 @@ const Card = (props) => {
     eventId,
     event,
     myEvent,
-    invitees,
+    invitees
   } = props;
   const { category } = event;
 
@@ -26,12 +26,12 @@ const Card = (props) => {
     // const randomNumber = Math.floor(Math.random() * Math.floor(6));
     const randomNumber = genRandomNumber(0, 6);
     const image = [
-      "https://source.unsplash.com/250x182/?concert",
-      "https://source.unsplash.com/250x182/?club",
-      "https://source.unsplash.com/250x182/?party",
-      "https://source.unsplash.com/250x182/?show",
-      "https://source.unsplash.com/250x182/?drinks",
-      "https://source.unsplash.com/250x182/?beach",
+      "https://source.unsplash.com/755x182/?concert",
+      "https://source.unsplash.com/755x182/?club",
+      "https://source.unsplash.com/755x182/?party",
+      "https://source.unsplash.com/755x182/?show",
+      "https://source.unsplash.com/755x182/?drinks",
+      "https://source.unsplash.com/755x182/?beach"
     ];
     return image[randomNumber];
   };
@@ -46,7 +46,7 @@ const Card = (props) => {
       "https://source.unsplash.com/40x40/?guy",
       "https://source.unsplash.com/40x40/?man",
       "https://source.unsplash.com/40x40/?boy",
-      "https://source.unsplash.com/40x40/blackwomen",
+      "https://source.unsplash.com/40x40/blackwomen"
     ];
     // return image[randomNumber];
     return [image[randomNumber], image[genRandomNumber(0, randomNumber)]];
@@ -61,24 +61,27 @@ const Card = (props) => {
     image = event.images[0].url;
   }
 
+  console.log("ima", image);
+
   const month = moment(startDate).format("MMM");
   const day = moment(startDate).format("D");
 
   return (
     <div className="card-container">
-      <div className="image-container">
-        <img src={image} className="card-image" alt="card" />
-        <div className="event-icon-container">
-          <div className="card-icon-container">
-            <FontAwesomeIcon className="card-icon" icon="share-alt" />
-          </div>
-          <div className="card-icon-container">
-            <FontAwesomeIcon className="card-icon heart" icon="heart" />
-          </div>
-        </div>
-        <p className="image-text-first">{category}</p>
-      </div>
       <Link to={`/event/${eventId}`} className="event-more-details">
+        <div className="image-container">
+          <img src={image} className="card-image" alt="card" />
+          <div className="event-icon-container">
+            <div className="card-icon-container">
+              <FontAwesomeIcon className="card-icon" icon="share-alt" />
+            </div>
+            <div className="card-icon-container">
+              <FontAwesomeIcon className="card-icon heart" icon="heart" />
+            </div>
+          </div>
+          <p className="image-text-first">{category}</p>
+        </div>
+
         <div className="event-body">
           <div className="event-info">
             <div className="mr-2">
@@ -153,7 +156,7 @@ Card.propTypes = {
   isPaid: PropTypes.bool,
   amount: PropTypes.number,
   category: PropTypes.string,
-  location: PropTypes.object,
+  location: PropTypes.object
 };
 
 export default Card;

@@ -48,6 +48,7 @@
   opacity: 3;
   border: 1px solid #e38787;
   background-color: #df9b9b3b;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 992px) {

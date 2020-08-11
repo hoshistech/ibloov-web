@@ -51,7 +51,7 @@ const FilterBar = props => {
           onClick={searchEvent}
           btndisabled={false}
         >
-          Filter
+          FILTER
         </Button>
       </div>
     </div>

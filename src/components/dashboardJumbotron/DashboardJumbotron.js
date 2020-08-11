@@ -5,7 +5,7 @@ import Button from "../../components/button/Button";
 
 import "./DashboardJumbotron.css";
 
-const DashboardJumbotron = (props) => {
+const DashboardJumbotron = props => {
   const { user, event } = props;
 
   // let image = "https://source.unsplash.com/900x600/?birthday&fm=png";
@@ -15,8 +15,6 @@ const DashboardJumbotron = (props) => {
   //     image = event.images[0].url;
   //   }
   // }
-
-  
 
   const { firstName, lastName } = user;
   return (
@@ -58,7 +56,7 @@ const DashboardJumbotron = (props) => {
         </div>
       </div>
       <div className="col-md-4.3 mt-3 dashboard-welcome-container">
-        <div className="dashboard-profile-name">
+        {/* <div className="dashboard-profile-name">
           <h2>Welcome to</h2>
           <span>ibloov</span>
           <p>
@@ -68,8 +66,8 @@ const DashboardJumbotron = (props) => {
             printing and typesetting industry. Lorem Ipsum has been the
             industry's standard dummy text ever since the 1500s.
           </p>
-        </div>
-        <div className="mt-3">
+        </div> */}
+        {/* <div className="mt-3">
           <Button
             customClassName="dashboard-bloov-btn bold-600"
             // onClick={handleLogin}
@@ -77,14 +75,14 @@ const DashboardJumbotron = (props) => {
           >
             BLOOV NOW
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
 };
 
 DashboardJumbotron.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 export default DashboardJumbotron;

@@ -1,11 +1,10 @@
 import React from "react";
 
-import { useHistory, Link, useParams } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import ItemCard from "../../../../components/itemCard/ItemCard";
-import { chunkArray, genRandomNumber } from "../../../../utils/helper";
+import { genRandomNumber } from "../../../../utils/helper";
 
-const SingleWishlistItems = (props) => {
+const SingleWishlistItems = props => {
   const { wishlistItems } = props;
 
   if (wishlistItems === undefined || wishlistItems.length == 0) {
@@ -30,7 +29,7 @@ const SingleWishlistItems = (props) => {
       "https://source.unsplash.com/950x2182/?food",
       "https://source.unsplash.com/850x1782/?games",
       "https://source.unsplash.com/1950x820/?umbrella",
-      "https://source.unsplash.com/550x1082/?plates",
+      "https://source.unsplash.com/550x1082/?plates"
     ];
     return image[randomNumber];
   };
@@ -39,7 +38,7 @@ const SingleWishlistItems = (props) => {
     <div className="single-wishlist-item-container">
       <div className="wilshlist-item-col">
         {wishlistItems
-          ? wishlistItems[0].map((list) => (
+          ? wishlistItems[0].map(list => (
               <Link>
                 <ItemCard
                   key={list.id}
@@ -59,7 +58,7 @@ const SingleWishlistItems = (props) => {
       </div>
       <div className="wilshlist-item-col">
         {wishlistItems
-          ? wishlistItems[1].map((list) => (
+          ? wishlistItems[1].map(list => (
               <Link>
                 <ItemCard
                   key={list.id}
@@ -79,7 +78,7 @@ const SingleWishlistItems = (props) => {
       </div>
       <div className="wilshlist-item-col">
         {wishlistItems
-          ? wishlistItems[2].map((list) => (
+          ? wishlistItems[2].map(list => (
               <Link>
                 <ItemCard
                   key={list.id}
@@ -99,7 +98,7 @@ const SingleWishlistItems = (props) => {
       </div>
       <div className="wilshlist-item-col">
         {wishlistItems
-          ? wishlistItems[3].map((list) => (
+          ? wishlistItems[3].map(list => (
               <Link>
                 <ItemCard
                   key={list.id}

@@ -2,7 +2,7 @@
   margin-bottom: 10px;
   margin-top: 10px;
   /* border: 1px solid #ccc; */
-  max-width: 250px;
+  max-width: 360px;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
   -moz-box-shadow: 0px 0px 10px 2px rgba(179, 175, 179, 0.54);
@@ -31,7 +31,7 @@
 
 .card-image {
   height: 182px;
-  width: 250px;
+  width: 360px;
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -182,10 +182,13 @@ setting for hover
   color: #879eb4;
 }
 
-/* .card-container:hover .image-text span {
-  display: none;
+@media only screen and (min-width: 600px) {
+  .card-container {
+    max-width: 250px;
+  }
+  
+  
+  .card-image {
+    width: 250px;
+  }
 }
-
-.card-container:hover .image-text:before {
-  content: "Conferences";
-} */
