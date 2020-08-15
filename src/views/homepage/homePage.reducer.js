@@ -60,7 +60,7 @@ const userEventFail = (state, action) => {
 };
 
 const filterByCategory = (state, action) => {
-  let value = action.category;
+  let value = action.category.toLowerCase();
   let eventsFilter = [...state.events];
 
   let filteredValues = eventsFilter.filter(event => {

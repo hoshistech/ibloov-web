@@ -1,10 +1,10 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavbarJombotron from "../../components/navbarJombotron/NavbarJombotron";
 import Card from "../../components/card/Card";
 import FilterBar from "../../components/filterbar/FilterBar";
 
-import "./Event.css";
+import "./SearchEvent.css";
 import Pagination from "../../components/pagination/Pagination";
 import {
   fetchLiveEvents,
@@ -12,13 +12,23 @@ import {
   filterByLocation
 } from "../homepage/homePage.action";
 import Loading from "../../components/loadingIndicator/Loading";
-const Event = props => {
+import { useLocation } from "react-router-dom";
+
+const SearchEvent = props => {
   const { events, filteredEvents } = useSelector(state => state.allEvents);
 
+  const [category, setCategory] = useState("");
+
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchLiveEvents());
+    if (location.state) {
+      const event = { target: { value: location.state.category } };
+      setCategory(location.state.category);
+      filterCategory(event);
+    }
   }, [dispatch]);
 
   const filterCategory = e => {
@@ -42,7 +52,6 @@ const Event = props => {
       popularEvents = filteredEvents;
     }
     if (popularEvents) {
-      console.log("pop", popularEvents);
       eventList = popularEvents
         .filter(event => event.isPrivate !== true)
         .map((event, index) => {
@@ -59,17 +68,22 @@ const Event = props => {
             />
           );
         });
+
+      console.log(55, eventList.length);
+    } else {
+      eventList = null;
     }
   }
   return (
     <Fragment>
       <NavbarJombotron
-        headerTitle="Live Events"
-        headerDescription="Live events across various locations"
+        headerTitle="Search Anything"
+        headerDescription="Search for any event according to category and location"
       />
       <FilterBar
         selectedCategory={filterCategory}
         searchEventHandler={filterLocation}
+        selectedValue={category}
       />
 
       {eventList.length === 0 || eventList === null ? (
@@ -96,4 +110,4 @@ const Event = props => {
   );
 };
 
-export default Event;
+export default SearchEvent;

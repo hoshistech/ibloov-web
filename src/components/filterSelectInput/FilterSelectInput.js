@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import SelectInput from "../selectInput/SelectInput";
 
 const FilterSelectInput = props => {
-  const { empty, placeHolder, label, options, selectedCategory } = props;
+  const { empty, placeHolder, label, options, selectedCategory, selectedValue } = props;
   return (
     <div className="filter-input-container">
       {empty ? (
@@ -15,6 +15,7 @@ const FilterSelectInput = props => {
             placeHolder={placeHolder}
             options={options}
             onSelectCategory={selectedCategory}
+            selectedVal={selectedValue}
           />
         </Fragment>
       )}

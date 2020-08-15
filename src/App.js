@@ -48,6 +48,7 @@ import Signup from "./views/signup/Signup";
 import Login from "./views/login/Login";
 // import setupStore from "./store/reducer";
 import Event from "./views/event/Event";
+import SearchEvent from "./views/searchEvent/SearchEvent";
 import HomePage from "./views/homepage/HomePage";
 import { checkAuth, getUser } from "./utils/helper";
 import { userLoginSuccess } from "./views/login/login.action";
@@ -153,9 +154,15 @@ function App() {
               <Route path="/signin">
                 <Login />
               </Route>
-              <Route path="/events">
+              <Route path="/events" exact>
                 <div>
                   <Event />
+                  <Footer />
+                </div>
+              </Route>
+              <Route path="/events/search" exact>
+                <div>
+                  <SearchEvent />
                   <Footer />
                 </div>
               </Route>
