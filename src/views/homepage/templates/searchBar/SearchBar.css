@@ -19,6 +19,18 @@
   margin-bottom: 0px;
 }
 
+.search-anything-date {
+  width: 100%;
+}
+
+.search-anything-date > label {
+  font-size: 0.5rem;
+  padding: 0px 0.75rem;
+  font-weight: 600;
+  color: #a7a3a3;
+  margin-bottom: 0px;
+}
+
 .home-search-input {
   width: 100%;
   border: none;
@@ -54,6 +66,18 @@
   display: none;
 }
 
+.event-date-container {
+  display: grid;
+}
+
+.eventDateSearch {
+  margin-top: 12px;
+}
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
 @media only screen and (min-width: 991px) {
   .homepage-search-container {
     flex-wrap: nowrap;
@@ -70,5 +94,13 @@
   .hompepage-search-input-container {
     padding: 1rem;
     width: 75%;
+  }
+
+  .search-anything-date {
+    width: 75%;
+  }
+
+  .react-datepicker__input-container {
+    width: 70%;
   }
 }

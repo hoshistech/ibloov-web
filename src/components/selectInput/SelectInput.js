@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./SelectInput.css";
 
 const SelectInput = props => {
-  const { placeHolder, options, onSelectCategory } = props;
+  const { placeHolder, options, onSelectCategory, selectedVal } = props;
   return (
     <div className="select-container">
       <label className="filter-select-label">
@@ -16,7 +16,9 @@ const SelectInput = props => {
         className="form-control filter-select"
         onChange={onSelectCategory}
       >
-        <option value="all">{placeHolder}</option>
+        <option value={selectedVal ? selectedVal : "all"}>
+          {selectedVal ? selectedVal : placeHolder}
+        </option>
         {options
           ? options.map(option => (
               <option key={option} value={option}>

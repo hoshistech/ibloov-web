@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import background2 from "../../assets/images/carousel/carousel33.jpg";
 import background from "../../assets/images/carousel/bg4.png";
@@ -23,12 +23,16 @@ import { fetchEvents, fetchLiveEvents } from "./homePage.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import SearchBar from "./templates/searchBar/SearchBar";
 import { checkAuth } from "../../utils/helper";
+import { useHistory, useLocation } from "react-router-dom";
 const HomePage = props => {
   const svgFill = "#f8535361";
+
+  const [category, setCategory] = useState("");
 
   const events = useSelector(state => state.allEvents.events);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // const { token } = getUser();
   const auth = checkAuth();
@@ -40,6 +44,13 @@ const HomePage = props => {
       dispatch(fetchEvents());
     }
   }, [dispatch, auth]);
+
+  const handleViewCategories = title => {
+    history.push({
+      pathname: "/events/search",
+      state: { category: title }
+    });
+  };
 
   let popularEvents = <Loading />;
   let upcomingEvents = "";
@@ -188,24 +199,27 @@ const HomePage = props => {
                 categoryTitle="Night Life"
                 categoryCount={20}
                 showCount={true}
+                handleClick={handleViewCategories}
               >
                 <NightLifeSvg fill={svgFill} />
               </CategoryCard>
             </div>
             <div className="single-category-card">
               <CategoryCard
-                categoryTitle="Concerts"
+                categoryTitle="Concert"
                 categoryCount={16}
                 showCount={true}
+                handleClick={handleViewCategories}
               >
                 <ConcertsSvg fill={svgFill} />
               </CategoryCard>
             </div>
             <div className="single-category-card">
               <CategoryCard
-                categoryTitle="Conferences"
+                categoryTitle="Conference"
                 categoryCount={26}
                 showCount={true}
+                handleClick={handleViewCategories}
               >
                 <ConferencesSvg fill={svgFill} />
               </CategoryCard>
@@ -213,9 +227,10 @@ const HomePage = props => {
 
             <div className="single-category-card">
               <CategoryCard
-                categoryTitle="Parties"
+                categoryTitle="Party"
                 categoryCount={30}
                 showCount={true}
+                handleClick={handleViewCategories}
               >
                 <PartiesSvg fill={svgFill} />
               </CategoryCard>
@@ -226,15 +241,17 @@ const HomePage = props => {
                 categoryTitle="Sports"
                 categoryCount={18}
                 showCount={true}
+                handleClick={handleViewCategories}
               >
                 <SportsSvg fill={svgFill} />
               </CategoryCard>
             </div>
             <div className="single-category-card">
               <CategoryCard
-                categoryTitle="Travel"
+                categoryTitle="Wedding"
                 categoryCount={22}
                 showCount={true}
+                handleClick={handleViewCategories}
               >
                 <TravelSvg fill={svgFill} />
               </CategoryCard>
@@ -251,6 +268,7 @@ const HomePage = props => {
             <div className="row upcoming-event-cards">{upcomingEvents}</div>
           </div>
         </section>
+
         <section className="upcoming-events">
           <div className="section-header-text">
             <h4>Popular Events</h4>
@@ -260,11 +278,13 @@ const HomePage = props => {
             <div className="row upcoming-event-cards">{popularEvents}</div>
           </div>
         </section>
+
         <section className="advert-section">
           <div>
             <img src={advertbanner} alt="advert" className="advert-image" />
           </div>
         </section>
+
         <section className="most-blooving-section">
           <div className="section-header-text">
             <h4>Most Blooving Places</h4>
@@ -308,6 +328,7 @@ const HomePage = props => {
             />
           </div>
         </section>
+
         <section className="bloobing-influencers-section">
           <div className="section-header-text">
             <h4>Most Blooving Influencers</h4>
@@ -356,6 +377,7 @@ const HomePage = props => {
             />
           </div>
         </section>
+
         <section className="mb-2 hashtag-section">
           <div className="section-header-text">
             <h4>Most Blooving Hashtags</h4>

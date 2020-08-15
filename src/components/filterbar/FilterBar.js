@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DatePicker, { CalendarContainer } from "react-datepicker";
 
 import "./FilterBar.css";
 import Button from "../button/Button";
@@ -16,9 +17,10 @@ const categories = [
 ];
 
 const FilterBar = props => {
-  const { selectedCategory, searchEventHandler } = props;
+  const { selectedCategory, searchEventHandler, selectedValue } = props;
 
   const [search, setSearch] = useState("");
+  const [date, setDate] = useState("");
 
   const searchTerm = value => {
     setSearch(value);
@@ -38,12 +40,24 @@ const FilterBar = props => {
         empty={false}
         options={categories}
         selectedCategory={selectedCategory}
+        selectedValue={selectedValue}
       />
 
-      {/* <FilterSelectInput label="in Location" placeHolder="All" empty={false} /> */}
       <FilterInput empty={false} searchTerm={searchTerm} />
 
-      <FilterInput empty={true} />
+      {/* <FilterInput empty={true} /> */}
+      <div className="filter-input-container event-date-container">
+        <label htmlFor="eventDateSearch" className="eventDateSearch">
+          When
+        </label>
+
+        <DatePicker
+          selected={date}
+          onChange={date => setDate(date)}
+          placeholderText="Click to select a date"
+          className="form-control home-search-input"
+        />
+      </div>
 
       <div className="filter-input-submit">
         <Button
