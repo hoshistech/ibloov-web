@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Myibloov.css";
 import Button from "../../components/button/Button";
@@ -135,8 +136,8 @@ const Myibloov = props => {
                 <div
                   className={
                     selectedTab === "event"
-                      ? "myibloov-nav-active mr-3"
-                      : "myibloov-nav-link mr-3"
+                      ? "myibloov-nav-active mr-5"
+                      : "myibloov-nav-link mr-5"
                   }
                 >
                   <Link
@@ -166,6 +167,17 @@ const Myibloov = props => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="myfriends-search">
+            <input
+              className="form-control mr-sm-2 friendlist-search-input"
+              type="search"
+              placeholder="Search events"
+              aria-label="Search"
+            />
+            <span>
+              <FontAwesomeIcon className="friend-search-icon" icon="search" />
+            </span>
           </div>
           <div>
             <div className="create-event-btn-container">

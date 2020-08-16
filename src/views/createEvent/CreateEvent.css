@@ -59,6 +59,10 @@
   background-color: #213368;
 }
 
+.create-event-height {
+  min-height: 430px;
+}
+
 .question {
   display: none;
 }
@@ -76,7 +80,8 @@
 
 .create-event-title-header h5 {
   font-weight: bolder;
-  color: #222222;
+  /* color: #222222; */
+  color: #2a5799;
 }
 
 .create-event-title-header small {
@@ -125,6 +130,15 @@ styling for event desc
 styling for event time
 
 */
+
+.date-container {
+  margin-bottom: 3rem;
+}
+
+.event-time-date {
+  display: grid;
+}
+
 .event-date-input-container {
   /* display: flex; */
   position: relative;
@@ -261,8 +275,10 @@ styling for event restriction
   z-index: 99;
 }
 
-
 @media only screen and (min-width: 663px) {
+  .event-time {
+    margin-bottom: 2rem;
+  }
   .event-time-container {
     margin-right: 1rem;
   }
@@ -273,7 +289,7 @@ styling for event restriction
     display: grid;
   }
   .myibloov-create-button-container {
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
     /* margin-right: 2rem; */
   }
 
@@ -331,7 +347,8 @@ styling for event restriction
 
 @media only screen and (min-width: 1032px) {
   .event-type-category-container {
-    max-width: 696px;
+    max-width: 830px;
+    margin-bottom: 3.5rem;
   }
   /* .myibloov-create-button-container {
     max-width: 678px;

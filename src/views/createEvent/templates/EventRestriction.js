@@ -8,12 +8,12 @@ import EventCollaborators from "./EventCollaborators";
 import SideOverLayContainer from "../../../components/sideOverLayContainer/SideOverLayContainer";
 import GiftWishList from "../../giftWishList/GiftWishList";
 
-const EventRestriction = (props) => {
+const EventRestriction = props => {
   const {
     eventRestrictionsHandler,
     notificationHandler,
     addCollaborator,
-    addInvitee,
+    addInvitee
   } = props;
   const [womenOnly, setWomenOnly] = useState(false);
   const [childrenOnly, setChildrenOnly] = useState(false);
@@ -23,7 +23,6 @@ const EventRestriction = (props) => {
   const [noChildren, setNoChildren] = useState(false);
   const [openGiftWishList, setOpenGiftWishList] = useState(false);
 
- 
   const openGiftwishListHandler = () => {
     setOpenGiftWishList(!openGiftWishList);
   };
@@ -60,7 +59,7 @@ const EventRestriction = (props) => {
   return (
     <div className="row">
       <div>
-        <div className="create-event-title-header">
+        <div className="create-event-title-header mb-3">
           <h5>Any restriction to the event?</h5>
           <small>Set conditions to be met before attending the event</small>
         </div>
@@ -135,7 +134,7 @@ const EventRestriction = (props) => {
             Add Gift Wishlist
           </Button>
         </div>
-        <div className="gift-wishlist mt-3">
+        {/* <div className="gift-wishlist mt-3">
           <FontAwesomeIcon className="" icon="gift" />
           <Button
             customClassName=" wishlist-button bold-600"
@@ -144,7 +143,7 @@ const EventRestriction = (props) => {
           >
             Add Events to "FUND ME"
           </Button>
-        </div>
+        </div> */}
         <div className="mt-4">
           <p className="private-toggle">Notify me when people join </p>
           <Toggle handleClick={notificationHandler} />
@@ -169,7 +168,7 @@ const EventRestriction = (props) => {
 
 EventRestriction.propTypes = {
   eventRestrictionsHandler: PropTypes.func.isRequired,
-  notificationHandler: PropTypes.func.isRequired,
+  notificationHandler: PropTypes.func.isRequired
 };
 
 export default EventRestriction;

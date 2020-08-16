@@ -14,7 +14,7 @@ const EventDescription = (props) => {
 
   return (
     <div className="event-desc-container">
-      <div className="create-event-title-header">
+      <div className="create-event-title-header mb-3">
         <h5>Tell us about the event</h5>
         <small>Fill the details and give information about the event</small>
       </div>
