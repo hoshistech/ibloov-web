@@ -167,6 +167,13 @@ const FriendPage = props => {
             </span>
           </div>
           <Button
+            customClassName="bold-600 add-friend-btn ml-auto"
+            onClick={toggleAddFriendToGroup}
+            btndisabled={false}
+          >
+            {showAddFriendToGroup ? "cancel" : "Add friend to group"}
+          </Button>
+          <Button
             customClassName="mybloov-create-group-btn bold-600"
             onClick={createButtonHandler}
             btndisabled={false}
@@ -242,13 +249,6 @@ const FriendPage = props => {
                 />
               </div>
             </div>
-            <Button
-              customClassName="bold-600 add-friend-btn ml-auto"
-              onClick={toggleAddFriendToGroup}
-              btndisabled={false}
-            >
-              {showAddFriendToGroup ? "cancel" : "Add friend to group"}
-            </Button>
             {showAddFriendToGroup ? (
               <AddFriendToGroup
                 groups={groups}

@@ -64,6 +64,6 @@ input:checked + .slider:before {
 .private-toggle {
   margin-right: 1rem;
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 20px;
   padding: 4px 0px;
 }

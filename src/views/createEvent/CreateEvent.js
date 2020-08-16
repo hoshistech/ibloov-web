@@ -16,7 +16,7 @@ import { fetchEvents } from "../homepage/homePage.action";
 import { getUserFriends } from "../friendPage/friendPage.action";
 
 const CreateEvent = props => {
-  const [formCount, setFormCount] = useState(1);
+  const [formCount, setFormCount] = useState(3);
   // const [eventDetail, setEventDetail] = useState("");
   const [eventTime, setEventTime] = useState("");
   const [isCreatedEventSuccess, setIsCreatedEventSuccess] = useState(false);
@@ -300,14 +300,14 @@ const CreateEvent = props => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-auto">
+          <div className="col-md-auto create-event-height">
             <form>
               <div className={formCount === 1 ? "show-question" : "question"}>
-                <p>step {formCount}</p>
+                {/* <p>step {formCount}</p> */}
                 <EventType categoryHandler={categoryHandler} />
               </div>
               <div className={formCount === 2 ? "show-question" : "question"}>
-                <p>step {formCount}</p>
+                {/* <p>step {formCount}</p> */}
                 <EventDescription
                   inputChangeHandler={inputChangeHandler}
                   imageUpload={imageUploadHandler}
@@ -315,7 +315,7 @@ const CreateEvent = props => {
                 />
               </div>
               <div className={formCount === 3 ? "show-question" : "question"}>
-                <p>step {formCount}</p>
+                {/* <p>step {formCount}</p> */}
                 <EventTime
                   setEventDate={setEventDateHandler}
                   setPriceData={eventPriceDataHandler}
@@ -324,7 +324,7 @@ const CreateEvent = props => {
                 />
               </div>
               <div className={formCount === 4 ? "show-question" : "question"}>
-                <p>step {formCount}</p>
+                {/* <p>step {formCount}</p> */}
                 <EventRestriction
                   eventRestrictionsHandler={eventRestrictionsHandler}
                   notificationHandler={eventNotificationHandler}

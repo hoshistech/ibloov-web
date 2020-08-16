@@ -80,7 +80,6 @@ export const fetchEvents = () => {
         dispatch(fetchAllEventSuccess(events, likedEvents));
       })
       .catch(error => {
-        console.log(error);
         dispatch(fetchAllEventFailed("error"));
       });
   };

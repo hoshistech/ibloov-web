@@ -42,7 +42,6 @@ const Event = props => {
       popularEvents = filteredEvents;
     }
     if (popularEvents) {
-      console.log("pop", popularEvents);
       eventList = popularEvents
         .filter(event => event.isPrivate !== true)
         .map((event, index) => {

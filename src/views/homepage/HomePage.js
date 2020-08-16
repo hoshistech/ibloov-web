@@ -55,7 +55,6 @@ const HomePage = props => {
   let popularEvents = <Loading />;
   let upcomingEvents = "";
   if (events) {
-    console.log("ev", events);
     popularEvents = events
       .filter(event => event.isPrivate !== true)
       .slice(0, 4)

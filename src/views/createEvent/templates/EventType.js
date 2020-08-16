@@ -47,7 +47,7 @@ const EventType = (props) => {
 
   return (
     <div className="event-type-container">
-      <div className="create-event-title-header">
+      <div className="create-event-title-header mb-3">
         <h5>What Kind of event are you planning?</h5>
         <small>Please choose from the options so we can help</small>
       </div>

@@ -29,8 +29,6 @@ const SearchBar = props => {
     event.preventDefault();
     let url = "/events/search";
     const momentDate = moment(date).format("MM/DD/yyyy");
-
-    console.log(4, eventName, location, date);
     if (eventName !== "") {
       url += `?name=${eventName}`;
     }

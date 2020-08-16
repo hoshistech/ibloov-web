@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import DatePicker, { CalendarContainer } from "react-datepicker";
 import EventPrice from "./EventPrice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Toggle from "../../../components/Toggle/Toggle";
 import DateClock from "../../../components/dateClock/DateClock";
 
-const EventTime = (props) => {
+const EventTime = props => {
   const { setEventDate, setPriceData, isEventPrivate, isEventPaid } = props;
   const startDateRef = useRef();
 
@@ -26,7 +27,7 @@ const EventTime = (props) => {
     startDateRef.current.type = "date";
   };
 
-  const onEventDateHandler = (e) => {
+  const onEventDateHandler = e => {
     e.preventDefault();
     const dateId = e.target.name;
     const value = e.target.value;
@@ -36,7 +37,7 @@ const EventTime = (props) => {
     }
   };
 
-  const privateEventHandler = (e) => {
+  const privateEventHandler = e => {
     const isPrivateEvent = e.target.checked;
     setIsPrivateEvent(isPrivateEvent);
   };
@@ -64,10 +65,10 @@ const EventTime = (props) => {
     eventPrice,
     setPriceData,
     isEventPaid,
-    isPaid,
+    isPaid
   ]);
 
-  const onToggleEventFeeHandler = (e) => {
+  const onToggleEventFeeHandler = e => {
     const eventId = e.target.id;
     if (eventId === "eventFree") {
       setShowPricing(false);
@@ -88,17 +89,17 @@ const EventTime = (props) => {
     setTicketTypeNumber(ticketTypeNumber - 1);
   };
 
-  const changeTicketTypeNumberHandler = (e) => {
+  const changeTicketTypeNumberHandler = e => {
     const value = e.target.value;
     setTicketTypeNumber(value);
   };
 
-  const eventPriceHandler = (e) => {
+  const eventPriceHandler = e => {
     const price = e.target.value;
     setEventPrice(price);
   };
 
-  const selectCurrencyHandler = (e) => {
+  const selectCurrencyHandler = e => {
     const selectedCurrency = e.target.value;
     if (selectedCurrency === "") {
       return;
@@ -107,17 +108,24 @@ const EventTime = (props) => {
   };
 
   return (
-    <div className="row">
+    <div className="row event-time">
       <div className="event-time-container">
-        <div className="create-event-title-header">
+        <div className="create-event-title-header mb-3">
           <h5>When will the event happen?</h5>
           <small>Select the date and time for the event</small>
         </div>
         <div>
-          <div className="row mb-3">
-            <div className="event-date-input-container">
+          <div className="row date-container">
+            <div className="event-date-input-container event-time-date">
               <label htmlFor="eventStartDate">Starts</label>
-              <input
+              <DatePicker
+                selected={eventStartDate}
+                onChange={date => setEventStartDate(date)}
+                // calendarContainer={MyContainer}
+                placeholderText="Click to select a date"
+                className="form-control event-date-input"
+              />
+              {/* <input
                 name="eventStartDate"
                 type="text"
                 className="form-control event-date-input"
@@ -136,7 +144,7 @@ const EventTime = (props) => {
                 className="event-start-icon"
                 icon="calendar-alt"
                 onClick={toDateHandler}
-              />
+              /> */}
             </div>
             <div className="event-date-input-container">
               <label htmlFor="eventStartTime">From</label>
@@ -167,7 +175,7 @@ const EventTime = (props) => {
 };
 
 EventTime.propTypes = {
-  setEventDate: PropTypes.func.isRequired,
+  setEventDate: PropTypes.func.isRequired
 };
 
 export default EventTime;

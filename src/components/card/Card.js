@@ -7,6 +7,7 @@ import "./Card.css";
 import { Link } from "react-router-dom";
 import { genRandomNumber } from "../../utils/helper";
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
+import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif";
 
 const Card = props => {
   const {
@@ -53,6 +54,7 @@ const Card = props => {
   };
 
   const randomAttendes = invitees.length;
+  const invite = invitees;
 
   const smallImage = randomAteendingImage();
   image = randomImage();
@@ -61,10 +63,27 @@ const Card = props => {
     image = event.images[0].url;
   }
 
-  console.log("ima", image);
 
   const month = moment(startDate).format("MMM");
   const day = moment(startDate).format("D");
+
+  let showInvite = "";
+
+  if (invitees.length > 0) {
+    showInvite = invitees.slice(0, 3).map((user, index) => {
+      if (index === 3) {
+        return;
+      }
+      const avatar = user.userId.avatar;
+      return (
+        <ProgressiveImage
+          src={avatar ? avatar : avatarPlaceHolder}
+          customClass="stat-image"
+          alt="card"
+        />
+      );
+    });
+  }
 
   return (
     <div className="card-container">
@@ -107,7 +126,8 @@ const Card = props => {
             <div className="event-stat mt-2">
               <div className="attending-event-container">
                 <div className="attending-event">
-                  <ProgressiveImage
+                  {showInvite}
+                  {/* <ProgressiveImage
                     src={smallImage[0]}
                     customClass="stat-image"
                     alt="card"
@@ -121,7 +141,7 @@ const Card = props => {
                     src={smallImage[1]}
                     customClass="stat-image"
                     alt="card"
-                  />
+                  /> */}
                 </div>
                 {randomAttendes > 0 ? (
                   <div className="ml-4 number-attending">

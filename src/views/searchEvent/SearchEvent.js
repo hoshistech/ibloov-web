@@ -68,8 +68,6 @@ const SearchEvent = props => {
             />
           );
         });
-
-      console.log(55, eventList.length);
     } else {
       eventList = null;
     }

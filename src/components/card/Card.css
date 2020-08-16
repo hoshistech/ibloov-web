@@ -123,6 +123,7 @@
 
 .attending-event {
   position: relative;
+  min-width: 40px;
 }
 
 .number-attending {
@@ -159,6 +160,11 @@ setting for hover
 
 */
 
+.card-container:hover {
+  background-color: #05458a;
+  color: white;
+}
+
 .card-container:hover .event-body {
   background-color: #05458a;
   color: white;
@@ -186,8 +192,7 @@ setting for hover
   .card-container {
     max-width: 250px;
   }
-  
-  
+
   .card-image {
     width: 250px;
   }
