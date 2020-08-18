@@ -1,42 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
+import Button from "../button/Button";
 
-import "./Modal.css";
+const ModalBox = props => {
+  const { modalButton, buttonClass, modalHeading, showSave } = props;
+  const [show, setShow] = useState(false);
 
-const Modal = (props) => {
-  const {
-    showModal,
-    errorMessage,
-    handleCloseModal,
-    children,
-    modalHeader,
-  } = props;
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
-    <div>
-      <div
-        className="modal-wrapper"
-        style={{
-          transform: showModal ? "translateY(0vh)" : "translateY(-100vh)",
-          opacity: showModal ? "1" : "0",
-        }}
+    <>
+      <Button
+        variant="primary"
+        onClick={handleShow}
+        customClassName="btn wishlist-button bold-600"
       >
-        <div className="modal-header">
-          <h4>{modalHeader}</h4>
-          <span className="close-modal-btn" onClick={handleCloseModal}>
-            ×
-          </span>
-        </div>
-        <div className="modal-body">
-          <p>{children}</p>
-        </div>
-        <div className="modal-footer">
-          <button className="btn-cancel" onClick={handleCloseModal}>
-            CLOSE
-          </button>
-        </div>
-      </div>
-    </div>
+        {modalButton}
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalHeading}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{props.children}</Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={handleClose}
+            customClassName={buttonClass}
+          >
+            Close
+          </Button>
+          {showSave ? (
+            <Button
+              variant="primary"
+              onClick={handleClose}
+              customClassName={buttonClass}
+            >
+              Save Changes
+            </Button>
+          ) : (
+            ""
+          )}
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 
-export default Modal;
+export default ModalBox;

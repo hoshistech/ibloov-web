@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 import DatePicker, { CalendarContainer } from "react-datepicker";
 import EventPrice from "./EventPrice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,14 +28,15 @@ const EventTime = props => {
     startDateRef.current.type = "date";
   };
 
-  const onEventDateHandler = e => {
-    e.preventDefault();
-    const dateId = e.target.name;
-    const value = e.target.value;
+  const onEventDateHandler = date => {
+    // e.preventDefault();
+    // const dateId = e.target.name;
+    // const value = e.target.value;
 
-    if (dateId === "eventStartDate") {
-      setEventStartDate(value);
-    }
+    // if (dateId === "eventStartDate") {
+    const momentDate = moment(date).format("MM/DD/yyyy");
+    // setEventStartDate(momentDate);
+    // }
   };
 
   const privateEventHandler = e => {
@@ -49,7 +51,9 @@ const EventTime = props => {
   };
 
   useEffect(() => {
-    const startDate = `${eventStartDate} ${startTime}`;
+    const momentDate = moment(eventStartDate).format("MM/DD/yyyy");
+    // const startDate = `${eventStartDate} ${startTime}`;
+    const startDate = `${momentDate} ${startTime}`;
 
     setEventDate(startDate);
     setPriceData(currency, eventPrice);
@@ -121,6 +125,7 @@ const EventTime = props => {
               <DatePicker
                 selected={eventStartDate}
                 onChange={date => setEventStartDate(date)}
+                // onChange={onEventDateHandler}
                 // calendarContainer={MyContainer}
                 placeholderText="Click to select a date"
                 className="form-control event-date-input"

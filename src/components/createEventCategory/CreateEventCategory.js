@@ -5,7 +5,7 @@ import CategoryCard from "../categoryCard/CategoryCard";
 
 import "./CreateEventCategory.css";
 
-const CreateEventCategory = (props) => {
+const CreateEventCategory = props => {
   const {
     children,
     categoryTitle,
@@ -14,7 +14,7 @@ const CreateEventCategory = (props) => {
     name,
     selected,
     selectHandler,
-    red,
+    red
   } = props;
 
   let selectedCategory = "";
@@ -24,7 +24,7 @@ const CreateEventCategory = (props) => {
   return (
     <div
       className={`single-category-card ${selectedCategory}`}
-      onClick={(e) => selectHandler(e, categoryTitle, name)}
+      onClick={e => selectHandler(e, categoryTitle, name)}
       // onClick={selectHandler}
       name={name}
     >
@@ -33,6 +33,9 @@ const CreateEventCategory = (props) => {
         categoryCount={categoryCount}
         showCount={showCount}
         name={name}
+        handleClick={e => {
+          e.preventDefault();
+        }}
       >
         {selected === name ? red : children}
         {selected === name ? (
@@ -56,7 +59,7 @@ CreateEventCategory.propTypes = {
   showCount: PropTypes.bool,
   name: PropTypes.string,
   selectHandler: PropTypes.func,
-  red: PropTypes.object,
+  red: PropTypes.object
 };
 
 export default CreateEventCategory;
