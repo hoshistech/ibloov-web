@@ -14,7 +14,10 @@ const CategoryCard = props => {
   } = props;
 
   return (
-    <div className="category-card" onClick={() => handleClick(categoryTitle)}>
+    <div
+      className="category-card"
+      onClick={showCount ? () => handleClick(categoryTitle) : ""}
+    >
       {children}
       <div name={name} className="category-card-text">
         <p className="category-title bold-600" name={name}>

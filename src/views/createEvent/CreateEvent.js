@@ -16,7 +16,7 @@ import { fetchEvents } from "../homepage/homePage.action";
 import { getUserFriends } from "../friendPage/friendPage.action";
 
 const CreateEvent = props => {
-  const [formCount, setFormCount] = useState(3);
+  const [formCount, setFormCount] = useState(1);
   // const [eventDetail, setEventDetail] = useState("");
   const [eventTime, setEventTime] = useState("");
   const [isCreatedEventSuccess, setIsCreatedEventSuccess] = useState(false);

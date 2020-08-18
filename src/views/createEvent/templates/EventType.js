@@ -14,7 +14,7 @@ import WeddingSvg from "../../../components/svgLoader/WeddingSvg";
 import ChristmasSvg from "../../../components/svgLoader/ChristmasSvg";
 import CreateEventCategory from "../../../components/createEventCategory/CreateEventCategory";
 
-const EventType = (props) => {
+const EventType = props => {
   const { categoryHandler } = props;
   const [selected, setSelected] = useState("");
   const [svgFill, setSvgFill] = useState("#ccc");
@@ -188,7 +188,7 @@ const EventType = (props) => {
 };
 
 EventType.propTypes = {
-  categoryHandler: PropTypes.func.isRequired,
+  categoryHandler: PropTypes.func.isRequired
 };
 
 export default EventType;

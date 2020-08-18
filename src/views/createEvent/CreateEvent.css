@@ -275,6 +275,27 @@ styling for event restriction
   z-index: 99;
 }
 
+.friend-dropdown-container {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.number-going {
+  align-self: center;
+}
+
+.invite-friend-container .wishlist-button {
+  margin-left: -15px;
+}
+
+.invite-friends {
+  margin-top: 40px;
+}
+
+.friend-avatar {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 663px) {
   .event-time {
     margin-bottom: 2rem;
