@@ -55,7 +55,7 @@ const SingleWishlist = (props) => {
             </div>
             <div className="single-wishlist-name">2020 Birthday Gifts</div>
             <div className="row single-wishlist-stat">
-              <di className="single-wishlist-statistics-container">
+              <div className="single-wishlist-statistics-container">
                 <div className="single-wishlist-statistics">
                   <p>{itemsLength}</p>
                   <label>Total Items</label>
@@ -68,7 +68,7 @@ const SingleWishlist = (props) => {
                   <p>3</p>
                   <label>Items unfulfilled</label>
                 </div>
-              </di>
+              </div>
               <div className="single-wishlist-total-container">
                 <div className="single-wishlist-total mr-2">Total:</div>{" "}
                 <div className="single-wishlist-price">$1150.50</div>

@@ -24,6 +24,8 @@ const Myibloov = props => {
   const [myCreatedEvent, setMyCreatedEvent] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
+  const [eventSearch, setEventSearch] = useState("");
+  const [eventsCreatedByMe, setEventsCreatedByMe] = useState("");
 
   const dispatch = useDispatch();
 
@@ -47,22 +49,45 @@ const Myibloov = props => {
   let myWishlist = <Loading />;
 
   if (userEvents) {
-    myEvents = userEvents.map(event => {
-      return (
-        <Card
-          key={event._id}
-          name={event.name}
-          eventId={event._id}
-          startDate={event.startDate}
-          location={event.location}
-          event={event}
-          myEvent={true}
-          splashImage="https://source.unsplash.com/250x182/?concert,party"
-          invitees={8}
-        />
-      );
-      return;
-    });
+    // setEventsCreatedByMe(userEvents);
+    if (1) {
+      const ev = userEvents.filter(event => {
+        return event.name.toLowerCase().includes(eventSearch);
+      });
+      myEvents = ev.map(event => {
+        return (
+          <Card
+            key={event._id}
+            name={event.name}
+            eventId={event._id}
+            startDate={event.startDate}
+            location={event.location}
+            event={event}
+            myEvent={true}
+            splashImage="https://source.unsplash.com/250x182/?concert,party"
+            invitees={8}
+          />
+        );
+        return;
+      });
+    } else {
+      myEvents = userEvents.map(event => {
+        return (
+          <Card
+            key={event._id}
+            name={event.name}
+            eventId={event._id}
+            startDate={event.startDate}
+            location={event.location}
+            event={event}
+            myEvent={true}
+            splashImage="https://source.unsplash.com/250x182/?concert,party"
+            invitees={8}
+          />
+        );
+        return;
+      });
+    }
 
     attendingEvents = events.slice(0, 4).map(event => {
       return (
@@ -96,13 +121,16 @@ const Myibloov = props => {
 
   const selectedTabHandler = e => {
     const tabSwitch = e.target.name;
+    console.log(99, tabSwitch);
     e.preventDefault();
+    setEventSearch("");
     setSelectedTab(tabSwitch);
     setShowCreate(false);
   };
 
   const selectMyEventHandler = e => {
     e.preventDefault();
+    setEventSearch("");
     setMyCreatedEvent(!myCreatedEvent);
   };
 
@@ -117,6 +145,11 @@ const Myibloov = props => {
       return;
     }
     setShowDropDown(false);
+  };
+
+  const handleSearch = e => {
+    const value = e.target.value;
+    setEventSearch(value);
   };
 
   return (
@@ -174,6 +207,7 @@ const Myibloov = props => {
               type="search"
               placeholder="Search events"
               aria-label="Search"
+              onChange={handleSearch}
             />
             <span>
               <FontAwesomeIcon className="friend-search-icon" icon="search" />

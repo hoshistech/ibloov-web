@@ -23,6 +23,10 @@
   padding: 25px;
 }
 
+.auth-input-container .react-datepicker-wrapper {
+  width: 100%;
+}
+
 .small-info-text {
   font-size: 0.6em;
   color: #7070708b;

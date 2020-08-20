@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import DatePicker, { CalendarContainer } from "react-datepicker";
+import DatePicker from "react-datepicker";
 import EventPrice from "./EventPrice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Toggle from "../../../components/Toggle/Toggle";

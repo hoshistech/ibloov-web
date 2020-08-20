@@ -1,7 +1,9 @@
 import React, { useState, useReducer, useCallback, useEffect } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
+import DatePicker from "react-datepicker";
 import Axios from "axios";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Signup.css";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
@@ -11,14 +13,15 @@ import TelephoneInput from "../../components/telephoneInput/TelephoneInput";
 import { formReducer, FORM_INPUT_UPDATE } from "../../utils/formReducer";
 import Logo from "../../components/logo/Logo";
 
-const Signup = (props) => {
+const Signup = props => {
   const history = useHistory();
 
   const [checkTerms, setCheckTerms] = useState(false);
   const [countryCode, setCountryCode] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
 
-  const authErrors = useSelector((state) => state.signup.error);
-  const { token } = useSelector((state) => state.login);
+  const authErrors = useSelector(state => state.signup.error);
+  const { token } = useSelector(state => state.login);
 
   const dispatch = useDispatch();
 
@@ -28,24 +31,24 @@ const Signup = (props) => {
       password: "",
       firstName: "",
       lastName: "",
-      phoneNumber: "",
+      phoneNumber: ""
     },
     inputValidities: {
       email: false,
-      password: false,
+      password: false
     },
-    formIsValid: false,
+    formIsValid: false
   };
 
   const [formState, dispatchFormState] = useReducer(formReducer, initilaState);
 
   useEffect(() => {
     Axios.get("https://ipapi.co/json/")
-      .then((response) => {
+      .then(response => {
         const { country_calling_code: callingCode } = response.data;
         setCountryCode(callingCode);
       })
-      .catch((error) => {});
+      .catch(error => {});
   }, []);
 
   const inputChangeHandler = useCallback(
@@ -54,7 +57,7 @@ const Signup = (props) => {
         type: FORM_INPUT_UPDATE,
         value: inputValue,
         isValid: inputValidity,
-        input: inputIdentifier,
+        input: inputIdentifier
       });
     },
     [dispatchFormState]
@@ -64,30 +67,35 @@ const Signup = (props) => {
     setCheckTerms(!checkTerms);
   };
 
-  const handleSelectCountry = (e) => {
+  const handleSelectCountry = e => {
     setCountryCode(e.target.value);
   };
 
-  const handleSignup = async (e) => {
+  const handleSignup = async e => {
     e.preventDefault();
 
     const newUser = {
       ...formState.inputValues,
-      phoneNumber: `${countryCode}${formState.inputValues.phoneNumber}`,
+      phoneNumber: `${countryCode}${formState.inputValues.phoneNumber}`
     };
 
     const phoneDetails = {
       countryCode,
-      phoneNumber: formState.inputValues.phoneNumber,
+      phoneNumber: formState.inputValues.phoneNumber
     };
 
     dispatch(authSignup(newUser, phoneDetails, history));
   };
 
+  const socialAuthHandler = (e, id) => {
+    const socialAuth = `https://ibloov-backend.herokuapp.com/auth/${id}`;
+    window.location = socialAuth;
+  };
+
   let displayError = "";
 
   if (authErrors) {
-    displayError = Object.values(authErrors).map((error) => (
+    displayError = Object.values(authErrors).map(error => (
       <p className="signup-error">{error}</p>
     ));
 
@@ -162,6 +170,14 @@ const Signup = (props) => {
                 onInputChange={inputChangeHandler}
               />
             </div>
+            <div className="auth-input-container">
+            <DatePicker
+                selected={dateOfBirth}
+                onChange={date => setDateOfBirth(date)}
+                placeholderText="Date of Birth"
+                className="form-control auth-input"
+              />
+            </div>
             <div className="auth-input-container telephone-container">
               <TelephoneInput
                 onInputChange={inputChangeHandler}
@@ -212,6 +228,36 @@ const Signup = (props) => {
                 btndisabled={!(formState.formIsValid && checkTerms)}
               >
                 CREATE AN ACCOUNT
+              </Button>
+            </div>
+
+            <div className="divider-container mt-2">
+              <div className="social-divider"></div>
+              <p className="divider-content">Or Sign up with</p>
+              <div className="social-divider"></div>
+            </div>
+            <div className="auth-button-container-social-login">
+              <Button
+                customClassName="btn-outline-secondary bold-600 auth-google mb-2"
+                onClick={e => socialAuthHandler(e, "google")}
+                // onClick={() => {}}
+                btndisabled={false}
+              >
+                <FontAwesomeIcon className="" icon={["fab", "google-plus-g"]} />
+              </Button>
+              <Button
+                customClassName="auth-facebook bold-600 mb-2"
+                onClick={e => socialAuthHandler(e, "facebook")}
+                btndisabled={false}
+              >
+                <FontAwesomeIcon className="" icon={["fab", "facebook-f"]} />
+              </Button>
+              <Button
+                customClassName="auth-twitter bold-600 mb-2"
+                onClick={() => {}}
+                btndisabled={false}
+              >
+                <FontAwesomeIcon className="" icon={["fab", "twitter"]} />
               </Button>
             </div>
           </form>
