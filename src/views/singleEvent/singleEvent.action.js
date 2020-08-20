@@ -141,23 +141,3 @@ export const likeEvent = eventId => {
   };
 };
 
-// export const paymentToken(description, currency="usd", amount) = eventId => {
-//   const { token } = getUser();
-//   return dispatch => {
-//     return axios(true)
-//       .post("v1/payment/stripe/token", {
-//         description: description,
-//         currency: "usd",
-//         amount: +amount
-//       })
-//       .then(res => {
-//         const result = res.data;
-//         console.log(result);
-//         setError(null);
-//         setClientSecret(result.data);
-//       })
-//       .catch(error => {
-//         setError(error.message);
-//       });
-//   };
-// };
