@@ -41,7 +41,7 @@ const CreateGroup = props => {
           <div className="col-md-auto create-group-form">
             <form>
               <div className={formCount === 1 ? "show-question" : "question"}>
-                <p>step {formCount}</p>
+                {/* <p>step {formCount}</p> */}
                 <GroupDescription
                   value={groupName}
                   onInputChangeHandler={inputChangeHandler}

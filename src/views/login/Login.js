@@ -172,13 +172,13 @@ const Login = props => {
               >
                 <FontAwesomeIcon className="" icon={["fab", "facebook-f"]} />
               </Button>
-              <Button
+              {/* <Button
                 customClassName="auth-twitter bold-600 mb-2"
                 onClick={() => {}}
                 btndisabled={false}
               >
                 <FontAwesomeIcon className="" icon={["fab", "twitter"]} />
-              </Button>
+              </Button> */}
             </div>
           </form>
         </div>

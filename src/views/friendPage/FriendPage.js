@@ -194,8 +194,8 @@ const FriendPage = props => {
                     <div
                       className={
                         selectedTab === "ibloov"
-                          ? "myibloov-nav-active mr-3"
-                          : "myibloov-nav-link mr-3"
+                          ? "myibloov-nav-active mr-5"
+                          : "myibloov-nav-link mr-5"
                       }
                     >
                       <Link
@@ -210,8 +210,8 @@ const FriendPage = props => {
                     <div
                       className={
                         selectedTab === "group"
-                          ? "myibloov-nav-active mr-3"
-                          : "myibloov-nav-link mr-3"
+                          ? "myibloov-nav-active mr-5"
+                          : "myibloov-nav-link mr-5"
                       }
                     >
                       <Link
