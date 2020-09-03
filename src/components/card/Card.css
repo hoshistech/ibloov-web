@@ -131,13 +131,17 @@
 }
 
 .stat-image:first-child {
-  position: absolute;
-  left: 10px;
+  /* position: absolute;
+  left: 10px; */
 }
 
 .stat-image:nth-child(2) {
-  position: absolute;
-  left: 20px;
+  /* position: absolute;
+  left: 20px; */
+  margin-left: -25%;
+}
+.stat-image:nth-child(3) {
+  margin-left: -23%;
 }
 
 .stat-image {

@@ -42,9 +42,9 @@ const AddFriendToGroup = props => {
   };
 
   return (
-    <section className="mt-3 create-group">
-      <hr />
-      <div className="row createvent-container">
+    <section className="mt-4 create-group">
+      {/* <hr /> */}
+      <div className="row createvent-container mt-3">
         <div className="col-md-auto create-event-first-row">
           <div className="step-number-row">
             <div className="step-container">
@@ -66,7 +66,7 @@ const AddFriendToGroup = props => {
           <div className="col-md-auto create-group-form">
             <form>
               <div className={formCount === 1 ? "show-question" : "question"}>
-                <p>step {formCount}</p>
+                {/* <p>step {formCount}</p> */}
                 <GroupDetails
                   groups={groups}
                   friends={friendList}

@@ -53,9 +53,14 @@ const Card = props => {
     return [image[randomNumber], image[genRandomNumber(0, randomNumber)]];
   };
 
-  const randomAttendes = invitees.length;
-  const invite = invitees;
+  const handleLikeEvent = () => {};
 
+  // const randomAttendes = invitees.length;
+  let randomAttendes = [];
+  if (invitees.length > 0) {
+    console.log(invitees);
+    randomAttendes = invitees.filter(invite => invite.accepted === "YES");
+  }
   const smallImage = randomAteendingImage();
   image = randomImage();
 
@@ -63,28 +68,42 @@ const Card = props => {
     image = event.images[0].url;
   }
 
-
   const month = moment(startDate).format("MMM");
   const day = moment(startDate).format("D");
 
   let showInvite = "";
 
+  console.log(23, randomAttendes);
   if (invitees.length > 0) {
-    showInvite = invitees.slice(0, 3).map((user, index) => {
-      if (index === 3) {
-        return;
-      }
-      const avatar = user.userId.avatar;
-      return (
-        <ProgressiveImage
-          src={avatar ? avatar : avatarPlaceHolder}
-          customClass="stat-image"
-          alt="card"
-        />
-      );
-    });
+    if (randomAttendes.length >= 3) {
+      showInvite = randomAttendes.slice(0, 3).map((user, index) => {
+        if (index === 3) {
+          return;
+        }
+        const avatar = user.userId.avatar;
+        return (
+          <ProgressiveImage
+            src={avatar ? avatar : avatarPlaceHolder}
+            customClass="stat-image"
+            alt="card"
+          />
+        );
+      });
+    } else if (randomAttendes.length < 3) {
+      showInvite = randomAttendes.map((user, index) => {
+        const avatar = user.userId.avatar;
+        return (
+          <ProgressiveImage
+            key={index}
+            src={avatar ? avatar : avatarPlaceHolder}
+            customClass="stat-image"
+            alt="card"
+          />
+        );
+      });
+    }
   }
-
+  console.log(99, showInvite);
   return (
     <div className="card-container">
       <Link to={`/event/${eventId}`} className="event-more-details">
@@ -94,7 +113,7 @@ const Card = props => {
             <div className="card-icon-container">
               <FontAwesomeIcon className="card-icon" icon="share-alt" />
             </div>
-            <div className="card-icon-container">
+            <div className="card-icon-container" onClick={handleLikeEvent}>
               <FontAwesomeIcon className="card-icon heart" icon="heart" />
             </div>
           </div>
@@ -143,9 +162,9 @@ const Card = props => {
                     alt="card"
                   /> */}
                 </div>
-                {randomAttendes > 0 ? (
-                  <div className="ml-4 number-attending">
-                    <p>+{randomAttendes}</p>
+                {randomAttendes.length > 0 ? (
+                  <div className="ml-2 number-attending">
+                    <p>+{randomAttendes.length}</p>
                     <p>going</p>
                   </div>
                 ) : (

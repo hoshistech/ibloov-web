@@ -171,7 +171,7 @@ const Signup = props => {
               />
             </div>
             <div className="auth-input-container">
-            <DatePicker
+              <DatePicker
                 selected={dateOfBirth}
                 onChange={date => setDateOfBirth(date)}
                 placeholderText="Date of Birth"
@@ -213,8 +213,8 @@ const Signup = props => {
                 className="form-check-label terms-condition"
                 htmlFor="invalidCheck"
               >
-                I agree to the <Link>Terms and conditions</Link> and{" "}
-                <Link>Privacy policy</Link>
+                I agree to the <Link to="/privacy">Terms and conditions</Link>{" "}
+                and <Link to="/privacy">Privacy policy</Link>
               </label>
               <div className="invalid-feedback">
                 You must agree before submitting.
@@ -252,13 +252,13 @@ const Signup = props => {
               >
                 <FontAwesomeIcon className="" icon={["fab", "facebook-f"]} />
               </Button>
-              <Button
+              {/* <Button
                 customClassName="auth-twitter bold-600 mb-2"
                 onClick={() => {}}
                 btndisabled={false}
               >
                 <FontAwesomeIcon className="" icon={["fab", "twitter"]} />
-              </Button>
+              </Button> */}
             </div>
           </form>
         </div>
