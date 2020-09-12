@@ -7,7 +7,6 @@ import SingleWishlistItemCard from "../singleWishlistItemCard/SingleWishlistItem
 const SingleWishlistItems = props => {
   const { wishlistItems } = props;
 
-  console.log(89, wishlistItems);
 
   if (wishlistItems === undefined || wishlistItems.length == 0) {
     return (

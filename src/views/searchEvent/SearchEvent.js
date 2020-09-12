@@ -75,7 +75,7 @@ const SearchEvent = props => {
   return (
     <Fragment>
       <NavbarJombotron
-        headerTitle="Search Anything"
+        headerTitle="Search"
         headerDescription="Search for any event according to category and location"
       />
       <FilterBar
@@ -86,14 +86,8 @@ const SearchEvent = props => {
 
       {eventList.length === 0 || eventList === null ? (
         <section className="empty-search">
-          <div className="text-center">
+          <div className="text-center h-25">
             <h4>There are no results for this search. </h4>
-            <p>Check your spelling for typing errors </p>
-            <p>Try searching with short and simple keywords</p>
-            <p>
-              Try searching more general terms - you can then filter the search
-              results
-            </p>
           </div>
         </section>
       ) : (

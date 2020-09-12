@@ -121,7 +121,6 @@ const Myibloov = props => {
 
   const selectedTabHandler = e => {
     const tabSwitch = e.target.name;
-    console.log(99, tabSwitch);
     e.preventDefault();
     setEventSearch("");
     setSelectedTab(tabSwitch);
@@ -279,12 +278,12 @@ const Myibloov = props => {
               ) : (
                 ""
               )}
-              <div className="sort-container">
+              {/* <div className="sort-container">
                 <DropDown
                   toggleDropdownOption={toggleDropdownOptionHandler}
                   showDropDown={showDropDown}
                 />
-              </div>
+              </div> */}
             </div>
             <div onClick={() => toggleDropdownOptionHandler("")}>
               {selectedTab === "event" ? (

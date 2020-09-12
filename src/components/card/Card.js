@@ -58,7 +58,6 @@ const Card = props => {
   // const randomAttendes = invitees.length;
   let randomAttendes = [];
   if (invitees.length > 0) {
-    console.log(invitees);
     randomAttendes = invitees.filter(invite => invite.accepted === "YES");
   }
   const smallImage = randomAteendingImage();
@@ -73,7 +72,6 @@ const Card = props => {
 
   let showInvite = "";
 
-  console.log(23, randomAttendes);
   if (invitees.length > 0) {
     if (randomAttendes.length >= 3) {
       showInvite = randomAttendes.slice(0, 3).map((user, index) => {
@@ -103,7 +101,6 @@ const Card = props => {
       });
     }
   }
-  console.log(99, showInvite);
   return (
     <div className="card-container">
       <Link to={`/event/${eventId}`} className="event-more-details">

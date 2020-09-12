@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import Button from "../button/Button";
 
 const ModalBox = props => {
-  const { modalButton, buttonClass, modalHeading, showSave } = props;
+  const { modalButton, buttonClass, modalHeading, showSave, openButtonClass } = props;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -14,7 +14,7 @@ const ModalBox = props => {
       <Button
         variant="primary"
         onClick={handleShow}
-        customClassName="btn wishlist-button bold-600"
+        customClassName={openButtonClass}
       >
         {modalButton}
       </Button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Avatar from "react-avatar";
@@ -20,6 +20,13 @@ const EventCollaborators = props => {
   const [selectedInvitees, setSelectedInvitees] = useState([]);
 
   const { friends } = useSelector(state => state.friend);
+
+  useEffect(() => {
+    if (friends) {
+      setFilteredList(friends.slice(0,5));      
+    }
+
+  }, [friends]);
 
   const inputChangeHandler = e => {
     const value = e.target.value;
@@ -137,6 +144,7 @@ const EventCollaborators = props => {
               modalButton="Invite friends"
               buttonClass="btn mybloov-create-event-btn bold-600"
               modalHeading="Invite Collaborators"
+              openButtonClass="btn wishlist-button bold-600"
             >
               <div className="item-search-container">
                 <FontAwesomeIcon className="items-search-icon" icon="search" />
@@ -226,6 +234,7 @@ const EventCollaborators = props => {
               modalButton="Add friends"
               buttonClass="btn mybloov-create-event-btn bold-600"
               modalHeading="Invite friends"
+              openButtonClass="btn wishlist-button bold-600"
             >
               <div className="item-search-container">
                 <FontAwesomeIcon className="items-search-icon" icon="search" />
