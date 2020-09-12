@@ -24,6 +24,7 @@ import FriendRequest from "./template/friendRequest/FriendRequest";
 import Button from "../../components/button/Button";
 import CreateGroup from "./template/createGroup/CreateGroup";
 import AddFriendToGroup from "./template/addFriendToGroup/AddFriendToGroup";
+import Modal from "../../components/modal/Modal";
 
 const FriendPage = props => {
   const [selectedTab, setSelectedTab] = useState("ibloov");
@@ -166,20 +167,43 @@ const FriendPage = props => {
               <FontAwesomeIcon className="friend-search-icon" icon="search" />
             </span>
           </div>
-          <Button
+          {/* <Button
             customClassName="bold-600 add-friend-btn ml-auto"
             onClick={toggleAddFriendToGroup}
             btndisabled={false}
           >
             {showAddFriendToGroup ? "cancel" : "Add friend to group"}
-          </Button>
+          </Button> */}
+
+          <Modal
+            modalButton="Add friend to group"
+            buttonClass="btn mybloov-create-event-btn bold-600"
+            modalHeading="Add Friends to Group"
+            openButtonClass="bold-600 add-friend-btn ml-auto btn"
+          >
+            <AddFriendToGroup
+              groups={groups}
+              friendList={friends}
+              AddFriendToGroupSubmit={handleAddFriendToGroup}
+            />
+          </Modal>
+
+          <Modal
+            modalButton="Create group"
+            buttonClass="btn mybloov-create-event-btn bold-600"
+            modalHeading="Create Group"
+            openButtonClass="mybloov-create-group-btn bold-600 btn"
+          >
+            <CreateGroup createGroupHandler={createGroupHandler} />
+          </Modal>
+          {/* 
           <Button
             customClassName="mybloov-create-group-btn bold-600"
             onClick={createButtonHandler}
             btndisabled={false}
           >
             {showCreate ? "back to friends" : "Create New Group"}
-          </Button>
+          </Button> */}
         </div>
 
         {showCreate ? (
@@ -242,12 +266,12 @@ const FriendPage = props => {
                   </div>
                 </div>
               </div>
-              <div className="mr-5">
+              {/* <div className="mr-5">
                 <DropDown
                   toggleDropdownOption={toggleDropdownOptionHandler}
                   showDropDown={showDropDown}
                 />
-              </div>
+              </div> */}
             </div>
             {showAddFriendToGroup ? (
               <AddFriendToGroup

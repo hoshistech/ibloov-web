@@ -2,7 +2,7 @@ import React, { useReducer, useCallback, useEffect, useState } from "react";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useForm from "./useForm";
+import axios from "axios";
 
 import "./Login.css";
 import Input from "../../components/input/Input";
@@ -12,15 +12,36 @@ import { authLogin } from "./login.action";
 import Logo from "../../components/logo/Logo";
 import { getUserFollowing } from "../friendPage/friendPage.action";
 
+const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
+
+const formReducer = (state, action) => {
+  if (action.type === FORM_INPUT_UPDATE) {
+    const updatedValues = {
+      ...state.inputValues,
+      [action.input]: action.value
+    };
+    const updatedValidities = {
+      ...state.inputValidities,
+      [action.input]: action.isValid
+    };
+    let updatedFormIsValid = true;
+    for (const key in updatedValidities) {
+      updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
+    }
+    return {
+      formIsValid: updatedFormIsValid,
+      inputValidities: updatedValidities,
+      inputValues: updatedValues
+    };
+  }
+  return state;
+};
+
 const Login = props => {
   const history = useHistory();
   const location = useLocation();
-  const { token, error,loading } = useSelector(state => state.login);
+  const { token, error } = useSelector(state => state.login);
   const [previousLocation, setPreviousLocation] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
-  const [btnDisabled, setBtndisabled] = useState(true);
 
   useEffect(() => {
     if (location.state) {
@@ -30,49 +51,37 @@ const Login = props => {
 
   const dispatch = useDispatch();
 
-  const inputChangeHandler = event => {
-    const value = event.target.value;
-    const name = event.target.name;
-    const values = {
-      [name]: value
-    };
-    const validated = validate(values, name);
-    setErrors({
-      ...errors,
-      ...validated
-    });
-
-    if (name === "email") {
-      setEmail(value);
-    } else {
-      setPassword(value);
-    }
-
-    canSubmit();
+  const initilaState = {
+    inputValues: {
+      email: "",
+      password: ""
+    },
+    inputValidities: {
+      email: false,
+      password: false
+    },
+    formIsValid: false
   };
 
-  const validate = (values, name) => {
-    const errors = {};
+  const [formState, dispatchFormState] = useReducer(formReducer, initilaState);
 
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if (name === "email" && values.email === "") {
-      errors.email = "Please enter your email";
-    }
-    if (name === "email" && !emailRegex.test(values.email?.toLowerCase())) {
-      errors.email = "Please enter a valid email";
-    } else {
-      errors.email = "";
-    }
-    return errors;
-  };
+  const inputChangeHandler = useCallback(
+    (inputIdentifier, inputValue, inputValidity) => {
+      dispatchFormState({
+        type: FORM_INPUT_UPDATE,
+        value: inputValue,
+        isValid: inputValidity,
+        input: inputIdentifier
+      });
+    },
+    [dispatchFormState]
+  );
 
   const handleLogin = async e => {
     e.preventDefault();
 
     const newUser = {
-      email,
-      password
+      ...formState.inputValues
     };
 
     await dispatch(authLogin(newUser, history, previousLocation));
@@ -84,17 +93,10 @@ const Login = props => {
     window.location = socialAuth;
   };
 
-  const canSubmit = () => {
-    if (errors.email === "" || errors.email === undefined) {
-      setBtndisabled(false);
-      return;
-    }
-    setBtndisabled(true);
-  };
-
   if (token) {
     return <Redirect to="/" />;
   }
+
   return (
     <section className="banner login-section row">
       <div className="col-md-7 perfect-center">
@@ -105,7 +107,7 @@ const Login = props => {
       <div className="col-md-5 auth-form-container perfect-center">
         <div className="auth-container">
           <div>
-            <h2>Sign in 2</h2>
+            <h2>Sign in</h2>
             <div>
               <p className="small-info-text">
                 Are you a new user?{" "}
@@ -116,41 +118,37 @@ const Login = props => {
             </div>
           </div>
           <form className="auth-form">
-            <input
+            <Input
               name="email"
               type="email"
-              class="form-control auth-input"
+              customClassName="form-control auth-input"
               id="email"
               placeHolder="Email address"
               aria-describedby="emailHelp"
               errorText="Please enter a valid email."
               required
-              onChange={inputChangeHandler}
+              onInputChange={inputChangeHandler}
             />
-            <p className="input-error">{errors?.email}</p>
 
-            <input
+            <Input
               name="password"
               type="password"
-              class="form-control auth-input"
+              customClassName="form-control auth-input"
               id="password"
               placeHolder="Password"
               aria-describedby="password"
               errorText="Please enter a valid password."
               required
-              onChange={inputChangeHandler}
+              onInputChange={inputChangeHandler}
             />
-            <p className="input-error">{errors.password}</p>
-
             <p className="input-error auth-error">{error}</p>
             <div className="auth-button-container-login">
               <Button
                 customClassName="auth-button bold-600"
                 onClick={handleLogin}
-                btndisabled={btnDisabled}
-                // btndisabled={true}
+                btndisabled={!formState.formIsValid}
               >
-                {loading ? 'Signing in...' : 'Sign in'}
+                Sign in
               </Button>
             </div>
             <div className="divider-container mt-2">
