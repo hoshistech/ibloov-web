@@ -8,6 +8,12 @@ import { Link } from "react-router-dom";
 import { genRandomNumber } from "../../utils/helper";
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif";
+import {likeEvent} from "../../views/singleEvent/singleEvent.action"
+import { useDispatch } from "react-redux";
+import {
+  TwitterShareButton
+} from "react-share";
+
 
 const Card = props => {
   const {
@@ -20,6 +26,8 @@ const Card = props => {
     invitees
   } = props;
   const { category } = event;
+
+  const dispatch = useDispatch()
 
   let image = "";
 
@@ -53,7 +61,10 @@ const Card = props => {
     return [image[randomNumber], image[genRandomNumber(0, randomNumber)]];
   };
 
-  const handleLikeEvent = () => {};
+  const handleLikeEvent = (e) => {
+    e.preventDefault()
+    dispatch(likeEvent(eventId));
+  };
 
   // const randomAttendes = invitees.length;
   let randomAttendes = [];
@@ -101,14 +112,28 @@ const Card = props => {
       });
     }
   }
+  const shareText = "Hey, checkout this awesome event coming up:";
+  const eventUrl = window.location.href;
   return (
     <div className="card-container">
       <Link to={`/event/${eventId}`} className="event-more-details">
         <div className="image-container">
           <img src={image} className="card-image" alt="card" />
           <div className="event-icon-container">
-            <div className="card-icon-container">
-              <FontAwesomeIcon className="card-icon" icon="share-alt" />
+            {/* <div className="card-icon-container"> */}
+            <div className="">
+              {/* <FontAwesomeIcon className="card-icon" onClick={handleLikeEvent} icon="share-alt" /> */}
+              <TwitterShareButton
+                    // className="share-icon-twitter"
+                    className="share-icon-twitter"
+                    quote={shareText}
+                    url={eventUrl}
+                  >
+                    <FontAwesomeIcon
+                      className="card-icon-share"
+                      icon={["fab", "twitter"]}
+                    />
+                  </TwitterShareButton>
             </div>
             <div className="card-icon-container" onClick={handleLikeEvent}>
               <FontAwesomeIcon className="card-icon heart" icon="heart" />

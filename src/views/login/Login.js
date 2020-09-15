@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
