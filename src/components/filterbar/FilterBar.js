@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DatePicker, { CalendarContainer } from "react-datepicker";
+import DatePicker from "react-datepicker";
 
 import "./FilterBar.css";
 import Button from "../button/Button";

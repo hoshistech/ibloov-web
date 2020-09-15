@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SelectInput from "../../../../../components/selectInput/SelectInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FriendRow from "./FriendRow";
 
@@ -9,12 +8,12 @@ const GroupDetails = props => {
   const [searchInput, setSearchInput] = useState("");
 
   const [filteredList, setFilteredList] = useState(friends);
-  const [selectedFriends, setSelectedFriends] = useState([]);
+  // const [selectedFriends, setSelectedFriends] = useState([]);
 
   const searchFriends = friendName => {
     if (searchInput.length <= 1 || !searchInput) {
       setFilteredList(friends);
-      setSelectedFriends([]);
+      // setSelectedFriends([]);
       return;
     }
     const currentList = friends;

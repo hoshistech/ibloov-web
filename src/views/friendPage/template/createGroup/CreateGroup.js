@@ -17,7 +17,7 @@ const CreateGroup = props => {
   };
 
   return (
-    <section className="mt-3 create-group">``
+    <section className="mt-3 create-group">
       <div className="row createvent-container mt-1 px-4">
         {/* <div className="col-md-auto create-event-first-row">
           <div className="step-number-row">

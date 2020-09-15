@@ -23,11 +23,12 @@ const Myibloov = props => {
   const [showCreate, setShowCreate] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
   const [eventSearch, setEventSearch] = useState("");
-  const [eventsCreatedByMe, setEventsCreatedByMe] = useState("");
+  // const [eventsCreatedByMe, setEventsCreatedByMe] = useState("");
 
   const dispatch = useDispatch();
 
   const { events, userEvents } = useSelector(state => state.allEvents);
+
   const { userWishlist } = useSelector(state => state.allWishlist);
 
   const location = useLocation();
@@ -51,6 +52,7 @@ const Myibloov = props => {
       const ev = userEvents.filter(event => {
         return event.name.toLowerCase().includes(eventSearch);
       });
+
       myEvents = ev.map(event => {
         return (
           <Card
@@ -201,7 +203,7 @@ const Myibloov = props => {
             <input
               className="form-control mr-sm-2 friendlist-search-input"
               type="search"
-              placeholder="Search events"
+              placeholder={selectedTab === 'event' ? "Search events" : "Search wishlist"}
               aria-label="Search"
               onChange={handleSearch}
             />

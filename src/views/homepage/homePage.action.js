@@ -8,7 +8,8 @@ import {
   FETCH_USER_EVENTS_SUCCESS,
   FETCH_USER_EVENTS_FAIL,
   FILTER_BY_CATEGORY,
-  FILTER_BY_LOCATION
+  FILTER_BY_LOCATION,
+  FETCH_BLOOVING_PLACES_SUCCESS
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
 
@@ -67,6 +68,13 @@ export const filterByLocation = location => {
   };
 };
 
+export const fetchBloovingPlaces = locations => {
+  return {
+    type: FETCH_BLOOVING_PLACES_SUCCESS,
+    locations
+  };
+};
+
 export const fetchEvents = () => {
   const { token } = getUser();
   return dispatch => {
@@ -113,6 +121,24 @@ export const getUserEvents = userId => {
       .then(response => {
         const { data } = response.data;
         dispatch(fetchUserEventsSuccess(data));
+      })
+      .catch(error => {
+        dispatch(fetchUserEventsFailed("error"));
+      });
+  };
+};
+
+
+export const getMostBloovingPlaces = userId => {
+  let url = "/v1/event/blooving/cities";
+
+  return dispatch => {
+    dispatch(fetchUserEventsStart());
+    return axios(true)
+      .get(url)
+      .then(response => {
+        const { data } = response.data;
+        dispatch(fetchBloovingPlaces(data.slice(0,5)));
       })
       .catch(error => {
         dispatch(fetchUserEventsFailed("error"));

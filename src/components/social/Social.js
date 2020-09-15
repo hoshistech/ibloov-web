@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from "react";
-import { useLocation, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import jwt from "jsonwebtoken";
 import { userLoginSuccess } from "../../views/login/login.action";
 import { useDispatch } from "react-redux";

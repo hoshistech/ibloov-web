@@ -7,7 +7,8 @@ import {
   FETCH_USER_EVENTS_SUCCESS,
   FETCH_USER_EVENTS_FAIL,
   FILTER_BY_CATEGORY,
-  FILTER_BY_LOCATION
+  FILTER_BY_LOCATION,
+  FETCH_BLOOVING_PLACES_SUCCESS
 } from "../../store/actionTypes";
 
 const initialState = {
@@ -15,7 +16,8 @@ const initialState = {
   likedEvents: null,
   loading: false,
   userEvents: null,
-  filteredEvents: null
+  filteredEvents: null,
+  bloovingPlaces: null,
 };
 
 const allEventStart = state => {
@@ -48,6 +50,12 @@ const userEventStart = state => {
 const userEventSuccess = (state, action) => {
   return updateObject(state, {
     userEvents: action.myEvents,
+    loading: false
+  });
+};
+const getBloovingPlaces = (state, action) => {
+  return updateObject(state, {
+    bloovingPlaces: action.locations,
     loading: false
   });
 };
@@ -122,6 +130,8 @@ export default (state = initialState, action) => {
       return filterByCategory(state, action);
     case FILTER_BY_LOCATION:
       return filterByLocation(state, action);
+    case FETCH_BLOOVING_PLACES_SUCCESS:
+      return getBloovingPlaces(state, action);
 
     default:
       return state;
