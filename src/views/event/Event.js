@@ -75,12 +75,6 @@ const Event = props => {
         <section className="empty-search">
           <div className="text-center">
             <h4>There are no results for this search. </h4>
-            <p>Check your spelling for typing errors </p>
-            <p>Try searching with short and simple keywords</p>
-            <p>
-              Try searching more general terms - you can then filter the search
-              results
-            </p>
           </div>
         </section>
       ) : (

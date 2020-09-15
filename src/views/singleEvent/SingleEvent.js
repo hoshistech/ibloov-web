@@ -198,7 +198,7 @@ const SingleEvent = props => {
                   </div>
                 </div> */}
               </section>
-              <section>
+              {/* <section>
                 <div>
                   <h5 className="single-event-header-title mt-5">
                     Comments<span>(1)</span>
@@ -210,7 +210,7 @@ const SingleEvent = props => {
                     <CreateComment />
                   </div>
                 </div>
-              </section>
+              </section> */}
             </div>
             <div className="col-md-4">
               <div>

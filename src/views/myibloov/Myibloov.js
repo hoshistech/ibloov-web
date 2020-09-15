@@ -7,10 +7,8 @@ import "./Myibloov.css";
 import Button from "../../components/button/Button";
 import { Link, useLocation } from "react-router-dom";
 import Card from "../../components/card/Card";
-import PromotedEventCard from "../../components/promotedEventCard/PromotedEventCard";
 import CreateEvent from "../createEvent/CreateEvent";
 import Loading from "../../components/loadingIndicator/Loading";
-import DropDown from "../../components/dropDown/DropDown";
 import { getUserEvents } from "../homepage/homePage.action";
 import WishlistCard from "../../components/wishlistCard/WishlistCard";
 import CreateWishlist from "../createWishlist/CreateWishlist";
@@ -30,7 +28,6 @@ const Myibloov = props => {
   const dispatch = useDispatch();
 
   const { events, userEvents } = useSelector(state => state.allEvents);
-  const { _id: userId } = useSelector(state => state.login.user);
   const { userWishlist } = useSelector(state => state.allWishlist);
 
   const location = useLocation();

@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FriendList from "./template/friendList.js/FriendList";
 import GroupList from "./template/groupList/GroupList";
 import { genRandomNumber } from "../../utils/helper";
-import DropDown from "../../components/dropDown/DropDown";
 import { useDispatch, useSelector } from "react-redux";
 import {
   followUser,
@@ -21,7 +20,6 @@ import {
   addFriendToGroupAction
 } from "./friendPage.action";
 import FriendRequest from "./template/friendRequest/FriendRequest";
-import Button from "../../components/button/Button";
 import CreateGroup from "./template/createGroup/CreateGroup";
 import AddFriendToGroup from "./template/addFriendToGroup/AddFriendToGroup";
 import Modal from "../../components/modal/Modal";
