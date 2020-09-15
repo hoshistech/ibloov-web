@@ -43,13 +43,13 @@ const FriendList = props => {
         </td>
         <td className="friendlist-phone-number">{friend.phoneNumber}</td>
         <td className="email">{friend.email}</td>
-        <td className="group">
+        {/* <td className="group">
           <div>family</div>
           <div>friend</div>
-        </td>
-        <td className="action">
+        </td> */}
+        {/* <td className="action">
           <FontAwesomeIcon className="action-icon" icon="ellipsis-v" />
-        </td>
+        </td> */}
       </tr>
     ));
   }
@@ -64,10 +64,10 @@ const FriendList = props => {
             <th className="email" scope="col">
               EMAIL
             </th>
-            <th className="group" scope="col">
+            {/* <th className="group" scope="col">
               GROUPS
-            </th>
-            <th className="action" scope="col"></th>
+            </th> */}
+            {/* <th className="action" scope="col"></th> */}
           </tr>
         </thead>
         <tbody>{friendData}</tbody>

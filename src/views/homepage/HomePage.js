@@ -19,7 +19,11 @@ import Card from "../../components/card/Card";
 import InfluencerCard from "../../components/influencerCard/InfluencerCard";
 import HashTag from "../../components/hashTag/HashTag";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchEvents, fetchLiveEvents } from "./homePage.action";
+import {
+  fetchEvents,
+  fetchLiveEvents,
+  getMostBloovingPlaces
+} from "./homePage.action";
 import Loading from "../../components/loadingIndicator/Loading";
 import SearchBar from "./templates/searchBar/SearchBar";
 import { checkAuth } from "../../utils/helper";
@@ -29,7 +33,9 @@ const HomePage = props => {
 
   const [category, setCategory] = useState("");
 
-  const events = useSelector(state => state.allEvents.events);
+  // const events = useSelector(state => state.allEvents.events);
+  const { events, bloovingPlaces } = useSelector(state => state.allEvents);
+  // const bloovingPlaces = useSelector(state => state.allEvents.bloovingPlaces);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -43,6 +49,7 @@ const HomePage = props => {
     } else {
       dispatch(fetchEvents());
     }
+    dispatch(getMostBloovingPlaces());
   }, [dispatch, auth]);
 
   const handleViewCategories = title => {
@@ -290,7 +297,20 @@ const HomePage = props => {
             <p>Cities with the most iBloov events</p>
           </div>
           <div className="row blooving-places-card-container">
-            <InfluencerCard
+            {bloovingPlaces
+              ? bloovingPlaces.map(place => (
+                <InfluencerCard
+                  key={place._id}
+                  customClassName=" mb-2 place-card  "
+                  placesCard={true}
+                  cardTitle={place._id || 'Madrid'}
+                  eventsCount={place.count}
+                  // image="https://source.unsplash.com/250x324/?city"
+                  image={`https://source.unsplash.com/250x324/?${place._id || "madrid"}`}
+                  />
+                ))
+              : ""}
+            {/* <InfluencerCard
               customClassName=" mb-2 place-card  "
               placesCard={true}
               cardTitle="East Yolanda"
@@ -324,7 +344,7 @@ const HomePage = props => {
               cardTitle="London"
               events="900"
               image="https://source.unsplash.com/250x324/?portugal"
-            />
+            /> */}
           </div>
         </section>
 

@@ -33,8 +33,8 @@ const CreateEventSubmitBtn = props => {
       <Button
         customClassName="mybloov-create-event-btn-2  bold-600"
         onClick={formCount === 4 ? submitEventHandler : nextQuestionHandler}
-        // btndisabled={!nextStep}
-        btndisabled={false}
+        btndisabled={!nextStep}
+        // btndisabled={false}
       >
         {formCount === 4 ? "Create Event" : "Next"}
       </Button>

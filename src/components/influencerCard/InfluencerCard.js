@@ -11,6 +11,7 @@ const InfluencerCard = (props) => {
     cardTitle,
     userName,
     image,
+    eventsCount
   } = props;
   //   const placesCard = false;
 
@@ -45,7 +46,7 @@ const InfluencerCard = (props) => {
       <div className="most-influencer-details">
         <div>
           <p className="influencer-name">{cardTitle}</p>
-          <small className="place-card-event">{eventTy} events</small>
+          <small className="place-card-event">{eventsCount} events</small>
         </div>
       </div>
     );

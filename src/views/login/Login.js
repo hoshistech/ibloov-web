@@ -105,7 +105,7 @@ const Login = props => {
       <div className="col-md-5 auth-form-container perfect-center">
         <div className="auth-container">
           <div>
-            <h2>Sign in 2</h2>
+            <h2>Sign in</h2>
             <div>
               <p className="small-info-text">
                 Are you a new user?{" "}
