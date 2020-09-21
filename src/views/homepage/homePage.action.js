@@ -9,7 +9,8 @@ import {
   FETCH_USER_EVENTS_FAIL,
   FILTER_BY_CATEGORY,
   FILTER_BY_LOCATION,
-  FETCH_BLOOVING_PLACES_SUCCESS
+  FETCH_BLOOVING_PLACES_SUCCESS,
+  FILTER_BY_DATE
 } from "../../store/actionTypes";
 import { getUser } from "../../utils/helper";
 
@@ -65,6 +66,13 @@ export const filterByLocation = location => {
   return {
     type: FILTER_BY_LOCATION,
     location
+  };
+};
+
+export const filterByDate = date => {
+  return {
+    type: FILTER_BY_DATE,
+    date
   };
 };
 

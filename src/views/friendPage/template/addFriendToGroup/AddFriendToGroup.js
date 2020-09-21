@@ -10,7 +10,6 @@ const AddFriendToGroup = props => {
   const [selectedGroup, setSelectedGroup] = useState("");
 
   const { groups, friendList, AddFriendToGroupSubmit } = props;
-
   const inputChangeHandler = e => {
     const value = e.target.value;
     setGroupName(value);

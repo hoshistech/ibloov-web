@@ -9,7 +9,8 @@ import Pagination from "../../components/pagination/Pagination";
 import {
   fetchLiveEvents,
   filterByCategory,
-  filterByLocation
+  filterByLocation,
+  filterByDate
 } from "../homepage/homePage.action";
 import Loading from "../../components/loadingIndicator/Loading";
 const Event = props => {
@@ -29,9 +30,15 @@ const Event = props => {
     dispatch(filterByCategory(selectedCategory));
   };
 
-  const filterLocation = location => {
-    dispatch(filterByLocation(location));
+  const filterLocation = (location, date) => {
+    if (location) {      
+      dispatch(filterByLocation(location));
+    }
+    if (date) {      
+      dispatch(filterByDate(date));
+    }
   };
+
 
   let eventList = <Loading />;
   let popularEvents;

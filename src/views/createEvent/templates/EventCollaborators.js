@@ -156,7 +156,7 @@ const EventCollaborators = props => {
                   name="collaborator"
                   // onChange={inputChangeHandler}
                   onKeyUp={inputChangeHandler}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
               </div>
               <div className="friend-dropdown-list">
@@ -245,7 +245,7 @@ const EventCollaborators = props => {
                   aria-label="Search"
                   name="invitee"
                   onKeyUp={inputChangeHandler}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
               </div>
               <div className="friend-dropdown-list">

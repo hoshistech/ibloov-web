@@ -35,7 +35,7 @@ const FriendPage = props => {
   const history = useHistory();
   const location = useLocation();
 
-  const { friendRequestList, userFollowing, friends, groups } = useSelector(
+  const { friendRequestList, friends, groups } = useSelector(
     state => state.friend
   );
 

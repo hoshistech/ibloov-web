@@ -15,6 +15,7 @@ const ModalBox = props => {
         variant="primary"
         onClick={handleShow}
         customClassName={openButtonClass}
+        btndisabled={false}
       >
         {modalButton}
       </Button>
@@ -29,6 +30,7 @@ const ModalBox = props => {
             variant="secondary"
             onClick={handleClose}
             customClassName={buttonClass}
+            btndisabled={false}
           >
             Close
           </Button>
@@ -37,6 +39,7 @@ const ModalBox = props => {
               variant="primary"
               onClick={handleClose}
               customClassName={buttonClass}
+              btndisabled={false}
             >
               Save Changes
             </Button>

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Button from "../../../../components/button/Button";
 
 const CreateWishlistSubmitBtn = (props) => {
@@ -12,8 +11,8 @@ const CreateWishlistSubmitBtn = (props) => {
     isStepValid,
   } = props;
 
-  // const nextStep = isStepValid && formIsValid;
-  const nextStep = formIsValid;
+  const nextStep = isStepValid && formIsValid;
+  // const nextStep = formIsValid;
   return (
     <div className="myibloov-create-button-container">
       <Button

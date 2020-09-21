@@ -1,4 +1,5 @@
-import { updateObject } from "../../utils/helper";
+import moment from "moment"
+import { isEmpty, updateObject } from "../../utils/helper";
 import {
   FETCH_ALL_EVENTS_START,
   FETCH_ALL_EVENTS_SUCCESS,
@@ -8,7 +9,8 @@ import {
   FETCH_USER_EVENTS_FAIL,
   FILTER_BY_CATEGORY,
   FILTER_BY_LOCATION,
-  FETCH_BLOOVING_PLACES_SUCCESS
+  FETCH_BLOOVING_PLACES_SUCCESS,
+  FILTER_BY_DATE
 } from "../../store/actionTypes";
 
 const initialState = {
@@ -96,7 +98,8 @@ const filterByLocation = (state, action) => {
       filteredEvents: null
     });
   }
-  if (newFilteredEvents.length > 0) {
+  // if (newFilteredEvents === undefined || newFilteredEvents.length > 0) {
+  if (!isEmpty(newFilteredEvents)) {
     eventsFilter = newFilteredEvents;
   } else {
     eventsFilter = eventsList;
@@ -104,6 +107,36 @@ const filterByLocation = (state, action) => {
 
   const filteredValues = eventsFilter.filter(event => {
     return event.location.address.toLowerCase().includes(value);
+  });
+
+  return updateObject(state, {
+    loading: false,
+    filteredEvents: filteredValues
+  });
+};
+
+
+const filterByDate = (state, action) => {
+  const value = action.date;
+  const eventsList = state.events;
+  const newFilteredEvents = state.filteredEvents;
+  let eventsFilter = "";
+
+  if (value == "") {
+    return updateObject(state, {
+      loading: false,
+      filteredEvents: null
+    });
+  }
+
+  if (!isEmpty(newFilteredEvents)) {
+    eventsFilter = newFilteredEvents;
+  } else {
+    eventsFilter = eventsList;
+  }
+
+  const filteredValues = eventsFilter.filter(event => {
+    return moment(event.startDate).format("MM/DD/YYYY") == moment(value).format("MM/DD/YYYY")
   });
 
   return updateObject(state, {
@@ -130,6 +163,8 @@ export default (state = initialState, action) => {
       return filterByCategory(state, action);
     case FILTER_BY_LOCATION:
       return filterByLocation(state, action);
+    case FILTER_BY_DATE:
+      return filterByDate(state, action);
     case FETCH_BLOOVING_PLACES_SUCCESS:
       return getBloovingPlaces(state, action);
 

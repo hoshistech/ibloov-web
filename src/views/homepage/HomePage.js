@@ -275,7 +275,7 @@ const HomePage = props => {
           </div>
         </section>
 
-        <section className="upcoming-events">
+        <section className="popular-events">
           <div className="section-header-text">
             <h4>Popular Events</h4>
             <p>Select any of the event below to display the event</p>

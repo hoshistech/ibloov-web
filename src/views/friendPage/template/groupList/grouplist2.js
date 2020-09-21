@@ -104,7 +104,7 @@ const GroupList = props => {
           onClick={openGroupSideBar}
         />
         <div className={openGroupMenu}>
-          {/* <h3 className="group-list-name">GROUP NAME</h3> */}
+          <h3 className="group-list-name">GROUP NAME</h3>
           {contactGroups !== null
             ? contactGroups.map((group, index) => (
                 <GroupCard

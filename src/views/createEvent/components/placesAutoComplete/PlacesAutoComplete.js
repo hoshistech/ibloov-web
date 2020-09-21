@@ -26,7 +26,6 @@ const LocationSearchInput = props => {
           coordinates: [point.lat, point.lng],
           type: "Point"
         };
-        console.log(34, location);
         pickedLocation(location);
       })
       .catch(error => console.error("Error", error));
