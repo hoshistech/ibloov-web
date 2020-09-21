@@ -27,7 +27,7 @@ const FilterBar = props => {
   };
 
   const searchEvent = () => {
-    searchEventHandler(search);
+    searchEventHandler(search, date);
   };
 
   return (

@@ -1,12 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import moment from "moment";
 
 import "./FriendProfileCard.css";
 import ProgressiveImage from "../../../../../../components/progressiveImage/ProgressiveImage";
 
 const FriendProfileCard = (props) => {
-  const { name, amount, isPaid, eventId, startDate, image } = props;
+  const { name, amount, isPaid, startDate, image } = props;
 
 
   let eventImg = "https://source.unsplash.com/250x182/?guy";

@@ -21,7 +21,7 @@ const FilterInput = props => {
             type="text"
             className="form-control filter-input font-bold"
             id="all"
-            placeHolder="All"
+            placeholder="All"
             aria-describedby="allHelp"
             required
             onChange={onInputChange}

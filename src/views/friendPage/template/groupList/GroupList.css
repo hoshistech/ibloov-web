@@ -110,5 +110,6 @@
   }
   .group-list-container {
     width: 30%;
+    margin-top: -15px;
   }
 }

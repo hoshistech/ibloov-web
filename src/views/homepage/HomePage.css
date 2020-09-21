@@ -10,7 +10,6 @@
 
 .homepage-section .popular-categories-section,
 .upcoming-events,
-.advert-section,
 .most-blooving-section,
 .bloobing-influencers-section,
 .hashtag-section {
@@ -59,6 +58,11 @@
 }
 
 .upcoming-events {
+  background-color: #f6f7f8;
+  padding: 3rem 0px;
+}
+
+.popular-events {
   background-color: #f6f7f8;
   padding: 3rem 0px;
 }

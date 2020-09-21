@@ -66,11 +66,10 @@ const GroupDetails = props => {
             id="friendName"
             onChange={inputChangeHandler}
             placeholder="input friend name"
-            autocomplete="off"
+            autoComplete="off"
           />
         </div>
         <div className="friendlist-container-1">
-          {searchInput ? (
             <div className="friendlist-container">
               <div className="row add-friend-select-all">
                 select all
@@ -84,9 +83,6 @@ const GroupDetails = props => {
                   ))
                 : ""}
             </div>
-          ) : (
-            ""
-          )}
         </div>
       </div>
     </div>

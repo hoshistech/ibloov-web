@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import headset from "../../../../assets/images/headset.png";
 import ItemCard from "../../../../components/itemCard/ItemCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -13,7 +12,7 @@ const WishlistItems = (props) => {
   const { wishlistItemHandler } = props;
   const [searchInput, setSearchInput] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
-  const [filteredItems, setFilteredItems] = useState([]);
+  // const [filteredItems, setFilteredItems] = useState([]);
   // const [loading, setLoading] = useState(false);
 
   const { wishlistItems, loading } = useSelector((state) => state.wishlist);

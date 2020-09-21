@@ -1,5 +1,4 @@
 import React from "react";
-import Loading from "../loadingIndicator/Loading";
 
 import "./ListDropdown.css";
 
