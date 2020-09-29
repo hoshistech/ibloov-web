@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FriendRow from "./FriendRow";
 
 const GroupDetails = props => {
-  const { groups, friends, selectFriend, selectGroup } = props;
+  const { groups, friends, selectFriend, selectGroup, toggleSelectAllFriends} = props;
 
   const [searchInput, setSearchInput] = useState("");
 
@@ -32,6 +32,13 @@ const GroupDetails = props => {
     setSearchInput(value);
     searchFriends(value);
   };
+
+  const selectAllHandler = (e) => {
+    const value = e.target.checked;
+    toggleSelectAllFriends(value)
+    const checkbox = document.querySelectorAll('.addFriendCheck')
+    checkbox.forEach(checkbox => checkbox.checked = value)
+  }
 
   return (
     <div>
@@ -74,12 +81,12 @@ const GroupDetails = props => {
               <div className="row add-friend-select-all">
                 select all
                 <div className="align-self-center">
-                  <input type="checkbox" />
+                  <input onClick={selectAllHandler} type="checkbox" name="selectAllFriends" />
                 </div>
               </div>
               {filteredList
                 ? filteredList.map(friend => (
-                    <FriendRow friend={friend} selectFriend={selectFriend} />
+                    <FriendRow key={friend._id} friend={friend} selectFriend={selectFriend} toggleCheckBox={selectAllHandler} />
                   ))
                 : ""}
             </div>

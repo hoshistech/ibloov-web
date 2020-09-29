@@ -51,7 +51,7 @@ import Event from "./views/event/Event";
 import SearchEvent from "./views/searchEvent/SearchEvent";
 import HomePage from "./views/homepage/HomePage";
 import { checkAuth, getUser } from "./utils/helper";
-import { userLoginSuccess } from "./views/login/login.action";
+import { logout, userLoginSuccess } from "./views/login/login.action";
 import PrivateRoute from "./views/PrivateRouter/PrivateRoute";
 import TestPage from "./views/testPage/TestPage";
 import Myibloov from "./views/myibloov/Myibloov";
@@ -81,7 +81,10 @@ if (localStorage.token) {
     //dispatch user details
     const { token, user } = getUser();
     store.dispatch(userLoginSuccess(token, user));
+  } else {
+    logout();
   }
+
 }
 
 library.add(

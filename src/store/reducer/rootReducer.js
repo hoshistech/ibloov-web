@@ -15,7 +15,7 @@ import SingleWishlist from "../../views/SingleWishlist/singleWishlist.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["allEvents"],
+  // whitelist: ["allEvents"],
 };
 const rootReducer = combineReducers({
   signup: signupReducer,

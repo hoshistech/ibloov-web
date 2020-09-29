@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import moment from 'moment'
 
 export const updateObject = (oldObject, updatedObject) => {
   return {
@@ -20,7 +21,9 @@ export const checkAuth = () => {
   if (!token) return false;
   try {
     const { exp } = jwt.decode(token);
-    if (exp < new Date().getTime() / 1000) return false;
+    if (exp < new Date().getTime() / 1000) {
+      return false
+    };
   } catch (error) {
     return false;
   }

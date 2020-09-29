@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
@@ -9,7 +9,7 @@ import { genRandomNumber } from "../../utils/helper";
 import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif";
 import {likeEvent} from "../../views/singleEvent/singleEvent.action"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   TwitterShareButton
 } from "react-share";
@@ -23,13 +23,28 @@ const Card = props => {
     eventId,
     event,
     myEvent,
-    invitees
+    invitees,
+    likesCount
   } = props;
+
+  const [likedEvent, setLikedEvent] = useState("")
   const { category } = event;
 
   const dispatch = useDispatch()
 
+  const {user} = useSelector(state => state.login)
+
   let image = "";
+
+  useEffect(() => {
+    let liked = false;
+  if (event.likes?.length > 0 && user) {
+    liked = event.likes.find(like => 
+     like.userId._id === user._id
+    );
+    setLikedEvent(liked)
+  }
+  }, [likedEvent])
 
   const randomImage = () => {
     // const randomNumber = Math.floor(Math.random() * Math.floor(6));
@@ -61,10 +76,6 @@ const Card = props => {
     return [image[randomNumber], image[genRandomNumber(0, randomNumber)]];
   };
 
-  const handleLikeEvent = (e) => {
-    e.preventDefault()
-    dispatch(likeEvent(eventId));
-  };
 
   // const randomAttendes = invitees.length;
   let randomAttendes = [];
@@ -72,10 +83,12 @@ const Card = props => {
     randomAttendes = invitees.filter(invite => invite.accepted === "YES");
   }
   const smallImage = randomAteendingImage();
-  image = randomImage();
+  
 
   if (typeof event.images[0] !== "undefined") {
     image = event.images[0].url;
+  } else {
+    image = randomImage();
   }
 
   const month = moment(startDate).format("MMM");
@@ -112,6 +125,22 @@ const Card = props => {
       });
     }
   }
+
+  // let liked = false;
+  // if (event.likes?.length > 0 && user) {
+  //   liked = event.likes.find(like => 
+  //    like.userId._id === user._id
+  //   );
+  //   setLikeEvent(liked)
+  // }
+
+    const handleLikeEvent = (e) => {
+      e.preventDefault()
+      dispatch(likeEvent(eventId));
+      setLikedEvent(!likedEvent)
+  };
+
+
   const shareText = "Hey, checkout this awesome event coming up:";
   const eventUrl = window.location.href;
   return (
@@ -136,7 +165,9 @@ const Card = props => {
                   </TwitterShareButton>
             </div>
             <div className="card-icon-container" onClick={handleLikeEvent}>
-              <FontAwesomeIcon className="card-icon heart" icon="heart" />
+              {likedEvent ? <FontAwesomeIcon className="card-icon event-liked heart" icon="heart" /> : <FontAwesomeIcon className="card-icon heart" icon="heart" />}
+              
+              
             </div>
           </div>
           <p className="image-text-first">{category}</p>

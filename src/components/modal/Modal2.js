@@ -3,9 +3,10 @@ import { Modal } from "react-bootstrap";
 import Button from "../button/Button";
 
 const ModalBox = props => {
-  const { modalButton, buttonClass, modalHeading, showSave, openButtonClass, showClose, closeModal } = props;
-  const [show, setShow] = useState(false);
-  
+  const { modalButton, buttonClass, modalHeading, showSave, openButtonClass, showClose,openModal, closeModal, modalState } = props;
+  const [show, setShow] = useState();
+  // const [show, setShow] = useState(false);
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -14,14 +15,14 @@ const ModalBox = props => {
     <>
       <Button
         variant="primary"
-        onClick={handleShow}
+        onClick={openModal}
         customClassName={openButtonClass}
         btndisabled={false}
       >
         {modalButton}
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={modalState} onHide={closeModal}>
         <Modal.Header closeButton>
           <Modal.Title>{modalHeading}</Modal.Title>
         </Modal.Header>
@@ -29,7 +30,7 @@ const ModalBox = props => {
         <Modal.Footer>
          {showClose ?  <Button
             variant="secondary"
-            onClick={handleClose}
+            onClick={closeModal}
             customClassName={buttonClass}
             btndisabled={false}
           >
@@ -38,7 +39,7 @@ const ModalBox = props => {
           {showSave ? (
             <Button
               variant="primary"
-              onClick={handleClose}
+              onClick={closeModal}
               customClassName={buttonClass}
               btndisabled={false}
             >

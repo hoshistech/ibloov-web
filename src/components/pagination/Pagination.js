@@ -6,9 +6,9 @@ import "./Pagination.css";
 const Pagination = (props) => {
   return (
     <div className="pagination-container mb-5">
-      <Button customClassName="pagination-button">01</Button>
-      <Button customClassName="pagination-button">02</Button>
-      <Button customClassName="pagination-button">Next</Button>
+      <Button btndisabled={false} onClick={() => {}} customClassName="pagination-button">01</Button>
+      <Button btndisabled={false} onClick={() => {}} customClassName="pagination-button">02</Button>
+      <Button btndisabled={false} onClick={() => {}} customClassName="pagination-button">Next</Button>
     </div>
   );
 };

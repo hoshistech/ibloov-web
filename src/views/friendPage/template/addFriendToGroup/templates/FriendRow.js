@@ -4,7 +4,7 @@ import ProgressiveImage from "../../../../../components/progressiveImage/Progres
 import avatarPlaceHolder from "../../../../../assets/images/profile_placeholder_small.gif";
 
 const FriendRow = props => {
-  const { friend, selectFriend } = props;
+  const { friend, selectFriend, toggleCheckBox } = props;
 
   return (
     <div>
@@ -23,7 +23,7 @@ const FriendRow = props => {
           className="align-self-center"
           onClick={e => selectFriend(e, friend.id)}
         >
-          <input type="checkbox" id={friend.id} />
+          <input type="checkbox" className="addFriendCheck" id={friend.id} />
         </div>
       </div>
     </div>
