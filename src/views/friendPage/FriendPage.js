@@ -23,6 +23,7 @@ import FriendRequest from "./template/friendRequest/FriendRequest";
 import CreateGroup from "./template/createGroup/CreateGroup";
 import AddFriendToGroup from "./template/addFriendToGroup/AddFriendToGroup";
 import Modal from "../../components/modal/Modal";
+import Modal2 from "../../components/modal/Modal2";
 
 const FriendPage = props => {
   const [selectedTab, setSelectedTab] = useState("ibloov");
@@ -30,12 +31,23 @@ const FriendPage = props => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [showCreate, setShowCreate] = useState(false);
   const [showAddFriendToGroup, setShowAddFriendToGroup] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const [show, setShow] = useState(false);
+  const [showGroupModal, setShowGroupModal] = useState(false);
+
+   const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+   
+  const handleGroupClose = () => setShowGroupModal(false);
+  const handleGroupShow = () => setShowGroupModal(true);
+
 
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
 
-  const { friendRequestList, friends, groups } = useSelector(
+  const {loading, friendRequestList, friends, groups } = useSelector(
     state => state.friend
   );
 
@@ -104,10 +116,14 @@ const FriendPage = props => {
 
   const createGroupHandler = groupName => {
     dispatch(createGroup(groupName, history));
+    if (!loading) {
+        handleGroupClose();
+    }
   };
 
   const toggleAddFriendToGroup = () => {
     setShowAddFriendToGroup(!showAddFriendToGroup);
+  
   };
 
   const handleAddFriendToGroup = (groupId, friends) => {
@@ -120,7 +136,14 @@ const FriendPage = props => {
       });
     }
     dispatch(addFriendToGroupAction(groupId, friends, history));
+      if (!loading && groupId) {
+        handleClose();
+      }
   };
+
+  const closeModal = ()=> {
+    setShowModal(false);
+  }
 
   let contactGroups;
   let aa = [];
@@ -173,27 +196,34 @@ const FriendPage = props => {
             {showAddFriendToGroup ? "cancel" : "Add friend to group"}
           </Button> */}
 
-          <Modal
+          <Modal2
             modalButton="Add friend to group"
             buttonClass="btn mybloov-create-event-btn bold-600"
             modalHeading="Add Friends to Group"
             openButtonClass="bold-600 add-friend-btn ml-auto btn"
+            openModal={handleShow}
+            closeModal={handleClose}
+            modalState={show}
           >
             <AddFriendToGroup
               groups={groups}
               friendList={friends}
               AddFriendToGroupSubmit={handleAddFriendToGroup}
             />
-          </Modal>
+          </Modal2>
 
-          <Modal
+          <Modal2
             modalButton="Create group"
             buttonClass="btn mybloov-create-event-btn bold-600"
             modalHeading="Create Group"
             openButtonClass="mybloov-create-group-btn bold-600 btn"
+            openModal={handleGroupShow}
+            closeModal={handleGroupClose}
+            modalState={showGroupModal}
           >
+          
             <CreateGroup createGroupHandler={createGroupHandler} />
-          </Modal>
+          </Modal2>
           {/* 
           <Button
             customClassName="mybloov-create-group-btn bold-600"

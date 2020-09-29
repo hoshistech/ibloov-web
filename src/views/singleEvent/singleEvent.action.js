@@ -125,10 +125,10 @@ export const likeEvent = eventId => {
   const { token } = getUser();
   return dispatch => {
     return axios(true)
-      .patch(`/v1/event//togglelike/${eventId}`)
+      .patch(`/v1/event/togglelike/${eventId}`)
       .then(response => {
         const { likes } = response.data.data;
-        toastr.success("liked!!!");
+        // toastr.success("liked!!!");
         dispatch(likeEventSuccess(likes));
       })
       .catch(error => {

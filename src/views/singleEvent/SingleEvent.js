@@ -63,7 +63,6 @@ const SingleEvent = props => {
   if (authenticated) {
     authUser = authenticated._id;
   }
-
   if (event) {
     foundEvent = event;
 

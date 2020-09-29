@@ -62,6 +62,7 @@ const Event = props => {
               event={event}
               splashImage="https://source.unsplash.com/250x182/?concert,party"
               invitees={event.invitees}
+              likesCount={event.likes?.length}
             />
           );
         });

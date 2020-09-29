@@ -157,6 +157,10 @@
   font-size: 0.8em;
 }
 
+.event-liked {
+  color: red;
+}
+
 /* 
 
 setting for hover 

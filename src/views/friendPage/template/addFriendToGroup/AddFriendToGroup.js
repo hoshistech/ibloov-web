@@ -10,6 +10,7 @@ const AddFriendToGroup = props => {
   const [selectedGroup, setSelectedGroup] = useState("");
 
   const { groups, friendList, AddFriendToGroupSubmit } = props;
+
   const inputChangeHandler = e => {
     const value = e.target.value;
     setGroupName(value);
@@ -36,8 +37,23 @@ const AddFriendToGroup = props => {
     setSelectedGroup(groupId);
   };
 
+  const toggleSelectAllFriendsHandler = (selector) => {
+    if (selector) {
+      setSelectedFriends([...friendList]);
+      return;      
+    }
+    setSelectedFriends([]);
+  }
+
   const handleSubmit = () => {
-    AddFriendToGroupSubmit(selectedGroup, selectedFriends);
+    const group = groups.find(grp => grp._id === selectedGroup);
+    let existingFriends = [];
+    if (group || selectedFriends) {
+       existingFriends = group.contacts.map(cont => cont.userId._id)
+    }
+
+     let difference = selectedFriends.filter(friend => !existingFriends.includes(friend.id));
+    AddFriendToGroupSubmit(selectedGroup, difference);
   };
 
   return (
@@ -71,11 +87,13 @@ const AddFriendToGroup = props => {
                   friends={friendList}
                   selectFriend={selectFriendHandler}
                   selectGroup={selectGroupHandler}
+                  toggleSelectAllFriends={toggleSelectAllFriendsHandler}
                 />
               </div>
               <Button
                 onClick={handleSubmit}
-                customClassName="btn mybloov-create-event-btn-2  bold-600 mt-3"
+                btndisabled={selectedGroup ||  selectedFriends ? false : true}
+                customClassName="btn mybloov-create-event-btn-2 bold-600 mt-3"
               >
                 Add
               </Button>
