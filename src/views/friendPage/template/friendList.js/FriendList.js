@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FriendProfile from "../friendProfile/FriendProfile";
 import Loading from "../../../../components/loadingIndicator/Loading";
 import avatarPlaceHolder from "../../../../assets/images/profile_placeholder_small.gif";
+import { getUserEvents } from "../../../homepage/homePage.action";
+import { useDispatch } from "react-redux";
 
 const FriendList = props => {
   const { handleFollowUser, friends } = props;
@@ -13,8 +15,12 @@ const FriendList = props => {
   const [openFriendProfile, setOpenFriendProfile] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
 
-  const openFriendProfileHandler = user => {
+  const dispatch = useDispatch();
+
+
+  const openFriendProfileHandler = async user => {
     setOpenFriendProfile(!openFriendProfile);
+    await dispatch(getUserEvents(user.id))
     if (!openFriendProfile) {
       setCurrentUser(user);
     }
@@ -77,6 +83,7 @@ const FriendList = props => {
         setOpenProfile={openFriendProfileHandler}
         user={currentUser}
         handleFollowUser={handleFollowUser}
+        // userEvent={userEvent}
       />
     </div>
   );

@@ -16,9 +16,11 @@ const FriendProfile = (props) => {
     user,
     handleFollowUser,
     isFollowingAuthor,
-    isUserAuthenticated,
   } = props;
+
+
   const { userEvents } = useSelector((state) => state.allEvents);
+  const { isAuthenticated } = useSelector((state) => state.login);
   if (user.local) {
     user.name = `${user.local.firstName} ${user.local.lastName}`;
   }
@@ -26,6 +28,7 @@ const FriendProfile = (props) => {
   const history = useHistory();
 
   let myEvents = <Loading />;
+ 
 
   if (userEvents) {
     myEvents = userEvents.map((event) => (
@@ -52,12 +55,12 @@ const FriendProfile = (props) => {
           user={user}
           handleFollowUser={handleFollowUser}
           isFollowingAuthor={isFollowingAuthor}
-          isUserAuthenticated={isUserAuthenticated}
+          isUserAuthenticated={isAuthenticated}
         />
         <section className="friend-profile-section">
           <h3 className="friend-profile-title">EVENTS CREATED</h3>
           <div className="friend-profile-card-wrapper">
-            {isUserAuthenticated ? (
+            {isAuthenticated ? (
               myEvents
             ) : (
               <p>
