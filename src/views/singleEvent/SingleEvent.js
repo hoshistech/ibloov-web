@@ -227,11 +227,7 @@ const SingleEvent = props => {
                   handleLikeEvent={likeEventHandler}
                 />
               </div>
-              <div className="mt-5 mb-3 single-event-date-container">
-                {/* <h4 className="single-event-header-title">Dates and Time</h4>
-                <p>
-                  Start: <span className="event-start-date">{startDate}</span>
-                </p> */}
+              {/* <div className="mt-5 mb-3 single-event-date-container">
                 <div>
                   <Button
                     btndisabled={false}
@@ -241,7 +237,7 @@ const SingleEvent = props => {
                     Export to Calendar
                   </Button>
                 </div>
-              </div>
+              </div> */}
               <div className="mt-5 mb-3 single-event-second-col-container">
                 <h4 className="single-event-header-title">Event Location</h4>
                 <div>

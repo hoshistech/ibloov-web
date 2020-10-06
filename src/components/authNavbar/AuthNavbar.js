@@ -55,14 +55,14 @@ const AuthNavbar = (props) => {
         </NavLink>
         <div className="navlink-border-bottom"></div>
       </li>
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <NavLink activeClassName="selected-path" to="#">
           <div className="nav-notification-container">
             <img src={notification} className="nav-notification" alt="card" />
             <span>2</span>
           </div>
         </NavLink>
-      </li>
+      </li> */}
       <li className="nav-item dropdown user-image-dropdown">
         <div
           className="nav-link dropdown-toggle"

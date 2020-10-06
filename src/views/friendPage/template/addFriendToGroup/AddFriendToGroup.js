@@ -56,6 +56,8 @@ const AddFriendToGroup = props => {
     AddFriendToGroupSubmit(selectedGroup, difference);
   };
 
+  const disableBtn = !selectedGroup ? true : false;
+
   return (
     <section className="mt-4 create-group">
       {/* <hr /> */}
@@ -92,7 +94,8 @@ const AddFriendToGroup = props => {
               </div>
               <Button
                 onClick={handleSubmit}
-                btndisabled={selectedGroup ||  selectedFriends ? false : true}
+                btndisabled={disableBtn}
+                // btndisabled={!selectedGroup ? "false" : "true"}
                 customClassName="btn mybloov-create-event-btn-2 bold-600 mt-3"
               >
                 Add

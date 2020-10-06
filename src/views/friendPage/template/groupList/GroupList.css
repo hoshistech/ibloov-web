@@ -36,6 +36,11 @@
   font-size: 15px;
 }
 
+.group-list-container {
+  overflow: scroll;
+  height: 65vh;
+}
+
 @media only screen and (max-width: 600px) {
   .friendlist-table-header .group-name {
     display: none;

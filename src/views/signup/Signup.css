@@ -104,3 +104,13 @@
   margin: 0px !important;
 }
 
+.password-signup {
+  position: relative;
+}
+
+.password-icon {
+  position: absolute;
+  right: 0;
+  bottom: 20%;
+  cursor: pointer;
+}
