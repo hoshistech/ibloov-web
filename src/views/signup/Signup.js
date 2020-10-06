@@ -19,6 +19,7 @@ const Signup = props => {
   const [checkTerms, setCheckTerms] = useState(false);
   const [countryCode, setCountryCode] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const authErrors = useSelector(state => state.signup.error);
   const { token } = useSelector(state => state.login);
@@ -85,6 +86,10 @@ const Signup = props => {
     };
 
     dispatch(authSignup(newUser, phoneDetails, history));
+  };
+
+  const toggleShowPassoword = () => {
+    setShowPassword(!showPassword);
   };
 
   const socialAuthHandler = (e, id) => {
@@ -185,10 +190,10 @@ const Signup = props => {
                 selectedCountry={countryCode}
               />
             </div>
-            <div className="auth-input-container">
+            <div className="auth-input-container password-signup">
               <Input
                 name="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 customClassName="form-control auth-input"
                 id="password"
                 placeHolder="Password"
@@ -197,6 +202,19 @@ const Signup = props => {
                 required
                 onInputChange={inputChangeHandler}
               />
+              {showPassword ? (
+                <FontAwesomeIcon
+                  onClick={toggleShowPassoword}
+                  icon="eye"
+                  className="password-icon"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  onClick={toggleShowPassoword}
+                  icon="eye-slash"
+                  className="password-icon"
+                />
+              )}
             </div>
             <div className="form-check">
               <input

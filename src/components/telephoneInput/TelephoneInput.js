@@ -28,9 +28,10 @@ const TelephoneInput = (props) => {
           value={selectedCountry}
           className="form-control filter-select"
         >
-          {CountryCode.map((country) => (
+          {CountryCode.map((country, index) => (
             <option
-              data-countryCode={country.code}
+              key={index}
+              data-countrycode={country.code}
               value={country.dial_code}
               selected
             >

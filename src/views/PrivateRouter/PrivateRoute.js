@@ -5,12 +5,16 @@ import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ children, ...rest }) => {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
+  const token = localStorage.getItem("token");
+
+
+  const authenticated = isAuthenticated && token ? true : false ;
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        isAuthenticated ? (
+        authenticated ? (
           children
         ) : (
           <Redirect

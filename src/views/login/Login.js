@@ -119,9 +119,9 @@ const Login = props => {
             <input
               name="email"
               type="email"
-              class="form-control auth-input"
+              className="form-control auth-input"
               id="email"
-              placeHolder="Email address"
+              placeholder="Email address"
               aria-describedby="emailHelp"
               errorText="Please enter a valid email."
               required
@@ -132,9 +132,9 @@ const Login = props => {
             <input
               name="password"
               type="password"
-              class="form-control auth-input"
+              className="form-control auth-input"
               id="password"
-              placeHolder="Password"
+              placeholder="Password"
               aria-describedby="password"
               errorText="Please enter a valid password."
               required

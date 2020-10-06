@@ -38,7 +38,9 @@ import {
   faUser,
   faPhoneAlt,
   faEnvelope,
-  faGlobe
+  faGlobe,
+  faEye,
+  faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
 import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 import { loadStripe } from "@stripe/stripe-js";
@@ -82,9 +84,11 @@ if (localStorage.token) {
     const { token, user } = getUser();
     store.dispatch(userLoginSuccess(token, user));
   } else {
-    logout();
+    store.dispatch(logout())
   }
 
+} else {
+  store.dispatch(logout())
 }
 
 library.add(
@@ -113,7 +117,9 @@ library.add(
   faUser,
   faPhoneAlt,
   faEnvelope,
-  faGlobe
+  faGlobe,
+  faEye,
+  faEyeSlash
 );
 
 const stripePromise = loadStripe("pk_test_ZLXamYUP1Hp8QNf5b1B1d1fr00ycTYZS8e");

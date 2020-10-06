@@ -10,6 +10,7 @@ import ProgressiveImage from "../progressiveImage/ProgressiveImage";
 import avatarPlaceHolder from "../../assets/images/profile_placeholder_small.gif";
 import {likeEvent} from "../../views/singleEvent/singleEvent.action"
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   TwitterShareButton
 } from "react-share";
@@ -31,8 +32,9 @@ const Card = props => {
   const { category } = event;
 
   const dispatch = useDispatch()
+   const history = useHistory();
 
-  const {user} = useSelector(state => state.login)
+  const {user, isAuthenticated} = useSelector(state => state.login)
 
   let image = "";
 
@@ -136,6 +138,13 @@ const Card = props => {
 
     const handleLikeEvent = (e) => {
       e.preventDefault()
+      if (!isAuthenticated) {
+      history.push({
+        pathname: "/signin",
+        state: { from: history.location.pathname }
+      });
+      return;
+    }
       dispatch(likeEvent(eventId));
       setLikedEvent(!likedEvent)
   };
