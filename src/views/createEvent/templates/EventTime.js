@@ -6,9 +6,18 @@ import EventPrice from "./EventPrice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Toggle from "../../../components/Toggle/Toggle";
 import DateClock from "../../../components/dateClock/DateClock";
+import Button from "../../../components/button/Button";
 
 const EventTime = props => {
-  const { setEventDate, setPriceData, isEventPrivate, isEventPaid } = props;
+  const {
+    setEventDate,
+    setPriceData,
+    isEventPrivate,
+    isEventPaid,
+    formCount,
+    nextQuestionHandler,
+    previousQuestionHandler
+  } = props;
   const startDateRef = useRef();
 
   const [eventStartDate, setEventStartDate] = useState("");
@@ -111,26 +120,34 @@ const EventTime = props => {
     setCurrency(selectedCurrency);
   };
 
+  let validateNextBtn = !eventStartDate ? true : false;
+
+  if (isPaid || showPricing) {
+    validateNextBtn =
+      !eventPrice || !currency || !eventStartDate ? true : false;
+  }
+
   return (
-    <div className="row event-time">
-      <div className="event-time-container">
-        <div className="create-event-title-header mb-3">
-          <h5>When will the event happen?</h5>
-          <small>Select the date and time for the event</small>
-        </div>
-        <div>
-          <div className="row date-container">
-            <div className="event-date-input-container event-time-date">
-              <label htmlFor="eventStartDate">Starts</label>
-              <DatePicker
-                selected={eventStartDate}
-                onChange={date => setEventStartDate(date)}
-                // onChange={onEventDateHandler}
-                // calendarContainer={MyContainer}
-                placeholderText="Click to select a date"
-                className="form-control event-date-input"
-              />
-              {/* <input
+    <div>
+      <div className="row event-time">
+        <div className="event-time-container">
+          <div className="create-event-title-header mb-3">
+            <h5>When will the event happen?</h5>
+            <small>Select the date and time for the event</small>
+          </div>
+          <div>
+            <div className="row date-container">
+              <div className="event-date-input-container event-time-date">
+                <label htmlFor="eventStartDate">Starts</label>
+                <DatePicker
+                  selected={eventStartDate}
+                  onChange={date => setEventStartDate(date)}
+                  // onChange={onEventDateHandler}
+                  // calendarContainer={MyContainer}
+                  placeholderText="Click to select a date"
+                  className="form-control event-date-input"
+                />
+                {/* <input
                 name="eventStartDate"
                 type="text"
                 className="form-control event-date-input"
@@ -150,30 +167,55 @@ const EventTime = props => {
                 icon="calendar-alt"
                 onClick={toDateHandler}
               /> */}
+              </div>
+              <div className="event-date-input-container">
+                <label htmlFor="eventStartTime">From</label>
+                <DateClock timeHandler={setTimeHandler} name="timeStart" />
+              </div>
             </div>
-            <div className="event-date-input-container">
-              <label htmlFor="eventStartTime">From</label>
-              <DateClock timeHandler={setTimeHandler} name="timeStart" />
+            <div>
+              <p className="private-toggle">is this a private event? </p>
+              <Toggle handleClick={privateEventHandler} />
             </div>
-          </div>
-          <div>
-            <p className="private-toggle">is this a private event? </p>
-            <Toggle handleClick={privateEventHandler} />
           </div>
         </div>
+        <div>
+          <EventPrice
+            showPriceHandler={onToggleEventFeeHandler}
+            showPricing={showPricing}
+            ticketNumber={ticketTypeNumber}
+            increaseTicketType={increaseTicketTypeHandler}
+            decreaseTicketType={decreaseTicketTypeHandler}
+            changeTicketTypeNumber={changeTicketTypeNumberHandler}
+            onSelectCurrency={selectCurrencyHandler}
+            setEventPrice={eventPriceHandler}
+            eventPrice={eventPrice}
+          />
+        </div>
       </div>
-      <div>
-        <EventPrice
-          showPriceHandler={onToggleEventFeeHandler}
-          showPricing={showPricing}
-          ticketNumber={ticketTypeNumber}
-          increaseTicketType={increaseTicketTypeHandler}
-          decreaseTicketType={decreaseTicketTypeHandler}
-          changeTicketTypeNumber={changeTicketTypeNumberHandler}
-          onSelectCurrency={selectCurrencyHandler}
-          setEventPrice={eventPriceHandler}
-          eventPrice={eventPrice}
-        />
+
+      <div
+        // className="myibloov-create-button-container"
+        className={
+          formCount === 2
+            ? "myibloov-create-button-container myibloov-description-btn"
+            : "myibloov-create-button-container"
+        }
+      >
+        <Button
+          customClassName="mybloov-create-event-btn-2  bold-600"
+          onClick={previousQuestionHandler}
+          btndisabled={false}
+        >
+          {formCount === 1 ? "Cancel" : "Back"}
+        </Button>
+        <Button
+          customClassName="mybloov-create-event-btn-2  bold-600"
+          onClick={nextQuestionHandler}
+          btndisabled={validateNextBtn}
+        >
+          {formCount === 4 ? "Create Event" : "Next"}
+        </Button>
       </div>
     </div>
   );

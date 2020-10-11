@@ -3,14 +3,27 @@ import PropTypes from "prop-types";
 import Input from "../../../components/input/Input";
 import DragableImageUpload from "../../../components/dragableImageUpload/DragableImageUpload";
 import LocationSearchInput from "../components/placesAutoComplete/PlacesAutoComplete";
+import Button from "../../../components/button/Button";
 
-const EventDescription = (props) => {
-  const { inputChangeHandler, imageUpload, pickedLocation } = props;
+const EventDescription = props => {
+  const {
+    inputChangeHandler,
+    imageUpload,
+    pickedLocation,
+    formCount,
+    nextQuestionHandler,
+    previousQuestionHandler,
+    form,
+    location
+  } = props;
   const fileInputRef = useRef("");
 
-  const onFilesAddedHandler = (image) => {
+  const onFilesAddedHandler = image => {
     imageUpload(image);
   };
+  const { eventTitle, eventCode, eventDetail } = form;
+  const validateNextBtn =
+    !eventTitle || !eventCode || !eventDetail || !location ? true : false;
 
   return (
     <div className="event-desc-container">
@@ -75,13 +88,36 @@ const EventDescription = (props) => {
           </div>
         </div>
       </div>
+      <div
+        // className="myibloov-create-button-container"
+        className={
+          formCount === 2
+            ? "myibloov-create-button-container myibloov-description-btn"
+            : "myibloov-create-button-container"
+        }
+      >
+        <Button
+          customClassName="mybloov-create-event-btn-2  bold-600"
+          onClick={previousQuestionHandler}
+          btndisabled={false}
+        >
+          {formCount === 1 ? "Cancel" : "Back"}
+        </Button>
+        <Button
+          customClassName="mybloov-create-event-btn-2  bold-600"
+          onClick={nextQuestionHandler}
+          btndisabled={validateNextBtn}
+        >
+          {formCount === 4 ? "Create Event" : "Next"}
+        </Button>
+      </div>
     </div>
   );
 };
 
 EventDescription.propTypes = {
   inputChangeHandler: PropTypes.func.isRequired,
-  imageUpload: PropTypes.func.isRequired,
+  imageUpload: PropTypes.func.isRequired
 };
 
 export default EventDescription;

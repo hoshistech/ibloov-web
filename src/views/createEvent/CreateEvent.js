@@ -304,7 +304,12 @@ const CreateEvent = props => {
             <form>
               <div className={formCount === 1 ? "show-question" : "question"}>
                 {/* <p>step {formCount}</p> */}
-                <EventType categoryHandler={categoryHandler} />
+                <EventType
+                  categoryHandler={categoryHandler}
+                  formCount={formCount}
+                  nextQuestionHandler={nextQuestionHandler}
+                  previousQuestionHandler={previousQuestionHandler}
+                />
               </div>
               <div className={formCount === 2 ? "show-question" : "question"}>
                 {/* <p>step {formCount}</p> */}
@@ -312,6 +317,11 @@ const CreateEvent = props => {
                   inputChangeHandler={inputChangeHandler}
                   imageUpload={imageUploadHandler}
                   pickedLocation={locationhandler}
+                  formCount={formCount}
+                  nextQuestionHandler={nextQuestionHandler}
+                  previousQuestionHandler={previousQuestionHandler}
+                  form={formState.inputValues}
+                  location={location}
                 />
               </div>
               <div className={formCount === 3 ? "show-question" : "question"}>
@@ -321,6 +331,9 @@ const CreateEvent = props => {
                   setPriceData={eventPriceDataHandler}
                   isEventPrivate={isEventPrivateHandler}
                   isEventPaid={isEventPaidHandler}
+                  formCount={formCount}
+                  nextQuestionHandler={nextQuestionHandler}
+                  previousQuestionHandler={previousQuestionHandler}
                 />
               </div>
               <div className={formCount === 4 ? "show-question" : "question"}>
@@ -330,19 +343,11 @@ const CreateEvent = props => {
                   notificationHandler={eventNotificationHandler}
                   addCollaborator={collaboratorsHandler}
                   addInvitee={addInviteeHandler}
+                  formCount={formCount}
+                  submitEventHandler={onsubmitEventHandler}
+                  previousQuestionHandler={previousQuestionHandler}
                 />
               </div>
-              <CreateEventSubmitBtn
-                nextQuestionHandler={nextQuestionHandler}
-                previousQuestionHandler={previousQuestionHandler}
-                formCount={formCount}
-                submitEventHandler={onsubmitEventHandler}
-                isStepValid={isStepValid}
-                formIsValid={formState.formIsValid}
-                dateTimeValid={
-                  eventTime.length <= 6 && formCount === 3 ? false : true
-                }
-              />
             </form>
           </div>
         </div>

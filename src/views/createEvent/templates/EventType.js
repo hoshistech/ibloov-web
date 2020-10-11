@@ -3,41 +3,21 @@ import PropTypes from "prop-types";
 import NightLifeSvg from "../../../components/svgLoader/NightLifeSvg";
 import ConcertsSvg from "../../../components/svgLoader/ConcertsSvg";
 import ConferencesSvg from "../../../components/svgLoader/ConferencesSvg";
-import CorporateSvg from "../../../components/svgLoader/CorporateSvg";
 import EngagementSvg from "../../../components/svgLoader/EngagementSvg";
-import HenNightSvg from "../../../components/svgLoader/HenNightSvg";
+import Button from "../../../components/button/Button";
 import PartiesSvg from "../../../components/svgLoader/PartiesSvg";
 import PromSvg from "../../../components/svgLoader/PromSvg";
-import SportsSvg from "../../../components/svgLoader/SportsSvg";
-import TravelSvg from "../../../components/svgLoader/TravelSvg";
-import WeddingSvg from "../../../components/svgLoader/WeddingSvg";
-import ChristmasSvg from "../../../components/svgLoader/ChristmasSvg";
 import CreateEventCategory from "../../../components/createEventCategory/CreateEventCategory";
 
 const EventType = props => {
-  const { categoryHandler } = props;
+  const {
+    categoryHandler,
+    formCount,
+    nextQuestionHandler,
+    previousQuestionHandler
+  } = props;
   const [selected, setSelected] = useState("");
   const [svgFill, setSvgFill] = useState("#ccc");
-  // const [selectedCategories, setSelectedCategories] = useState();
-
-  // const onSelectEventType = (category) => {
-  //   let newCategory;
-
-  //   const checkIfExist = selectedCategories.find(
-  //     (categoryName) => categoryName === category
-  //   );
-
-  //   if (checkIfExist) {
-  //     const categories = selectedCategories;
-  //     newCategory = categories.filter(
-  //       (categoryName) => categoryName !== category
-  //     );
-  //   } else {
-  //     newCategory = [...selectedCategories, category];
-  //   }
-
-  //   setSelectedCategories(newCategory);
-  // };
 
   const onSelectEventType = (e, category, name) => {
     setSelected(name);
@@ -122,66 +102,30 @@ const EventType = props => {
         >
           <PromSvg fill={svgFill} />
         </CreateEventCategory>
+      </div>
 
-        {/*  <CreateEventCategory
-          categoryTitle="Sports"
-          categoryCount={20}
-          showCount={false}
-          selectHandler={onSelectEventType}
-          selected={selected}
-          name="sport"
-          red={<SportsSvg fill="red" className="create-event-svg" />}
+      <div
+        // className="myibloov-create-button-container"
+        className={
+          formCount === 2
+            ? "myibloov-create-button-container myibloov-description-btn"
+            : "myibloov-create-button-container"
+        }
+      >
+        <Button
+          customClassName="mybloov-create-event-btn-2  bold-600"
+          onClick={previousQuestionHandler}
+          btndisabled={false}
         >
-          <SportsSvg fill={svgFill} />
-        </CreateEventCategory>
-
-        <CreateEventCategory
-          categoryTitle="Travel"
-          categoryCount={20}
-          showCount={false}
-          selectHandler={onSelectEventType}
-          selected={selected}
-          name="travel"
-          red={<TravelSvg fill="red" className="create-event-svg" />}
+          {formCount === 1 ? "Cancel" : "Back"}
+        </Button>
+        <Button
+          customClassName="mybloov-create-event-btn-2  bold-600"
+          onClick={nextQuestionHandler}
+          btndisabled={!selected ? true : false}
         >
-          <TravelSvg fill={svgFill} />
-        </CreateEventCategory>
-
-        <CreateEventCategory
-          categoryTitle="Corporate"
-          categoryCount={20}
-          showCount={false}
-          selectHandler={onSelectEventType}
-          selected={selected}
-          name="corporate"
-          red={<CorporateSvg fill="red" className="create-event-svg" />}
-        >
-          <CorporateSvg fill={svgFill} />
-        </CreateEventCategory>
-
-        <CreateEventCategory
-          categoryTitle="Wedding"
-          categoryCount={20}
-          showCount={false}
-          selectHandler={onSelectEventType}
-          selected={selected}
-          name="wedding"
-          red={<WeddingSvg fill="red" className="create-event-svg" />}
-        >
-          <WeddingSvg fill={svgFill} />
-        </CreateEventCategory>
-
-        <CreateEventCategory
-          categoryTitle="Christmas"
-          categoryCount={20}
-          showCount={false}
-          selectHandler={onSelectEventType}
-          selected={selected}
-          name="christmas"
-          red={<ChristmasSvg fill="red" className="create-event-svg" />}
-        >
-          <ChristmasSvg fill={svgFill} />
-        </CreateEventCategory> */}
+          {formCount === 4 ? "Create Event" : "Next"}
+        </Button>
       </div>
     </div>
   );
